@@ -2,14 +2,13 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="asset/css/index.css">
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>JSS Med</title>
   </head>
   <body>
       <div class="container">
-        <nav class="navbar navbar-expand-sm navbar-light">
+        <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand logo" href="#">
                 <img src="https://image.freepik.com/free-vector/hospital-logo-design-vector-medical-cross_53876-136743.jpg" alt="JJJ Care" class="d-inline-block align-top">
               </a>
@@ -20,25 +19,43 @@
             	data-bs-target="#toggleMobileMenu" 
             	aria-controls="toggleMobileMenu" 
             	aria-expanded="false" 
-            	aria-label="Toggle navigation"
-            >
+            	aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="toggleMobileMenu">
               <ul class="navbar-nav ms-auto text-center">
-                <li>
-                    <a class="nav-link" href="#">Patient Care</a>
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    role="button" data-toggle="dropdown">Patient Care</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="#" class="dropdown-item">Consultation Appointment</a>
+                        <a href="#" class="dropdown-item">Vaccination Appointment</a>
+                    </div>
                 </li>
-                <li>
-                    <a class="nav-link" href="#">Hub</a>
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    role="button" data-toggle="dropdown">Hub</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="#" class="dropdown-item">Medical Staff's Directory</a>
+                        <a href="#" class="dropdown-item">Medical Library</a>
+                    </div>
                 </li>
-                <li>
-                    <a class="nav-link" href="#">Account</a>
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    role="button" data-toggle="dropdown">Account</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Your Appointment</a>
+                        <a href="#" class="dropdown-item">Log Out</a>
+                    </div>
                 </li>
               </ul>
             </div>
         </nav>
       </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </body>
 </html>
