@@ -1,4 +1,20 @@
 .logo img{
-    width: 45px;
-    height: 45px;
-  }
+  height: 120px;
+  width: 300px;
+}
+.fa-instagram-square{
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.fa-facebook-square{
+  color:#3b5998 ;
+}
+.fa-whatsapp-square{
+  color:#25d366;
+}
+.fa-envelope{
+  color: #BB001B;
+}

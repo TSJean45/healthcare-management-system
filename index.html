@@ -2,29 +2,43 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="asset/css/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <title>JSS Med</title>
   </head>
   <body>
       <div class="container">
+        <div class="header row">
+          <div class="col col-xxl-1">
+            <i class="fab fa-facebook-square fa-2x"></i>
+            <i class="fab fa-instagram-square fa-2x"></i>
+            <i class="fab fa-whatsapp-square fa-2x"></i>
+            <i class="fas fa-envelope fa-2x"></i>
+          </div>
+          
+        </div>
         <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand logo" href="#">
-                <img src="https://image.freepik.com/free-vector/hospital-logo-design-vector-medical-cross_53876-136743.jpg" alt="JJJ Care" class="d-inline-block align-top">
+                <img src="asset/image/output-onlinepngtools.png" alt="JJJ MedCare" class="d-inline-block align-top">
               </a>
             <button 
             	class="navbar-toggler" 
             	type="button" 
             	data-bs-toggle="collapse" 
-            	data-bs-target="#toggleMobileMenu" 
-            	aria-controls="toggleMobileMenu" 
+            	data-bs-target="#toggleCollapse" 
+            	aria-controls="toggleCollapse" 
             	aria-expanded="false" 
             	aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="toggleMobileMenu">
+            <div class="collapse navbar-collapse gx-4" id="toggleCollapse">
               <ul class="navbar-nav ms-auto text-center">
-                <li class="nav-item active dropdown">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                     role="button" data-toggle="dropdown">Patient Care</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -52,6 +66,10 @@
               </ul>
             </div>
         </nav>
+      </div>
+
+      <div class="img-container">
+        <img src="" class="img-fluid" alt="">
       </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
