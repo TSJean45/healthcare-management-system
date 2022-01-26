@@ -1,0 +1,20 @@
+.myNav a{
+    font-weight: bolder;
+}
+.myNav a:hover:not(.myNav a .active){
+    border-bottom: 3px solid red;
+}
+.myNav .active{
+    border-bottom: 3px solid red;
+}
+.mrt a{
+    background: #181174;
+    color: white !important;
+    border-radius: 50px;
+    box-shadow: 3px 3px 5px #777;
+    width: 120px;
+    text-align: center;
+}
+.mrt a:hover{
+    background:rgba(192, 0, 0, 0.8);
+}
