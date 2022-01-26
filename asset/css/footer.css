@@ -27,7 +27,7 @@ a, a:hover{
 }
 .footer-container .nav-links li{
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 5px;
 }
 .footer-container .nav-links li a{
     color: gray;
@@ -43,6 +43,9 @@ a, a:hover{
     width: 160px;
     padding: 10px 20px;
 }
+.footer-container .btn.btn-tertiary:hover{
+    background:rgba(192, 0, 0, 0.8);
+}
 .footer-container .social li{
     display: inline-block;
 }
@@ -55,4 +58,5 @@ a, a:hover{
 }
 .footer-container .copyright{
     border-top: 1px solid #404040;
+    padding:2px;
 }
