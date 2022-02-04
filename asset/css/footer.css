@@ -60,3 +60,10 @@ a, a:hover{
     border-top: 1px solid #404040;
     padding:2px;
 }
+.page-footer .container-fluid{
+    background-color: rgb(0, 0, 0);
+}
+.page-footer .footer-copyright{
+    background: rgba(0, 0, 0, 0.911);
+    color: white;
+}
