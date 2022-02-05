@@ -44,7 +44,7 @@ a, a:hover{
     padding: 10px 20px;
 }
 .footer-container .btn.btn-tertiary:hover{
-    background:rgba(192, 0, 0, 0.8);
+    background:#1977cc;
 }
 .footer-container .social li{
     display: inline-block;
@@ -66,4 +66,13 @@ a, a:hover{
 .page-footer .footer-copyright{
     background: rgba(0, 0, 0, 0.911);
     color: white;
+}
+.footer-container .logo img{
+    width: auto;
+}
+@media only screen 
+and (max-width : 768px) {
+    .footer-container{
+        text-align: center;
+    }
 }
