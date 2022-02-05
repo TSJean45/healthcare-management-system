@@ -1,20 +1,37 @@
-.myNav a{
+body{
+    overflow-x: hidden;
+}
+.logo img{
+    width: 250px;
+    height: 90px;
+}
+.myNav .nav-link,.btn-group .btn{
     font-weight: bolder;
 }
-.myNav a:hover:not(.myNav a .active){
+.myNav a:hover:not(.myNav a .active):not(.navbar .nav-item .dropdown-menu .dropdown-item){
     border-bottom: 3px solid red;
 }
 .myNav .active{
     border-bottom: 3px solid red;
 }
-.mrt a{
-    background: #181174;
-    color: white !important;
-    border-radius: 50px;
-    box-shadow: 3px 3px 5px #777;
-    width: 120px;
-    text-align: center;
+.topbar .contact-info i{
+    padding: 7px;
+    color: rgba(26, 25, 25, 0.678);
+    font-size: 15px;
 }
-.mrt a:hover{
-    background:rgba(192, 0, 0, 0.8);
+.topbar .social-links .fab{
+    padding: 10px;
+    font-size: 20px;
+}
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{
+        display: none;
+        margin-top:0; 
+    }
+	.navbar .nav-item:hover .dropdown-menu{
+        display: block;
+    }
+}
+.btn-group .btn{
+    background: white;
 }
