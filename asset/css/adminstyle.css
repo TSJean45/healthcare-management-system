@@ -9,7 +9,9 @@
 body{
   overflow-x: hidden;
 }
-
+/*-------------------------------------------------------------------
+Admin Dashboard
+----------------------------------------------------------------------*/
 /*Main Content */
 .home-section .home-content{
   position: relative;
@@ -100,3 +102,17 @@ body{
 .list-boxes .main-panel .content-wrapper{
   margin: 20px;
 }
+/*-------------------------------------------------------------------
+Admin Profile
+----------------------------------------------------------------------*/
+.home-section .home-content .profile{
+  align-items: center;
+  width: 100%;
+  margin-bottom: 26px;
+}
+.home-section .home-content .profile .profile-details{
+  margin-top: 20px;
+}
+/*-------------------------------------------------------------------
+Admin Edit Profile
+----------------------------------------------------------------------*/
