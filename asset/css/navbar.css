@@ -56,7 +56,7 @@
   .sidebar-details .nav-links .item .active{
     background: white;
     color: #081D45;
-    margin-left: 5px;
+    width: 100%;
     border-radius: 30px 0 0 30px;
   }
   .sidebar-details .nav-links .item .active i,
@@ -81,7 +81,7 @@
   .home-section{
     position: relative;
     background: #f5f5f5;
-    min-height: 100vh;
+    min-height: 20px;
     width: calc(100% - 240px);
     left: 240px;
     transition: all 0.5s ease;
