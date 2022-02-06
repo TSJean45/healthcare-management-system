@@ -17,7 +17,7 @@ a, a:hover{
     height: 70vh;
 }
 .footer-container{
-    margin-top: 20px;
+    padding: 2rem 0;
     background-color: #000;
     color: #777; 
 }
