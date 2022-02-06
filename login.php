@@ -1,43 +1,17 @@
 <?php
 
-$host="localhost";
-$user="root";
-$password="";
-$db="user";
 
-
-$data=mysqli_connect($host,$user,$password,$db);
-
-if($data===false)
-{
-    die("connection error");
-}
-
-$username=$_POST["Email"];
-$password=$_POST["Password"];
-
-//register
-$s = " select * from login where username = '$username'";
-
-$result = mysqli_query($con, $s);
-
-$num = mysqli_num_rows($result);
-
-if($num == 1)
-{
-	echo "Email already taken";
-}
-else
-{
-	$reg="insert into login(email , password) values ('$username' , '$password')";
-	mysqli_query($con, $reg);
-	echo "Registration Succesful";
-}
+require_once('connection.php');
 
 //login
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
-    $sql="select * from login where username= '".$username. "' AND password= '".$password. "' ";
+	
+	$username=$_POST["Email"];
+	$password=$_POST["Password"]; 
+	
+
+    $sql="select * from login where username = '".$username. "' AND password= '".$password. "' ";
 
     $result=mysqli_query($data,$sql);
 
@@ -81,16 +55,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     <h2>JJJ E-healthcare </h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form action="registration.php" method="POST">
 			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<input type="cpassword" placeholder="Confirm Password" />
+			<!-- <input type="text" name="Name" /> -->
+			<input type="email" name="Email" />
+			<input type="password" name="Password" />
+			<input type="password" name="CPassword" />
 			<button>Sign Up</button>
 		</form>
 	</div>
-	<div class="form-container sign-in-container">
+	<div class="form-container sign-in-container" href="#login">
 		<form action="#" method="POST">
 			<h1>Sign in</h1>
 			<input type="email" name="Email" />
