@@ -65,7 +65,7 @@
             </a>
           </li>
           <li class="item">
-            <a href="adminprofile.html">
+            <a href="staffprofile.html">
               <i class='bx bxs-user-rectangle' ></i>
               <span class="links_name">Profile</span>
             </a>
@@ -108,7 +108,25 @@
         <div class="col-xl-12 grid-margin stretch-card">
             <div class="card  mx-3">
                 <div class="card-header">
-                    <h4 class="card-title">Ward Status</h4>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h4 class="card-title">Ward Status</h4>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="d-flex flex-row-reverse">
+                                <div class="mx-1">
+                                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addWard">
+                                    Add Ward
+                                </button>
+                                </div>
+                                <div class="mx-1">
+                                    <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#editWard">
+                                        Edit Ward
+                                    </button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-header">
                     <div class="card-action card-tabs mb-3 style-1">
@@ -148,7 +166,7 @@
                                         <td><button type="button" class="btn btn-secondary">Empty</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -162,7 +180,7 @@
                                         <td><button type="button" class="btn btn-secondary">Empty</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -176,7 +194,7 @@
                                         <td><button type="button" class="btn btn-success">Occupied</button></td>
                                         <td>53275531</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -190,7 +208,7 @@
                                         <td><button type="button" class="btn btn-success">Occupied</button></td>
                                         <td>53275531</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -204,7 +222,7 @@
                                         <td><button type="button" class="btn btn-warning">Cleaning</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -218,7 +236,7 @@
                                         <td><button type="button" class="btn btn-warning">Cleaning</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -226,6 +244,18 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="d-flex flex-row-reverse">
+                                <div class="mx-1">
+                                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addBed">
+                                    Add Bed
+                                </button>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row my-auto">
+                                <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
+                                <h5 class="my-auto">1</h5>
+                                <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
+                              </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="ward2">
@@ -249,7 +279,7 @@
                                         <td><button type="button" class="btn btn-secondary">Empty</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -263,7 +293,7 @@
                                         <td><button type="button" class="btn btn-secondary">Empty</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -277,7 +307,7 @@
                                         <td><button type="button" class="btn btn-success">Occupied</button></td>
                                         <td>53275531</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -291,7 +321,7 @@
                                         <td><button type="button" class="btn btn-success">Occupied</button></td>
                                         <td>53275531</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -305,7 +335,7 @@
                                         <td><button type="button" class="btn btn-warning">Cleaning</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -319,7 +349,7 @@
                                         <td><button type="button" class="btn btn-warning">Cleaning</button></td>
                                         <td>None</td>
                                         <td class="action-button">
-                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewWard">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
                                             <i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -329,23 +359,17 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="Today">
-                        <div class="table-responsive">
-                            <table class="table shadow-hover card-table border-no tbl-btn short-one">
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
   </section>
 
-    <div class="modal fade" id="viewWard" tabindex="-1" aria-labelledby="viewWardLabel" aria-hidden="true">
+    <div class="modal fade" id="editBed" tabindex="-1" aria-labelledby="editBedLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="viewWard">Ward Status</h5>
+                    <h5 class="modal-title" id="editBed">Edit Bed Status</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -373,6 +397,103 @@
                             <option value="occupied">Occupied</option>
                             <option value="cleaning">Cleaning</option>
                             </select>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addBed" tabindex="-1" aria-labelledby="addBedLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBed">Add Bed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="inputBedID" class="form-label">Bed ID</label>
+                        <input type="text" class="form-control" id="inputBedID">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputUserID" class="form-label">User ID</label>
+                        <input type="text" class="form-control" id="inputUserID">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputBedStatus" class="form-label">Bed Status</label>
+                            <select id="inputBedStatus" class="form-control" name="bed status">
+                            <option value="empty">Empty</option>
+                            <option value="occupied">Occupied</option>
+                            <option value="cleaning">Cleaning</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addWard" tabindex="-1" aria-labelledby="addWardLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addWard">Add Ward</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="inputBedID" class="form-label">Ward ID</label>
+                        <input type="text" class="form-control" id="inputBedID">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputLocation" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="inputLocation">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputDepartment" class="form-label">Department</label>
+                            <input type="text" class="form-control" id="inputDepartment">
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editWard" tabindex="-1" aria-labelledby="editWardLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editWard">Edit Ward</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="inputWardID" class="form-label">Ward ID</label>
+                        <input type="text" class="form-control" id="inputWardID">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputLocation" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="inputLocation">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputDepartment" class="form-label">Department</label>
+                            <input type="text" class="form-control" id="inputDepartment">
                         </div>
                     </form>
                     <div class="modal-footer">
