@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <head>
     <!-- Local CSS File -->
-    <link rel="stylesheet" href="asset/css/adminstyle.css">
+    <link rel="stylesheet" href="asset/css/staffstyle.css">
     <link rel="stylesheet" href="asset/css/navbar.css">
 
     <!-- Boxicon Icon -->
@@ -29,55 +29,43 @@
     <div class="sidebar-details">
       <ul class="nav-links">
         <li class="item">
-          <a href="admindashboard.html" >
+          <a href="staffdashboard.html" >
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Main Dashboard</span>
           </a>
         </li>
         <li class="item">
-          <a href="adminlist.html">
-            <i class='fa fa-user-cog fa-xs'></i>
-            <span class="links_name">Admin</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="stafflist.html" >
-            <i class='fa fa-user-md fa-xs'></i>
-            <span class="links_name">Medical Staff</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminUserlist.html">
+          <a href="staffUserlist.html">
             <i class='fa fa-user fa-xs' ></i>
             <span class="links_name">User</span>
           </a>
         </li>
         <li class="item">
-          <a href="adminContact.html">
-            <i class="fas fa-file-signature"></i>
-            <span class="links_name">Contact</span>
-          </a>
-        </li>
-        <li class="item">
-            <a href="#"  class="active">
+            <a href="staffVac.html"   class="active" >
               <i class="fas fa-syringe"></i>
               <span class="links_name">Vaccination</span>
             </a>
           </li>
           <li class="item">
-            <a href="adminApp.html">
+            <a href="#">
             <i class="fas fa-calendar-check"></i>
               <span class="links_name">Appointment</span>
             </a>
           </li>
           <li class="item">
-            <a href="adminStock.html">
+            <a href="staffStock.html">
               <i class="fas fa-prescription-bottle-alt"></i>
               <span class="links_name">Medicine Stock</span>
             </a>
           </li>
           <li class="item">
-            <a href="adminprofile.html">
+            <a href="staffward.html">
+                <i class="fas fa-procedures"></i>
+              <span class="links_name">Ward</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="staffprofile.html">
               <i class='bx bxs-user-rectangle' ></i>
               <span class="links_name">Profile</span>
             </a>
@@ -130,10 +118,10 @@
                             <tr>
                                 <th> No</th>
                                 <th> User ID </th>
-                                <th> Vaccine</th>
+                                <th> Vaccine Name</th>
                                 <th>Vaccine ID</th>
                                 <th>Medical Staff Assigned</th>
-                                <th>Date</th>
+                                <th>Vaccination Date</th>
                                 <th> Action </th>
                             </tr>
                         </thead>
@@ -155,10 +143,12 @@
                                 <td>#VP101</td>
                                 <td>#S-19655</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                             </tr>
                             <tr>
                                 <td>
@@ -177,10 +167,12 @@
                                 <td>#VP101</td>
                                 <td>#S-19655</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                             </tr>
                             <tr>
                                 <td>
@@ -199,10 +191,12 @@
                                 <td>#VA101</td>
                                 <td>#S-14525</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                                    <i class="fas fa-edit"></i></button>
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                    <i class="fas fa-trash-alt"></i></button>
+                                 </td>
                             </tr>
                             <tr>
                                 <td>
@@ -221,10 +215,12 @@
                                 <td>#VA101</td>
                                 <td>#S-14525</td>
                                 <td>10 Feburary 2022</td>
-                                <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                                    <i class="fas fa-edit"></i></button>
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                    <i class="fas fa-trash-alt"></i></button>
+                                 </td>
                             </tr>
                             <tr>
                                 <td>
@@ -243,10 +239,12 @@
                                 <td>#VA101</td>
                                 <td>#S-14525</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                             </tr>
                             <tr>
                                 <td>
@@ -265,10 +263,12 @@
                                 <td>#VS101</td>
                                 <td>	#S-12566</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                             </tr>
                             <tr>
                                 <td>
@@ -287,10 +287,12 @@
                                 <td>#VS101</td>
                                 <td>	#S-12566</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                             </tr>
                             <tr>
                                 <td>
@@ -309,10 +311,12 @@
                                 <td>#VS101</td>
                                 <td>	#S-12566</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                             </tr>
                             <tr>
                                 <td>
@@ -331,10 +335,12 @@
                                 <td>#VS101</td>
                                 <td>	#S-12566</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                                <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                             </tr>
                             <tr>
                                 <td>
@@ -353,9 +359,12 @@
                                 <td>#VS101</td>
                                 <td>	#S-12566</td>
                                 <td>10 Feburary 2022</td>
-                                <td class>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                </td>
+                                <td class="action-button">
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editVaccine">
+                                    <i class="fas fa-edit"></i></button>
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                    <i class="fas fa-trash-alt"></i></button>
+                                 </td>
                             </tr>
                         </tbody>
                         </table>
@@ -365,6 +374,11 @@
                               Print
                           </button>
                           </div>
+                          <div class="mx-1">
+                            <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addVaccine">
+                                Add Vaccination
+                            </button>
+                            </div>
                       </div>
                     </div>
                 </div>
@@ -373,32 +387,91 @@
       </div>
     </section>
 
+    <div class="modal fade" id="addVaccine" tabindex="-1" aria-labelledby="addVaccineLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addVaccine">Add Vaccination</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="inputVaccineID" class="form-label">Vaccine ID</label>
+                        <input type="text" class="form-control" id="inputVaccineID">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputVaccineName" class="form-label">Vaccine Name</label>
+                        <input type="text" class="form-control" id="inputVaccineName">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputStaffID" class="form-label">Medical Staff ID</label>
+                        <input type="text" class="form-control" id="inputStaffID">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputVaccineDate" class="form-label">Vaccination Date</label>
+                            <input type="date" class="form-control" id="inputVaccineDate">
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Add Vaccination</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="modal fade" id="viewMessage" tabindex="-1" aria-labelledby="viewMessageLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="viewMessage">Vaccination Detail</h5>
+              <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <h5>User ID</h5>
-              <p>53275531</p>
-              <h5>Name </h5>
-              <p>Lian Sho Khia</p>
-              <h5>Vaccine ID </h5>
-              <p>#VP101</p>
-              <h5>Vaccine Name</h5>
-              <p>	Pfizer-BioNTech</p>
-              <h5>Medical Staff Assigned</h5>
-              <p>	#S-19655</p>
-              <h5>Date </h5>
-              <p>10 December 2022</p>
+              Are you sure that you want to delete the selected data?
             </div>
             <div class="modal-footer">
+              <button type="button" class="btn btn-success">Yes</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editVaccine" tabindex="-1" aria-labelledby="editVaccineLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editVaccine">Edit Vaccination Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="inputVaccineID" class="form-label">Vaccine ID</label>
+                        <input type="text" class="form-control" id="inputVaccineID">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputVaccineName" class="form-label">Vaccine Name</label>
+                        <input type="text" class="form-control" id="inputVaccineName">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputStaffID" class="form-label">Medical Staff ID</label>
+                        <input type="text" class="form-control" id="inputStaffID">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputVaccineDate" class="form-label">Vaccination Date</label>
+                            <input type="date" class="form-control" id="inputVaccineDate">
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Save Changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

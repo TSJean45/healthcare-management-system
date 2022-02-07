@@ -1,268 +1,544 @@
 <!DOCTYPE html>
   <head>
+    <!-- Local CSS File -->
     <link rel="stylesheet" href="asset/css/staffstyle.css">
+    <link rel="stylesheet" href="asset/css/navbar.css">
+
+    <!-- Boxicon Icon -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Font Awesome Icon -->
+    <script src="https://kit.fontawesome.com/fb95a6dbf4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
+    <title>Staff Dashboard</title>
+    <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
    </head>
 <body>
+
+  <!-- Side Bar -->
   <div class="sidebar">
     <div class="logo-details">
-      <i class='bx bxs-clinic'></i>
-      <span class="logo_name">Prototype</span>
+      <img src="asset/image/logo pic.png" alt="">
+      <span class="logo_name">JJJ MedCare</span>
     </div>
-    <hr>
-    <div class="profile">
-      <a href="#">
-        <img src="asset/image/profile1.jpg">
-        <span class="profile_name">Tan Szu Jean</span>
-      </a>
-    </div>
+
+    <div class="sidebar-details">
       <ul class="nav-links">
-        <li>
-          <a href="#">
-            <i class='bx bx-grid-alt'  class="active"></i>
+        <li class="item">
+          <a href="staffdashboard.html" class="active">
+            <i class='bx bx-grid-alt'></i>
             <span class="links_name">Main Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class='bx bxs-user' ></i>
+        <li class="item">
+          <a href="staffUserlist.html">
+            <i class='fa fa-user fa-xs' ></i>
             <span class="links_name">User</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class='bx bxs-report' ></i>
-            <span class="links_name">Appointment</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class='bx bx-clinic' ></i>
-            <span class="links_name">Ward Status</span>
-          </a>
-        </li>
-        <li>
-            <a href="#">
-              <i class='bx bx-clinic' ></i>
+        <li class="item">
+            <a href="staffVac.html">
+              <i class="fas fa-syringe"></i>
               <span class="links_name">Vaccination</span>
             </a>
           </li>
-          <li>
+          <li class="item">
             <a href="#">
-              <i class='bx bx-clinic' ></i>
-              <span class="links_name">Feedback</span>
+            <i class="fas fa-calendar-check"></i>
+              <span class="links_name">Appointment</span>
             </a>
           </li>
-          <li>
-            <a href="#">
-              <i class='bx bx-clinic' ></i>
+          <li class="item">
+            <a href="staffStock.html">
+              <i class="fas fa-prescription-bottle-alt"></i>
               <span class="links_name">Medicine Stock</span>
             </a>
           </li>
-        <li>
-          <a href="#">
-            <i class='bx bxs-user-detail' ></i>
-            <span class="links_name">Profile</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class='bx bx-log-out' ></i>
-            <span class="links_name">Log Out</span>
-          </a>
-        </li>
+          <li class="item">
+            <a href="staffward.html">
+                <i class="fas fa-procedures"></i>
+              <span class="links_name">Ward</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="staffprofile.html">
+              <i class='bx bxs-user-rectangle' ></i>
+              <span class="links_name">Profile</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <i class='bx bx-log-out' ></i>
+              <span class="links_name">Log Out</span>
+            </a>
+          </li>
       </ul>
+    </div>
   </div>
+
+
   <section class="home-section">
-    <nav>
+    <!-- Top Bar-->
+  <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Main Dashboard</span>
       </div>
-      <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <i class='bx bx-search' ></i>
-      </div>
       <div class="right-nav">
-        <div class="right noti-bell">
-          <i class='bx bxs-bell-ring' ></i>
-        </div>
-        <div class="right chat">
-          <i class='bx bxs-chat' ></i>
+            <div class="right noti-bell my-auto">
+              <i class='bx bxs-bell-ring' ></i>
+            </div>
+            
+            <div class="profile dropdown">
+              <div>
+                <img src="asset/image/profile1.jpg">
+                <span class="profile_name">Tan Szu Jean</span>
+              </div>
+            </div>
         </div>
       </div>
     </nav>
-
-    <div class="home-content">
-      <div class="overview-boxes">
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic">Total User</div>
-            <div class="number">76</div>
-            <div class="indicator">
-              <i class='bx bxs-right-arrow-circle'></i>
-              <a href="#" class="text">Head Over</a>
-            </div>
-          </div>
-          <i class='bx bx-user icon'></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic">Feedback</div>
-            <div class="number">30</div>
-            <div class="indicator">
-              <i class='bx bxs-right-arrow-circle second'></i>
-              <a href="#" class="text">Head Over</a>
-            </div>
-          </div>
-          <i class='bx bx-plus-medical icon two' ></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic">Stock</div>
-            <div class="box-topic-stock">
-              <div class="number">10</div>
-              <div class="message">LIS</div>
-            </div>
-            <div class="indicator">
-              <i class='bx bxs-right-arrow-circle third'></i>
-              <a href="#" class="text">Head Over</a>
-            </div>
-          </div>
-          <i class='bx bx-box icon three' ></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic">Appointment</div>
-            <div class="number">25</div>
-            <div class="indicator">
-              <i class='bx bxs-right-arrow-circle fourth'></i>
-              <a href="#" class="text">Head Over</a>
-            </div>
-          </div>
-          <i class='bx bxs-calendar icon four' ></i>
-        </div>
-      </div>
-
-      <div class="list-boxes">
-        <div class="recent-user box">
-          <div class="title">Recent Appointment Schedule</div>
-          <div class="user-details">
-            <ul class="details">
-              <li class="topic date">Date</li>
-              <li><a href="#">02 Jan 2021</a></li>
-              <li><a href="#">02 Jan 2021</a></li>
-              <li><a href="#">02 Jan 2021</a></li>
-              <li><a href="#">02 Jan 2021</a></li>
-              <li><a href="#">02 Jan 2021</a></li>
-              <li><a href="#">02 Jan 2021</a></li>
-              <li><a href="#">02 Jan 2021</a></li>
-            </ul>
-            <ul class="details">
-            <li class="topic">Name</li>
-            <li><a href="#">Alex Doe</a></li>
-            <li><a href="#">David Mart</a></li>
-            <li><a href="#">Roe Parter</a></li>
-            <li><a href="#">Diana Penty</a></li>
-            <li><a href="#">Martin Paw</a></li>
-            <li><a href="#">Doe Alex</a></li>
-            <li><a href="#">Aiana Lexa</a></li>
-            <li><a href="#">Rexel Mags</a></li>
-             <li><a href="#">Tiana Loths</a></li>
-          </ul>
-          <ul class="details">
-            <li class="topic">Time</li>
-            <li><a href="#">8:00am</a></li>
-            <li><a href="#">8:30am</a></li>
-            <li><a href="#">9:30am</a></li>
-            <li><a href="#">1:00pm</a></li>
-            <li><a href="#">8:00am</a></li>
-            <li><a href="#">9:30am</a></li>
-            <li><a href="#">11:00am</a></li>
-             <li><a href="#">8:30am</a></li>
-            <li><a href="#">2:00pm</a></li>
-          </ul>
-          
-          </div>
-          <div class="button">
-            <a href="#">See All</a>
-          </div>
-        </div>
-        <div class="low-stock box">
-          <div class="title">Low In Stock</div>
-          <ul class="low-stock-details">
-            <li>
-            <a href="#">
-              <!--<img src="images/sunglasses.jpg" alt="">-->
-              <span class="name">Acetaminophen</span>
-            </a>
-            <span class="amount">24</span>
-          </li>
-          <li>
-            <a href="#">
-               <!--<img src="images/jeans.jpg" alt="">-->
-              <span class="name">Paracetamol</span>
-            </a>
-            <span class="amount">5</span>
-          </li>
-          <li>
-            <a href="#">
-             <!-- <img src="images/nike.jpg" alt="">-->
-              <span class="name">Metformin</span>
-            </a>
-            <span class="amount">10</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/scarves.jpg" alt="">-->
-              <span class="name">Amlodipine</span>
-            </a>
-            <span class="amount">29</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/blueBag.jpg" alt="">-->
-              <span class="name">Albuterol</span>
-            </a>
-            <span class="amount">12</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/bag.jpg" alt="">-->
-              <span class="name">Simvastatin</span>
-            </a>
-            <span class="amount">3</span>
-          <li>
-            <a href="#">
-              <!--<img src="images/addidas.jpg" alt="">-->
-              <span class="name">Losartan:</span>
-            </a>
-            <span class="amount">19</span>
-          </li>
-          <li>
-            <a href="#">
-             <!--<img src="images/shirt.jpg" alt="">-->
-              <span class="name">Metoprolol</span>
-            </a>
-            <span class="amount">21</span>
-          </li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </section>
 
+  <section class="home-section">
+    <div class="home-content">
+      <!-- Overview Boxes-->
+      <div class="overview-boxes">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="row">
+              <div class="col-xl-3 col-sm-6 m-t35">
+                <div class="card card-coin">
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-xl-5 col-sm-5 icon">
+                        <i class='bx bxs-user one' ></i>
+                        <div class="indicator">
+                          <i class='bx bxs-right-arrow-circle'></i>
+                          <a href="staffUserlist.html" class="text">Head Over</a>
+                        </div>
+                      </div>
+                      <div class="col-xl-7 col-sm-7">
+                        <h2 class="text-black mb-2 font-w600">65</h2>
+                          <p class="mb-0 fs-13 box-topic">
+                            Total User
+                          </p>	
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 m-t35">
+                <div class="card card-coin">
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-xl-5 col-sm-5 icon">
+                        <i class="fas fa-syringe two"></i>
+                        <div class="indicator second">
+                          <i class='bx bxs-right-arrow-circle second'></i>
+                          <a href="adminVac.html" class="text">Head Over</a>
+                        </div>
+                      </div>
+                      <div class="col-xl-7 col-sm-7">
+                        <h2 class="text-black mb-2 font-w600">10</h2>
+                          <p class="mb-0 fs-13 box-topic">
+                            Vaccination
+                          </p>	
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 m-t35">
+                <div class="card card-coin">
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-xl-5 col-sm-5 icon">
+                        <i class='bx bxs-calendar three i' ></i>
+                        <div class="indicator">
+                          <i class='bx bxs-right-arrow-circle third'></i>
+                          <a href="adminApp.html" class="text">Head Over</a>
+                        </div>
+                      </div>
+                      <div class="col-xl-7 col-sm-7">
+                        <h2 class="text-black mb-2 font-w600">3</h2>
+                          <p class="mb-0 fs-13 box-topic">
+                            Appointment
+                          </p>	
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 m-t35">
+                <div class="card card-coin">
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-xl-5 col-sm-5 icon">
+                        <i class="fas fa-prescription-bottle-alt four"></i>
+                        <div class="indicator ">
+                          <i class='bx bxs-right-arrow-circle fourth'></i>
+                          <a href="staffStock.html" class="text">Head Over</a>
+                        </div>
+                      </div>
+                      <div class="col-xl-7 col-sm-7">
+                        <h2 class="text-black mb-2 font-w600">23</h2>
+                          <p class="mb-0 fs-13 box-topic">
+                            Low In Stock
+                          </p>	
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Table -->
+      <div class="list-boxes">
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row ">
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Recent Registered User</h4>
+                    <div class="table-responsive">
+                      <table class="table table-hover table-condensed">
+                        <thead>
+                          <tr>
+                            <th>Username</th>
+                            <th>ID</th>
+                            <th>Date Joined</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>53275531</td>
+                            <td>6 February 2022</td>
+                            <td><button type="button" class="btn btn-danger">New</button></td>
+                          </tr>
+                          <tr>
+                            <td>Messsy</td>
+                            <td>53275532</td>
+                            <td>6 February 2022</td>
+                            <td><button type="button" class="btn btn-danger">New</button></td>
+                          </tr>
+                          <tr>
+                            <td>John</td>
+                            <td>53275533</td>
+                            <td>6 February 2022</td>
+                            <td><button type="button" class="btn btn-danger">New</button></td>
+                          </tr>
+                          <tr>
+                            <td>Peter</td>
+                            <td>53275534</td>
+                            <td>6 February 2022</td>
+                            <td><button type="button" class="btn btn-danger">New</button></td>
+                          </tr>
+                          <tr>
+                            <td>Dave</td>
+                            <td>53275535</td>
+                            <td>6 February 2022</td>
+                            <td><button type="button" class="btn btn-danger">New</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="d-flex flex-row-reverse">
+                        <a href="staffUserList.html">
+                          <button type="button" class="btn btn-primary">See All</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Vaccination</h4>
+                    <div class="table-responsive">
+                      <table class="table table-hover table-condensed">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>gimp23@osmye.com</td>
+                            <td>6 February 2022</td>
+                            <td>
+                              <a href="#">
+                                <i class="fas fa-pen-alt"></i>
+                                <span>Reply</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Messsy</td>
+                            <td>aristotales@convoith.com</td>
+                            <td>6 February 2022</td>
+                            <td>
+                              <a href="#">
+                                <i class="fas fa-pen-alt"></i>
+                                <span>Reply</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>John</td>
+                            <td>aristotales@convoith.com</td>
+                            <td>6 February 2022</td>
+                            <td>
+                              <a href="#">
+                                <i class="fas fa-pen-alt"></i>
+                                <span>Reply</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Peter</td>
+                            <td>okyou0327@eluvit.com</td>
+                            <td>6 February 2022</td>
+                            <td>
+                              <a href="#">
+                                <i class="fas fa-pen-alt"></i>
+                                <span>Reply</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Dave</td>
+                            <td>moqehycaxas@eloltsf.com</td>
+                            <td>6 February 2022</td>
+                            <td>
+                              <a href="#">
+                                <i class="fas fa-pen-alt"></i>
+                                <span>Reply</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Dave</td>
+                            <td>shaneotd@tampicobrush.org</td>
+                            <td>6 February 2022</td>
+                            <td>
+                              <a href="#">
+                                <i class="fas fa-pen-alt"></i>
+                                <span>Reply</span>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Dave</td>
+                            <td>jeremyt@how2t.site</td>
+                            <td>6 February 2022</td>
+                            <td>
+                              <a href="#">
+                                <i class="fas fa-pen-alt"></i>
+                                <span>Reply</span>
+                              </a>
+                            </td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      <div class="d-flex flex-row-reverse">
+                        <a href="adminContact.html">
+                          <button type="button" class="btn btn-primary">See All</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Medicine Stock</h4>
+                    <div class="table-responsive">
+                      <table class="table table-hover table-condensed">
+                        <thead>
+                          <tr>
+                            <th> Name </th>
+                            <th> Code </th>
+                            <th> Stock Bar </th>
+                            <th> Amount </th>
+                            <th> Action </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="py-1">
+                              Acetaminophen
+                            </td>
+                            <td>#12392</td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </td>
+                            <td> 50 </td>
+                            <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
+                          </tr>
+                          <tr>
+                            <td class="py-1">
+                              Paracetamol
+                            </td>
+                            <td>#34244</td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </td>
+                            <td> 200 </td>
+                            <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
+                          </tr>
+                          <tr>
+                            <td class="py-1">
+                              Metformin
+                            </td>
+                            <td>#34243</td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </td>
+                            <td> 300</td>
+                            <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
+                          </tr>
+                          <tr>
+                            <td class="py-1">
+                              Amlodipine
+                            </td>
+                            <td>#87544</td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </td>
+                            <td> 80</td>
+                            <td class="action-button">
+                              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                              <i class="fas fa-edit"></i></button>
+                              <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                              <i class="fas fa-trash-alt"></i></button>
+                          </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="d-flex flex-row-reverse">
+                        <a href="staffStock.html">
+                          <button type="button" class="btn btn-primary">See All</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure that you want to delete the selected data?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success">Yes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal fade" id="editStock" tabindex="-1" aria-labelledby="editStockLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="editStock">Edit Stock Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="mb-3">
+                      <label for="inputStockID" class="form-label">Stock ID</label>
+                      <input type="text" class="form-control" id="inputStockID">
+                      </div>
+                      <div class="mb-3">
+                      <label for="inputStockName" class="form-label">Stock Name</label>
+                      <input type="text" class="form-control" id="inputStockName">
+                      </div>
+                      <div class="mb-3">
+                      <label for="inputStockAmount" class="form-label">Stock Amount</label>
+                      <input type="text" class="form-control" id="inputStockAmount">
+                      </div>
+                      <div class="mb-3">
+                          <label for="inputStockExpire" class="form-label">Stock Expiration Date</label>
+                          <input type="date" class="form-control" id="inputStockExpire">
+                      </div>
+                  </form>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-success">Save Changes</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
   <script>
-   let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".sidebarBtn");
-sidebarBtn.onclick = function() {
-  sidebar.classList.toggle("active");
-  if(sidebar.classList.contains("active")){
-  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-}else
-  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-}
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function() {
+        sidebar.classList.toggle("active");
+        if(sidebar.classList.contains("active")){
+        sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+      }else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
  </script>
+
+<!-- Bootstrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
