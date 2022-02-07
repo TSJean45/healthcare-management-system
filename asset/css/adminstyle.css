@@ -9,6 +9,7 @@
 body{
   overflow-x: hidden;
 }
+
 /*-------------------------------------------------------------------
 Admin Dashboard
 ----------------------------------------------------------------------*/
@@ -114,5 +115,14 @@ Admin Profile
   margin-top: 20px;
 }
 /*-------------------------------------------------------------------
-Admin Edit Profile
+Admin List
 ----------------------------------------------------------------------*/
+.table-adminList{
+  height: 530px;
+}
+.staffList-action{
+  text-align: center;
+}
+.staffList-action .dropdown-menu i{
+  margin-right: 10px;
+}
