@@ -1,17 +1,23 @@
 <?php
 
+session_start();
+
 
 require_once('connection.php');
+
 
 //login
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
 	
-	$username=$_POST["Email"];
+	$email=$_POST["Email"];
 	$password=$_POST["Password"]; 
 	
+	if(!empty($email)&&!empty($password))
+	{
 
-    $sql="select * from login where username = '".$username. "' AND password= '".$password. "' ";
+	
+    $sql="select * from login where email = '".$email. "' AND password= '".$password. "' ";
 
     $result=mysqli_query($data,$sql);
 
@@ -30,66 +36,45 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         header("location:staffdashboard.html");
     }
     else{
-        echo "Username or Password Incorrect";
+        echo "<p align=center>Username or Password Incorrect</p>";
     }
+	}
+	else{
+		echo" <p align=center>Please fill in the require form </p>";
+	}
 //end
+
+
 }
 ?>
 
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="asset/css/logreg.css">
+<head>
+<link rel="stylesheet" href="asset/css/login.css">
+<title> Login </title>
+</head>
 
-    </head>
 <body>
-	
-    <h2>JJJ E-healthcare </h2>
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="registration.php" method="POST">
-			<h1>Create Account</h1>
-			<!-- <input type="text" name="Name" /> -->
-			<input type="email" name="Email" />
-			<input type="password" name="Password" />
-			<input type="password" name="CPassword" />
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container" href="#login">
-		<form action="#" method="POST">
-			<h1>Sign in</h1>
-			<input type="email" name="Email" />
-			<input type="password" name="Password" />
-			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Hello There !</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
-			</div>
-		</div>
-	</div>
-</div>
+  
+    <div class="login-page">
+      <div class="form">
+        <div class="login">
+          <div class="login-header">
+		  	<h3> JJJ E-Healtcare</h3>
+            <h2>LOGIN</h2>
+            <p>Please enter your credentials to login.</p>
+			
+          </div>
+        </div>
+        <form class="login-form" method="POST">
+          <input type="text" name="Email" placeholder="Email"/>
+          <input type="password" name="Password" placeholder="password"/>
+          <button>login</button>
+          <p class="message">Not registered? <a href="registration.php">Create an account</a></p>
+        </form>
+      </div>
+    </div>
 
-<script src="asset/js/logreg.js"></script>
-
-    </body>
+</body>
 </html>
