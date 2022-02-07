@@ -7,11 +7,8 @@
 }
 
 body {
-	background: #f6f5f7;
-	/*background-image: url("https://images.pexels.com/photos/1692693/pexels-photo-1692693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
 	width:100%;
 	height: 100vh;
-	
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -23,12 +20,11 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
 }
 
-/* #SLIDE_BG{
+#SLIDE_BG{
 	width:100%;
 	height: 100vh;
 	
@@ -39,7 +35,7 @@ body {
 	animation: slideBg 8s linear infinite 0s;
 	animation-timing-function: ease-in-out;
 	background-image: url(https://images.pexels.com/photos/1692693/pexels-photo-1692693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-} */
+}
 
 @keyframes slideBg {
 	0%{

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+  <head>
+    <!-- Local CSS File -->
+    <link rel="stylesheet" href="asset/css/staffstyle.css">
+    <link rel="stylesheet" href="asset/css/navbar.css">
+
+    <!-- Boxicon Icon -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Font Awesome Icon -->
+    <script src="https://kit.fontawesome.com/fb95a6dbf4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
+    <title>Medicine Stock</title>
+    <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
+   </head>
+<body>
+
+  <!-- Side Bar -->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="asset/image/logo pic.png" alt="">
+      <span class="logo_name">JJJ MedCare</span>
+    </div>
+
+    <div class="sidebar-details">
+      <ul class="nav-links">
+        <li class="item">
+          <a href="staffdashboard.html" >
+            <i class='bx bx-grid-alt'></i>
+            <span class="links_name">Main Dashboard</span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="staffUserlist.html"  class="active" >
+            <i class='fa fa-user fa-xs' ></i>
+            <span class="links_name">User</span>
+          </a>
+        </li>
+        <li class="item">
+            <a href="staffVac.html">
+              <i class="fas fa-syringe"></i>
+              <span class="links_name">Vaccination</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+            <i class="fas fa-calendar-check"></i>
+              <span class="links_name">Appointment</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="staffStock.html">
+              <i class="fas fa-prescription-bottle-alt"></i>
+              <span class="links_name">Medicine Stock</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="staffward.html">
+                <i class="fas fa-procedures"></i>
+              <span class="links_name">Ward</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="staffprofile.html">
+              <i class='bx bxs-user-rectangle' ></i>
+              <span class="links_name">Profile</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">
+              <i class='bx bx-log-out' ></i>
+              <span class="links_name">Log Out</span>
+            </a>
+          </li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="home-section">
+    <!-- Top Bar-->
+  <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">User</span>
+      </div>
+      <div class="right-nav">
+            <div class="right noti-bell my-auto">
+              <i class='bx bxs-bell-ring' ></i>
+            </div>
+            
+            <div class="profile dropdown">
+              <div>
+                <img src="asset/image/profile1.jpg">
+                <span class="profile_name">Tan Szu Jean</span>
+              </div>
+            </div>
+        </div>
+      </div>
+    </nav>
+  </section>
+
+  <section class="home-section ">
+    <div class="home-content adminList">
+      <!-- Table -->
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                            <h4 class="card-title">User List</h4>
+                    </div>
+                    <div class="table-responsive table-adminList">
+                        <table class="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th> No</th>
+                                <th> Name </th>
+                                <th> ID </th>
+                                <th> Email Address </th>
+                                <th>Date Joined</th>
+                                <th> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Lian Sho Khia
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    rmutii@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Muhammed Hj Wan Rusman bin Dahalan
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    subramaniam.sandrakasi@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Fang Shun Chio
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    oon.gekfey@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Guan Chuo Sia
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    lakshmi.kavita@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Aslina Chiew Hin Sian
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    william.asa@rahman.biz
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Aina binti Saufishazwi Ya'accob
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    rajendra.sonziak@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Hajjah Shahida binti Hazim
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    sau.loichih@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Hajjah Shahida binti Hazim
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    sau.loichih@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Hajjah Shahida binti Hazim
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    sau.loichih@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Hajjah Shahida binti Hazim
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    sau.loichih@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="staffList-action">
+                                    <div class="btn-group dropstart">
+                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <div class="d-flex flex-row-reverse">
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addAdmin">
+                                    Add User
+                                </button>
+                            </div>
+                            <div class="mx-1">
+                            <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteAdmin">
+                                Delete User
+                            </button>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row my-auto">
+                            <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
+                            <h5 class="my-auto">1</h5>
+                            <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
+                          </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteAdmin" tabindex="-1" aria-labelledby="deleteAdminLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteAdminLabel">Confirmation Message</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure that you want to delete the selected admin?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addAdmin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAdminLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addAdmin">Add User</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="inputName" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="inputName">
+                </div>
+                <div class="mb-3">
+                  <label for="inputID" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="inputID">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function() {
+        sidebar.classList.toggle("active");
+        if(sidebar.classList.contains("active")){
+        sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+      }else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+ </script>
+
+<!-- Bootstrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
