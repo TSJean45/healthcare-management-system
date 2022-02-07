@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <head>
     <!-- Local CSS File -->
-    <link rel="stylesheet" href="asset/css/adminstyle.css">
+    <link rel="stylesheet" href="asset/css/staffstyle.css">
     <link rel="stylesheet" href="asset/css/navbar.css">
 
     <!-- Boxicon Icon -->
@@ -14,7 +14,7 @@
     <!-- Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     
-    <title>Appointment</title>
+    <title>Medicine Stock</title>
     <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
    </head>
 <body>
@@ -29,55 +29,43 @@
     <div class="sidebar-details">
       <ul class="nav-links">
         <li class="item">
-          <a href="admindashboard.html" >
+          <a href="staffdashboard.html" >
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Main Dashboard</span>
           </a>
         </li>
         <li class="item">
-          <a href="adminlist.html">
-            <i class='fa fa-user-cog fa-xs'></i>
-            <span class="links_name">Admin</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="stafflist.html" >
-            <i class='fa fa-user-md fa-xs'></i>
-            <span class="links_name">Medical Staff</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminUserlist.html">
+          <a href="staffUserlist.html">
             <i class='fa fa-user fa-xs' ></i>
             <span class="links_name">User</span>
           </a>
         </li>
         <li class="item">
-          <a href="adminContact.html">
-            <i class="fas fa-file-signature"></i>
-            <span class="links_name">Contact</span>
-          </a>
-        </li>
-        <li class="item">
-            <a href="adminVac.html">
+            <a href="staffVac.html">
               <i class="fas fa-syringe"></i>
               <span class="links_name">Vaccination</span>
             </a>
           </li>
           <li class="item">
-            <a href="adminApp.html">
+            <a href="#">
             <i class="fas fa-calendar-check"></i>
               <span class="links_name">Appointment</span>
             </a>
           </li>
-          <li class="item"  class="active">
-            <a href="adminStock.html" class="active">
+          <li class="item">
+            <a href="staffStock.html" class="active" >
               <i class="fas fa-prescription-bottle-alt"></i>
               <span class="links_name">Medicine Stock</span>
             </a>
           </li>
           <li class="item">
-            <a href="adminprofile.html">
+            <a href="staffward.html">
+                <i class="fas fa-procedures"></i>
+              <span class="links_name">Ward</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="staffprofile.html">
               <i class='bx bxs-user-rectangle' ></i>
               <span class="links_name">Profile</span>
             </a>
@@ -97,7 +85,7 @@
   <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Appointment</span>
+        <span class="dashboard">Medicine Stock</span>
       </div>
       <div class="right-nav">
             <div class="right noti-bell my-auto">
@@ -116,7 +104,7 @@
   </section>
 
   <section class="home-section ">
-    <div class="home-content adminList">
+    <div class="home-content staffList">
       <!-- Table -->
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
@@ -126,10 +114,11 @@
               <table class="table table-hover table-condensed">
                 <thead>
                   <tr>
-                    <th> Name </th>
-                    <th> ID </th>
+                    <th> Stock Name </th>
+                    <th> Stock ID </th>
                     <th> Stock Bar </th>
-                    <th> Amount </th>
+                    <th> Stock Amount </th>
+                    <th>Stock Expiration Date</th>
                     <th> Action </th>
                   </tr>
                 </thead>
@@ -145,10 +134,13 @@
                       </div>
                     </td>
                     <td> 50 </td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -161,10 +153,13 @@
                       </div>
                     </td>
                     <td> 200 </td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -177,10 +172,13 @@
                       </div>
                     </td>
                     <td> 300</td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -193,10 +191,13 @@
                       </div>
                     </td>
                     <td> 80</td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -209,10 +210,13 @@
                       </div>
                     </td>
                     <td> 60 </td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -225,10 +229,13 @@
                       </div>
                     </td>
                     <td>90</td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -241,10 +248,13 @@
                       </div>
                     </td>
                     <td>30</td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -257,10 +267,13 @@
                       </div>
                     </td>
                     <td> 300</td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="py-1">
@@ -273,17 +286,25 @@
                       </div>
                     </td>
                     <td> 50 </td>
-                    <td>
-                                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewMessage"><i class="fas fa-eye"></i>View</a>
-                                  </a>
-                                </td>
+                    <td>20 May 2022</td>
+                    <td class="action-button">
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStock">
+                        <i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
               <div class="d-flex flex-row-reverse">
                 <div class="mx-1">
-                <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printVaccination">
+                <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printStock">
                     Print
+                </button>
+                </div>
+                <div class="mx-1">
+                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addStock">
+                    Add Medicine Stock
                 </button>
                 </div>
             </div>
@@ -295,27 +316,91 @@
     </section>
 
 
-    <div class="modal fade" id="viewMessage" tabindex="-1" aria-labelledby="viewMessageLabel" aria-hidden="true">
+    <div class="modal fade" id="addStock" tabindex="-1" aria-labelledby="addStockLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addStock">Add Stock</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="inputStockID" class="form-label">Stock ID</label>
+                        <input type="text" class="form-control" id="inputStockID">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputStockName" class="form-label">Stock Name</label>
+                        <input type="text" class="form-control" id="inputStockName">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputStockAmount" class="form-label">Stock Amount</label>
+                        <input type="text" class="form-control" id="inputStockAmount">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputStockExpire" class="form-label">Stock Expiration Date</label>
+                            <input type="date" class="form-control" id="inputStockExpire">
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Add Stock</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="viewMessage">Medicine Stock Detail</h5>
+              <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5>Stock ID </h5>
-              <p>#12392</p>
-              <h5>Name</h5>
-              <p>Acetaminophen</p>
-              <h5>Amount</h5>
-              <p>60</p>
-              <h5>Expiration Date</h5>
-              <p>10 a.m.</p>
+              Are you sure that you want to delete the selected data?
             </div>
             <div class="modal-footer">
+              <button type="button" class="btn btn-success">Yes</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editStock" tabindex="-1" aria-labelledby="editStockLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editStock">Edit Stock Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                        <label for="inputStockID" class="form-label">Stock ID</label>
+                        <input type="text" class="form-control" id="inputStockID">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputStockName" class="form-label">Stock Name</label>
+                        <input type="text" class="form-control" id="inputStockName">
+                        </div>
+                        <div class="mb-3">
+                        <label for="inputStockAmount" class="form-label">Stock Amount</label>
+                        <input type="text" class="form-control" id="inputStockAmount">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputStockExpire" class="form-label">Stock Expiration Date</label>
+                            <input type="date" class="form-control" id="inputStockExpire">
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Save Changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
