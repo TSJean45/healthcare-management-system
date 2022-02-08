@@ -231,7 +231,7 @@ nav .right-nav .profile .dropdown-menu .dropdown-item span
     color:yellow;
 }
  
-.table #done:before
+.table #done
 {
     color: greenyellow;
 }
@@ -244,6 +244,17 @@ nav .right-nav .profile .dropdown-menu .dropdown-item span
 .table #schedule
 {
     color: yellow;
+}
+
+.table #view
+{
+    color: black;
+    text-align: center;
+}
+
+.table #view:hover
+{
+    color:darkgray;
 }
  
 .pagination i:hover
