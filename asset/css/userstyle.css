@@ -9,7 +9,7 @@
 
 body
 {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .sidebar
@@ -20,7 +20,7 @@ body
     width: 240px;
     background: #B0C4DE;
     transition: all 0.5s ease;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .sidebar.active
@@ -48,10 +48,9 @@ body
     text-align: center;
 }
 
-.sidebar .personal .profile_name
+.sidebar .personal .profile-name
 {
     color: black;
-    font-size: 14px;
 }
   
 .sidebar .sidebar-details
@@ -221,6 +220,17 @@ nav .right-nav .profile .dropdown-menu .dropdown-item span
     margin: auto;
 }
 
+.table .button
+{
+    color:black; 
+    float: right;
+}
+
+.table .button:hover
+{
+    color:yellow; 
+}
+
 .table #done:before
 {
     color: greenyellow;
@@ -236,31 +246,44 @@ nav .right-nav .profile .dropdown-menu .dropdown-item span
     color: yellow;
 }
 
-@media (max-width: 1240px) {
-    .sidebar{
+.pagination i:hover
+{
+    color: black;
+}
+
+@media (max-width: 1240px) 
+{
+    .sidebar
+    {
       width: 65px;
     }
 
-    .sidebar.active{
+    .sidebar.active
+    {
       width: 240px;
     }
-    .home-section{
+
+    .sidebar .profile-name
+    {
+        font-size: 0%;
+    }
+
+    .home-section
+    {
       width: calc(100% - 65px);
       left: 65px;
     }
-    .sidebar.active ~ .home-section{
-      overflow: hidden;
+
+    .sidebar.active ~ .home-section
+    {
+      overflow-y: hidden;
       left: 220px;
     }
 
-    .sidebar.active ~ .home-section nav{
+    .sidebar.active ~ .home-section nav
+    {
       width: calc(100% - 240px);
       left: 240px;
-    }
-
-    .logo-name
-    {
-        font-size: 0%;
     }
 
     .logo-details img
@@ -268,3 +291,11 @@ nav .right-nav .profile .dropdown-menu .dropdown-item span
         margin-top: auto;
     }
   }
+
+@media (max-width: 700px) 
+{
+    .topbar .logo-name
+    {
+        font-size: 0%;
+    }
+}
