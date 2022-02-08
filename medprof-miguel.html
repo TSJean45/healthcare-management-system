@@ -1,0 +1,461 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Local CSS File -->
+    <link rel="stylesheet" href="asset/css/main.css">
+    <link rel="stylesheet" href="asset/css/header.css">
+    <link rel="stylesheet" href="asset/css/footer.css">
+    <link rel="stylesheet" href="asset/css/directory.css">
+    <link rel="stylesheet" href="asset/css/horizontalslider.css">
+    <link rel="stylesheet" href="asset/css/staffstyle.css">
+
+
+    <!-- Font Awesome Icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!--Google Font-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+
+    <title>JJJ MedCare</title>
+    <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
+  </head>
+  <body>
+
+    <!-- Scroll To Top Button -->
+    <button onclick="topFunction()" id="topBtn" title="Go to top">
+      <i class="fas fa-arrow-circle-up"></i>
+    </button>
+
+    <!-- Top Bar -->
+    <div class="topbar d-flex align-items-center ">
+      <div class="container d-flex justify-content-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="fas fa-envelope"></i> <a href="mailto:contact@jjjmedcare.com">contact@jjjmedcare.com</a>
+          <i class="fas fa-mobile-alt"></i> +60 11-10831460
+        </div>
+        <div class="social-links d-none d-lg-flex align-items-center">
+          <a href="#"><span class="fab fa-instagram"></span></a>
+          <a href="#"><span class="fab fa-twitter"></span></a>
+          <a href="#"><span class="fab fa-facebook-square"></span></a>
+          <a href="#"><span class="fab fa-pinterest-square"></span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="container-fluid ">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand logo" href="#">
+                <img src="asset/image/output-onlinepngtools.png" alt="JJJ MedCare" class="d-inline-block align-top">
+              </a>
+            <button 
+            	class="navbar-toggler" 
+            	type="button" 
+            	data-bs-toggle="collapse" 
+            	data-bs-target="#toggleCollapse" 
+            	aria-controls="toggleCollapse" 
+            	aria-expanded="false" 
+            	aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse gx-4" id="toggleCollapse">
+              <ul class="navbar-nav myNav">
+                <li class="nav-item px-2">
+                  <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item px-2">
+                  <a class="nav-link" href="#aboutus">About Us</a>
+                </li>
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    role="button" data-toggle="dropdown">Patient Care</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="#" class="dropdown-item">Consultation Appointment</a>
+                        <a href="#" class="dropdown-item">Vaccination Appointment</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown px-2"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    role="button" data-toggle="dropdown">Hub</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="#" class="dropdown-item">Medical Staff's Directory</a>
+                        <a href="#" class="dropdown-item">Medical Library</a>
+                    </div>
+                </li>
+                <li class="nav-item px-2">
+                  <a class="nav-link" href="#contact">Contact</a>
+                </li>
+              </ul>
+              <div class="ml-auto ms-auto">
+                <div class="btn-group">
+                  <button type="button" class="btn">Welcome Guest</button>
+                  <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Login</a>
+                    <a class="dropdown-item" href="#">Register</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </nav>
+      </div>
+    </div>
+    <div class="slider-container">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="asset/image/appointment.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-md-block">
+                <h1>Consultation Appointment</h1>
+                <div class="description">
+                  <p>
+                    Schedule a consultation appointment with our professionals now!
+                  </p>
+                  <a class="btn btn-primary" href="#" role="button">Book Your Appointment</a>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="asset/image/vaccination.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-md-block">
+                <h1>Vaccination Appointment</h1>
+                <div class="description">
+                  <p>
+                    Do your part and register for a vaccination appointment now!
+                  </p>
+                  <a class="btn btn-primary" href="#" role="button">Book Your Appointment</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+     </div>
+     <!-- profile -->
+     <div class="profile card card-coin" style="width:1500px; margin-left: 200px;  float: none; ">
+        <div class="container-fluid">
+          <div class="row profile-details">
+            <div class="col-xl-3">
+              <div >
+                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" height="400px" width="345px"  alt="">
+              </div>
+            </div>
+            <div class="col-xl-9 m-t35 my-auto">
+              <div class="row">
+                <div class="mr-auto pr-3">
+                  <h1 class="font-w300 mb-sm-2 mb-1 text-black">Miguel Cabrera </h1>
+                </div>
+              </div>
+              <div >
+                <div>
+                  <p>Hepatologist</p>
+                </div>
+              </div>
+              <div >
+                <div >
+                  <div >
+                    <h3 style="color: rgb(255, 0, 0);">Currently Accepting New Patients</h3>
+                  </div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                  <div >
+                    <h4 style="color:rgb(19, 19, 199) ;">Kuala Lumpur General Hospital</h4>
+                    <p>Jalan Pahang, <br>50586 Kuala Lumpur, <br>Wilayah Persekutuan Kuala Lumpur.</p>
+                  </div>
+                  
+                </div>
+            </div>
+            
+                <div >
+                    <p ><span style="color: gray;">Phone:</span><span> 888-888-8888</span><br><span style="color: gray;">Email:</span> <span> miguelcabrera@staff.jjj.com</span></p>
+                  </div>
+                </div>
+            </div>
+        </div>
+     </div>
+     <!-- end -->
+     <div class="container">
+      <div class="row">
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+      </div>
+  </div>
+     <!-- about -->
+     <div class="card card-coin ">
+      <div class="col-xl-9 m-t35 my-auto">
+        <div class="row">
+          <div class="mr-auto pr-3">
+            <h1 class="font-w300 mb-sm-2 mb-1 text-black" style="color: gray; margin-right: 50px;">Biography</h1>
+            <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis purus nec lorem pretium condimentum. Aliquam vel porttitor velit. Sed consequat scelerisque quam, at suscipit ipsum. Nullam vitae augue nisl. Aenean quis vulputate enim, fringilla finibus nunc. Sed volutpat odio at quam sollicitudin congue. In.</p>
+          </div>
+        </div>
+     </div>
+     </div>
+     <!-- end -->
+     <div class="container">
+      <div class="row">
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+      </div>
+  </div>
+
+     <!-- cert -->
+     <div class="card card-coin ">
+      <div class="col-xl-12 m-t35 my-auto">
+        <div class="row">
+          <div class="mr-auto pr-3">
+            <h1 class="font-w300 mb-sm-2 mb-1 text-black" style="color: gray; margin-right: 50px;">Qualification</h1>
+            <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+            <div class="row">
+            <div class="col">
+              <h5>Registered Nurse</h5>
+              <p>University of Malaya</p>
+            </div>
+            <div class="col">
+              <h5>MSc in podiatry</h5>
+              <p>University of Malaya</p>
+            </div>
+            
+
+            </div>
+            <div class="row">
+              <div class="col">
+                <h5>Board Certified</h5>
+                <p>Malaysian Certification Board</p>
+              </div>
+              <div class="col">
+                <h5>Medical License</h5>
+                <p>KKM</p>
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+     </div>
+     </div>
+
+     <!-- end -->
+     <div class="container">
+      <div class="row">
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+          <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+      </div>
+  </div>
+    
+      <!-- med staff slider  -->
+      <div class="mr-auto pr-3">
+        <h1 class="font-w300 mb-sm-2 mb-1 text-black" style="color: gray; margin-left: 200px;">Related Staff</h1>
+      </div>
+      <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+			
+        <div class="col-3">
+          <div class="card card-block card-1"><a href="#"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">Stephen Wallace</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card card-block card-2"><a href="#"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">Meghan Carrie</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card card-block card-3"><a href="#"><img src="https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">Kevin Huert</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card card-block card-4"><a href="#"><img src="https://images.unsplash.com/photo-1600878459138-e1123b37cb30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=706&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">Akshan Ali</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card card-block card-5"><a href="#"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">Joey List</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card card-block card-6"><a href="#"><img src="https://images.unsplash.com/photo-1627161683077-e34782c24d81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=703&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">Sam Larusso</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card card-block card-7"><a href="#"><img src="https://images.unsplash.com/photo-1582610285985-a42d9193f2fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">Anna Joy</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card card-block card-8"><a href="#"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" width="300px" height="400px"></a>
+            <div class="middle">
+              <div class="text">George Hill</div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+  </div>
+      <!-- end -->
+      <div class="container">
+        <div class="row">
+            <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+            <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+            <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+            <div style="background:rgb(255, 255, 255) " class="col-4 offset-1"><p style="opacity:0;">space</p></div>
+        </div>
+    </div>
+      <!-- Contact Form -->
+  <div class="contact-container">
+    <div class="container section-title" id="contact">
+      <div class="col section-description">
+        <h2 class="text-divider"><span>Contact Us</span></h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <iframe style="border:0; width: 100%; height: 350px;"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.714872511913!2d101.69798234198828!3d3.1695971508435212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4818bac57b15%3A0x46fc8dd0d036613c!2sKuala%20Lumpur%20General%20Hospital!5e0!3m2!1sen!2smy!4v1644044973864!5m2!1sen!2smy" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
+    <div class="container">
+      <div class="row info">
+          <div class="address col-lg-4">
+            <i class="fas fa-search-location"></i>
+            <h4>Location:</h4>
+            <p>Jalan Pahang, 50586 Kuala Lumpur</p>
+          </div>
+
+          <div class="email col-lg-4">
+            <i class="fas fa-envelope-open"></i>
+            <h4>Email:</h4>
+            <p>contact@jjjmedcare.com</p>
+          </div>
+
+          <div class="phone col-lg-4">
+            <i class="fas fa-phone"></i>
+            <h4>Call:</h4>
+            <p>+60 11-10831460</p>
+          </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-12 mt-5 mt-lg-0">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="text-center"><button type="submit">Submit Request</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Footer -->
+  <footer class="footer-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 pr-md-5 col-sm-6 align-self-center">
+          <a class="navbar-brand logo" href="#">
+            <img src="asset/image/output-onlinepngtools.png" alt="JJJ MedCare" class="d-inline-block align-top">
+          </a>
+          <p>
+            Jalan Pahang,<br>
+            50586 Kuala Lumpur<br><br>
+              <strong>Phone:</strong> +60 11-10831460<br>
+              <strong>Email:</strong>contact@jjjmedcare.com<br>
+          </p>
+        </div>
+        <div class="col-md col-sm-6 align-self-center">
+          <ul class="list-unstyled nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#aboutus">About Us</a></li>
+            <li><a href="#">Consultation Appointment</a></li>
+          </ul>
+        </div>
+        <div class="col-md col-sm-6 align-self-center ">
+          <ul class="list-unstyled nav-links">
+            <li><a href="#">Medical Staff's Directory</a></li>
+            <li><a href="#">Medical Library</a></li>
+            <li><a href="#">Vaccination Appointment</a></li>
+          </ul>
+        </div>
+        <div class="col-md col-sm-6 text-md-center align-self-center">
+          <ul class="social list-unstyled">
+            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+            <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
+            <li><a href="#"><span class="fab fa-pinterest-square"></span></a></li>
+          </ul>
+          <p class=""><a href="#contact" class="btn btn-tertiary">Contact</a></p>
+          <p class=""><a href="#" class="btn btn-tertiary">Login/Register</a></p>
+        </div>
+      </div> 
+
+      <div class="row ">
+        <div class="col-12 text-center">
+          <div class="copyright mt-5 pt-5">
+            <p><small>&copy; 2022 All Rights Reserved.</small></p>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </footer>
+  <!-- Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Local JS file -->
+  <script src="asset/js/scrollTop.js"></script>
+  </body>
+</html>
