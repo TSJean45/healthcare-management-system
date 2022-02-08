@@ -99,7 +99,7 @@ body
 }
 
 .sidebar-details .nav-links .item .active i,
-.sidebar-details .nav-links .item .active .links_name
+.sidebar-details .nav-links .item .active .links-name
 {
     color: black;
 }
@@ -113,7 +113,7 @@ body
     margin-right: 10px;
 }
   
-.sidebar .sidebar-details .item a .links_name
+.sidebar .sidebar-details .item a .links-name
 {
     color: black;
     font-size: 14px;
@@ -235,3 +235,36 @@ nav .right-nav .profile .dropdown-menu .dropdown-item span
 {
     color: yellow;
 }
+
+@media (max-width: 1240px) {
+    .sidebar{
+      width: 65px;
+    }
+
+    .sidebar.active{
+      width: 240px;
+    }
+    .home-section{
+      width: calc(100% - 65px);
+      left: 65px;
+    }
+    .sidebar.active ~ .home-section{
+      overflow: hidden;
+      left: 220px;
+    }
+
+    .sidebar.active ~ .home-section nav{
+      width: calc(100% - 240px);
+      left: 240px;
+    }
+
+    .logo-name
+    {
+        font-size: 0%;
+    }
+
+    .logo-details img
+    {
+        margin-top: auto;
+    }
+  }
