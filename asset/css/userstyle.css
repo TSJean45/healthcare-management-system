@@ -124,16 +124,11 @@ body
     display: flex;
     justify-content: space-between;
     height: 80px;
-    background: #6495ED;
+    background: #00008B;
     align-items: center;
     position: fixed;
     width: 100%;
     padding: 20px;
-}
-
-.logo-details
-{
-    cursor: pointer;
 }
 
 .topbar input
@@ -141,6 +136,11 @@ body
     border: 0;
     outline: none;
     color: black;
+}
+
+.right-nav .right
+{
+    color: aliceblue;
 }
 
 .right-nav .search-box
@@ -285,17 +285,4 @@ nav .right-nav .profile .dropdown-menu .dropdown-item span
       width: calc(100% - 240px);
       left: 240px;
     }
-
-    .logo-details img
-    {
-        margin-top: auto;
-    }
   }
-
-@media (max-width: 700px) 
-{
-    .topbar .logo-name
-    {
-        font-size: 0%;
-    }
-}
