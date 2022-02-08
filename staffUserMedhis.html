@@ -27,58 +27,64 @@
     </div>
 
     <div class="sidebar-details">
-      <ul class="nav-links">
-        <li class="item">
-          <a href="staffdashboard.html" >
-            <i class='bx bx-grid-alt'></i>
-            <span class="links_name">Main Dashboard</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffUserlist.html"  class="active" >
-            <i class='fa fa-user fa-xs' ></i>
-            <span class="links_name">User</span>
-          </a>
-        </li>
-        <li class="item">
-            <a href="staffVac.html">
-              <i class="fas fa-syringe"></i>
-              <span class="links_name">Vaccination</span>
+        <ul class="nav-links">
+          <li class="item">
+            <a href="staffdashboard.html" >
+              <i class='bx bx-grid-alt'></i>
+              <span class="links_name">Main Dashboard</span>
             </a>
           </li>
           <li class="item">
-            <a href="#">
-            <i class="fas fa-calendar-check"></i>
-              <span class="links_name">Appointment</span>
+            <a href="staffUserList.html"  class="active">
+              <i class='fa fa-user fa-xs' ></i>
+              <span class="links_name">User</span>
             </a>
           </li>
           <li class="item">
-            <a href="staffStock.html">
-              <i class="fas fa-prescription-bottle-alt"></i>
-              <span class="links_name">Medicine Stock</span>
-            </a>
-          </li>
+              <a href="staffMedrec.html">
+                  <i class="fas fa-notes-medical"></i>
+                <span class="links_name">Medical Record</span>
+              </a>
+            </li>
           <li class="item">
-            <a href="staffward.html">
-                <i class="fas fa-procedures"></i>
-              <span class="links_name">Ward</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="staffprofile.html">
-              <i class='bx bxs-user-rectangle' ></i>
-              <span class="links_name">Profile</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="#">
-              <i class='bx bx-log-out' ></i>
-              <span class="links_name">Log Out</span>
-            </a>
-          </li>
-      </ul>
+              <a href="staffVac.html">
+                <i class="fas fa-syringe"></i>
+                <span class="links_name">Vaccination</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="staffApp.html">
+              <i class="fas fa-calendar-check"></i>
+                <span class="links_name">Appointment</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="staffStock.html">
+                <i class="fas fa-prescription-bottle-alt"></i>
+                <span class="links_name">Medicine Stock</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="staffward.html"  >
+                  <i class="fas fa-procedures"></i>
+                <span class="links_name">Ward</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="staffprofile.html">
+                <i class='bx bxs-user-rectangle' ></i>
+                <span class="links_name">Profile</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#">
+                <i class='bx bx-log-out' ></i>
+                <span class="links_name">Log Out</span>
+              </a>
+            </li>
+        </ul>
+      </div>
     </div>
-  </div>
 
   <section class="home-section">
     <!-- Top Bar-->
@@ -108,7 +114,7 @@
       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="staffUserList.html">User</a></li>
-            <li class="breadcrumb-item"><a href="staffprofile.html">User Profile</a></li>
+            <li class="breadcrumb-item"><a href="staffUserProfile.html">User Profile</a></li>
             <li class="breadcrumb-item active" aria-current="page">User Medical History</li>
           </ol>
         </nav>
@@ -116,293 +122,284 @@
 </div>
 
 <section class="home-section ">
-  <div class="home-content staffList">
-    <!-- Table -->
-      <div class="col-lg-12 grid-margin stretch-card">
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                          <h4 class="card-title">User List</h4>
-                  </div>
-                  <div class="table-responsive table-staffList">
-                      <table class="table table-hover table-condensed">
-                      <thead>
-                          <tr>
-                              <th> No</th>
-                              <th> User Name </th>
-                              <th> User ID </th>
-                              <th> User Email Address </th>
-                              <th>Date Joined</th>
-                              <th> Action </th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Lian Sho Khia
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  rmutii@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Muhammed Hj Wan Rusman bin Dahalan
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  subramaniam.sandrakasi@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Fang Shun Chio
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  oon.gekfey@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Guan Chuo Sia
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  lakshmi.kavita@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Aslina Chiew Hin Sian
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  william.asa@rahman.biz
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Aina binti Saufishazwi Ya'accob
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  rajendra.sonziak@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Hajjah Shahida binti Hazim
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  sau.loichih@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Hajjah Shahida binti Hazim
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  sau.loichih@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Hajjah Shahida binti Hazim
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  sau.loichih@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                      <label class="form-check-label" for="flexCheckDefault">
-                                      </label>
-                                    </div>
-                              </td>   
-                              <td class="py-1">
-                                  Hajjah Shahida binti Hazim
-                              </td>
-                              <td>53275531</td>
-                              <td>
-                                  sau.loichih@gmail.com
-                              </td>
-                              <td>7 December 2021</td>
-                              <td class="action-button">
-                                <button type="button" class="btn btn-light">
-                                  <a href="adminUserProfile.html">
-                                  <i class="fas fa-eye"></i></a></button>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                      <i class="fas fa-edit"></i></button>
-                            </td>
-                          </tr>
-                      </tbody>
-                      </table>
-                      <div class="d-flex flex-row-reverse">
-                          <div class="mx-1">
-                              <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
-                                  Add User
-                              </button>
-                          </div>
-                          <div class="mx-1">
-                            <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteData">
-                              Delete User
-                          </button>
-                          </div>
-                      </div>
-                      <div class="d-flex flex-row my-auto">
-                        <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                        <h5 class="my-auto">1</h5>
-                        <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-                      </div>
-                  </div>
-                  
-              </div>
-          </div>
+    <div class="home-content staffList">
+      <!-- Table -->
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                            <h4 class="card-title">Medical Record List</h4>
+                    </div>
+                    <div class="table-responsive table-medRec">
+                        <table class="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="width:2% "> No</th>
+                                <th style="width:3%">Record ID</th>
+                                <th style="width:20% "> User Name </th>
+                                <th style="width:5% "> User ID </th>
+                                <th style="width:15% ">Medical Staff Assigned</th>
+                                <th style="width:10% "> Date Admitted</th>
+                                <th style="width:10% "> Disease </th>
+                                <th style="width:10% "> Status </th>
+                                <th style="width:10%"> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td>R104</td>  
+                                <td class="py-1">
+                                    Lian Sho Khia
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    #S-12012
+                                </td>
+                                <td>7/12/2021</td>
+                                <td>Heart Attack</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success">
+                                        <i class="fas fa-check-circle">Recovered</i>
+                                    </button>
+                                </td>
+                                <td class="action-button">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editRec">
+                                        <i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td>R104</td>  
+                                <td class="py-1">
+                                    Lian Sho Khia
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    #S-12012
+                                </td>
+                                <td>7/12/2021</td>
+                                <td>Heart Attack</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success">
+                                        <i class="fas fa-check-circle">Recovered</i>
+                                    </button>
+                                </td>
+                                <td class="action-button">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editRec">
+                                        <i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td>R104</td>  
+                                <td class="py-1">
+                                    Lian Sho Khia
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    #S-12012
+                                </td>
+                                <td>7/12/2021</td>
+                                <td>Heart Attack</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success">
+                                        <i class="fas fa-check-circle">Recovered</i>
+                                    </button>
+                                </td>
+                                <td class="action-button">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editRec">
+                                        <i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td>R104</td>  
+                                <td class="py-1">
+                                    Lian Sho Khia
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    #S-12012
+                                </td>
+                                <td>7/12/2021</td>
+                                <td>Heart Attack</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success">
+                                        <i class="fas fa-check-circle">Recovered</i>
+                                    </button>
+                                </td>
+                                <td class="action-button">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editRec">
+                                        <i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                        <i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <div class="d-flex flex-row-reverse">
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addRec">
+                                    Add Medical Record
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row my-auto">
+                          <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
+                          <h5 class="my-auto">1</h5>
+                          <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
       </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure that you want to delete the selected record?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
     </div>
-  </section>
+
+    <div class="modal fade" id="addRec" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addRecLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addRec">Add Medical Record</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="inputName" class="form-label">User Name</label>
+                  <input type="text" class="form-control" id="inputName">
+                </div>
+                <div class="mb-3">
+                  <label for="inputID" class="form-label">User ID</label>
+                  <input type="text" class="form-control" id="inputID">
+                </div>
+                <div class="mb-3">
+                    <label for="inputStaff" class="form-label">Medical Staff Assigned</label>
+                    <input type="text" class="form-control" id="inputStaff">
+                  </div>
+                <div class="mb-3">
+                    <label for="inputDateAdmitted" class="form-label">Date Admitted</label>
+                    <input type="date" class="form-control" id="inputDateAdmitted">
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputDisease" class="form-label">Disease</label>
+                    <input type="text" class="form-control" id="inputDisease">
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputRecStatus" class="form-label">Status</label>
+                    <select id="inputRecStatus" class="form-control" name="recStatus">
+                        <option value="new">New</option>
+                        <option value="treatment">In Treatment</option>
+                        <option value="recover">Recovered</option>
+                    </select>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="editRec" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editRecLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editRec">Edit Medical Record</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="inputName" class="form-label">User Name</label>
+                  <input type="text" class="form-control" id="inputName">
+                </div>
+                <div class="mb-3">
+                  <label for="inputID" class="form-label">User ID</label>
+                  <input type="text" class="form-control" id="inputID">
+                </div>
+                <div class="mb-3">
+                    <label for="inputStaff" class="form-label">Medical Staff Assigned</label>
+                    <input type="text" class="form-control" id="inputStaff">
+                  </div>
+                <div class="mb-3">
+                    <label for="inputDateAdmitted" class="form-label">Date Admitted</label>
+                    <input type="date" class="form-control" id="inputDateAdmitted">
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputDisease" class="form-label">Disease</label>
+                    <input type="text" class="form-control" id="inputDisease">
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputRecStatus" class="form-label">Status</label>
+                    <select id="inputRecStatus" class="form-control" name="recStatus">
+                        <option value="new">New</option>
+                        <option value="treatment">In Treatment</option>
+                        <option value="recover">Recovered</option>
+                    </select>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
   <script>

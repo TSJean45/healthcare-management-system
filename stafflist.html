@@ -29,7 +29,7 @@
     <div class="sidebar-details">
       <ul class="nav-links">
         <li class="item">
-          <a href="admindashboard.html" >
+          <a href="admindashboard.html">
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Main Dashboard</span>
           </a>
@@ -41,7 +41,7 @@
           </a>
         </li>
         <li class="item">
-          <a href="#"  class="active">
+          <a href="stafflist.html"   class="active">
             <i class='fa fa-user-md fa-xs'></i>
             <span class="links_name">Medical Staff</span>
           </a>
@@ -52,6 +52,12 @@
             <span class="links_name">User</span>
           </a>
         </li>
+        <li class="item">
+            <a href="adminMedRec.html">
+                <i class="fas fa-notes-medical"></i>
+              <span class="links_name">Medical Record</span>
+            </a>
+          </li>
         <li class="item">
           <a href="adminContact.html">
             <i class="fas fa-file-signature"></i>
@@ -127,9 +133,9 @@
                         <thead>
                             <tr>
                                 <th> No</th>
-                                <th> Name </th>
-                                <th> ID </th>
-                                <th> Email Address </th>
+                                <th> Medical Staff Name </th>
+                                <th> Medical Staff ID </th>
+                                <th> Medical Staff Email Address </th>
                                 <th>Position</th>
                                 <th>Department</th>
                                 <th> Action </th>
@@ -153,15 +159,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Pediatrician</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -180,15 +184,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Podiatrist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -207,15 +209,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Rheumatologist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -234,15 +234,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Podiatrist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -261,15 +259,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Podiatrist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -288,15 +284,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Podiatrist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -315,15 +309,13 @@
                                 </td>
                                 <td>Specialist</td>
                                 <td>Podiatrist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -342,15 +334,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Phychiatrist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -369,15 +359,13 @@
                                 </td>
                                 <td>Nurse</td>
                                 <td>Cardiologist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -396,27 +384,25 @@
                                 </td>
                                 <td>Surgeon</td>
                                 <td>Cardiologist</td>
-                                <td class="staffList-action">
-                                    <div class="btn-group dropstart">
-                                        <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><i class="fas fa-eye"></i>View</a>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-pen-alt"></i>Edit</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                         </tbody>
                         </table>
                         <div class="d-flex flex-row-reverse">
                           <div class="mx-1">
-                            <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addAdmin">
-                              Add Authorised Medical Staff
+                            <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteStaff">
+                              Delete Authorised Medical Staff
                           </button>
                           </div>
                           <div class="mx-1">
-                            <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteAdmin">
-                              Delete Authorised Medical Staff
+                            <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addStaff">
+                              Add Authorised Medical Staff
                           </button>
                           </div>
                       </div>
@@ -434,11 +420,11 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="deleteAdmin" tabindex="-1" aria-labelledby="deleteAdminLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteStaff" tabindex="-1" aria-labelledby="deleteStaffLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="deleteAdminLabel">Confirmation Message</h5>
+              <h5 class="modal-title" id="deleteStaffLabel">Confirmation Message</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -452,11 +438,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addAdmin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAdminLabel" aria-hidden="true">
+    <div class="modal fade" id="addStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addStaffLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="addAdmin">Add Authorised Medical Staff</h5>
+              <h5 class="modal-title" id="addStaff">Add Authorised Medical Staff</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -486,6 +472,42 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="editStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editStaffLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editStaff">Edit Authorised Medical Staff</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="inputName" class="form-label">Medical Staff Name</label>
+                  <input type="text" class="form-control" id="inputName">
+                </div>
+                <div class="mb-3">
+                  <label for="inputID" class="form-label">Medical Staff ID</label>
+                  <input type="text" class="form-control" id="inputID">
+                </div>
+                <div class="mb-3">
+                  <label for="inputPosition" class="form-label">Position</label>
+                  <input type="text" class="form-control" id="inputPosition">
+                </div>
+                <div class="mb-3">
+                  <label for="inputDepartment" class="form-label">Department</label>
+                  <input type="text" class="form-control" id="inputDepartment">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
   <script>

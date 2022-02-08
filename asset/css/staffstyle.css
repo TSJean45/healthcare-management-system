@@ -164,3 +164,21 @@ Ward Status
 .table-wardStatus{
   height: 500px;
 }
+
+.table #done:before
+{
+  margin-right: 10px;
+    color: rgb(0, 255, 34);
+}
+
+.table #cancel:before
+{
+  margin-right: 10px;
+    color: rgb(83, 3, 3);
+}
+
+.table #schedule:before
+{
+  margin-right: 10px;
+  color: rgb(0, 0, 0);
+}
