@@ -108,6 +108,7 @@ Admin Profile
 ----------------------------------------------------------------------*/
 .home-section .home-content .profile{
   align-items: center;
+  overflow-x: hidden;
   width: 100%;
   margin-bottom: 26px;
 }
@@ -125,4 +126,34 @@ Admin List
 }
 .staffList-action .dropdown-menu i{
   margin-right: 10px;
+}
+.home-section .home-content-breadcrumb{
+  margin-top: 50px;
+  overflow-x: hidden;
+}
+/*-------------------------------------------------------------------
+Action Button
+----------------------------------------------------------------------*/
+.home-section .home-content .action-button .fa-edit{
+  background-color: green;
+  color: white; font-size: 20px;
+  padding: 5px;
+}
+.home-section .home-content .action-button .fa-trash-alt{
+  background-color: red;
+  color: white; font-size: 20px;
+  padding: 5px;
+}
+.home-section .home-content .action-button .fa-eye{
+  background-color: rgb(8, 53, 252);
+  color: white; font-size: 20px;
+  padding: 5px;
+}
+.home-section .home-content .action-button .fa-pen-alt{
+  background-color: rgb(112, 5, 103);
+  color: white; font-size: 20px;
+  padding: 5px;
+}
+.home-section .home-content .action-button button{
+  padding: 0;
 }

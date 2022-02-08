@@ -14,7 +14,7 @@
     <!-- Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     
-    <title>Vaccination</title>
+    <title>User</title>
     <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
    </head>
 <body>
@@ -47,7 +47,7 @@
           </a>
         </li>
         <li class="item">
-          <a href="adminUserlist.html">
+          <a href="adminUserlist.html" class="active">
             <i class='fa fa-user fa-xs' ></i>
             <span class="links_name">User</span>
           </a>
@@ -59,7 +59,7 @@
           </a>
         </li>
         <li class="item">
-            <a href="#"  class="active">
+            <a href="adminVac.html">
               <i class="fas fa-syringe"></i>
               <span class="links_name">Vaccination</span>
             </a>
@@ -97,7 +97,7 @@
   <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Vaccination</span>
+        <span class="dashboard">User</span>
       </div>
       <div class="right-nav">
             <div class="right noti-bell my-auto">
@@ -115,6 +115,18 @@
     </nav>
   </section>
 
+  <div class="home-section">
+      <div class="home-content-breadcrumb">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="adminUserlist.html">User</a></li>
+              <li class="breadcrumb-item"><a href="adminUserProfile.html">User Profile</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Medical History</li>
+            </ol>
+          </nav>
+      </div>
+  </div>
+
   <section class="home-section ">
     <div class="home-content adminList">
       <!-- Table -->
@@ -122,18 +134,17 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                            <h4 class="card-title">Vaccination Details</h4>
+                            <h4 class="card-title">User List</h4>
                     </div>
                     <div class="table-responsive table-adminList">
                         <table class="table table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th> No</th>
+                                <th> User Name </th>
                                 <th> User ID </th>
-                                <th> Vaccine</th>
-                                <th>Vaccine ID</th>
-                                <th>Medical Staff Assigned</th>
-                                <th>Date</th>
+                                <th> User Email Address </th>
+                                <th>Date Joined</th>
                                 <th> Action </th>
                             </tr>
                         </thead>
@@ -147,83 +158,19 @@
                                       </div>
                                 </td>   
                                 <td class="py-1">
-                                  53275531
+                                    Lian Sho Khia
                                 </td>
+                                <td>53275531</td>
                                 <td>
-                                  Pfizer-BioNTech
+                                    rmutii@gmail.com
                                 </td>
-                                <td>#VP101</td>
-                                <td>#S-19655</td>
-                                <td>10 Feburary 2022</td>
+                                <td>7 December 2021</td>
                                 <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                  Pfizer-BioNTech
-                                </td>
-                                <td>#VP101</td>
-                                <td>#S-19655</td>
-                                <td>10 Feburary 2022</td>
-                                <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                    AstraZeneca
-                                </td>
-                                <td>#VA101</td>
-                                <td>#S-14525</td>
-                                <td>10 Feburary 2022</td>
-                                <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                  AstraZeneca
-                                </td>
-                                <td>#VA101</td>
-                                <td>#S-14525</td>
-                                <td>10 Feburary 2022</td>
-                                <td class="action-button">
-                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                      <i class="fas fa-eye"></i></button>
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
                               </td>
                             </tr>
                             <tr>
@@ -235,18 +182,20 @@
                                       </div>
                                 </td>   
                                 <td class="py-1">
-                                  53275531
+                                    Muhammed Hj Wan Rusman bin Dahalan
                                 </td>
+                                <td>53275531</td>
                                 <td>
-                                  AstraZeneca
+                                    subramaniam.sandrakasi@gmail.com
                                 </td>
-                                <td>#VA101</td>
-                                <td>#S-14525</td>
-                                <td>10 Feburary 2022</td>
+                                <td>7 December 2021</td>
                                 <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -257,18 +206,20 @@
                                       </div>
                                 </td>   
                                 <td class="py-1">
-                                  53275531
+                                    Fang Shun Chio
                                 </td>
+                                <td>53275531</td>
                                 <td>
-                                    Sinovac
+                                    oon.gekfey@gmail.com
                                 </td>
-                                <td>#VS101</td>
-                                <td>	#S-12566</td>
-                                <td>10 Feburary 2022</td>
+                                <td>7 December 2021</td>
                                 <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -279,18 +230,20 @@
                                       </div>
                                 </td>   
                                 <td class="py-1">
-                                  53275531
+                                    Guan Chuo Sia
                                 </td>
+                                <td>53275531</td>
                                 <td>
-                                  Sinovac
+                                    lakshmi.kavita@gmail.com
                                 </td>
-                                <td>#VS101</td>
-                                <td>	#S-12566</td>
-                                <td>10 Feburary 2022</td>
+                                <td>7 December 2021</td>
                                 <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -301,18 +254,20 @@
                                       </div>
                                 </td>   
                                 <td class="py-1">
-                                  53275531
+                                    Aslina Chiew Hin Sian
                                 </td>
+                                <td>53275531</td>
                                 <td>
-                                  Sinovac
+                                    william.asa@rahman.biz
                                 </td>
-                                <td>#VS101</td>
-                                <td>	#S-12566</td>
-                                <td>10 Feburary 2022</td>
+                                <td>7 December 2021</td>
                                 <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -323,18 +278,20 @@
                                       </div>
                                 </td>   
                                 <td class="py-1">
-                                  53275531
+                                    Aina binti Saufishazwi Ya'accob
                                 </td>
+                                <td>53275531</td>
                                 <td>
-                                  Sinovac
+                                    rajendra.sonziak@gmail.com
                                 </td>
-                                <td>#VS101</td>
-                                <td>	#S-12566</td>
-                                <td>10 Feburary 2022</td>
+                                <td>7 December 2021</td>
                                 <td class="action-button">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                        <i class="fas fa-eye"></i></button>
-                                </td>
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
                             </tr>
                             <tr>
                                 <td>
@@ -345,34 +302,114 @@
                                       </div>
                                 </td>   
                                 <td class="py-1">
-                                  53275531
+                                    Hajjah Shahida binti Hazim
                                 </td>
+                                <td>53275531</td>
                                 <td>
-                                  Sinovac
+                                    sau.loichih@gmail.com
                                 </td>
-                                <td>#VS101</td>
-                                <td>	#S-12566</td>
-                                <td>10 Feburary 2022</td>
+                                <td>7 December 2021</td>
                                 <td class="action-button">
-                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
-                                      <i class="fas fa-eye"></i></button>
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Hajjah Shahida binti Hazim
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    sau.loichih@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Hajjah Shahida binti Hazim
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    sau.loichih@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    Hajjah Shahida binti Hazim
+                                </td>
+                                <td>53275531</td>
+                                <td>
+                                    sau.loichih@gmail.com
+                                </td>
+                                <td>7 December 2021</td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <i class="fas fa-edit"></i></button>
                               </td>
                             </tr>
                         </tbody>
                         </table>
                         <div class="d-flex flex-row-reverse">
-                          <div class="mx-1">
-                          <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printVaccination">
-                              Print
-                          </button>
-                          </div>
-                      </div>
-                      <div class="d-flex flex-row my-auto">
-                        <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                        <h5 class="my-auto">1</h5>
-                        <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-                      </div>
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
+                                    Add User
+                                </button>
+                            </div>
+                            <div class="mx-1">
+                              <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                Delete User
+                            </button>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row my-auto">
+                          <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
+                          <h5 class="my-auto">1</h5>
+                          <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -380,33 +417,9 @@
     </section>
 
 
-    <div class="modal fade" id="viewMessage" tabindex="-1" aria-labelledby="viewMessageLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="viewMessage">Vaccination Detail</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <h5>User ID</h5>
-              <p>53275531</p>
-              <h5>Name </h5>
-              <p>Lian Sho Khia</p>
-              <h5>Vaccine ID </h5>
-              <p>#VP101</p>
-              <h5>Vaccine Name</h5>
-              <p>	Pfizer-BioNTech</p>
-              <h5>Medical Staff Assigned</h5>
-              <p>	#S-19655</p>
-              <h5>Date </h5>
-              <p>10 December 2022</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-    </div>
+  
+
+   
 
 
   <script>
