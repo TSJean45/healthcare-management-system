@@ -64,25 +64,25 @@
             <div class="collapse navbar-collapse gx-4" id="toggleCollapse">
               <ul class="navbar-nav myNav">
                 <li class="nav-item px-2">
-                  <a class="nav-link active" href="#">Home</a>
+                  <a class="nav-link active" href="index.html">Home</a>
                 </li>
                 <li class="nav-item px-2">
-                  <a class="nav-link" href="#aboutus">About Us</a>
+                  <a class="nav-link" href="index.html#aboutus">About Us</a>
                 </li>
                 <li class="nav-item dropdown px-2">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                     role="button" data-toggle="dropdown">Patient Care</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="#" class="dropdown-item">Consultation Appointment</a>
-                        <a href="#" class="dropdown-item">Vaccination Appointment</a>
+                        <a href="appointmentuser.html" class="dropdown-item">Consultation Appointment</a>
+                        <a href="vaccine.html" class="dropdown-item">Vaccination Appointment</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown px-2"> 
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                     role="button" data-toggle="dropdown">Hub</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="#" class="dropdown-item">Medical Staff's Directory</a>
-                        <a href="#" class="dropdown-item">Medical Library</a>
+                        <a href="meddirec.html#meet-staff" class="dropdown-item">Medical Staff's Directory</a>
+                        <!-- <a href="#" class="dropdown-item">Medical Library</a> -->
                     </div>
                 </li>
                 <li class="nav-item px-2">
@@ -96,8 +96,8 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Login</a>
-                    <a class="dropdown-item" href="#">Register</a>
+                    <a class="dropdown-item" href="login.php">Login</a>
+                    <a class="dropdown-item" href="registration.php">Register</a>
                   </div>
                 </div>
               </div>
@@ -116,7 +116,7 @@
                   <p>
                     Schedule a consultation appointment with our professionals now!
                   </p>
-                  <a class="btn btn-primary" href="#" role="button">Book Your Appointment</a>
+                  <a class="btn btn-primary" href="appointmentuser.html" role="button">Book Your Appointment</a>
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@
                   <p>
                     Do your part and register for a vaccination appointment now!
                   </p>
-                  <a class="btn btn-primary" href="#" role="button">Book Your Appointment</a>
+                  <a class="btn btn-primary" href="vaccine.html" role="button">Book Your Appointment</a>
                 </div>
               </div>
             </div>
@@ -143,6 +143,7 @@
           </button>
         </div>
      </div>
+
      <!-- search -->
     <div class="container">
         <div class="row">
@@ -152,7 +153,7 @@
         <div class="input-group-btn">
         <div class="btn-group" role="group">
         <div class="dropdown dropdown-lg">
-        <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split" style="color: black;"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         </button>
         <div class="dropdown-menu dropdown-menu-right" role="menu">
         <form>
@@ -178,12 +179,12 @@
         
         <hr>
         <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary" style="color: black;">Search</button>
         </div>
         </form>
         </div>
         </div>
-        <button type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
+        <button type="submit" class="btn btn-primary" style="color: black;"><span class="fa fa-search" aria-hidden="true"></span></button>
         </div>
         </div>
         </div>
@@ -206,13 +207,12 @@
 
         <div class="row heading">
           <div class="col-md-15 col-md-offset-3">
-            <h2 class="text-center bottom-line">Meet Our Medical Staff</h2>
+            <h2 class="text-center bottom-line " id=meet-staff>Meet Our Medical Staff</h2>
             <p class="subheading text-center"> Medicines cure diseases, but only doctors can cure patients. </p>
           </div>
         </div>
       
         <div class="row team-row">
-      
           <div class="col-md-4 col-sm-6 team-wrap">
             <div class="team-member text-center">
               <div class="team-img">
@@ -223,7 +223,7 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-meghan.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-meghan.html" style="color: grey; ">View Profile</a></button>
                     </div>
                   </div>
                 </div>
@@ -244,7 +244,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-stephen.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-stephen.html" style="color: grey; ">View Profile </a></button>
                     </div>
                   </div>
                 </div>
@@ -267,7 +267,7 @@
                     </p>
                     <div class="socials mt-20">
                       
-                      <button type="button" class="btn btn-outline-secondary"><a href="medprof-kevin.html" >View Profile </a></button>
+                      <button type="button" class="btn btn-outline-secondary"><a href="medprof-kevin.html" style="color: grey;" >View Profile </a></button>
                       
                     </div>
                   </div>
@@ -299,7 +299,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-akshan.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-akshan.html"style="color: grey;" >View Profile </a></button>
                     </div>
                   </div>
                 </div>
@@ -319,7 +319,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-george.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-george.html"style="color: grey;" >View Profile </a></button>
                     </div>
                   </div>
                 </div>
@@ -339,7 +339,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-anna.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-anna.html"style="color: grey;" >View Profile </a></button>
                     </div>
                   </div>
                 </div>
@@ -368,7 +368,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-joey.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-joey.html"style="color: grey;" >View Profile </a></button>
                     </div>
                   </div>
                 </div>
@@ -389,7 +389,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-sam.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-sam.html" style="color: grey;">View Profile </a></button>
                     </div>
                   </div>
                 </div>
@@ -410,7 +410,7 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sem ipsum, sit amet condimentum orci condimentum quis. Nam augue.
                     </p>
                     <div class="socials mt-20">
-                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-miguel.html" >View Profile </a></button>
+                        <button type="button" class="btn btn-outline-secondary"><a href="medprof-miguel.html"style="color: grey;" >View Profile </a></button>
                     </div>
                   </div>
                 </div>
@@ -507,16 +507,15 @@
         </div>
         <div class="col-md col-sm-6 align-self-center">
           <ul class="list-unstyled nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="#aboutus">About Us</a></li>
-            <li><a href="#">Consultation Appointment</a></li>
+            <li><a href="appointmentuser.html">Consultation Appointment</a></li>
           </ul>
         </div>
         <div class="col-md col-sm-6 align-self-center ">
           <ul class="list-unstyled nav-links">
-            <li><a href="#">Medical Staff's Directory</a></li>
-            <li><a href="#">Medical Library</a></li>
-            <li><a href="#">Vaccination Appointment</a></li>
+            <li><a href="meddirec.html">Medical Staff's Directory</a></li>
+            <li><a href="vaccine.html">Vaccination Appointment</a></li>
           </ul>
         </div>
         <div class="col-md col-sm-6 text-md-center align-self-center">
@@ -527,7 +526,8 @@
             <li><a href="#"><span class="fab fa-pinterest-square"></span></a></li>
           </ul>
           <p class=""><a href="#contact" class="btn btn-tertiary">Contact</a></p>
-          <p class=""><a href="#" class="btn btn-tertiary">Login/Register</a></p>
+          <p class=""><a href="login.php" class="btn btn-tertiary">Login</a></p>
+          <p class=""><a href="registration.php" class="btn btn-tertiary">Register</a></p>
         </div>
       </div> 
 
