@@ -1,12 +1,12 @@
 /* Googlefont Poppins CDN Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -14,25 +14,25 @@ body{
 Staff Dashboard
 ----------------------------------------------------------------------*/
 /*Main Content */
-.home-section .home-content{
+.home-section .home-content {
   position: relative;
   padding-top: 104px;
 }
 /*Overview Boxes */
-.home-content .overview-boxes{
+.home-content .overview-boxes {
   align-items: center;
   width: 100%;
   margin-bottom: 26px;
 }
-.overview-boxes .box-topic{
+.overview-boxes .box-topic {
   font-weight: 500;
 }
 .overview-boxes .icon .bx,
-.overview-boxes .icon .fas{
+.overview-boxes .icon .fas {
   font-size: 50px;
 }
 .overview-boxes .icon .indicator .bx,
-.overview-boxes .icon .indicator .fas{
+.overview-boxes .icon .indicator .fas {
   font-size: 12px;
   color: white;
   background: rgb(6, 20, 95);
@@ -42,143 +42,144 @@ Staff Dashboard
   text-align: center;
   border-radius: 50%;
 }
-.overview-boxes .icon .indicator .text{
+.overview-boxes .icon .indicator .text {
   font-size: 12px;
   text-decoration: none;
 }
-.overview-boxes .icon .indicator i.second{
+.overview-boxes .icon .indicator i.second {
   background: #025229;
 }
-.overview-boxes .icon .indicator i.third{
+.overview-boxes .icon .indicator i.third {
   background: #470238;
 }
-.overview-boxes .icon .indicator i.fourth{
+.overview-boxes .icon .indicator i.fourth {
   background: #4b0109;
 }
-.overview-boxes .icon i.one{
+.overview-boxes .icon i.one {
   border-radius: 12px;
   padding: 5px;
   color: rgb(6, 20, 95);
   background: #cce5ff;
 }
-.overview-boxes .icon i.two{
+.overview-boxes .icon i.two {
   border-radius: 12px;
   padding: 5px;
-   color: #025229;
-   background: #C0F2D8;
- }
- .overview-boxes .icon i.three{
+  color: #025229;
+  background: #c0f2d8;
+}
+.overview-boxes .icon i.three {
   border-radius: 12px;
   padding: 5px;
-   color: #470238;
-   background: #ffc9f3;
- }
- .overview-boxes .icon i.four{
+  color: #470238;
+  background: #ffc9f3;
+}
+.overview-boxes .icon i.four {
   border-radius: 12px;
   padding: 5px;
-   color: #4b0109;
-   background: #d69ba0;
- }
+  color: #4b0109;
+  background: #d69ba0;
+}
 
 /*List Table */
-.home-content .list-boxes{
+.home-content .list-boxes {
   display: flex;
   justify-content: space-between;
 }
 /* Responsive Media Query */
 @media (max-width: 1150px) {
-  .home-content .list-boxes{
+  .home-content .list-boxes {
     flex-direction: column;
   }
-  .home-content .list-boxes .box{
+  .home-content .list-boxes .box {
     width: 100%;
     overflow-x: scroll;
     margin-bottom: 30px;
   }
 }
 @media (max-width: 550px) {
-  .overview-boxes .box{
+  .overview-boxes .box {
     width: 100%;
     margin-bottom: 15px;
   }
 }
-.list-boxes .main-panel .content-wrapper{
+.list-boxes .main-panel .content-wrapper {
   margin: 20px;
 }
 /*-------------------------------------------------------------------
 Staff Profile
 ----------------------------------------------------------------------*/
-.home-section .home-content .profile{
+.home-section .home-content .profile {
   align-items: center;
   width: 100%;
   margin-bottom: 26px;
 }
-.home-section .home-content .profile .profile-details{
+.home-section .home-content .profile .profile-details {
   margin-top: 20px;
 }
 /*-------------------------------------------------------------------
 Staff List
 ----------------------------------------------------------------------*/
-.table-staffList{
+.table-staffList {
   height: 530px;
 }
-.staffList-action{
+.staffList-action {
   text-align: center;
 }
-.staffList-action .dropdown-menu i{
+.staffList-action .dropdown-menu i {
   margin-right: 10px;
 }
-.home-section .home-content-breadcrumb{
+.home-section .home-content-breadcrumb {
   margin-top: 50px;
   overflow-x: hidden;
 }
 /*-------------------------------------------------------------------
 Action Button
 ----------------------------------------------------------------------*/
-.home-section .home-content .action-button .fa-edit{
+.home-section .home-content .action-button .fa-edit {
   background-color: green;
-  color: white; font-size: 20px;
+  color: white;
+  font-size: 20px;
   padding: 5px;
 }
-.home-section .home-content .action-button .fa-trash-alt{
+.home-section .home-content .action-button .fa-trash-alt {
   background-color: red;
-  color: white; font-size: 20px;
+  color: white;
+  font-size: 20px;
   padding: 5px;
 }
-.home-section .home-content .action-button .fa-eye{
+.home-section .home-content .action-button .fa-eye {
   background-color: rgb(8, 53, 252);
-  color: white; font-size: 20px;
+  color: white;
+  font-size: 20px;
   padding: 5px;
 }
-.home-section .home-content .action-button .fa-pen-alt{
+.home-section .home-content .action-button .fa-pen-alt {
   background-color: rgb(112, 5, 103);
-  color: white; font-size: 20px;
+  color: white;
+  font-size: 20px;
   padding: 5px;
 }
-.home-section .home-content .action-button button{
+.home-section .home-content .action-button button {
   padding: 0;
 }
 /*-------------------------------------------------------------------
 Ward Status
 ----------------------------------------------------------------------*/
-.table-wardStatus{
+.table-wardStatus {
   height: 500px;
 }
 
-.table #done:before
-{
+.table #done:before {
   margin-right: 10px;
-    color: rgb(0, 255, 34);
+  color: rgb(0, 255, 34);
 }
 
-.table #cancel:before
-{
+.table #cancel:before {
   margin-right: 10px;
-    color: rgb(83, 3, 3);
+  color: rgb(83, 3, 3);
 }
 
-.table #schedule:before
-{
+.table #schedule:before {
   margin-right: 10px;
   color: rgb(0, 0, 0);
 }
