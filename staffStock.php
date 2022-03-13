@@ -8,23 +8,6 @@ if (isset($_POST["addBtn"])) {
 
   $sql = "INSERT INTO `medstock` (`stockName`,`stockQty`,`stockExpDate`) VALUES ('$name','$qty','$expDate') ";
   $result = mysqli_query($data, $sql);
-
-  if ($result) {
-?>
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="">
-        <strong class="me-auto">Bootstrap</strong>
-        <small>11 mins ago</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        Hello, world! This is a toast message.
-      </div>
-    </div>
-<?php
-
-  }
 }
 ?>
 
@@ -142,6 +125,7 @@ if (isset($_POST["addBtn"])) {
       </div>
       </div>
     </nav>
+
     <div class="home-content staffList">
       <!-- Table -->
       <div class="col-lg-12 grid-margin stretch-card">
@@ -345,6 +329,22 @@ if (isset($_POST["addBtn"])) {
                     Add Medicine Stock
                   </button>
                 </div>
+                <div class="mx-1">
+                  <button type="button" class="btn btn-primary" onclick="Toasty()">Show live toast</button>
+                  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                      <div class="toast-header">
+                        <strong class="me-auto">Bootstrap</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="toast-body">
+                        Hello, world! This is a toast message.
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="d-flex flex-row my-auto">
                 <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
@@ -358,6 +358,8 @@ if (isset($_POST["addBtn"])) {
     </div>
   </section>
 
+
+  <!-- Modal Form -->
   <div class="modal fade" id="addStock" tabindex="-1" aria-labelledby="addStockLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -442,24 +444,19 @@ if (isset($_POST["addBtn"])) {
     </div>
   </div>
 
+  <!-- Toast Message -->
 
-  <script>
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function() {
-      sidebar.classList.toggle("active");
-      if (sidebar.classList.contains("active")) {
-        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-      } else
-        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-    }
-  </script>
+
+  <!-- Local JS -->
+  <script src="asset/js/sidenavbar.js"></script>
+  <script src="asset/js/triggerToast.js"></script>
 
   <!-- Bootstrap JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
 </body>
 
