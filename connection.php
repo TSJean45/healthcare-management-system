@@ -1,14 +1,13 @@
-<?php 
+<?php
 
-$host="localhost";
-$user="root";
-$password="";
-$db="jjjhms";
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "jjjhms";
 
 
-$data=mysqli_connect($host,$user,$password,$db);
+$data = mysqli_connect($host, $user, $password, $db);
 
-if($data===false)
-{
+if ($data === false) {
     die("connection error");
 }
