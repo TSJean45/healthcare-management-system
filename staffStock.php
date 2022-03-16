@@ -49,23 +49,11 @@ if (isset($_POST['deleteBtn'])) {
 <!DOCTYPE html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php include('asset/includes/cssCDN.php'); ?>
 
   <!-- Local CSS File -->
   <link rel="stylesheet" href="asset/css/staffstyle.css">
   <link rel="stylesheet" href="asset/css/navbar.css">
-
-  <!-- Boxicon Icon -->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-  <!-- Font Awesome Icon -->
-  <script src="https://kit.fontawesome.com/fb95a6dbf4.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-  <!-- Bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <title>Medicine Stock</title>
   <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
@@ -73,71 +61,8 @@ if (isset($_POST['deleteBtn'])) {
 
 <body>
   <!-- Side Bar -->
-  <div class="sidebar">
-    <div class="logo-details">
-      <img src="asset/image/logo pic.png" alt="">
-      <span class="logo_name">JJJ MedCare</span>
-    </div>
-
-    <div class="sidebar-details">
-      <ul class="nav-links">
-        <li class="item">
-          <a href="staffdashboard.html">
-            <i class='bx bx-grid-alt'></i>
-            <span class="links_name">Main Dashboard</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffUserList.html">
-            <i class='fa fa-user fa-xs'></i>
-            <span class="links_name">User</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffMedrec.html">
-            <i class="fas fa-notes-medical"></i>
-            <span class="links_name">Medical Record</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffVac.html">
-            <i class="fas fa-syringe"></i>
-            <span class="links_name">Vaccination</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffApp.html">
-            <i class="fas fa-calendar-check"></i>
-            <span class="links_name">Appointment</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffStock.html" class="active">
-            <i class="fas fa-prescription-bottle-alt"></i>
-            <span class="links_name">Medicine Stock</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffward.html">
-            <i class="fas fa-procedures"></i>
-            <span class="links_name">Ward</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffprofile.html">
-            <i class='bx bxs-user-rectangle'></i>
-            <span class="links_name">Profile</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="index.html">
-            <i class='bx bx-log-out'></i>
-            <span class="links_name">Log Out</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <?php $page = 'staffStock';
+  include('asset/includes/staffSideBar.php'); ?>
 
   <section class="home-section">
     <!-- Top Bar-->
@@ -166,7 +91,7 @@ if (isset($_POST['deleteBtn'])) {
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <div class="row">
+            <div class="row mb-2">
               <div class="col-lg-5">
                 <h4 class="card-title">Medicine Stock</h4>
               </div>
@@ -207,7 +132,7 @@ if (isset($_POST['deleteBtn'])) {
               $viewSql = "SELECT * FROM `medstock`";
               $result = mysqli_query($data, $viewSql);
               ?>
-              <table class="table table-hover table-condensed">
+              <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
                   <tr>
                     <th> Stock ID </th>
@@ -219,27 +144,25 @@ if (isset($_POST['deleteBtn'])) {
                     <th> Action </th>
                   </tr>
                 </thead>
-                <?php
+                <tbody>
+                  <?php
+                  if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $prefix = $row['prefix'];
+                      $id = $row['stockID'];
+                      $name = $row['stockName'];
+                      $qty = $row['stockQty'];
+                      $expDate = $row['stockExpDate'];
+                      $per = ($qty / 2000) * 100;
 
-                if ($result) {
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $prefix = $row['prefix'];
-                    $id = $row['stockID'];
-                    $name = $row['stockName'];
-                    $qty = $row['stockQty'];
-                    $expDate = $row['stockExpDate'];
-                    $per = ($qty / 2000) * 100;
-
-                    if ($per <= 10) {
-                      $color = "bg-danger";
-                    } else if ($per > 10 && $per <= 60) {
-                      $color = "bg-warning";
-                    } else if ($per > 75) {
-                      $color = "bg-success";
-                    }
-                ?>
-
-                    <tbody>
+                      if ($per <= 10) {
+                        $color = "bg-danger";
+                      } else if ($per > 10 && $per <= 60) {
+                        $color = "bg-warning";
+                      } else if ($per > 75) {
+                        $color = "bg-success";
+                      }
+                  ?>
                       <tr>
                         <td><?php echo $prefix . "" . $id; ?></td>
                         <td class="d-none"><?php echo $id ?></td>
@@ -258,17 +181,11 @@ if (isset($_POST['deleteBtn'])) {
                             <i class="fas fa-trash-alt"></i></button>
                         </td>
                       </tr>
-                    </tbody>
-                <?php  }
-                }
-                ?>
-
+                  <?php  }
+                  }
+                  ?>
+                </tbody>
               </table>
-              <div class="d-flex flex-row my-auto">
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                <h5 class="my-auto">1</h5>
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-              </div>
             </div>
           </div>
         </div>
@@ -324,15 +241,15 @@ if (isset($_POST['deleteBtn'])) {
               <input type="hidden" name="editID" id="editID">
             </div>
             <div class="mb-3">
-              <label for="inputDataName" class="form-label">Stock Name</label>
+              <label for="editDataName" class="form-label">Stock Name</label>
               <input type="text" class="form-control" name="editDataName" id="editDataName">
             </div>
             <div class="mb-3">
-              <label for="inputDataAmount" class="form-label">Stock Amount</label>
+              <label for="editDataAmount" class="form-label">Stock Amount</label>
               <input type="text" class="form-control" name="editDataAmount" id="editDataAmount">
             </div>
             <div class="mb-3">
-              <label for="inputDataExpire" class="form-label">Stock Expiration Date</label>
+              <label for="editDataExpire" class="form-label">Stock Expiration Date</label>
               <input type="date" class="form-control" name="editDataExpire" id="editDataExpire">
             </div>
             <div class="modal-footer">
@@ -372,7 +289,7 @@ if (isset($_POST['deleteBtn'])) {
   </div>
 
   <!-- Toast Message -->
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <!-- <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <strong class="me-auto">Bootstrap</strong>
@@ -384,19 +301,33 @@ if (isset($_POST['deleteBtn'])) {
         Hi!
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <!-- Bootstrap JS-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <?php include('asset/includes/jsCDN.php'); ?>
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
   <script src="asset/js/triggerToast.js"></script>
-  <script src="asset/js/updateData.js"></script>
   <script src="asset/js/deleteData.js"></script>
+
+  <script>
+    $(document).on('click', '.editBtn', function() {
+      $('#editData').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#editID').val(data[1]);
+      $('#editDataName').val(data[2]);
+      $('#editDataAmount').val(data[4]);
+      $('#editDataExpire').val(data[5]);
+    });
+  </script>
 
 
 </body>

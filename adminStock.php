@@ -5,19 +5,11 @@ include 'connection.php';
 <!DOCTYPE html>
 
 <head>
+  <?php include('asset/includes/cssCDN.php'); ?>
+
   <!-- Local CSS File -->
   <link rel="stylesheet" href="asset/css/adminstyle.css">
   <link rel="stylesheet" href="asset/css/navbar.css">
-
-  <!-- Boxicon Icon -->
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-  <!-- Font Awesome Icon -->
-  <script src="https://kit.fontawesome.com/fb95a6dbf4.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-  <!-- Bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
   <title>Medicine Stock</title>
   <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
@@ -26,83 +18,8 @@ include 'connection.php';
 <body>
 
   <!-- Side Bar -->
-  <div class="sidebar">
-    <div class="logo-details">
-      <img src="asset/image/logo pic.png" alt="">
-      <span class="logo_name">JJJ MedCare</span>
-    </div>
-
-    <div class="sidebar-details">
-      <ul class="nav-links">
-        <li class="item">
-          <a href="admindashboard.html">
-            <i class='bx bx-grid-alt'></i>
-            <span class="links_name">Main Dashboard</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminlist.html">
-            <i class='fa fa-user-cog fa-xs'></i>
-            <span class="links_name">Admin</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="stafflist.html">
-            <i class='fa fa-user-md fa-xs'></i>
-            <span class="links_name">Medical Staff</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminUserlist.html">
-            <i class='fa fa-user fa-xs'></i>
-            <span class="links_name">User</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminMedRec.html">
-            <i class="fas fa-notes-medical"></i>
-            <span class="links_name">Medical Record</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminContact.html">
-            <i class="fas fa-file-signature"></i>
-            <span class="links_name">Contact</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminVac.html">
-            <i class="fas fa-syringe"></i>
-            <span class="links_name">Vaccination</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminApp.html">
-            <i class="fas fa-calendar-check"></i>
-            <span class="links_name">Appointment</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminStock.html" class="active">
-            <i class="fas fa-prescription-bottle-alt"></i>
-            <span class="links_name">Medicine Stock</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="adminprofile.html">
-            <i class='bx bxs-user-rectangle'></i>
-            <span class="links_name">Profile</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="index.html">
-            <i class='bx bx-log-out'></i>
-            <span class="links_name">Log Out</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <?php $page = 'adminStock';
+  include('asset/includes/adminSidebar.php'); ?>
 
   <section class="home-section">
     <!-- Top Bar-->
@@ -133,7 +50,7 @@ include 'connection.php';
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <div class="row">
+            <div class="row mb-2">
               <div class="col-lg-5">
                 <h4 class="card-title">Medicine Stock</h4>
               </div>
@@ -152,7 +69,7 @@ include 'connection.php';
               $viewSql = "SELECT * FROM `medstock`";
               $result = mysqli_query($data, $viewSql);
               ?>
-              <table class="table table-hover table-condensed">
+              <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
                   <tr>
                     <th> Stock ID </th>
@@ -161,30 +78,28 @@ include 'connection.php';
                     <th> Stock Bar </th>
                     <th> Stock Amount </th>
                     <th>Stock Expiration Date</th>
-                    <th> Action </th>
                   </tr>
                 </thead>
-                <?php
+                <tbody>
+                  <?php
 
-                if ($result) {
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $prefix = $row['prefix'];
-                    $id = $row['stockID'];
-                    $name = $row['stockName'];
-                    $qty = $row['stockQty'];
-                    $expDate = $row['stockExpDate'];
-                    $per = ($qty / 2000) * 100;
+                  if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $prefix = $row['prefix'];
+                      $id = $row['stockID'];
+                      $name = $row['stockName'];
+                      $qty = $row['stockQty'];
+                      $expDate = $row['stockExpDate'];
+                      $per = ($qty / 2000) * 100;
 
-                    if ($per <= 10) {
-                      $color = "bg-danger";
-                    } else if ($per > 10 && $per <= 60) {
-                      $color = "bg-warning";
-                    } else if ($per > 75) {
-                      $color = "bg-success";
-                    }
-                ?>
-
-                    <tbody>
+                      if ($per <= 10) {
+                        $color = "bg-danger";
+                      } else if ($per > 10 && $per <= 60) {
+                        $color = "bg-warning";
+                      } else if ($per > 75) {
+                        $color = "bg-success";
+                      }
+                  ?>
                       <tr>
                         <td><?php echo $prefix . "" . $id; ?></td>
                         <td class="d-none"><?php echo $id ?></td>
@@ -196,22 +111,16 @@ include 'connection.php';
                         </td>
                         <td><?php echo $qty; ?></td>
                         <td><?php echo $expDate; ?></td>
-                        <td class="action-button">
+                        <!-- <td class="action-button">
                           <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
                             <i class="fas fa-eye"></i></button>
-                        </td>
+                        </td> -->
                       </tr>
-                    </tbody>
-                <?php  }
-                }
-                ?>
-
+                  <?php  }
+                  }
+                  ?>
+                </tbody>
               </table>
-              <div class="d-flex flex-row my-auto">
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                <h5 class="my-auto">1</h5>
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-              </div>
             </div>
           </div>
         </div>
@@ -220,7 +129,7 @@ include 'connection.php';
   </section>
 
 
-  <div class="modal fade" id="viewMessage" tabindex="-1" aria-labelledby="viewMessageLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="viewMessage" tabindex="-1" aria-labelledby="viewMessageLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -243,15 +152,10 @@ include 'connection.php';
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
-  <!-- Bootstrap JS-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+  <?php include('asset/includes/jsCDN.php'); ?>
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
