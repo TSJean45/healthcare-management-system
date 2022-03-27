@@ -1,23 +1,24 @@
 <?php
-include 'connection.php'; ?>
+include 'connection.php';
+?>
 <!DOCTYPE html>
 
 <head>
-  <?php include('asset/includes/cssCDN.php'); ?>
-
   <!-- Local CSS File -->
-  <link rel="stylesheet" href="asset/css/staffstyle.css">
+  <link rel="stylesheet" href="asset/css/adminstyle.css">
   <link rel="stylesheet" href="asset/css/navbar.css">
 
-  <title>Staff Dashboard</title>
+  <?php include('asset/includes/cssCDN.php'); ?>
+
+  <title>Admin Dashboard</title>
   <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
 </head>
 
 <body>
 
   <!-- Side Bar -->
-  <?php $page = 'staffdashboard';
-  include('asset/includes/staffSideBar.php'); ?>
+  <?php $page = 'admindashboard';
+  include('asset/includes/adminSidebar.php'); ?>
 
   <section class="home-section">
     <!-- Top Bar-->
@@ -40,9 +41,7 @@ include 'connection.php'; ?>
       </div>
       </div>
     </nav>
-  </section>
 
-  <section class="home-section">
     <div class="home-content">
       <!-- Overview Boxes-->
       <div class="overview-boxes">
@@ -57,7 +56,7 @@ include 'connection.php'; ?>
                         <i class='bx bxs-user one'></i>
                         <div class="indicator">
                           <i class='bx bxs-right-arrow-circle'></i>
-                          <a href="staffUserlist.html" class="text">Head Over</a>
+                          <a href="adminUserlist.html" class="text">Head Over</a>
                         </div>
                       </div>
                       <div class="col-xl-7 col-sm-7">
@@ -75,16 +74,16 @@ include 'connection.php'; ?>
                   <div class="card-body text-center">
                     <div class="row">
                       <div class="col-xl-5 col-sm-5 icon">
-                        <i class="fas fa-syringe two"></i>
+                        <i class='bx bx-plus-medical two'></i>
                         <div class="indicator second">
                           <i class='bx bxs-right-arrow-circle second'></i>
-                          <a href="staffVac.html" class="text">Head Over</a>
+                          <a href="stafflist.html" class="text">Head Over</a>
                         </div>
                       </div>
                       <div class="col-xl-7 col-sm-7">
-                        <h2 class="text-black mb-2 font-w600">10</h2>
+                        <h2 class="text-black mb-2 font-w600">45</h2>
                         <p class="mb-0 fs-13 box-topic">
-                          Vaccination
+                          Total Staff
                         </p>
                       </div>
                     </div>
@@ -99,11 +98,11 @@ include 'connection.php'; ?>
                         <i class='bx bxs-calendar three i'></i>
                         <div class="indicator">
                           <i class='bx bxs-right-arrow-circle third'></i>
-                          <a href="staffApp.html" class="text">Head Over</a>
+                          <a href="adminApp.html" class="text">Head Over</a>
                         </div>
                       </div>
                       <div class="col-xl-7 col-sm-7">
-                        <h2 class="text-black mb-2 font-w600">3</h2>
+                        <h2 class="text-black mb-2 font-w600">56</h2>
                         <p class="mb-0 fs-13 box-topic">
                           Appointment
                         </p>
@@ -117,25 +116,17 @@ include 'connection.php'; ?>
                   <div class="card-body text-center">
                     <div class="row">
                       <div class="col-xl-5 col-sm-5 icon">
-                        <i class="fas fa-prescription-bottle-alt four"></i>
+                        <i class='bx bxs-comment-add four'></i>
                         <div class="indicator ">
                           <i class='bx bxs-right-arrow-circle fourth'></i>
-                          <a href="staffStock.php" class="text">Head Over</a>
+                          <a href="adminContact.html" class="text">Head Over</a>
                         </div>
                       </div>
                       <div class="col-xl-7 col-sm-7">
-                        <?php
-                        $count = "SELECT * FROM `medstock` WHERE `stockQty`<=200";
-                        if ($result = mysqli_query($data, $count)) {
-                          $rowCount = mysqli_num_rows($result);
-                        ?>
-                          <h2 class="text-black mb-2 font-w600">
-                            <?php echo $rowCount ?></h2>
-                          <p class="mb-0 fs-13 box-topic">
-                            Low In Stock
-                          </p>
-                        <?php  }
-                        ?>
+                        <h2 class="text-black mb-2 font-w600">23</h2>
+                        <p class="mb-0 fs-13 box-topic">
+                          Contact Request
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -199,7 +190,7 @@ include 'connection.php'; ?>
                         </tbody>
                       </table>
                       <div class="d-flex flex-row-reverse">
-                        <a href="staffUserList.html">
+                        <a href="adminUserlist.html">
                           <button type="button" class="btn btn-primary">See All</button>
                         </a>
                       </div>
@@ -210,14 +201,15 @@ include 'connection.php'; ?>
               <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Vaccination</h4>
+                    <h4 class="card-title">Recent Contact Request</h4>
                     <div class="table-responsive">
                       <table class="table table-hover table-condensed">
                         <thead>
                           <tr>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>Contact Email</th>
                             <th>Date</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -225,42 +217,84 @@ include 'connection.php'; ?>
                             <td>Jacob</td>
                             <td>gimp23@osmye.com</td>
                             <td>6/2/2022</td>
+                            <td class="action-button">
+                              <a href="mailto:">
+                                <button type="button" class="btn btn-light">
+                                  <i class="fas fa-pen-alt"></i></button>
+                              </a>
+                            </td>
                           </tr>
                           <tr>
                             <td>Messsy</td>
                             <td>aristotales@convoith.com</td>
                             <td>6/2/2022</td>
+                            <td class="action-button">
+                              <a href="mailto:">
+                                <button type="button" class="btn btn-light">
+                                  <i class="fas fa-pen-alt"></i></button>
+                              </a>
+                            </td>
                           </tr>
                           <tr>
                             <td>John</td>
                             <td>aristotales@convoith.com</td>
                             <td>6/2/2022</td>
+                            <td class="action-button">
+                              <a href="mailto:">
+                                <button type="button" class="btn btn-light">
+                                  <i class="fas fa-pen-alt"></i></button>
+                              </a>
+                            </td>
                           </tr>
                           <tr>
                             <td>Peter</td>
                             <td>okyou0327@eluvit.com</td>
                             <td>6/2/2022</td>
+                            <td class="action-button">
+                              <a href="mailto:">
+                                <button type="button" class="btn btn-light">
+                                  <i class="fas fa-pen-alt"></i></button>
+                              </a>
+                            </td>
                           </tr>
                           <tr>
                             <td>Dave</td>
                             <td>moqehycaxas@eloltsf.com</td>
                             <td>6/2/2022</td>
+                            <td class="action-button">
+                              <a href="mailto:">
+                                <button type="button" class="btn btn-light">
+                                  <i class="fas fa-pen-alt"></i></button>
+                              </a>
+                            </td>
                           </tr>
                           <tr>
                             <td>Dave</td>
                             <td>shaneotd@tampicobrush.org</td>
                             <td>6/2/2022</td>
+                            <td class="action-button">
+                              <a href="mailto:">
+                                <button type="button" class="btn btn-light">
+                                  <i class="fas fa-pen-alt"></i></button>
+                              </a>
+                            </td>
                           </tr>
                           <tr>
                             <td>Dave</td>
                             <td>jeremyt@how2t.site</td>
                             <td>6/2/2022</td>
+                            <td class="action-button">
+                              <a href="mailto:">
+                                <button type="button" class="btn btn-light">
+                                  <i class="fas fa-pen-alt"></i></button>
+                              </a>
+                            </td>
                           </tr>
 
                         </tbody>
                       </table>
                       <div class="d-flex flex-row-reverse">
-                        <a href="staffVac.html">
+                        <a href="adminContact.html">
                           <button type="button" class="btn btn-primary">See All</button>
                         </a>
                       </div>
@@ -274,7 +308,7 @@ include 'connection.php'; ?>
                     <h4 class="card-title">Medicine Stock</h4>
                     <div class="table-responsive">
                       <?php
-                      $viewSql = "SELECT * FROM `medstock` ORDER BY `stockID` DESC LIMIT 5";
+                      $viewSql = "SELECT * FROM `medstock`";
                       $result = mysqli_query($data, $viewSql);
                       ?>
                       <table class="table table-hover table-condensed">
@@ -289,6 +323,7 @@ include 'connection.php'; ?>
                         </thead>
                         <tbody>
                           <?php
+
                           if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                               $prefix = $row['prefix'];
@@ -308,6 +343,7 @@ include 'connection.php'; ?>
                           ?>
                               <tr>
                                 <td><?php echo $prefix . "" . $id; ?></td>
+                                <td class="d-none"><?php echo $id ?></td>
                                 <td><?php echo $name; ?></td>
                                 <td>
                                   <div class="progress" style="height: 20px;">
@@ -316,6 +352,10 @@ include 'connection.php'; ?>
                                 </td>
                                 <td><?php echo $qty; ?></td>
                                 <td><?php echo $expDate; ?></td>
+                                <!-- <td class="action-button">
+                          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
+                            <i class="fas fa-eye"></i></button>
+                        </td> -->
                               </tr>
                           <?php  }
                           }
@@ -323,7 +363,7 @@ include 'connection.php'; ?>
                         </tbody>
                       </table>
                       <div class="d-flex flex-row-reverse">
-                        <a href="staffStock.PHP">
+                        <a href="adminStock.php">
                           <button type="button" class="btn btn-primary">See All</button>
                         </a>
                       </div>
@@ -337,64 +377,10 @@ include 'connection.php'; ?>
       </div>
   </section>
 
-  <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Are you sure that you want to delete the selected data?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success">Yes</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="editStock" tabindex="-1" aria-labelledby="editStockLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editStock">Edit Stock Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="inputStockID" class="form-label">Stock ID</label>
-              <input type="text" class="form-control" id="inputStockID">
-            </div>
-            <div class="mb-3">
-              <label for="inputStockName" class="form-label">Stock Name</label>
-              <input type="text" class="form-control" id="inputStockName">
-            </div>
-            <div class="mb-3">
-              <label for="inputStockAmount" class="form-label">Stock Amount</label>
-              <input type="text" class="form-control" id="inputStockAmount">
-            </div>
-            <div class="mb-3">
-              <label for="inputStockExpire" class="form-label">Stock Expiration Date</label>
-              <input type="date" class="form-control" id="inputStockExpire">
-            </div>
-          </form>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Save Changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <?php include('asset/includes/jsCDN.php'); ?>
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
-
 </body>
 
 </html>
