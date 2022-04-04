@@ -2,7 +2,7 @@
 
 <head>
   <!-- Local CSS File -->
-  <link rel="stylesheet" href="asset/css/staffstyle.css">
+  <link rel="stylesheet" href="asset/css/adminstyle.css">
   <link rel="stylesheet" href="asset/css/navbar.css">
 
   <?php include('asset/includes/cssCDN.php'); ?>
@@ -14,8 +14,8 @@
 <body>
 
   <!-- Side Bar -->
-  <?php $page = 'staffUserList';
-  include('asset/includes/staffSideBar.php'); ?>
+  <?php $page = 'adminUserlist';
+  include('asset/includes/adminSidebar.php'); ?>
 
   <section class="home-section">
     <!-- Top Bar-->
@@ -41,7 +41,7 @@
   </section>
 
   <section class="home-section ">
-    <div class="home-content staffList">
+    <div class="home-content adminList">
       <!-- Table -->
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
@@ -49,7 +49,7 @@
             <div class="row">
               <h4 class="card-title">User List</h4>
             </div>
-            <div class="table-responsive table-staffList">
+            <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed">
                 <thead>
                   <tr>
@@ -77,10 +77,10 @@
                     <td>
                       rmutii@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.php">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -101,10 +101,10 @@
                     <td>
                       subramaniam.sandrakasi@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -125,10 +125,10 @@
                     <td>
                       oon.gekfey@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -149,10 +149,10 @@
                     <td>
                       lakshmi.kavita@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -173,10 +173,10 @@
                     <td>
                       william.asa@rahman.biz
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -197,10 +197,10 @@
                     <td>
                       rajendra.sonziak@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -221,10 +221,10 @@
                     <td>
                       sau.loichih@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -245,10 +245,10 @@
                     <td>
                       sau.loichih@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -269,10 +269,10 @@
                     <td>
                       sau.loichih@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -293,10 +293,10 @@
                     <td>
                       sau.loichih@gmail.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>7/12/2021</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminUserProfile.php">
                           <i class="fas fa-eye"></i></a></button>
                       <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
@@ -334,7 +334,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+          <h5 class="modal-title" id="deleteData">Confirmation Message</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -343,6 +343,33 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-success">Yes</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUser">Edit User Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputStockID" class="form-label">User ID</label>
+              <input type="text" class="form-control" id="inputStockID">
+            </div>
+            <div class="mb-3">
+              <label for="inputStockName" class="form-label">User Name</label>
+              <input type="text" class="form-control" id="inputStockName">
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success">Save Changes</button>
+          </div>
         </div>
       </div>
     </div>
@@ -362,12 +389,8 @@
               <input type="text" class="form-control" id="inputName">
             </div>
             <div class="mb-3">
-              <label for="inputID" class="form-label">User ID</label>
+              <label for="inputID" class="form-label">Us erID</label>
               <input type="text" class="form-control" id="inputID">
-            </div>
-            <div class="mb-3">
-              <label for="inputEmail" class="form-label">User Email Address</label>
-              <input type="text" class="form-control" id="inputEmail">
             </div>
           </form>
         </div>
@@ -384,9 +407,7 @@
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
-  <script src="asset/js/triggerToast.js"></script>
   <script src="asset/js/deleteData.js"></script>
-
 </body>
 
 </html>

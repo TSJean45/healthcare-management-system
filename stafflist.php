@@ -2,27 +2,27 @@
 
 <head>
   <!-- Local CSS File -->
-  <link rel="stylesheet" href="asset/css/staffstyle.css">
+  <link rel="stylesheet" href="asset/css/adminstyle.css">
   <link rel="stylesheet" href="asset/css/navbar.css">
 
   <?php include('asset/includes/cssCDN.php'); ?>
 
-  <title>User</title>
+  <title>Medical Staff</title>
   <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
 </head>
 
 <body>
 
   <!-- Side Bar -->
-  <?php $page = 'staffUserList';
-  include('asset/includes/staffSideBar.php'); ?>
+  <?php $page = 'stafflist';
+  include('asset/includes/adminSidebar.php'); ?>
 
   <section class="home-section">
     <!-- Top Bar-->
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">User</span>
+        <span class="dashboard">Medical Staff</span>
       </div>
       <div class="right-nav">
         <div class="right noti-bell my-auto">
@@ -41,23 +41,22 @@
   </section>
 
   <section class="home-section ">
-    <div class="home-content staffList">
+    <div class="home-content adminList">
       <!-- Table -->
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <div class="row">
-              <h4 class="card-title">User List</h4>
-            </div>
-            <div class="table-responsive table-staffList">
+            <h4 class="card-title">Medical Staff List</h4>
+            <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed">
                 <thead>
                   <tr>
                     <th> No</th>
-                    <th> User Name </th>
-                    <th> User ID </th>
-                    <th> User Email Address </th>
-                    <th>Date Joined</th>
+                    <th> Medical Staff Name </th>
+                    <th> Medical Staff ID </th>
+                    <th> Medical Staff Email Address </th>
+                    <th>Position</th>
+                    <th>Department</th>
                     <th> Action </th>
                   </tr>
                 </thead>
@@ -73,16 +72,17 @@
                     <td class="py-1">
                       Lian Sho Khia
                     </td>
-                    <td>53275531</td>
+                    <td>#S-19655</td>
                     <td>
-                      rmutii@gmail.com
+                      rmutii@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Pediatrician</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.php">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -97,16 +97,17 @@
                     <td class="py-1">
                       Muhammed Hj Wan Rusman bin Dahalan
                     </td>
-                    <td>53275531</td>
+                    <td>#S-12566</td>
                     <td>
-                      subramaniam.sandrakasi@gmail.com
+                      subramaniam.sandrakasi@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Podiatrist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -121,16 +122,17 @@
                     <td class="py-1">
                       Fang Shun Chio
                     </td>
-                    <td>53275531</td>
+                    <td>#S-14525</td>
                     <td>
-                      oon.gekfey@gmail.com
+                      oon.gekfey@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Rheumatologist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -145,16 +147,17 @@
                     <td class="py-1">
                       Guan Chuo Sia
                     </td>
-                    <td>53275531</td>
+                    <td>#S-98565</td>
                     <td>
-                      lakshmi.kavita@gmail.com
+                      lakshmi.kavita@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Podiatrist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -169,16 +172,17 @@
                     <td class="py-1">
                       Aslina Chiew Hin Sian
                     </td>
-                    <td>53275531</td>
+                    <td>#S-18898</td>
                     <td>
                       william.asa@rahman.biz
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Podiatrist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -193,16 +197,17 @@
                     <td class="py-1">
                       Aina binti Saufishazwi Ya'accob
                     </td>
-                    <td>53275531</td>
+                    <td>#S-11478</td>
                     <td>
-                      rajendra.sonziak@gmail.com
+                      rajendra.sonziak@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Podiatrist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -217,16 +222,17 @@
                     <td class="py-1">
                       Hajjah Shahida binti Hazim
                     </td>
-                    <td>53275531</td>
+                    <td>#S-15484</td>
                     <td>
-                      sau.loichih@gmail.com
+                      sau.loichih@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Specialist</td>
+                    <td>Podiatrist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -241,16 +247,17 @@
                     <td class="py-1">
                       Hajjah Shahida binti Hazim
                     </td>
-                    <td>53275531</td>
+                    <td>#S-12016</td>
                     <td>
-                      sau.loichih@gmail.com
+                      sau.loichih@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Phychiatrist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -265,16 +272,17 @@
                     <td class="py-1">
                       Hajjah Shahida binti Hazim
                     </td>
-                    <td>53275531</td>
+                    <td>#S-12012</td>
                     <td>
-                      sau.loichih@gmail.com
+                      sau.loichih@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Nurse</td>
+                    <td>Cardiologist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -289,16 +297,17 @@
                     <td class="py-1">
                       Hajjah Shahida binti Hazim
                     </td>
-                    <td>53275531</td>
+                    <td>#S-12012</td>
                     <td>
-                      sau.loichih@gmail.com
+                      sau.loichih@staff.jjj.com
                     </td>
-                    <td>7 December 2021</td>
+                    <td>Surgeon</td>
+                    <td>Cardiologist</td>
                     <td class="action-button">
                       <button type="button" class="btn btn-light">
-                        <a href="staffUserProfile.html">
+                        <a href="adminViewStaffProfile.php">
                           <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
                         <i class="fas fa-edit"></i></button>
                     </td>
                   </tr>
@@ -306,13 +315,13 @@
               </table>
               <div class="d-flex flex-row-reverse">
                 <div class="mx-1">
-                  <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
-                    Add User
+                  <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteStaff">
+                    Delete Authorised Medical Staff
                   </button>
                 </div>
                 <div class="mx-1">
-                  <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteData">
-                    Delete User
+                  <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addStaff">
+                    Add Authorised Medical Staff
                   </button>
                 </div>
               </div>
@@ -321,8 +330,8 @@
                 <h5 class="my-auto">1</h5>
                 <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
       </div>
@@ -330,15 +339,15 @@
   </section>
 
   <!-- Modal -->
-  <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteStaff" tabindex="-1" aria-labelledby="deleteStaffLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+          <h5 class="modal-title" id="deleteStaffLabel">Confirmation Message</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure that you want to delete the selected user?
+          Are you sure that you want to delete the selected medical staff?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success">Yes</button>
@@ -348,26 +357,30 @@
     </div>
   </div>
 
-  <div class="modal fade" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+  <div class="modal fade" id="addStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addStaffLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addUser">Add User</h5>
+          <h5 class="modal-title" id="addStaff">Add Authorised Medical Staff</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="inputName" class="form-label">User Name</label>
+              <label for="inputName" class="form-label">Full Name</label>
               <input type="text" class="form-control" id="inputName">
             </div>
             <div class="mb-3">
-              <label for="inputID" class="form-label">User ID</label>
+              <label for="inputID" class="form-label">ID</label>
               <input type="text" class="form-control" id="inputID">
             </div>
             <div class="mb-3">
-              <label for="inputEmail" class="form-label">User Email Address</label>
-              <input type="text" class="form-control" id="inputEmail">
+              <label for="inputEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail">
+            </div>
+            <div class="mb-3">
+              <label for="inputPass" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputPass">
             </div>
           </form>
         </div>
@@ -379,12 +392,47 @@
     </div>
   </div>
 
+  <div class="modal fade" id="editStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editStaffLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editStaff">Edit Authorised Medical Staff</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputName" class="form-label">Medical Staff Name</label>
+              <input type="text" class="form-control" id="inputName">
+            </div>
+            <div class="mb-3">
+              <label for="inputID" class="form-label">Medical Staff ID</label>
+              <input type="text" class="form-control" id="inputID">
+            </div>
+            <div class="mb-3">
+              <label for="inputPosition" class="form-label">Position</label>
+              <input type="text" class="form-control" id="inputPosition">
+            </div>
+            <div class="mb-3">
+              <label for="inputDepartment" class="form-label">Department</label>
+              <input type="text" class="form-control" id="inputDepartment">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <?php include('asset/includes/jsCDN.php'); ?>
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
-  <script src="asset/js/triggerToast.js"></script>
   <script src="asset/js/deleteData.js"></script>
 
 </body>

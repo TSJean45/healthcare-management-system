@@ -155,7 +155,6 @@ if (isset($_POST['deleteBtn'])) {
     <!-- Local JS -->
     <script src="asset/js/sidenavbar.js"></script>
     <script src="asset/js/deleteData.js"></script>
-    </script>
 </body>
 
 </html>
