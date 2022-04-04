@@ -198,7 +198,7 @@ if (isset($_POST['deleteBtn'])) {
             </div>
             <div class="mb-3">
               <label for="inputDataExpire" class="form-label">Stock Expiration Date</label>
-              <input type="date" class="form-control" name="inputDataExpire">
+              <input type="date" class="form-control" name="inputDataExpire" min="<?php echo date("Y-m-d"); ?>">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -233,7 +233,7 @@ if (isset($_POST['deleteBtn'])) {
             </div>
             <div class="mb-3">
               <label for="editDataExpire" class="form-label">Stock Expiration Date</label>
-              <input type="date" class="form-control" name="editDataExpire" id="editDataExpire">
+              <input type="date" class="form-control" name="editDataExpire" id="editDataExpire" min="<?php echo date("Y-m-d"); ?>">>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

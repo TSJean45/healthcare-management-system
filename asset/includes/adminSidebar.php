@@ -31,33 +31,9 @@
                 </a>
             </li>
             <li class="item">
-                <a <?php echo ($page == 'adminMedRec') ? "class='active'" : ""; ?> href="adminMedRec.php">
-                    <i class="fas fa-notes-medical"></i>
-                    <span class="links_name">Medical Record</span>
-                </a>
-            </li>
-            <li class="item">
                 <a <?php echo ($page == 'adminContact') ? "class='active'" : ""; ?> href="adminContact.php">
                     <i class="fas fa-file-signature"></i>
                     <span class="links_name">Contact</span>
-                </a>
-            </li>
-            <li class="item">
-                <a <?php echo ($page == 'adminVac') ? "class='active'" : ""; ?> href="adminVac.php">
-                    <i class="fas fa-syringe"></i>
-                    <span class="links_name">Vaccination</span>
-                </a>
-            </li>
-            <li class="item">
-                <a <?php echo ($page == 'adminApp') ? "class='active'" : ""; ?> href="adminApp.php">
-                    <i class="fas fa-calendar-check"></i>
-                    <span class="links_name">Appointment</span>
-                </a>
-            </li>
-            <li class="item">
-                <a <?php echo ($page == 'adminStock') ? "class='active'" : ""; ?> href="adminStock.php">
-                    <i class="fas fa-prescription-bottle-alt"></i>
-                    <span class="links_name">Medicine Stock</span>
                 </a>
             </li>
             <li class="item">
