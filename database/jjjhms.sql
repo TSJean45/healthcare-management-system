@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2022 at 08:37 AM
+-- Generation Time: Apr 06, 2022 at 04:04 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -79,9 +79,16 @@ CREATE TABLE `bed` (
   `bedLocation` varchar(100) NOT NULL,
   `bedDepartment` varchar(100) NOT NULL,
   `bedStatus` varchar(100) NOT NULL,
-  `userID` int(5) UNSIGNED ZEROFILL NOT NULL,
-  `userName` varchar(100) NOT NULL
+  `userID` int(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bed`
+--
+
+INSERT INTO `bed` (`bedPrefix`, `bedID`, `bedLocation`, `bedDepartment`, `bedStatus`, `userID`) VALUES
+('B', 022, 'Floor 1', 'Neurologist', 'Occupied', 00032),
+('B', 023, 'Floor 3', 'Podiatrist', 'Empty', 00004);
 
 -- --------------------------------------------------------
 
@@ -181,11 +188,9 @@ INSERT INTO `login` (`id`, `name`, `email`, `password`, `usertype`) VALUES
 CREATE TABLE `medrec` (
   `recPrefix` varchar(1) NOT NULL DEFAULT 'R',
   `recID` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `userID` int(5) UNSIGNED ZEROFILL NOT NULL,
   `userName` varchar(100) NOT NULL,
-  `userID` int(5) NOT NULL,
-  `userPrefix` varchar(1) NOT NULL DEFAULT 'U',
-  `staffID` int(5) NOT NULL,
-  `staffPrefix` varchar(1) NOT NULL DEFAULT 'S',
+  `staffID` int(5) UNSIGNED ZEROFILL NOT NULL,
   `recDate` date NOT NULL,
   `recDisease` varchar(100) NOT NULL,
   `recStatus` varchar(100) NOT NULL
@@ -195,39 +200,11 @@ CREATE TABLE `medrec` (
 -- Dumping data for table `medrec`
 --
 
-INSERT INTO `medrec` (`recPrefix`, `recID`, `userName`, `userID`, `userPrefix`, `staffID`, `staffPrefix`, `recDate`, `recDisease`, `recStatus`) VALUES
-('R', 00040, 'Szu Jean Tan', 10000, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'In Treatment'),
-('R', 00041, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00042, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00043, 'Szu Jean', 1, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'New'),
-('R', 00044, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00045, 'Johan', 10000, 'U', 11111, 'S', '2022-03-19', 'going crazy because of the SESSION()', 'New'),
-('R', 00046, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00047, 'Szu Jean', 1, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'New'),
-('R', 00048, 'Szu Jean', 1, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'New'),
-('R', 00049, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00050, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00051, 'Johan', 10000, 'U', 11111, 'S', '2022-03-19', 'going crazy because of the SESSION()', 'New'),
-('R', 00052, 'Johan', 10000, 'U', 11111, 'S', '2022-03-19', 'going crazy because of the SESSION()', 'New'),
-('R', 00053, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00054, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00055, 'Szu Jean', 1, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'New'),
-('R', 00056, 'Szu Jean', 1, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'New'),
-('R', 00057, 'Szu Jean', 1, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'New'),
-('R', 00058, 'Szu Jean', 1, 'U', 12222, 'S', '2022-03-12', 'binge of death becuz of the bootstrap toast', 'New'),
-('R', 00059, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00060, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00061, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00062, 'randomtest', 0, 'U', 11111, 'S', '2022-03-19', 'Feveeeeeeeer', 'Recovered'),
-('R', 00063, 'Johan', 10000, 'U', 11111, 'S', '2022-03-19', 'going crazy because of the SESSION()', 'New'),
-('R', 00064, 'Johan', 10000, 'U', 11111, 'S', '2022-03-19', 'going crazy because of the SESSION()', 'New'),
-('R', 00065, 'Johan', 10000, 'U', 11111, 'S', '2022-03-19', 'going crazy because of the SESSION()', 'New'),
-('R', 00066, 'Johan', 10000, 'U', 11111, 'S', '2022-03-19', 'going crazy because of the SESSION()', 'New'),
-('R', 00067, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00068, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00069, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00070, 'Jia En', 10000, 'U', 1, 'S', '2022-03-12', 'crazy because of appointment', 'New'),
-('R', 00071, 'Jean', 11111, 'U', 1, 'S', '2022-03-19', 'cryingggg', 'In Treatment');
+INSERT INTO `medrec` (`recPrefix`, `recID`, `userID`, `userName`, `staffID`, `recDate`, `recDisease`, `recStatus`) VALUES
+('R', 00075, 00003, 'Johan Harris ', 00003, '2022-04-15', 'Heart Attack', 'In Treatment'),
+('R', 00076, 00003, 'Johan Harris ', 00003, '2022-04-08', 'asdasdd', 'Recovered'),
+('R', 00077, 00032, 'LeBron James', 00001, '2022-04-21', 'sdasda', 'New'),
+('R', 00078, 00003, 'Johan Harris ', 00002, '2022-04-14', 'asdadasdasd', 'In Treatment');
 
 -- --------------------------------------------------------
 
@@ -248,13 +225,11 @@ CREATE TABLE `medstock` (
 --
 
 INSERT INTO `medstock` (`prefix`, `stockID`, `stockName`, `stockQty`, `stockExpDate`) VALUES
-('MS', 00045, '1233333', 174, '2022-04-16'),
+('MS', 00045, '1233333', 184, '2022-04-16'),
 ('MS', 00049, 'Johan', 200, '2022-04-22'),
 ('MS', 00051, 'abcde', 12, '2022-04-15'),
 ('MS', 00052, 'test123', 1000, '2022-04-30'),
-('MS', 00053, 'Johan Crazy Pill', 1000, '2022-03-18'),
 ('MS', 00054, 'ssad', 50, '2022-03-05'),
-('MS', 00056, 'test123', 1000, '2022-03-18'),
 ('MS', 00057, 'Johan Crazy Pill', 1000, '2022-03-18'),
 ('MS', 00058, 'ssad', 50, '2022-03-05'),
 ('MS', 00059, 'a', 12, '2022-03-17'),
@@ -277,7 +252,8 @@ INSERT INTO `medstock` (`prefix`, `stockID`, `stockName`, `stockQty`, `stockExpD
 ('MS', 00077, 'Johan Crazy Pill', 1000, '2022-03-18'),
 ('MS', 00078, 'Johan crazy pull ver2', 50, '2022-03-26'),
 ('MS', 00079, 'test new', 122, '2022-04-07'),
-('MS', 00080, 'test new', 122, '2022-04-14');
+('MS', 00080, 'test new', 122, '2022-04-14'),
+('MS', 00081, 'test form ', 244, '2022-04-09');
 
 -- --------------------------------------------------------
 
@@ -286,29 +262,29 @@ INSERT INTO `medstock` (`prefix`, `stockID`, `stockName`, `stockQty`, `stockExpD
 --
 
 CREATE TABLE `staff` (
-  `prefix` varchar(1) NOT NULL DEFAULT 'S',
-  `id` int(5) UNSIGNED ZEROFILL NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `position` varchar(50) NOT NULL,
-  `department` varchar(50) NOT NULL,
-  `usertype` varchar(50) NOT NULL DEFAULT 'staff',
-  `phone_number` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `birthdate` date NOT NULL,
-  `image_profile` varchar(50) NOT NULL,
-  `image_cover` varchar(50) NOT NULL,
-  `biography` varchar(256) NOT NULL,
-  `qualification` varchar(256) NOT NULL
+  `staffPrefix` varchar(1) NOT NULL DEFAULT 'S',
+  `staffId` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `staffName` varchar(50) NOT NULL,
+  `staffEmail` varchar(50) NOT NULL,
+  `staffPassword` varchar(50) NOT NULL,
+  `staffPosition` varchar(50) NOT NULL,
+  `staffDepartment` varchar(50) NOT NULL,
+  `staffUsertype` varchar(50) NOT NULL DEFAULT 'staff',
+  `staffPhone_number` varchar(50) NOT NULL,
+  `staffGender` varchar(50) NOT NULL,
+  `staffAddress` varchar(50) NOT NULL,
+  `staffBirthdate` date NOT NULL,
+  `staffImage_profile` varchar(50) NOT NULL,
+  `staffImage_cover` varchar(50) NOT NULL,
+  `staffBiography` varchar(256) NOT NULL,
+  `staffQualification` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`prefix`, `id`, `name`, `email`, `password`, `position`, `department`, `usertype`, `phone_number`, `gender`, `address`, `birthdate`, `image_profile`, `image_cover`, `biography`, `qualification`) VALUES
+INSERT INTO `staff` (`staffPrefix`, `staffId`, `staffName`, `staffEmail`, `staffPassword`, `staffPosition`, `staffDepartment`, `staffUsertype`, `staffPhone_number`, `staffGender`, `staffAddress`, `staffBirthdate`, `staffImage_profile`, `staffImage_cover`, `staffBiography`, `staffQualification`) VALUES
 ('S', 00001, 'Cheong Jia En', 'jiaen@staff.jjj.com', '1234', '', '', 'staff', '', '', '', '0000-00-00', '', '', '', ''),
 ('S', 00002, 'Josh Hart', 'josh@staff.jjj.com', '1234', 'Nurse', 'Podiatrist', 'staff', '', '', '', '0000-00-00', '', '', '', ''),
 ('S', 00003, 'Madam', 'madam@staff.jjj.com', '1234', '', '', 'staff', '', '', '', '0000-00-00', '', '', '', '');
@@ -320,24 +296,24 @@ INSERT INTO `staff` (`prefix`, `id`, `name`, `email`, `password`, `position`, `d
 --
 
 CREATE TABLE `user` (
-  `prefix` varchar(10) NOT NULL DEFAULT 'U',
-  `id` int(5) UNSIGNED ZEROFILL NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `userPrefix` varchar(10) NOT NULL DEFAULT 'U',
+  `userId` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `userName` varchar(50) NOT NULL,
+  `userEmail` varchar(50) NOT NULL,
+  `userPassword` varchar(50) NOT NULL,
   `usertype` varchar(50) NOT NULL DEFAULT 'user',
-  `date_created` date NOT NULL DEFAULT current_timestamp(),
-  `phone_number` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `birthdate` date NOT NULL,
-  `address` varchar(50) NOT NULL
+  `userDate_created` date NOT NULL DEFAULT current_timestamp(),
+  `userPhone_number` varchar(50) NOT NULL,
+  `userGender` varchar(50) NOT NULL,
+  `userBirthdate` date NOT NULL,
+  `userAddress` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`prefix`, `id`, `name`, `email`, `password`, `usertype`, `date_created`, `phone_number`, `gender`, `birthdate`, `address`) VALUES
+INSERT INTO `user` (`userPrefix`, `userId`, `userName`, `userEmail`, `userPassword`, `usertype`, `userDate_created`, `userPhone_number`, `userGender`, `userBirthdate`, `userAddress`) VALUES
 ('U', 00003, 'Johan Harris ', 'jo@gmail.com', '1234', 'user', '2022-03-09', '', '', '0000-00-00', ''),
 ('U', 00004, 'Zhilong', 'zhi@gmail.com', '1234', 'user', '2022-03-16', '', '', '0000-00-00', ''),
 ('U', 00032, 'LeBron James', 'kingjames@gmail.com', '1234', 'user', '2022-04-05', '', '', '0000-00-00', '');
@@ -380,7 +356,8 @@ ALTER TABLE `appointment`
 -- Indexes for table `bed`
 --
 ALTER TABLE `bed`
-  ADD PRIMARY KEY (`bedID`);
+  ADD PRIMARY KEY (`bedID`),
+  ADD KEY `bed_ibfk_1` (`userID`);
 
 --
 -- Indexes for table `contact`
@@ -393,7 +370,8 @@ ALTER TABLE `contact`
 --
 ALTER TABLE `medrec`
   ADD PRIMARY KEY (`recID`),
-  ADD UNIQUE KEY `recPrefix` (`recPrefix`,`recID`);
+  ADD KEY `userID` (`userID`),
+  ADD KEY `staffID` (`staffID`);
 
 --
 -- Indexes for table `medstock`
@@ -406,13 +384,13 @@ ALTER TABLE `medstock`
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`staffId`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`userId`);
 
 --
 -- Indexes for table `vaccine`
@@ -434,7 +412,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `bed`
 --
 ALTER TABLE `bed`
-  MODIFY `bedID` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `bedID` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -446,31 +424,48 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `medrec`
 --
 ALTER TABLE `medrec`
-  MODIFY `recID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `recID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `medstock`
 --
 ALTER TABLE `medstock`
-  MODIFY `stockID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `stockID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `staffId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `userId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `vaccine`
 --
 ALTER TABLE `vaccine`
   MODIFY `Vaccine_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bed`
+--
+ALTER TABLE `bed`
+  ADD CONSTRAINT `bed_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `medrec`
+--
+ALTER TABLE `medrec`
+  ADD CONSTRAINT `medrec_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `medrec_ibfk_2` FOREIGN KEY (`staffID`) REFERENCES `staff` (`staffId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

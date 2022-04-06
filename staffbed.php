@@ -1,3 +1,60 @@
+<?php
+include 'connection.php';
+
+if (isset($_POST["addBtn"])) {
+    $location = $_POST["inputLocation"] ?? "";
+    $depart = $_POST["inputDepartment"] ?? "";
+    $status = $_POST["inputBedStatus"] ?? "";
+    $name = $_POST["inputUserName"] ?? "";
+
+    $query = mysqli_query($data, "SELECT `id` FROM `user` where `name` = '$name' ");
+    $queryResult = mysqli_fetch_row($query);
+    $userID = implode(" ", $queryResult);
+
+    $addSql = "INSERT INTO `bed` (`bedLocation`,`bedDepartment`,`bedStatus`,`userID`) VALUES ('$location','$depart','$status', '$userID')";
+    $result = mysqli_query($data, $addSql);
+
+    if ($result) {
+        echo '<script> alert("Data added"); </script>';
+    } else {
+        echo '<script> alert("Data not added"); </script>';
+    }
+}
+
+if (isset($_POST["editBtn"])) {
+    $id = $_POST["editID"];
+    $location = $_POST["editLocation"] ?? "";
+    $depart = $_POST["editDepartment"] ?? "";
+    $status = $_POST["editBedStatus"] ?? "";
+    $name = $_POST["editUserName"] ?? "";
+
+    $query = mysqli_query($data, "SELECT `id` FROM `user` where `userName` = '$name' ");
+    $queryResult = mysqli_fetch_row($query);
+    $userID = implode(" ", $queryResult);
+
+    $editSql = "UPDATE `bed` SET `bedLocation`='$location',`bedDepartment`='$depart',`bedStatus`='$status',`userID`='$userID' WHERE `bedID`='$id'";
+    $result = mysqli_query($data, $editSql);
+
+    if ($result) {
+        echo '<script> alert("Data updated"); </script>';
+    } else {
+        echo '<script> alert("Data not updated"); </script>';
+    }
+}
+
+if (isset($_POST['deleteBtn'])) {
+    $id = $_POST["deleteID"];
+
+    $deleteSql = "DELETE FROM `bed` WHERE `bedID`=$id";
+    $result = mysqli_query($data, $deleteSql);
+
+    if ($result) {
+        echo '<script> alert("Data deleted"); </script>';
+    } else {
+        echo '<script> alert("Data not deleted"); </script>';
+    }
+}
+?>
 <!DOCTYPE html>
 
 <head>
@@ -40,566 +97,225 @@
         </nav>
 
         <div class="home-content">
-            <div class="col-xl-12 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="row mb-2">
-                            <div class="col-lg-5">
-                                <h4 class="card-title">Bed</h4>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="mx-1">
-                                        <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printStock">
-                                            Print
-                                        </button>
-                                    </div>
-                                    <div class="mx-1">
-                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addData">
-                                            Add Bed
-                                        </button>
-                                    </div>
+                    <div class="row mt-2 mx-2">
+                        <div class="col-lg-5">
+                            <h4 class="card-title">Bed</h4>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="d-flex flex-row-reverse">
+                                <div class="mx-1">
+                                    <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printStock">
+                                        Print
+                                    </button>
+                                </div>
+                                <div class="mx-1">
+                                    <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addData">
+                                        Add Bed
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <div class="table-responsive table-wardStatus">
-                                <table class="table table-condensed shadow-hover">
-                                    <thead>
-                                        <th> Ward ID</th>
-                                        <th> Location </th>
-                                        <th> Department </th>
-                                        <th> Bed ID </th>
-                                        <th> Bed Status </th>
-                                        <th>User ID</th>
-                                        <th>Action</th>
-                                    </thead>
-                                    <tbody>
+                        <div class="table-responsive table-wardStatus">
+                            <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
+                                <thead>
+                                    <th> Bed ID</th>
+                                    <th> Location </th>
+                                    <th> Department </th>
+                                    <th> Bed Status </th>
+                                    <th>User Name</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $viewSql = "SELECT * FROM `bed` INNER JOIN `user` on bed.userID = user.userId";
+                                    $result = mysqli_query($data, $viewSql);
+                                    while ($fetch = mysqli_fetch_array($result)) {
+                                        $prefix = $fetch['bedPrefix'];
+                                        $id = $fetch['bedID'];
+                                        $location = $fetch['bedLocation'];
+                                        $depart = $fetch['bedDepartment'];
+                                        $status = $fetch['bedStatus'];
+                                        $uid = $fetch['userID'];
+                                        $uname = $fetch['userName'];
+                                        $status = $fetch['bedStatus'];
+
+                                        if ($status == "Empty") {
+                                            $color = "btn-secondary";
+                                        } else if ($status == "Occupied") {
+                                            $color = "btn-success";
+                                        } else if ($status == "Cleaning") {
+                                            $color = "btn-warning";
+                                        }
+                                    ?>
                                         <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B01</td>
-                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
-                                            <td>None</td>
+                                            <td><?php echo $prefix . "" . $id; ?></td>
+                                            <td><?php echo $location ?></td>
+                                            <td><?php echo $depart ?></td>
+                                            <td><button type="button" class="btn <?php echo $color ?>"><?php echo $status ?></button></td>
+                                            <td><?php echo $uname ?></td>
                                             <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editData<?php echo $id; ?>">
                                                     <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
                                                     <i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B01</td>
-                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B03</td>
-                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
-                                            <td>53275531</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B03</td>
-                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
-                                            <td>53275531</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B05</td>
-                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B05</td>
-                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="mx-1">
-                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addBed">
-                                            Add Bed
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-row my-auto">
-                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                                    <h5 class="my-auto">1</h5>
-                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-                                </div>
-                            </div>
+                                        <!-- Edit Data Modal -->
+                                        <div class="modal fade" id="editData<?php echo $id; ?>" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editBed">Edit Bed</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method="POST">
+                                                            <div class="mb-3">
+                                                                <input type="hidden" name="editID" value="<?php echo $id; ?>">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="editLocation" class="form-label">Location</label>
+                                                                <input type="text" class="form-control" name="editLocation" required value="<?php echo $location; ?>">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="editDepartment" class="form-label">Department</label>
+                                                                <select id="editDepartment" class="form-control" name="editDepartment" value="<?php echo $depart; ?>">
+                                                                    <option value="Podiatrist" <?php if ($depart == "Podiatrist") echo "selected"; ?>>Podiatrist</option>
+                                                                    <option value="Pediatrician" <?php if ($depart == "Pediatrician") echo "selected"; ?>>Pediatrician</option>
+                                                                    <option value="Endocrinologist" <?php if ($depart == "Endocrinologist") echo "selected"; ?>>Endocrinologist</option>
+                                                                    <option value="Neurologist" <?php if ($depart == "Neurologist") echo "selected"; ?>>Neurologist</option>
+                                                                    <option value="Rheumatologist" <?php if ($depart == "Rheumatologist") echo "selected"; ?>>Rheumatologist</option>
+                                                                    <option value="Immunologist" <?php if ($depart == "Immunologist") echo "selected"; ?>>Immunologist</option>
+                                                                    <option value="Phychiatrist" <?php if ($depart == "Phychiatrist") echo "selected"; ?>>Phychiatrist</option>
+                                                                    <option value="Cardiologist" <?php if ($depart == "Cardiologist") echo "selected"; ?>>Cardiologist</option>
+                                                                    <option value="Hepatologist" <?php if ($depart == "Hepatologist") echo "selected"; ?>>Hepatologist</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="editBedStatus" class="form-label">Bed Status</label>
+                                                                <select id="edittBedStatus" class="form-control" name="editBedStatus">
+                                                                    <option value="Empty" <?php if ($status == "Empty") echo "selected"; ?>>Empty</option>
+                                                                    <option value="Occupied" <?php if ($status == "Occupied") echo "selected"; ?>>Occupied</option>
+                                                                    <option value="Cleaning" <?php if ($status == "Cleaning") echo "selected"; ?>>Cleaning</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <?php
+                                                                $searchSql = "SELECT * FROM `user`";
+                                                                $search = mysqli_query($data, $searchSql);
+                                                                ?>
+                                                                <label for="editUserName" class="form-label">User Name</label>
+                                                                <select id="editUserName" class="form-control" name="editUserName">
+                                                                    <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
+                                                                        <?php $userName = $fetch['userName']; ?>
+                                                                        <option value="<?php echo $userName; ?>" <?php if ($uname == "$userName") echo "selected"; ?>><?php echo $userName; ?></option>
+                                                                    <?php endwhile; ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-success" name="editBtn">Update Changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Delete Data Modal -->
+                                        <div class="modal fade" id="deleteData<?php echo $id; ?>" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method="POST">
+                                                            <div class="mb-3">
+                                                                <input type="hidden" name="deleteID" value="<?php echo $id; ?>">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                Are you sure that you want to delete the selected data?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-success" name="deleteBtn">Yes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php  }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="card  mx-3">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <h4 class="card-title">Bed Status</h4>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="mx-1">
-                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addWard">
-                                            Add Ward
-                                        </button>
-                                    </div>
-                                    <div class="mx-1">
-                                        <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#editWard">
-                                            Edit Ward
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-header">
-                        <div class="card-action card-tabs mb-3 style-1">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#ward1">
-                                        Ward 1
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ward2">
-                                        Ward 2
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-body tab-content p-0">
-                        <div class="tab-pane active show fade" id="ward1">
-                            <div class="table-responsive table-wardStatus">
-                                <table class="table table-condensed shadow-hover">
-                                    <thead>
-                                        <th> Ward ID</th>
-                                        <th> Location </th>
-                                        <th> Department </th>
-                                        <th> Bed ID </th>
-                                        <th> Bed Status </th>
-                                        <th>User ID</th>
-                                        <th>Action</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B01</td>
-                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B01</td>
-                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B03</td>
-                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
-                                            <td>53275531</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B03</td>
-                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
-                                            <td>53275531</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B05</td>
-                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-001</td>
-                                            <td>Floor 2</td>
-                                            <td>Cardiologist</td>
-                                            <td>W001-B05</td>
-                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="mx-1">
-                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addBed">
-                                            Add Bed
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-row my-auto">
-                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                                    <h5 class="my-auto">1</h5>
-                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="ward2">
-                            <div class="table-responsive table-wardStatus">
-                                <table class="table table-hover table-condensed">
-                                    <thead>
-                                        <th> Ward ID</th>
-                                        <th> Location </th>
-                                        <th> Department </th>
-                                        <th> Bed ID </th>
-                                        <th> Bed Status </th>
-                                        <th>User ID</th>
-                                        <th>Action</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>W-002</td>
-                                            <td>Floor 2</td>
-                                            <td>Neurologist</td>
-                                            <td>W002-B01</td>
-                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-002</td>
-                                            <td>Floor 2</td>
-                                            <td>Neurologist</td>
-                                            <td>W002-B01</td>
-                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-002</td>
-                                            <td>Floor 2</td>
-                                            <td>Neurologist</td>
-                                            <td>W002-B03</td>
-                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
-                                            <td>53275531</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-002</td>
-                                            <td>Floor 2</td>
-                                            <td>Neurologist</td>
-                                            <td>W002-B03</td>
-                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
-                                            <td>53275531</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-002</td>
-                                            <td>Floor 2</td>
-                                            <td>Neurologist</td>
-                                            <td>W002-B05</td>
-                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>W-002</td>
-                                            <td>Floor 2</td>
-                                            <td>Neurologist</td>
-                                            <td>W002-B05</td>
-                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
-                                            <td>None</td>
-                                            <td class="action-button">
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
-                                                    <i class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="mx-1">
-                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addBed">
-                                            Add Bed
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-row my-auto">
-                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                                    <h5 class="my-auto">1</h5>
-                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
 
-    <div class="modal fade" id="editBed" tabindex="-1" aria-labelledby="editBedLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editBed">Edit Bed Status</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="inputBedID" class="form-label">Bed ID</label>
-                            <input type="text" class="form-control" id="inputBedID">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputUserID" class="form-label">User ID</label>
-                            <input type="text" class="form-control" id="inputUserID">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputBedStatus" class="form-label">Bed Status</label>
-                            <select id="inputBedStatus" class="form-control" name="bed status">
-                                <option value="empty">Empty</option>
-                                <option value="occupied">Occupied</option>
-                                <option value="cleaning">Cleaning</option>
-                            </select>
-                        </div>
-                    </form>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Edit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="addBed" tabindex="-1" aria-labelledby="addBedLabel" aria-hidden="true">
+    <!-- Add Stock -->
+    <div class="modal fade" id="addData" tabindex="-1" aria-labelledby="addDataLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addBed">Add Bed</h5>
+                    <h5 class="modal-title" id="addData">Add Bed</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="inputBedID" class="form-label">Bed ID</label>
-                            <input type="text" class="form-control" id="inputBedID">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputUserID" class="form-label">User ID</label>
-                            <input type="text" class="form-control" id="inputUserID">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputBedStatus" class="form-label">Bed Status</label>
-                            <select id="inputBedStatus" class="form-control" name="bed status">
-                                <option value="empty">Empty</option>
-                                <option value="occupied">Occupied</option>
-                                <option value="cleaning">Cleaning</option>
-                            </select>
-                        </div>
-                    </form>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Add</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="addWard" tabindex="-1" aria-labelledby="addWardLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addWard">Add Ward</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="inputBedID" class="form-label">Ward ID</label>
-                            <input type="text" class="form-control" id="inputBedID">
-                        </div>
+                    <form action="" method="POST">
                         <div class="mb-3">
                             <label for="inputLocation" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="inputLocation">
+                            <input type="text" class="form-control" name="inputLocation" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputDepartment" class="form-label">Department</label>
-                            <input type="text" class="form-control" id="inputDepartment">
+                            <select id="inputDepartment" class="form-control" name="inputDepartment">
+                                <option value="Podiatrist">Podiatrist</option>
+                                <option value="Pediatrician">Pediatrician</option>
+                                <option value="Endocrinologist">Endocrinologist</option>
+                                <option value="Neurologist">Neurologist</option>
+                                <option value="Rheumatologist">Rheumatologist</option>
+                                <option value="Immunologist">Immunologist</option>
+                                <option value="Phychiatrist">Phychiatrist</option>
+                                <option value="Cardiologist">Cardiologist</option>
+                                <option value="Hepatologist">Hepatologist</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputBedStatus" class="form-label">Bed Status</label>
+                            <select id="inputBedStatus" class="form-control" name="inputBedStatus">
+                                <option value="Empty">Empty</option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Cleaning">Cleaning</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <?php
+                            $searchSql = "SELECT * FROM `user`";
+                            $search = mysqli_query($data, $searchSql); ?>
+                            <label for="inputUserName" class="form-label">User Name</label>
+                            <select id="inputUserName" class="form-control" name="inputUserName">
+                                <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
+                                    <option value="<?php echo $fetch['userName']; ?>"><?php echo $fetch['userName']; ?></option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" name="addBtn">Add Bed</button>
                         </div>
                     </form>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Add</button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="editWard" tabindex="-1" aria-labelledby="editWardLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editWard">Edit Ward</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="inputWardID" class="form-label">Ward ID</label>
-                            <input type="text" class="form-control" id="inputWardID">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputLocation" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="inputLocation">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputDepartment" class="form-label">Department</label>
-                            <input type="text" class="form-control" id="inputDepartment">
-                        </div>
-                    </form>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save Changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteAdminLabel">Confirmation Message</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure that you want to delete the selected data?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Yes</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <?php include('asset/includes/jsCDN.php'); ?>
 

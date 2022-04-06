@@ -273,7 +273,7 @@ if (isset($_POST['deleteBtn'])) {
                             <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
                           </div>
                           <div class="modal-body">
-                            <form action="" method="POST" name="deleteData">
+                            <form action="" method="POST">
                               <div class="mb-3">
                                 <input type="hidden" name="deleteID" value="<?php echo $id; ?>">
                               </div>
@@ -343,18 +343,18 @@ if (isset($_POST['deleteBtn'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="" method="POST" name="addData">
+          <form action="" method="POST">
             <div class="mb-3">
               <label for="inputDataName" class="form-label">Stock Name</label>
-              <input type="text" class="form-control" name="inputDataName">
+              <input type="text" class="form-control" name="inputDataName" required>
             </div>
             <div class="mb-3">
               <label for="inputDataAmount" class="form-label">Stock Amount</label>
-              <input type="text" class="form-control" name="inputDataAmount">
+              <input type="text" class="form-control" name="inputDataAmount" required>
             </div>
             <div class="mb-3">
               <label for="inputDataExpire" class="form-label">Stock Expiration Date</label>
-              <input type="date" class="form-control" name="inputDataExpire" min="<?php echo date("Y-m-d"); ?>">
+              <input type="date" class="form-control" name="inputDataExpire" min="<?php echo date("Y-m-d"); ?>" required>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
