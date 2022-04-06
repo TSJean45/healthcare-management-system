@@ -43,9 +43,9 @@
                 </a>
             </li>
             <li class="item">
-                <a <?php echo ($page == 'staffward') ? "class='active'" : ""; ?> href="staffward.php">
+                <a <?php echo ($page == 'staffbed') ? "class='active'" : ""; ?> href="staffbed.php">
                     <i class="fas fa-procedures"></i>
-                    <span class="links_name">Ward</span>
+                    <span class="links_name">Bed</span>
                 </a>
             </li>
             <li class="item">

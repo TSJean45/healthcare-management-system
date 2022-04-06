@@ -150,6 +150,11 @@ Action Button
   font-size: 20px;
   padding: 5px;
 }
+.home-section .home-content .action-button .calBtn .fa-calculator {
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+}
 .home-section .home-content .action-button .fa-pen-alt {
   background-color: rgb(112, 5, 103);
   color: white;
@@ -160,7 +165,7 @@ Action Button
   padding: 0;
 }
 /*-------------------------------------------------------------------
-Ward Status
+Bed Status
 ----------------------------------------------------------------------*/
 .table #done:before {
   margin-right: 10px;

@@ -7,14 +7,14 @@
 
     <?php include('asset/includes/cssCDN.php'); ?>
 
-    <title>Ward</title>
+    <title>Bed</title>
     <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
 </head>
 
 <body>
 
     <!-- Side Bar -->
-    <?php $page = 'staffward';
+    <?php $page = 'staffbed';
     include('asset/includes/staffSideBar.php'); ?>
 
     <section class="home-section">
@@ -22,7 +22,7 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Ward</span>
+                <span class="dashboard">Bed</span>
             </div>
             <div class="right-nav">
                 <div class="right noti-bell my-auto">
@@ -38,16 +38,152 @@
             </div>
             </div>
         </nav>
-    </section>
 
-    <section class="home-section ">
         <div class="home-content">
             <div class="col-xl-12 grid-margin stretch-card">
-                <div class="card  mx-3">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row mb-2">
+                            <div class="col-lg-5">
+                                <h4 class="card-title">Bed</h4>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="d-flex flex-row-reverse">
+                                    <div class="mx-1">
+                                        <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printStock">
+                                            Print
+                                        </button>
+                                    </div>
+                                    <div class="mx-1">
+                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addData">
+                                            Add Bed
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="table-responsive table-wardStatus">
+                                <table class="table table-condensed shadow-hover">
+                                    <thead>
+                                        <th> Ward ID</th>
+                                        <th> Location </th>
+                                        <th> Department </th>
+                                        <th> Bed ID </th>
+                                        <th> Bed Status </th>
+                                        <th>User ID</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>W-001</td>
+                                            <td>Floor 2</td>
+                                            <td>Cardiologist</td>
+                                            <td>W001-B01</td>
+                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
+                                            <td>None</td>
+                                            <td class="action-button">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
+                                                    <i class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                                    <i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>W-001</td>
+                                            <td>Floor 2</td>
+                                            <td>Cardiologist</td>
+                                            <td>W001-B01</td>
+                                            <td><button type="button" class="btn btn-secondary">Empty</button></td>
+                                            <td>None</td>
+                                            <td class="action-button">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
+                                                    <i class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                                    <i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>W-001</td>
+                                            <td>Floor 2</td>
+                                            <td>Cardiologist</td>
+                                            <td>W001-B03</td>
+                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
+                                            <td>53275531</td>
+                                            <td class="action-button">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
+                                                    <i class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                                    <i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>W-001</td>
+                                            <td>Floor 2</td>
+                                            <td>Cardiologist</td>
+                                            <td>W001-B03</td>
+                                            <td><button type="button" class="btn btn-success">Occupied</button></td>
+                                            <td>53275531</td>
+                                            <td class="action-button">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
+                                                    <i class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                                    <i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>W-001</td>
+                                            <td>Floor 2</td>
+                                            <td>Cardiologist</td>
+                                            <td>W001-B05</td>
+                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
+                                            <td>None</td>
+                                            <td class="action-button">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
+                                                    <i class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                                    <i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>W-001</td>
+                                            <td>Floor 2</td>
+                                            <td>Cardiologist</td>
+                                            <td>W001-B05</td>
+                                            <td><button type="button" class="btn btn-warning">Cleaning</button></td>
+                                            <td>None</td>
+                                            <td class="action-button">
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editBed">
+                                                    <i class="fas fa-edit"></i></button>
+                                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                                                    <i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="d-flex flex-row-reverse">
+                                    <div class="mx-1">
+                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addBed">
+                                            Add Bed
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row my-auto">
+                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
+                                    <h5 class="my-auto">1</h5>
+                                    <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card  mx-3">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-lg-9">
-                                <h4 class="card-title">Ward Status</h4>
+                                <h4 class="card-title">Bed Status</h4>
                             </div>
                             <div class="col-lg-3">
                                 <div class="d-flex flex-row-reverse">
@@ -309,7 +445,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
