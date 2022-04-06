@@ -35,7 +35,7 @@ if (isset($_POST["editBtn"])) {
   $dis = $_POST["editDisease"];
   $status = $_POST["editStatus"];
 
-  $editSql = "UPDATE `medrec` SET `userName`='$name',`userID`='$uid',`staffID`='$sid',`recDate`='$date',`recDisease`='$sid',`recStatus`='$status' WHERE `recID`='$id'";
+  $editSql = "UPDATE `medrec` SET `userName`='$name',`userID`='$uid',`staffID`='$sid',`recDate`='$date',`recDisease`='$dis',`recStatus`='$status' WHERE `recID`='$id'";
   $result = mysqli_query($data, $editSql);
 
   if ($result) {
@@ -138,34 +138,35 @@ if (isset($_POST['deleteBtn'])) {
                     <th> Action </th>
                   </tr>
                 </thead>
-                <?php
+                <tbody>
 
-                if ($result) {
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $rpre = $row['recPrefix'];
-                    $rid = $row['recID'];
-                    $name = $row['userName'];
-                    $upre = $row['userPrefix'];
-                    $uid = $row['userID'];
-                    $spre = $row['staffPrefix'];
-                    $sid = $row['staffID'];
-                    $dis = $row['recDisease'];
-                    $date = $row['recDate'];
-                    $status = $row['recStatus'];
+                  <?php
 
-                    if ($status == "New") {
-                      $color = "btn-outline-info";
-                      $logo = "fa-check-circle";
-                    } else if ($status == "In Treatment") {
-                      $color = "btn-outline-danger";
-                      $logo = "fa-heartbeat";
-                    } else if ($status == "Recovered") {
-                      $color = "btn-outline-success";
-                      $logo = "fa-check-circle";
-                    }
+                  if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $rpre = $row['recPrefix'];
+                      $rid = $row['recID'];
+                      $name = $row['userName'];
+                      $upre = $row['userPrefix'];
+                      $uid = $row['userID'];
+                      $spre = $row['staffPrefix'];
+                      $sid = $row['staffID'];
+                      $dis = $row['recDisease'];
+                      $date = $row['recDate'];
+                      $status = $row['recStatus'];
 
-                ?>
-                    <tbody>
+                      if ($status == "New") {
+                        $color = "btn-outline-info";
+                        $logo = "fa-check-circle";
+                      } else if ($status == "In Treatment") {
+                        $color = "btn-outline-danger";
+                        $logo = "fa-heartbeat";
+                      } else if ($status == "Recovered") {
+                        $color = "btn-outline-success";
+                        $logo = "fa-check-circle";
+                      }
+
+                  ?>
                       <tr>
                         <td><?php echo $rpre . "" . $rid; ?></td>
                         <td class="d-none"><?php echo $rid; ?></td>
@@ -186,10 +187,11 @@ if (isset($_POST['deleteBtn'])) {
                             <i class="fas fa-trash-alt"></i></button>
                         </td>
                       </tr>
-                    </tbody>
-                <?php  }
-                }
-                ?>
+                  <?php  }
+                  }
+                  ?>
+                </tbody>
+
 
               </table>
             </div>
@@ -350,7 +352,7 @@ if (isset($_POST['deleteBtn'])) {
       $('#editSID').val(data[4]);
       $('#editDate').val(data[5]);
       $('#editDisease').val(data[6]);
-      $('#editStatus option:selected').text(data[7]);
+      // $('#editStatus option:selected').text(data[7]);
     });
   </script>
 

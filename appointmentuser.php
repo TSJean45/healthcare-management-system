@@ -106,12 +106,16 @@
                         <p class="mb-4 text-center">
                             Now you can get an online appointment, We will get back to you and fix a meeting with doctors.
                         </p>
+
             <form id="#" class="appointmentform" method="post" action="#">
+            <form id="#" class="appointmentform" method="post" action="appointment.php">
+
                 <div class="row">
                     <div class="col-lg-6">
                     <div class="form-group">
                         <select class="form-control" id="department" name="department" required>
                             <option value="" disabled selected>Choose Department</option>
+
                                 <option value="Podiatrist">Podiatrist</option>
                                 <option value="Pediatrician">Pediatrician</option>
                                 <option value="Endocrinologist">Endocrinologist</option>
@@ -129,6 +133,7 @@
                     <div class="form-group">
                         <select class="form-control" id="doctor" name="doctor_name" required>
                             <option value="" disabled selected>Choose Doctor You Want</option>
+
                             <option value="Doctor A">Doctor A</option>
                             <option value="Doctor B">Doctor B</option>
                             <option value="Doctor C">Doctor C</option>
@@ -254,3 +259,4 @@ if(isset($_POST['makeappointment']))
 }
 
 ?>
+

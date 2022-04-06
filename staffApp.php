@@ -1,348 +1,279 @@
 <!DOCTYPE html>
-  <head>
-    <!-- Local CSS File -->
-    <link rel="stylesheet" href="asset/css/staffstyle.css">
-    <link rel="stylesheet" href="asset/css/navbar.css">
 
-    <!-- Boxicon Icon -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<head>
+  <!-- Local CSS File -->
+  <link rel="stylesheet" href="asset/css/staffstyle.css">
+  <link rel="stylesheet" href="asset/css/navbar.css">
 
-    <!-- Font Awesome Icon -->
-    <script src="https://kit.fontawesome.com/fb95a6dbf4.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    
-    <!-- Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    
-    <title>Appointment</title>
-    <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
-   </head>
+  <?php include('asset/includes/cssCDN.php'); ?>
+
+  <title>Appointment</title>
+  <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
+</head>
+
 <body>
 
   <!-- Side Bar -->
-  <div class="sidebar">
-    <div class="logo-details">
-      <img src="asset/image/logo pic.png" alt="">
-      <span class="logo_name">JJJ MedCare</span>
-    </div>
-
-    <div class="sidebar-details">
-      <ul class="nav-links">
-        <li class="item">
-          <a href="staffdashboard.html" >
-            <i class='bx bx-grid-alt'></i>
-            <span class="links_name">Main Dashboard</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="staffUserList.html">
-            <i class='fa fa-user fa-xs' ></i>
-            <span class="links_name">User</span>
-          </a>
-        </li>
-        <li class="item">
-            <a href="staffMedrec.html">
-                <i class="fas fa-notes-medical"></i>
-              <span class="links_name">Medical Record</span>
-            </a>
-          </li>
-        <li class="item">
-            <a href="staffVac.html">
-              <i class="fas fa-syringe"></i>
-              <span class="links_name">Vaccination</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="staffApp.html"   class="active">
-            <i class="fas fa-calendar-check"></i>
-              <span class="links_name">Appointment</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="staffStock.html">
-              <i class="fas fa-prescription-bottle-alt"></i>
-              <span class="links_name">Medicine Stock</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="staffward.html"  >
-                <i class="fas fa-procedures"></i>
-              <span class="links_name">Ward</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="staffprofile.html">
-              <i class='bx bxs-user-rectangle' ></i>
-              <span class="links_name">Profile</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="index.html">
-              <i class='bx bx-log-out' ></i>
-              <span class="links_name">Log Out</span>
-            </a>
-          </li>
-      </ul>
-    </div>
-  </div>
+  <?php $page = 'staffApp';
+  include('asset/includes/staffSideBar.php'); ?>
 
   <section class="home-section">
     <!-- Top Bar-->
-  <nav>
+    <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Appointment</span>
       </div>
       <div class="right-nav">
-            <div class="right noti-bell my-auto">
-              <i class='bx bxs-bell-ring' ></i>
-            </div>
-            
-            <div class="profile dropdown">
-              <div>
-                <img src="asset/image/profile1.jpg">
-                <span class="profile_name">Tan Szu Jean</span>
-              </div>
-            </div>
+        <div class="right noti-bell my-auto">
+          <i class='bx bxs-bell-ring'></i>
         </div>
+
+        <div class="profile dropdown">
+          <div>
+            <img src="asset/image/profile1.jpg">
+            <span class="profile_name">Tan Szu Jean</span>
+          </div>
+        </div>
+      </div>
       </div>
     </nav>
   </section>
 
   <section class="home-section ">
     <div class="home-content">
-        <div class="col-xl-12 grid-margin stretch-card">
-            <div class="card  mx-3">
-                <div class="card-header">
-                    <h4 class="card-title">Appointment details</h4>
-                </div>
-                <div class="table-responsive table-wardStatus">
-                    <table class="table table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th> No</th>
-                                <th> User ID </th>
-                                <th> Appointment ID</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Status</th>
-                                <th> Action </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                    AP005
-                                </td>
-                                <td>10 Feburary 2022</td>
-                                <td>10 a.m.</td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-success">
-                                            <i class="fas fa-check-circle fa-lg" id="done">Done</i>
-                                        </button>
-                                      
-                                    </a>
-                                  </td>
-                                <td class="action-button">
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
-                        <i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                        <i class="fas fa-trash-alt"></i></button>
-                    </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                    AP006
-                                </td>
-                                <td>10 Feburary 2022</td>
-                                <td>10 a.m.</td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-success">
-                                            <i class="fas fa-check-circle fa-lg" id="done">Done</i>
-                                        </button>
-                                      
-                                    </a>
-                                  </td>
-                                <td class="action-button">
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
-                        <i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                        <i class="fas fa-trash-alt"></i></button>
-                    </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                    AP007
-                                </td>
-                                <td>10 Feburary 2022</td>
-                                <td>10 a.m.</td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="fas fa-window-close fa-lg" id="cancel">Cancelled</i>
-                                        </button>
-                                      
-                                    </a>
-                                  </td>
-                                <td class="action-button">
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
-                        <i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                        <i class="fas fa-trash-alt"></i></button>
-                    </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                    AP008
-                                </td>
-                                <td>10 Feburary 2022</td>
-                                <td>10 a.m.</td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="fas fa-window-close fa-lg" id="cancel">Cancelled</i>
-                                        </button>
-                                      
-                                    </a>
-                                  </td>
-                                <td class="action-button">
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
-                        <i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                        <i class="fas fa-trash-alt"></i></button>
-                    </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                    AP009
-                                </td>
-                                <td>10 Feburary 2022</td>
-                                <td>10 a.m.</td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-warning">
-                                            <i class="far fa-calendar-check fa-lg" id="schedule">Scheduled</i>
-                                        </button>
-                                      
-                                    </a>
-                                  </td>
-                                <td class="action-button">
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
-                        <i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                        <i class="fas fa-trash-alt"></i></button>
-                    </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
-                                <td class="py-1">
-                                  53275531
-                                </td>
-                                <td>
-                                    AP010
-                                </td>
-                                <td>10 Feburary 2022</td>
-                                <td>10 a.m.</td>
-                                <td>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-warning">
-                                            <i class="far fa-calendar-check fa-lg" id="schedule">Scheduled</i>
-                                        </button>
-                                      
-                                    </a>
-                                  </td>
-                                <td class="action-button">
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
-                        <i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
-                        <i class="fas fa-trash-alt"></i></button>
-                    </td>
-                            </tr>
-                        </tbody>
-                        </table>
-                        <div class="d-flex flex-row-reverse">
-                            <div class="mx-1">
-                                <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printApp">
-                                    Print
-                                </button>
-                                </div>
-                                <div class="mx-1">
-                                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addApp">
-                                    Add Appointment
-                                </button>
-                                </div>
-                        </div>
-                        <div class="d-flex flex-row my-auto flex-row">
-                            <nav aria-label="Page navigation">
-                              <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-arrow-circle-left fa-lg"></i></a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-arrow-circle-right fa-lg"></i></a></li>
-                              </ul>
-                            </nav>
-                        </div>
+      <div class="col-xl-12 grid-margin stretch-card">
+        <div class="card  mx-3">
+          <div class="card-header">
+            <h4 class="card-title">Appointment details</h4>
+          </div>
+          <div class="table-responsive table-wardStatus">
+            <table class="table table-hover table-condensed">
+              <thead>
+                <tr>
+                  <th> No</th>
+                  <th> User ID </th>
+                  <th> Appointment ID</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th> Action </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                      </label>
+                    </div>
+                  </td>
+                  <td class="py-1">
+                    53275531
+                  </td>
+                  <td>
+                    AP005
+                  </td>
+                  <td>10 Feburary 2022</td>
+                  <td>10 a.m.</td>
+                  <td>
+                    <a href="#">
+                      <button type="button" class="btn btn-success">
+                        <i class="fas fa-check-circle fa-lg" id="done">Done</i>
+                      </button>
+
+                    </a>
+                  </td>
+                  <td class="action-button">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
+                      <i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                      <i class="fas fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                      </label>
+                    </div>
+                  </td>
+                  <td class="py-1">
+                    53275531
+                  </td>
+                  <td>
+                    AP006
+                  </td>
+                  <td>10 Feburary 2022</td>
+                  <td>10 a.m.</td>
+                  <td>
+                    <a href="#">
+                      <button type="button" class="btn btn-success">
+                        <i class="fas fa-check-circle fa-lg" id="done">Done</i>
+                      </button>
+
+                    </a>
+                  </td>
+                  <td class="action-button">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
+                      <i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                      <i class="fas fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                      </label>
+                    </div>
+                  </td>
+                  <td class="py-1">
+                    53275531
+                  </td>
+                  <td>
+                    AP007
+                  </td>
+                  <td>10 Feburary 2022</td>
+                  <td>10 a.m.</td>
+                  <td>
+                    <a href="#">
+                      <button type="button" class="btn btn-danger">
+                        <i class="fas fa-window-close fa-lg" id="cancel">Cancelled</i>
+                      </button>
+
+                    </a>
+                  </td>
+                  <td class="action-button">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
+                      <i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                      <i class="fas fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                      </label>
+                    </div>
+                  </td>
+                  <td class="py-1">
+                    53275531
+                  </td>
+                  <td>
+                    AP008
+                  </td>
+                  <td>10 Feburary 2022</td>
+                  <td>10 a.m.</td>
+                  <td>
+                    <a href="#">
+                      <button type="button" class="btn btn-danger">
+                        <i class="fas fa-window-close fa-lg" id="cancel">Cancelled</i>
+                      </button>
+
+                    </a>
+                  </td>
+                  <td class="action-button">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
+                      <i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                      <i class="fas fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                      </label>
+                    </div>
+                  </td>
+                  <td class="py-1">
+                    53275531
+                  </td>
+                  <td>
+                    AP009
+                  </td>
+                  <td>10 Feburary 2022</td>
+                  <td>10 a.m.</td>
+                  <td>
+                    <a href="#">
+                      <button type="button" class="btn btn-warning">
+                        <i class="far fa-calendar-check fa-lg" id="schedule">Scheduled</i>
+                      </button>
+
+                    </a>
+                  </td>
+                  <td class="action-button">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
+                      <i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                      <i class="fas fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                      </label>
+                    </div>
+                  </td>
+                  <td class="py-1">
+                    53275531
+                  </td>
+                  <td>
+                    AP010
+                  </td>
+                  <td>10 Feburary 2022</td>
+                  <td>10 a.m.</td>
+                  <td>
+                    <a href="#">
+                      <button type="button" class="btn btn-warning">
+                        <i class="far fa-calendar-check fa-lg" id="schedule">Scheduled</i>
+                      </button>
+
+                    </a>
+                  </td>
+                  <td class="action-button">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editApp">
+                      <i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData">
+                      <i class="fas fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex flex-row-reverse">
+              <div class="mx-1">
+                <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printApp">
+                  Print
+                </button>
+              </div>
+              <div class="mx-1">
+                <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addApp">
+                  Add Appointment
+                </button>
+              </div>
             </div>
-                
+            <div class="d-flex flex-row my-auto flex-row">
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                  <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-arrow-circle-left fa-lg"></i></a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-arrow-circle-right fa-lg"></i></a></li>
+                </ul>
+              </nav>
             </div>
+          </div>
+
         </div>
+      </div>
     </div>
   </section>
 
@@ -362,110 +293,96 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
 
-<div class="modal fade" id="editApp" tabindex="-1" aria-labelledby="editAppLabel" aria-hidden="true">
+  <div class="modal fade" id="editApp" tabindex="-1" aria-labelledby="editAppLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editApp">Edit Appointment Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                    <label for="inputAppID" class="form-label">Appointment ID</label>
-                    <input type="text" class="form-control" id="inputAppID">
-                    </div>
-                    <div class="mb-3">
-                    <label for="inputAppName" class="form-label">Appointment Name</label>
-                    <input type="text" class="form-control" id="inputAppName">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputAppDate" class="form-label">Appointment Date</label>
-                        <input type="date" class="form-control" id="inputAppDate">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputAppTime" class="form-label">Appointment Time</label>
-                        <input type="text" class="form-control" id="inputAppTime">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputAppStatus" class="form-label">Status</label>
-                        <select id="inputAppStatus" class="form-control" name="status">
-                          <option value="cancel">Cancelled</option>
-                          <option value="done">Done</option>
-                          <option value="schedule">Scheduled</option>
-                        </select>
-                      </div>
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save Changes</button>
-                </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editApp">Edit Appointment Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputAppID" class="form-label">Appointment ID</label>
+              <input type="text" class="form-control" id="inputAppID">
+            </div>
+            <div class="mb-3">
+              <label for="inputAppName" class="form-label">Appointment Name</label>
+              <input type="text" class="form-control" id="inputAppName">
+            </div>
+            <div class="mb-3">
+              <label for="inputAppDate" class="form-label">Appointment Date</label>
+              <input type="date" class="form-control" id="inputAppDate">
+            </div>
+            <div class="mb-3">
+              <label for="inputAppTime" class="form-label">Appointment Time</label>
+              <input type="text" class="form-control" id="inputAppTime">
+            </div>
+            <div class="mb-3">
+              <label for="inputAppStatus" class="form-label">Status</label>
+              <select id="inputAppStatus" class="form-control" name="status">
+                <option value="cancel">Cancelled</option>
+                <option value="done">Done</option>
+                <option value="schedule">Scheduled</option>
+              </select>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success">Save Changes</button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="modal fade" id="addApp" tabindex="-1" aria-labelledby="addAppLabel" aria-hidden="true">
+  <div class="modal fade" id="addApp" tabindex="-1" aria-labelledby="addAppLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addApp">Add Appointment Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                    <label for="inputAppID" class="form-label">Appointment ID</label>
-                    <input type="text" class="form-control" id="inputAppID">
-                    </div>
-                    <div class="mb-3">
-                    <label for="inputAppName" class="form-label">Appointment Name</label>
-                    <input type="text" class="form-control" id="inputAppName">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputAppDate" class="form-label">Appointment Date</label>
-                        <input type="date" class="form-control" id="inputAppDate">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputAppTime" class="form-label">Appointment Time</label>
-                        <input type="text" class="form-control" id="inputAppTime">
-                        </div>
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Add Appointment</button>
-                </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addApp">Add Appointment Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputAppID" class="form-label">Appointment ID</label>
+              <input type="text" class="form-control" id="inputAppID">
+            </div>
+            <div class="mb-3">
+              <label for="inputAppName" class="form-label">Appointment Name</label>
+              <input type="text" class="form-control" id="inputAppName">
+            </div>
+            <div class="mb-3">
+              <label for="inputAppDate" class="form-label">Appointment Date</label>
+              <input type="date" class="form-control" id="inputAppDate">
+            </div>
+            <div class="mb-3">
+              <label for="inputAppTime" class="form-label">Appointment Time</label>
+              <input type="text" class="form-control" id="inputAppTime">
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success">Add Appointment</button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
-  
 
-  <script>
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function() {
-        sidebar.classList.toggle("active");
-        if(sidebar.classList.contains("active")){
-        sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-      }else
-        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-    }
- </script>
 
-<!-- Bootstrap JS-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<!-- fullCalendar 2.2.5 -->
-<script src="../plugins/moment/moment.min.js"></script>
-<script src="../plugins/fullcalendar/main.js"></script>
+  <?php include('asset/includes/jsCDN.php'); ?>
+
+  <!-- Local JS -->
+  <script src="asset/js/sidenavbar.js"></script>
+  <script src="asset/js/triggerToast.js"></script>
+  <script src="asset/js/deleteData.js"></script>
 
 </body>
-</html>
 
+</html>
