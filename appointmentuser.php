@@ -106,23 +106,25 @@
                         <p class="mb-4 text-center">
                             Now you can get an online appointment, We will get back to you and fix a meeting with doctors.
                         </p>
-            <?php require_once 'appointment.php'; ?>
-            <?php $connect = mysqli_connect("localhost", "root", "", "appointment"); ?>
+
+            <form id="#" class="appointmentform" method="post" action="#">
             <form id="#" class="appointmentform" method="post" action="appointment.php">
+
                 <div class="row">
                     <div class="col-lg-6">
                     <div class="form-group">
                         <select class="form-control" id="department" name="department" required>
                             <option value="" disabled selected>Choose Department</option>
-                                <option value="A">Podiatrist</option>
-                                <option value="B">Pediatrician</option>
-                                <option value="C">Endocrinologist</option>
-                                <option value="D">Neurologist</option>
-                                <option value="E">Rheumatologist</option>
-                                <option value="F">Immunologist</option>
-                                <option value="G">Phychiatrist</option>
-                                <option value="H">Cardiologist</option>
-                                <option value="I">Hepatologist</option>
+
+                                <option value="Podiatrist">Podiatrist</option>
+                                <option value="Pediatrician">Pediatrician</option>
+                                <option value="Endocrinologist">Endocrinologist</option>
+                                <option value="Neurologist">Neurologist</option>
+                                <option value="Rheumatologist">Rheumatologist</option>
+                                <option value="Immunologist">Immunologist</option>
+                                <option value="Phychiatrist">Phychiatrist</option>
+                                <option value="Cardiologist">Cardiologist</option>
+                                <option value="Hepatologist">Hepatologist</option>
                         </select>
                     </div>
                 </div>
@@ -131,16 +133,17 @@
                     <div class="form-group">
                         <select class="form-control" id="doctor" name="doctor_name" required>
                             <option value="" disabled selected>Choose Doctor You Want</option>
-                            <option value="0">Doctor A</option>
-                            <option value="1">Doctor B</option>
-                            <option value="2">Doctor C</option>
-                            <option value="3">Doctor D</option>
-                            <option value="4">Doctor E</option>
-                            <option value="5">Doctor F</option>
-                            <option value="6">Doctor G</option>
-                            <option value="7">Doctor H</option>
-                            <option value="8">Doctor I</option>
-                            <option value="9">Doctor J</option>
+
+                            <option value="Doctor A">Doctor A</option>
+                            <option value="Doctor B">Doctor B</option>
+                            <option value="Doctor C">Doctor C</option>
+                            <option value="Doctor D">Doctor D</option>
+                            <option value="Doctor E">Doctor E</option>
+                            <option value="Doctor F">Doctor F</option>
+                            <option value="Doctor G">Doctor G</option>
+                            <option value="Doctor H">Doctor H</option>
+                            <option value="Doctor I">Doctor I</option>
+                            <option value="Doctor J">Doctor J</option>
                         </select>
                     </div>
                 </div>
@@ -233,3 +236,27 @@
     <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d8dca5dd8382ecb',m:'3p8gevZYhksMtxWm.j4MrHWDhOyAIPKBYAVh.0rvXfI-1644081428-0-AaNzvH66B8kAoHnTGtJ05dmOUT0EUrMBZ5OuNK33LgNXaQbVfqgK1UfFSOhUXIjQEpqxnz1w7mBxv+OZBjqPV0xVMXTgh82jwYnyzXRZutVlPBaRTdTNQfcq1suN7lZ3dNzVVbkxNQIBKhPf8QqIiAyDvjneMtjLDMB+TY2uzd0u5CwiWTSuEtcTfpmNsDVC0fdSqw2rTee8gtc2QS5K2wA=',s:[0x2361d4a16a,0xab3f01eb4a],}})();</script><script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d8dde29fee36b9e',m:'pFWX1bjSc.e0PSq6Q5PFzNzVSbMUs8b4t72upSmD54A-1644082239-0-AW+W+Nuq82iRU8Tm6qIo+myHJXFFWWz2p4VDDOgRLn8qN+s1rbXlV+v6WnRUwNRgArB/cjAFBTAgL7UUFAMay0x8Ya2dLQj+2yf7oig1xe81A8do99CARiqVxQ04trvSfCmKP8ELKM+WzNcYXuO2/D4G8PgOH83gKqmtId46VKH5EVzSSVH1Hj5w/3x5Yh9xXJY8T7CsfeXGZh4LyUYKn1Y=',s:[0xeda9dea6c9,0x045f352d27],}})();</script></body>
 </body>
 </html>
+<?php
+
+include 'connection.php';
+
+if ($data === false) {
+    die("connection error");
+}
+
+if(isset($_POST['makeappointment']))
+{
+    $department = $_POST['department'];
+    $staff_name = $_POST['doctor_name'];
+    $date = $_POST['appoint_date'];
+    $time = $_POST['appoint_time'];
+    $user_name = $_POST['user_name'];
+    $user_tel = $_POST['user_tel'];
+
+    $addSql = "INSERT INTO `appointment` (`Appointment_date`, `Appointment_time`, `staff_name`, `staff_department`, `user_name`, `user_tel`) VALUES ('$date', '$time', '$staff_name', '$department', '$user_name', '$user_tel')";
+    $result = mysqli_query($data, $addSql);
+    header("Location:userdashboard_appoinment.php");
+}
+
+?>
+

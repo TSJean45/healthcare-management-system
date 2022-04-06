@@ -110,7 +110,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                     <div class="form-group">
-                        <select class="form-control" id="department" required>
+                        <select class="form-control" id="department" name="department" required>
                             <option value="" disabled selected>Choose Department</option>
                                 <option value="A">Podiatrist</option>
                                 <option value="B">Pediatrician</option>
@@ -127,7 +127,7 @@
 
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <select class="form-control" id="doctor" required>
+                        <select class="form-control" id="doctor" name="doctor_name" required>
                             <option value="" disabled selected>Choose Doctor You Want</option>
                             <option value="0">Doctor A</option>
                             <option value="1">Doctor B</option>
@@ -145,13 +145,13 @@
 
                 <div class="col-lg-6">
                     <div class="form-group">
-                <input class="form-control" name="date" id="date" type="date" required/>
+                <input class="form-control" name="date" id="date" type="date" name="appoint_date" required/>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <select class="form-control" id="time" required>
+                        <select class="form-control" id="time" name="appoint_time" required>
                             <option value="" disabled selected>Choose Time You Want Booking</option>
                             <option value="0">10:00 AM</option>
                             <option value="1">11:00 AM</option>
@@ -170,16 +170,16 @@
 
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <input class="form-control" name="name" id="name" type="text" placeholder="Enter Your Name" required/>
+                        <input class="form-control" name="name" id="name" name="user_name" type="text" placeholder="Enter Your Name" required/>
                     </div>
                 </div>
                 
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <input class="form-control" name="phone" id="phone" type="tel" pattern="[0-9]{3}-[0-9]{7}" placeholder="Enter Your Phone Number" required/>
+                        <input class="form-control" name="phone" id="phone" type="tel" name="user_tel" pattern="[0-9]{3}-[0-9]{7}" placeholder="Enter Your Phone Number" required/>
                     </div>
                 </div>
-                        <button type="submit" class="btn btn-primary">Make Appointment</button>
+                        <button type="submit" name="makeappointment" class="btn btn-primary">Make Appointment</button>
             </div>
         </form>
             </div>
