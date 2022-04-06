@@ -1,3 +1,37 @@
+<?php
+    session_start();
+    include 'connection.php';
+    
+    if (isset($_POST["addBtn"])) {
+    $name = $_POST["inputName"];
+    $email = $_POST["inputEmail"];
+    $pass = $_POST["inputPass"];
+
+    $addSql = "INSERT INTO `staff` (`name`,`email`,`password`) VALUES ('$name','$email','$pass')";
+    $result = mysqli_query($data, $addSql);
+
+      if ($result) {
+        echo '<script> alert("Data added"); </script>';
+      } else {
+        echo '<script> alert("Data not added"); </script>';
+      }
+    }
+
+    if (isset($_POST["editBtn"])) {
+    $name = $_POST["inputName"];
+    $position = $_POST["inputPosition"];
+    $department = $_POST["inputDepartment"];
+
+    $editSql = "UPDATE INTO `staff` SET `name` = '$name',`position`= '$position', `department` = '$department'";
+    $result = mysqli_query($data, $editSql);
+
+      if ($result) {
+        echo '<script> alert("Data added"); </script>';
+      } else {
+       echo '<script> alert("Data not added"); </script>';
+      }
+    }
+?>
 <!DOCTYPE html>
 
 <head>
@@ -32,7 +66,7 @@
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name">Tan Szu Jean</span>
+            <span class="profile_name"><?php echo $_SESSION['name']; ?></span>
           </div>
         </div>
       </div>
@@ -59,258 +93,47 @@
                     <th>Department</th>
                     <th> Action </th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Lian Sho Khia
-                    </td>
-                    <td>#S-19655</td>
-                    <td>
-                      rmutii@staff.jjj.com
-                    </td>
-                    <td>Nurse</td>
-                    <td>Pediatrician</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Muhammed Hj Wan Rusman bin Dahalan
-                    </td>
-                    <td>#S-12566</td>
-                    <td>
-                      subramaniam.sandrakasi@staff.jjj.com
-                    </td>
-                    <td>Nurse</td>
-                    <td>Podiatrist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Fang Shun Chio
-                    </td>
-                    <td>#S-14525</td>
-                    <td>
-                      oon.gekfey@staff.jjj.com
-                    </td>
-                    <td>Nurse</td>
-                    <td>Rheumatologist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Guan Chuo Sia
-                    </td>
-                    <td>#S-98565</td>
-                    <td>
-                      lakshmi.kavita@staff.jjj.com
-                    </td>
-                    <td>Nurse</td>
-                    <td>Podiatrist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Aslina Chiew Hin Sian
-                    </td>
-                    <td>#S-18898</td>
-                    <td>
-                      william.asa@rahman.biz
-                    </td>
-                    <td>Nurse</td>
-                    <td>Podiatrist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Aina binti Saufishazwi Ya'accob
-                    </td>
-                    <td>#S-11478</td>
-                    <td>
-                      rajendra.sonziak@staff.jjj.com
-                    </td>
-                    <td>Nurse</td>
-                    <td>Podiatrist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>#S-15484</td>
-                    <td>
-                      sau.loichih@staff.jjj.com
-                    </td>
-                    <td>Specialist</td>
-                    <td>Podiatrist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>#S-12016</td>
-                    <td>
-                      sau.loichih@staff.jjj.com
-                    </td>
-                    <td>Nurse</td>
-                    <td>Phychiatrist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>#S-12012</td>
-                    <td>
-                      sau.loichih@staff.jjj.com
-                    </td>
-                    <td>Nurse</td>
-                    <td>Cardiologist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>#S-12012</td>
-                    <td>
-                      sau.loichih@staff.jjj.com
-                    </td>
-                    <td>Surgeon</td>
-                    <td>Cardiologist</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminViewStaffProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
+                  <?php
+                        $viewSql = "SELECT * FROM staff";
+                        $result=mysqli_query($data,$viewSql);
+                        if($result){
+                            while($row = mysqli_fetch_assoc($result))
+                            {
+                              $prefix = $row['prefix'];
+                              $id = $row['id'];
+                              $name = $row['name'];
+                              $email = $row['email'];
+                              $position = $row['position'];
+                              $department = $row['department'];
+                        ?>     
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                    <?php echo $name ?>
+                                </td>
+                                <td><?php echo $prefix . "" . $id; ?></td>
+                                <td>
+                                    <?php echo $email ?>
+                                </td>
+                                <td><?php echo $position ?></td>
+                                <td><?php echo $department ?></td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminViewStaffProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <i class="fas fa-edit"></i></button>
+                              </td>
+                            </tr>
+                            <?php } } ?>
                 </tbody>
               </table>
               <div class="d-flex flex-row-reverse">
