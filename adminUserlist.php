@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    require_once('connection.php');
+    $viewSql = "SELECT * FROM admin";
+    $result=mysqli_query($data,$viewSql);
+
+?>
 <!DOCTYPE html>
 
 <head>
@@ -32,7 +39,7 @@
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name">Tan Szu Jean</span>
+            <span class="profile_name"><?php echo $_SESSION['name']; ?></span>
           </div>
         </div>
       </div>
@@ -60,248 +67,48 @@
                     <th>Date Joined</th>
                     <th> Action </th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Lian Sho Khia
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      rmutii@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
+                  <?php
+                         $viewSql = "SELECT * FROM user";
+                         $result=mysqli_query($data,$viewSql);
+                         
+                          if($result){
+                            while($row = mysqli_fetch_assoc($result))
+                            {
+                              $prefix = $row['prefix'];
+                              $id = $row['id'];
+                              $name = $row['name'];
+                              $email = $row['email'];
+                              $date = $row['date_created']
+                            
+                        ?>   
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                      </div>
+                                </td>   
+                                <td class="py-1">
+                                <?php echo $name ?>
+                                </td>
+                                <td><?php echo $prefix . "" . $id; ?></td>
+                                <td>
+                                  <?php echo $email ?>
+                                </td>
+                                <td><?php echo $date ?></td>
+                                <td class="action-button">
+                                  <button type="button" class="btn btn-light">
+                                    <a href="adminUserProfile.html">
+                                    <i class="fas fa-eye"></i></a></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
                         <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Muhammed Hj Wan Rusman bin Dahalan
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      subramaniam.sandrakasi@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Fang Shun Chio
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      oon.gekfey@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Guan Chuo Sia
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      lakshmi.kavita@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Aslina Chiew Hin Sian
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      william.asa@rahman.biz
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Aina binti Saufishazwi Ya'accob
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      rajendra.sonziak@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      sau.loichih@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      sau.loichih@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      sau.loichih@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                      </div>
-                    </td>
-                    <td class="py-1">
-                      Hajjah Shahida binti Hazim
-                    </td>
-                    <td>53275531</td>
-                    <td>
-                      sau.loichih@gmail.com
-                    </td>
-                    <td>7/12/2021</td>
-                    <td class="action-button">
-                      <button type="button" class="btn btn-light">
-                        <a href="adminUserProfile.php">
-                          <i class="fas fa-eye"></i></a></button>
-                      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser">
-                        <i class="fas fa-edit"></i></button>
-                    </td>
-                  </tr>
+                              </td>
+                            </tr>
+                            <?php } }
+                         ?>
                 </tbody>
               </table>
               <div class="d-flex flex-row-reverse">
