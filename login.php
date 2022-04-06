@@ -15,9 +15,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	
 	if(!empty($email)&&!empty($password))
 	{
-
-	
-    $sql="select * from login where email = '".$email. "' AND password= '".$password. "' ";
+    $sql="select name,email,password,usertype from staff where email = '".$email. "' AND password= '".$password. "'  
+          UNION select name,email,password,usertype  from user where email = '".$email. "' AND password= '".$password. "' 
+          UNION select name,email,password,usertype  from admin where email = '".$email. "' AND password= '".$password. "'" ;
 
     $result=mysqli_query($data,$sql);
 
@@ -25,22 +25,29 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
     if($row["usertype"]=="user")
     {
-        header("location:index.html");
+        $_SESSION['name'] = $row['name'];
+        
+        header("location:index.php");
     }
     else if($row["usertype"]=="admin")
     {
-        header("location:admindashboard.html");
+        $_SESSION['name'] = $row['name'];
+        
+        header("location:admindashboard.php");
     }
     else if($row["usertype"]=="staff")
     {
-        header("location:staffdashboard.html");
+        $_SESSION['name'] = $row['name'];
+        
+        header("location:staffdashboard.php");
     }
     else{
-        echo "<p align=center>Username or Password Incorrect</p>";
+      echo "<script type='text/javascript'>alert('Username or Password Incorrect ');</script>";
     }
 	}
 	else{
-		echo" <p align=center>Please fill in the require form </p>";
+      echo "<script type='text/javascript'>alert('Please fill in the details');</script>";
+	
 	}
 //end
 
@@ -51,12 +58,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Local CSS File -->
+<link rel="stylesheet" href="asset/css/main.css">
+<link rel="stylesheet" href="asset/css/header.css">
+<link rel="stylesheet" href="asset/css/footer.css">
 <link rel="stylesheet" href="asset/css/login.css">
 <title> Login </title>
+<?php include('asset/includes/cssCDN.php'); ?>
 </head>
-
+<?php include('asset/includes/navBar.php'); ?>
 <body>
-  
     <div class="login-page">
       <div class="form">
         <div class="login">
@@ -76,5 +87,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
       </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="asset/js/scrollTop.js"></script>
 </body>
 </html>
