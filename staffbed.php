@@ -5,11 +5,7 @@ if (isset($_POST["addBtn"])) {
     $location = $_POST["inputLocation"] ?? "";
     $depart = $_POST["inputDepartment"] ?? "";
     $status = $_POST["inputBedStatus"] ?? "";
-    $name = $_POST["inputUserName"] ?? "";
-
-    $query = mysqli_query($data, "SELECT `id` FROM `user` where `name` = '$name' ");
-    $queryResult = mysqli_fetch_row($query);
-    $userID = implode(" ", $queryResult);
+    $userID = $_POST["inputUserID"] ?? "";
 
     $addSql = "INSERT INTO `bed` (`bedLocation`,`bedDepartment`,`bedStatus`,`userID`) VALUES ('$location','$depart','$status', '$userID')";
     $result = mysqli_query($data, $addSql);
@@ -26,11 +22,7 @@ if (isset($_POST["editBtn"])) {
     $location = $_POST["editLocation"] ?? "";
     $depart = $_POST["editDepartment"] ?? "";
     $status = $_POST["editBedStatus"] ?? "";
-    $name = $_POST["editUserName"] ?? "";
-
-    $query = mysqli_query($data, "SELECT `id` FROM `user` where `userName` = '$name' ");
-    $queryResult = mysqli_fetch_row($query);
-    $userID = implode(" ", $queryResult);
+    $userID = $_POST["editUserID"] ?? "";
 
     $editSql = "UPDATE `bed` SET `bedLocation`='$location',`bedDepartment`='$depart',`bedStatus`='$status',`userID`='$userID' WHERE `bedID`='$id'";
     $result = mysqli_query($data, $editSql);
@@ -145,10 +137,12 @@ if (isset($_POST['deleteBtn'])) {
 
                                         if ($status == "Empty") {
                                             $color = "btn-secondary";
+                                            $uname = "-";
                                         } else if ($status == "Occupied") {
                                             $color = "btn-success";
                                         } else if ($status == "Cleaning") {
                                             $color = "btn-warning";
+                                            $uname = "-";
                                         }
                                     ?>
                                         <tr>
@@ -165,11 +159,12 @@ if (isset($_POST['deleteBtn'])) {
                                             </td>
                                         </tr>
                                         <!-- Edit Data Modal -->
-                                        <div class="modal fade" id="editData<?php echo $id; ?>" aria-hidden="true">
+                                        <div class="modal fade edit" id="editData<?php echo $id; ?>" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="editBed">Edit Bed</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
@@ -182,7 +177,7 @@ if (isset($_POST['deleteBtn'])) {
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="editDepartment" class="form-label">Department</label>
-                                                                <select id="editDepartment" class="form-control" name="editDepartment" value="<?php echo $depart; ?>">
+                                                                <select id="editDepartment" class="form-select" name="editDepartment" value="<?php echo $depart; ?>">
                                                                     <option value="Podiatrist" <?php if ($depart == "Podiatrist") echo "selected"; ?>>Podiatrist</option>
                                                                     <option value="Pediatrician" <?php if ($depart == "Pediatrician") echo "selected"; ?>>Pediatrician</option>
                                                                     <option value="Endocrinologist" <?php if ($depart == "Endocrinologist") echo "selected"; ?>>Endocrinologist</option>
@@ -196,7 +191,7 @@ if (isset($_POST['deleteBtn'])) {
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="editBedStatus" class="form-label">Bed Status</label>
-                                                                <select id="edittBedStatus" class="form-control" name="editBedStatus">
+                                                                <select id="edittBedStatus" class="form-select" name="editBedStatus">
                                                                     <option value="Empty" <?php if ($status == "Empty") echo "selected"; ?>>Empty</option>
                                                                     <option value="Occupied" <?php if ($status == "Occupied") echo "selected"; ?>>Occupied</option>
                                                                     <option value="Cleaning" <?php if ($status == "Cleaning") echo "selected"; ?>>Cleaning</option>
@@ -205,13 +200,14 @@ if (isset($_POST['deleteBtn'])) {
                                                             <div class="mb-3">
                                                                 <?php
                                                                 $searchSql = "SELECT * FROM `user`";
-                                                                $search = mysqli_query($data, $searchSql);
-                                                                ?>
-                                                                <label for="editUserName" class="form-label">User Name</label>
-                                                                <select id="editUserName" class="form-control" name="editUserName">
+                                                                $search = mysqli_query($data, $searchSql); ?>
+                                                                <label for="editUserID" class="form-label">User Name</label>
+                                                                <select id="editUserID" class="form-control select2me" name="editUserID" title="Select User">
                                                                     <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
-                                                                        <?php $userName = $fetch['userName']; ?>
-                                                                        <option value="<?php echo $userName; ?>" <?php if ($uname == "$userName") echo "selected"; ?>><?php echo $userName; ?></option>
+                                                                        <?php $uid = $fetch['userId'];
+                                                                        $uprefix = $fetch['userPrefix'];
+                                                                        $name = $fetch['userName']; ?>
+                                                                        <option value="<?php echo $uid ?>" <?php if ($uname == $name) echo "selected"; ?>><?php echo $uprefix . "" . $uid . " - " . $name; ?></option>
                                                                     <?php endwhile; ?>
                                                                 </select>
                                                             </div>
@@ -230,6 +226,7 @@ if (isset($_POST['deleteBtn'])) {
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="" method="POST">
@@ -276,7 +273,7 @@ if (isset($_POST['deleteBtn'])) {
                         </div>
                         <div class="mb-3">
                             <label for="inputDepartment" class="form-label">Department</label>
-                            <select id="inputDepartment" class="form-control" name="inputDepartment">
+                            <select id="inputDepartment" class="form-select" name="inputDepartment">
                                 <option value="Podiatrist">Podiatrist</option>
                                 <option value="Pediatrician">Pediatrician</option>
                                 <option value="Endocrinologist">Endocrinologist</option>
@@ -290,7 +287,7 @@ if (isset($_POST['deleteBtn'])) {
                         </div>
                         <div class="mb-3">
                             <label for="inputBedStatus" class="form-label">Bed Status</label>
-                            <select id="inputBedStatus" class="form-control" name="inputBedStatus">
+                            <select id="inputBedStatus" class="form-select" name="inputBedStatus">
                                 <option value="Empty">Empty</option>
                                 <option value="Occupied">Occupied</option>
                                 <option value="Cleaning">Cleaning</option>
@@ -300,10 +297,14 @@ if (isset($_POST['deleteBtn'])) {
                             <?php
                             $searchSql = "SELECT * FROM `user`";
                             $search = mysqli_query($data, $searchSql); ?>
-                            <label for="inputUserName" class="form-label">User Name</label>
-                            <select id="inputUserName" class="form-control" name="inputUserName">
+                            <label for="inputUserID" class="form-label">User Name</label>
+                            <select id="inputUserID" class="form-select select2me" name="inputUserID">
+                                <option value="">Select User</option>
                                 <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
-                                    <option value="<?php echo $fetch['userName']; ?>"><?php echo $fetch['userName']; ?></option>
+                                    <?php $id = $fetch['userId'];
+                                    $prefix = $fetch['userPrefix'];
+                                    $name = $fetch['userName']; ?>
+                                    <option value="<?php echo $id ?>"><?php echo $prefix . "" . $id . " - " . $name; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
@@ -321,8 +322,6 @@ if (isset($_POST['deleteBtn'])) {
 
     <!-- Local JS -->
     <script src="asset/js/sidenavbar.js"></script>
-    <script src="asset/js/triggerToast.js"></script>
-    <script src="asset/js/deleteData.js"></script>
 
 </body>
 
