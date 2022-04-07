@@ -3,19 +3,15 @@ include 'connection.php';
 
 // Add Data
 if (isset($_POST["addBtn"])) {
-  $uName = $_POST["inputDataName"];
-  $sName = $_POST["inputStaff"];
+  $userID = $_POST["inputDataName"];
+  $staffID = $_POST["inputStaff"];
   $date = $_POST["inputDateAdmitted"];
   $dis = $_POST["inputDisease"];
   $status = $_POST["inputRecStatus"];
 
-  $userQuery = mysqli_query($data, "SELECT `userId` FROM `user` where `userName` = '$uName' ");
+  $userQuery = mysqli_query($data, "SELECT `userName` FROM `user` where `userId` = '$userID' ");
   $userResult = mysqli_fetch_row($userQuery);
-  $userID = implode(" ", $userResult);
-
-  $staffQuery = mysqli_query($data, "SELECT `staffId` FROM `staff` where `staffName` = '$sName' ");
-  $staffResult = mysqli_fetch_row($staffQuery);
-  $staffID = implode(" ", $staffResult);
+  $uName = implode(" ", $userResult);
 
   $addSql = "INSERT INTO `medrec` (`userName`,`userID`,`staffID`,`recDate`,`recDisease`,`recStatus`) 
   VALUES ('$uName','$userID','$staffID','$date','$dis','$status')";
@@ -31,19 +27,15 @@ if (isset($_POST["addBtn"])) {
 // Edit Data
 if (isset($_POST["editBtn"])) {
   $id = $_POST["editID"];
-  $uName = $_POST["editName"];
-  $sName = $_POST["editStaff"];
+  $userID = $_POST["editName"];
+  $staffID = $_POST["editStaff"];
   $date = $_POST["editDate"];
   $dis = $_POST["editDisease"];
   $status = $_POST["editStatus"];
 
-  $userQuery = mysqli_query($data, "SELECT `userId` FROM `user` where `userName` = '$uName' ");
+  $userQuery = mysqli_query($data, "SELECT `userName` FROM `user` where `userId` = '$userID' ");
   $userResult = mysqli_fetch_row($userQuery);
-  $userID = implode(" ", $userResult);
-
-  $staffQuery = mysqli_query($data, "SELECT `staffId` FROM `staff` where `staffName` = '$sName' ");
-  $staffResult = mysqli_fetch_row($staffQuery);
-  $staffID = implode(" ", $staffResult);
+  $uName = implode(" ", $userResult);
 
   $editSql = "UPDATE `medrec` SET `userName`='$uName',`userID`='$userID',`staffID`='$staffID',`recDate`='$date',`recDisease`='$dis',`recStatus`='$status' WHERE `recID`='$id'";
   $result = mysqli_query($data, $editSql);
@@ -201,6 +193,7 @@ if (isset($_POST['deleteBtn'])) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <form action="" method="POST">
@@ -226,6 +219,7 @@ if (isset($_POST['deleteBtn'])) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="editData">Edit Record Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <form action="" method="POST">
@@ -238,10 +232,12 @@ if (isset($_POST['deleteBtn'])) {
                                 $user = mysqli_query($data, $userSql);
                                 ?>
                                 <label for="editName" class="form-label">User Name</label>
-                                <select id="editName" class="form-control" name="editName">
+                                <select id="editName" class="form-control select2me" name="editName">
                                   <?php while ($fetch = mysqli_fetch_array($user)) :; ?>
-                                    <?php $userName = $fetch['userName']; ?>
-                                    <option value="<?php echo $userName; ?>" <?php if ($name == "$userName") echo "selected"; ?>><?php echo $userName; ?></option>
+                                    <?php $uid = $fetch['userId'];
+                                    $prefix = $fetch['userPrefix'];
+                                    $userName = $fetch['userName']; ?>
+                                    <option value="<?php echo $uid; ?>" <?php if ($name == "$userName") echo "selected"; ?>><?php echo $prefix . "" . $uid . " - " . $userName; ?></option>
                                   <?php endwhile; ?>
                                 </select>
                               </div>
@@ -251,10 +247,12 @@ if (isset($_POST['deleteBtn'])) {
                                 $staff = mysqli_query($data, $staffSql);
                                 ?>
                                 <label for="editStaff" class="form-label">Assigned Medical Staff</label>
-                                <select id="editStaff" class="form-control" name="editStaff">
+                                <select id="editStaff" class="form-control select2me" name="editStaff">
                                   <?php while ($fetch = mysqli_fetch_array($staff)) :; ?>
-                                    <?php $staffName = $fetch['staffName']; ?>
-                                    <option value="<?php echo $staffName; ?>" <?php if ($sname == "$staffName") echo "selected"; ?>><?php echo $staffName; ?></option>
+                                    <?php $sid = $fetch['staffId'];
+                                    $prefix = $fetch['staffPrefix'];
+                                    $staffName = $fetch['staffName']; ?>
+                                    <option value="<?php echo $sid; ?>" <?php if ($sname == "$staffName") echo "selected"; ?>><?php echo $prefix . "" . $sid . " - " . $staffName; ?></option>
                                   <?php endwhile; ?>
                                 </select>
                               </div>
@@ -312,9 +310,12 @@ if (isset($_POST['deleteBtn'])) {
               $userSql = "SELECT * FROM `user`";
               $user = mysqli_query($data, $userSql); ?>
               <label for="inputDataName" class="form-label">User Name</label>
-              <select id="inputDataName" class="form-control" name="inputDataName">
+              <select id="inputDataName" class="form-select select2me" name="inputDataName" title="Select User" data-live-search="true">
                 <?php while ($fetch = mysqli_fetch_array($user)) :; ?>
-                  <option value="<?php echo $fetch['userName']; ?>"><?php echo $fetch['userName']; ?></option>
+                  <?php $id = $fetch['userId'];
+                  $prefix = $fetch['userPrefix'];
+                  $name = $fetch['userName']; ?>
+                  <option value="<?php echo $id; ?>"><?php echo $prefix . "" . $id . " - " . $name; ?></option>
                 <?php endwhile; ?>
               </select>
             </div>
@@ -323,9 +324,12 @@ if (isset($_POST['deleteBtn'])) {
               $staffSql = "SELECT * FROM `staff`";
               $staff = mysqli_query($data, $staffSql); ?>
               <label for="inputStaff" class="form-label">Assigned Medical Staff</label>
-              <select id="inputStaff" class="form-control" name="inputStaff">
+              <select id="inputStaff" class="form-select select2me" name="inputStaff" title="Select Staff" data-live-search="true">
                 <?php while ($fetch = mysqli_fetch_array($staff)) :; ?>
-                  <option value="<?php echo $fetch['staffName']; ?>"><?php echo $fetch['staffName']; ?></option>
+                  <?php $id = $fetch['staffId'];
+                  $prefix = $fetch['staffPrefix'];
+                  $name = $fetch['staffName']; ?>
+                  <option value="<?php echo $id; ?>"><?php echo $prefix . "" . $id . " - " . $name; ?></option>
                 <?php endwhile; ?>
               </select>
             </div>
@@ -359,7 +363,6 @@ if (isset($_POST['deleteBtn'])) {
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
-  <script src="asset/js/triggerToast.js"></script>
 
 </body>
 
