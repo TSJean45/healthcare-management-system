@@ -110,10 +110,35 @@ if (isset($_POST['deleteBtn'])) {
                             <button type="button" class="btn btn-light">
                               <i class="fas fa-pen-alt"></i></button>
                           </a>
-                          <button type="button" class="btn btn-danger deleteBtn">
+                          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
                             <i class="fas fa-trash-alt"></i></button>
                         </td>
                       </tr>
+                      <!-- Delete Data Modal -->
+                      <div class="modal fade" id="deleteData<?php echo $id; ?>" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="" method="POST" name="deleteData">
+                                <div class="mb-3">
+                                  <input type="hidden" name="deleteID" value="<?php echo $id; ?>">
+                                </div>
+                                <div class="mb-3">
+                                  Are you sure that you want to delete the selected data?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-success" name="deleteBtn">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   <?php  }
                   }
                   ?>
@@ -126,36 +151,10 @@ if (isset($_POST['deleteBtn'])) {
     </div>
   </section>
 
-  <!-- Modal -->
-  <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="" method="POST" name="deleteData">
-            <div class="mb-3">
-              <input type="hidden" name="deleteID" id="deleteID">
-            </div>
-            <div class="mb-3">
-              Are you sure that you want to delete the selected data?
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-success" name="deleteBtn">Yes</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+  <?php include('asset/includes/jsCDN.php'); ?>
 
-    <?php include('asset/includes/jsCDN.php'); ?>
-
-    <!-- Local JS -->
-    <script src="asset/js/sidenavbar.js"></script>
-    <script src="asset/js/deleteData.js"></script>
+  <!-- Local JS -->
+  <script src="asset/js/sidenavbar.js"></script>
 </body>
 
 </html>

@@ -208,6 +208,7 @@ if (isset($_POST['deleteBtn'])) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="editData">Calculate Stock Amount</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <form action="" method="POST">
@@ -243,6 +244,7 @@ if (isset($_POST['deleteBtn'])) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="editData">Edit Stock Details</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <form action="" method="POST">
@@ -272,6 +274,7 @@ if (isset($_POST['deleteBtn'])) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <form action="" method="POST">
@@ -296,6 +299,7 @@ if (isset($_POST['deleteBtn'])) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Expired Stock</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             Stock <b><?php echo $prefix . "" . $id; ?></b> is already expired. Unable to make any changes.
@@ -312,6 +316,7 @@ if (isset($_POST['deleteBtn'])) {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Expired Stock</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             Stock <b><?php echo $prefix . "" . $id; ?></b> is already expired. Unable to make any changes.

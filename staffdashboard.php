@@ -200,7 +200,7 @@ include 'connection.php'; ?>
                         </tbody>
                       </table>
                       <div class="d-flex flex-row-reverse">
-                        <a href="staffUserList.html">
+                        <a href="staffUserList.php">
                           <button type="button" class="btn btn-primary">See All</button>
                         </a>
                       </div>
@@ -261,7 +261,7 @@ include 'connection.php'; ?>
                         </tbody>
                       </table>
                       <div class="d-flex flex-row-reverse">
-                        <a href="staffVac.html">
+                        <a href="staffVac.php">
                           <button type="button" class="btn btn-primary">See All</button>
                         </a>
                       </div>
