@@ -3,12 +3,13 @@
     include 'connection.php';
     
     if (isset($_POST["addBtn"])) {
-    $name = $_POST["inputName"];
-    $email = $_POST["inputEmail"];
-    $pass = $_POST["inputPass"];
+    $name = $_POST["addName"];
+    $email = $_POST["addEmail"];
+    $pass = $_POST["addPassword"];
 
-    $addSql = "INSERT INTO `staff` (`name`,`email`,`password`) VALUES ('$name','$email','$pass')";
+    $addSql = "INSERT INTO `staff` (`staffName`,`staffEmail`,`staffPassword`) VALUES ('$name','$email','$pass')";
     $result = mysqli_query($data, $addSql);
+    echo "<meta http-equiv='refresh' content='0'>";
 
       if ($result) {
         echo '<script> alert("Data added"); </script>';
@@ -18,19 +19,37 @@
     }
 
     if (isset($_POST["editBtn"])) {
-    $name = $_POST["inputName"];
-    $position = $_POST["inputPosition"];
-    $department = $_POST["inputDepartment"];
+    $id = $_POST["editId"];  
+    $name = $_POST["editName"];
+    $position = $_POST["editPosition"];
+    $department = $_POST["editDepartment"];
+    $email = $_POST["editEmail"];
 
-    $editSql = "UPDATE INTO `staff` SET `name` = '$name',`position`= '$position', `department` = '$department'";
+    $editSql = "UPDATE `staff` SET `staffName` ='$name', `staffEmail` = '$email', `staffPosition`= '$position', `staffDepartment` = '$department' WHERE `staffId`=$id";
     $result = mysqli_query($data, $editSql);
+    echo "<meta http-equiv='refresh' content='0'>";
 
       if ($result) {
         echo '<script> alert("Data added"); </script>';
       } else {
-       echo '<script> alert("Data not added"); </script>';
+         echo '<script> alert("Data not added"); </script>';
       }
     }
+
+    if (isset($_POST['deleteBtn'])) {
+      $id = $_POST["deleteID"];
+  
+      $deleteSql = "DELETE FROM `staff` WHERE `staffId`=$id";
+      $result = mysqli_query($data, $deleteSql);
+      echo "<meta http-equiv='refresh' content='0'>";
+  
+      if ($result) {
+        echo '<script> alert("Data deleted"); </script>';
+      } else {
+        echo '<script> alert("Data not deleted"); </script>';
+      }
+  
+      }
 ?>
 <!DOCTYPE html>
 
@@ -66,15 +85,14 @@
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name"><?php echo $_SESSION['name']; ?></span>
+            <span class="profile_name"><?php echo $_SESSION['adminName']; ?></span>
           </div>
         </div>
       </div>
       </div>
     </nav>
-  </section>
+  
 
-  <section class="home-section ">
     <div class="home-content adminList">
       <!-- Table -->
       <div class="col-lg-12 grid-margin stretch-card">
@@ -82,10 +100,9 @@
           <div class="card-body">
             <h4 class="card-title">Medical Staff List</h4>
             <div class="table-responsive table-adminList">
-              <table class="table table-hover table-condensed">
+              <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
                   <tr>
-                    <th> No</th>
                     <th> Medical Staff Name </th>
                     <th> Medical Staff ID </th>
                     <th> Medical Staff Email Address </th>
@@ -93,29 +110,22 @@
                     <th>Department</th>
                     <th> Action </th>
                   </tr>
+                  </thead>
+                  <tbody>
                   <?php
                         $viewSql = "SELECT * FROM staff";
                         $result=mysqli_query($data,$viewSql);
                         if($result){
                             while($row = mysqli_fetch_assoc($result))
                             {
-                              $prefix = $row['prefix'];
-                              $id = $row['id'];
-                              $name = $row['name'];
-                              $email = $row['email'];
-                              $position = $row['position'];
-                              $department = $row['department'];
+                              $prefix = $row['staffPrefix'];
+                              $id = $row['staffId'];
+                              $name = $row['staffName'];
+                              $email = $row['staffEmail'];
+                              $position = $row['staffPosition'];
+                              $department = $row['staffDepartment'];
                         ?>     
-                        </thead>
-                        <tbody>
                             <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
                                 <td class="py-1">
                                     <?php echo $name ?>
                                 </td>
@@ -129,57 +139,40 @@
                                   <button type="button" class="btn btn-light">
                                     <a href="adminViewStaffProfile.html">
                                     <i class="fas fa-eye"></i></a></button>
-                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff">
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff<?php echo $id; ?>">
                                   <i class="fas fa-edit"></i></button>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
+                                  <i class="fas fa-trash-alt"></i></button>
                               </td>
                             </tr>
-                            <?php } } ?>
-                </tbody>
-              </table>
-              <div class="d-flex flex-row-reverse">
-                <div class="mx-1">
-                  <button type="button" class="btn btn-danger float-right" data-bs-toggle="modal" data-bs-target="#deleteStaff">
-                    Delete Authorised Medical Staff
-                  </button>
-                </div>
-                <div class="mx-1">
-                  <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addStaff">
-                    Add Authorised Medical Staff
-                  </button>
-                </div>
-              </div>
-              <div class="d-flex flex-row my-auto">
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                <h5 class="my-auto">1</h5>
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
-              </div>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Modal -->
-  <div class="modal fade" id="deleteStaff" tabindex="-1" aria-labelledby="deleteStaffLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteStaffLabel">Confirmation Message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Are you sure that you want to delete the selected medical staff?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success">Yes</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteData<?php echo $id; ?>" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                          </div>
+                          <div class="modal-body">
+                            <form action="" method="POST">
+                              <div class="mb-3">
+                                <input type="hidden" name="deleteID" value="<?php echo $id; ?>">
+                              </div>
+                              <div class="mb-3">
+                                Are you sure that you want to delete the selected data?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-success" name="deleteBtn">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>         
 
+  <!-- Add Modal  -->
   <div class="modal fade" id="addStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addStaffLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -188,34 +181,31 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+        <form action="" method="POST">
             <div class="mb-3">
               <label for="inputName" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="inputName">
-            </div>
-            <div class="mb-3">
-              <label for="inputID" class="form-label">ID</label>
-              <input type="text" class="form-control" id="inputID">
+              <input type="text" class="form-control" id="inputName" name="addName">
             </div>
             <div class="mb-3">
               <label for="inputEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail">
+              <input type="email" class="form-control" id="inputEmail" name="addEmail">
             </div>
             <div class="mb-3">
               <label for="inputPass" class="form-label">Password</label>
-              <input type="password" class="form-control" id="inputPass">
+              <input type="password" class="form-control" id="inputPass" name="addPassword">
             </div>
-          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success">Add</button>
+          <button type="submit" class="btn btn-success" name="addBtn" >Add</button>
         </div>
+      </form>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="editStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editStaffLabel" aria-hidden="true">
+   <!-- Edit Modal  -->
+  <div class="modal fade" id="editStaff<?php echo $id; ?>"  aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -223,32 +213,65 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="" method="POST">
             <div class="mb-3">
-              <label for="inputName" class="form-label">Medical Staff Name</label>
-              <input type="text" class="form-control" id="inputName">
+              <label for="editName" class="form-label">Medical Staff Name</label>
+              <input type="text" class="form-control" id="editName" name="editName" value="<?php echo $name; ?>">
             </div>
             <div class="mb-3">
-              <label for="inputID" class="form-label">Medical Staff ID</label>
-              <input type="text" class="form-control" id="inputID">
+              <input type="hidden" class="form-control" id="editId" name="editId" value="<?php echo $id; ?>">
             </div>
             <div class="mb-3">
-              <label for="inputPosition" class="form-label">Position</label>
-              <input type="text" class="form-control" id="inputPosition">
+              <label for="editEmail" class="form-label">Medical Staff Email</label>
+              <input type="text" class="form-control" id="editEmail" name="editEmail" value="<?php echo $email; ?>">
             </div>
             <div class="mb-3">
-              <label for="inputDepartment" class="form-label">Department</label>
-              <input type="text" class="form-control" id="inputDepartment">
+              <label for="editPosition" class="form-label">Position</label>
+              <input type="text" class="form-control" id="editPosition" name="editPosition" value="<?php echo $position; ?>">
             </div>
-          </form>
-        </div>
+            <div class="mb-3">
+              <label for="editDepartment" class="form-label">Deparment</label>
+              <select id="editDeparment" class="form-control" name="editDepartment">
+              <option value="Podiatrist" <?php if ($department == "Podiatrist") echo "selected"; ?>>Podiatrist</option>
+              <option value="Pediatrician" <?php if ($department == "Pediatrician") echo "selected"; ?>>Pediatrician</option>
+              <option value="Endocrinologist" <?php if ($department == "Endocrinologist") echo "selected"; ?>>Endocrinologist</option>
+              <option value="Neurologist" <?php if ($department == "Neurologist") echo "selected"; ?>>Neurologist</option>
+              <option value="Rheumatologist" <?php if ($department == "Rheumatologist") echo "selected"; ?>>Rheumatologist</option>
+              <option value="Immunologist" <?php if ($department == "Immunologist") echo "selected"; ?>>Immunologist</option>
+              <option value="Phychiatrist" <?php if ($department == "Phychiatrist") echo "selected"; ?>>Phychiatrist</option>
+              <option value="Cardiologist" <?php if ($department == "Cardiologist") echo "selected"; ?>>Cardiologist</option>
+              <option value="Hepatologist" <?php if ($department == "Hepatologist") echo "selected"; ?>>Hepatologist</option>
+              </select>
+            </div>
+          </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success">Save Changes</button>
+          <button type="submit" class="btn btn-success" name="editBtn">Save Changes</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>   
+
+  <?php } }
+   ?>        
+    </tbody>
+      </table>
+        <div class="d-flex flex-row-reverse">
+         <div class="mx-1">
+         <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addStaff">
+           Add Authorised Medical Staff
+          </button>
+            </div>
+          </div>
+        </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  
 
 
 

@@ -1,9 +1,9 @@
-<?php
-if (!isset($_SESSION['name'])) {
-    // header("refresh:0;url=index.php#login-again-to-get-access");
-}
 
-
+<?php 
+    if(!isset($_SESSION['adminName']))
+    {
+        header( "refresh:0;url=index.php#login-again-to-get-access" );
+    }
 ?>
 
 

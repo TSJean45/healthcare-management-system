@@ -1,3 +1,9 @@
+<?php 
+    if(!isset($_SESSION['staffName']))
+    {
+        header( "refresh:0;url=index.php#login-again-to-get-access" );
+    }
+?>
 <div class="sidebar">
     <div class="logo-details">
         <img src="asset/image/logo pic.png" alt="">
@@ -55,7 +61,7 @@
                 </a>
             </li>
             <li class="item">
-                <a href="index.php">
+                <a href="logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log Out</span>
                 </a>

@@ -68,7 +68,7 @@
                 
                   
                     <?php
-                        if(!isset($_SESSION['name']))
+                        if(!isset($_SESSION['userName']))
                         {
                           ?>
                           <div class="ml-auto ms-auto">
@@ -89,12 +89,12 @@
                           ?>
                         <div class="ml-auto ms-auto">
                         <div class="btn-group">
-                        <button type="button" class="btn">Welcome <?php echo $_SESSION['name']; ?></button>
+                        <button type="button" class="btn">Welcome <?php echo $_SESSION['userName']; ?></button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu .dropdown-menu-right">
-                        <a class="dropdown-item" href="userdashboard_profile.html">Account</a>
+                        <a class="dropdown-item" href="userdashboard_profile.php">Account</a>
                         <a class="dropdown-item" href="userdashboard_appointment.html">My Appointment</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php">Log Out</a>

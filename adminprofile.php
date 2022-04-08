@@ -5,7 +5,7 @@ include 'connection.php';
 if (isset($_POST["submit"])) {
 
 
-  $loggedInUser = $_SESSION['name'];
+  $loggedInUser = $_SESSION['adminName'];
       
   $newName = $_POST["newName"];
   $newPhone = $_POST["newPhone"];
@@ -16,11 +16,12 @@ if (isset($_POST["submit"])) {
   $newQual = $_POST["newQual"];
   
 
-  $editSql = "UPDATE `admin` SET `name`='$newName',`phone_number`='$newPhone',`gender`='$newGender',`birthdate`='$newBirthdate', `address`='$newAddress' , `biography`='$newBio'
-              , `qualification`='$newQual' WHERE `name`='$loggedInUser'";
+  $editSql = "UPDATE `admin` SET `adminName`='$newName',`adminPhone_number`='$newPhone',`adminGender`='$newGender',`adminBirthdate`='$newBirthdate', `adminAddress`='$newAddress' , `adminBiography`='$newBio'
+              , `adminQualification`='$newQual' WHERE `adminName`='$loggedInUser'";
   $editResult = mysqli_query($data, $editSql);
+  echo "<meta http-equiv='refresh' content='0'>";
 
-  // var_dump($_SESSION['name']);
+ 
 
   if ($editResult) {
     echo '<script> alert("Data updated"); </script>';
@@ -32,7 +33,7 @@ if (isset($_POST["submit"])) {
 if (isset($_POST["changePass"])) {
 
 
-  $loggedInUser = $_SESSION['name'];
+  $loggedInUser = $_SESSION['adminName'];
       
   $curPass = $_POST["curPass"];
   $newPass = $_POST["newPass"];
@@ -41,12 +42,13 @@ if (isset($_POST["changePass"])) {
     {
       if(!empty($curPass)&&!empty($newPass)&&!empty($newCheckPass))
       {
-        $checkSql = "SELECT password FROM admin WHERE `name`='$loggedInUser' AND `password` = $curPass";
+        $checkSql = "SELECT adminPassword FROM admin WHERE `adminName`='$loggedInUser' AND `adminPassword` = $curPass";
         $checkResult = mysqli_query($data, $checkSql);
 
         if(mysqli_num_rows($checkResult) === 1){
-          $changepassSql = "UPDATE `admin` SET `password` ='$newPass'  WHERE `name`='$loggedInUser'";
+          $changepassSql = "UPDATE `admin` SET `adminPassword` ='$newPass'  WHERE `adminName`='$loggedInUser'";
           $changeResult = mysqli_query($data, $changepassSql);
+          echo "<meta http-equiv='refresh' content='0'>";
 
           if ($changeResult) {
             echo '<script> alert("Data updated"); </script>';
@@ -65,7 +67,7 @@ if (isset($_POST["changePass"])) {
     else{
       echo "<script type='text/javascript'>alert('Password does not matched');</script>";
     }
-  // var_dump($_SESSION['name']);
+  
 
  
 }
@@ -97,26 +99,26 @@ if (isset($_POST["changePass"])) {
     <div class="home-content">
       <!-- Overview Boxes-->
       <?php 
-          $currentUser = $_SESSION['name'];
-          $sql = "SELECT * FROM admin WHERE name ='$currentUser'";
+          $currentUser = $_SESSION['adminName'];
+          $sql = "SELECT * FROM admin WHERE adminName ='$currentUser'";
 
           $result=mysqli_query($data,$sql);
 
           if($result){
             while($row = mysqli_fetch_assoc($result)){
-                $prefix = $row['prefix'];
-                $id = $row['id'];
-                $name = $row['name'];
-                $email = $row['email'];
-                $phone_number = $row['phone_number'];
-                $gender = $row['gender'];
-                $address = $row['address'];
-                $birthdate = $row['birthdate'];
-                $biography = $row['biography'];
-                $qualification = $row['qualification'];
+                $prefix = $row['adminPrefix'];
+                $id = $row['adminId'];
+                $name = $row['adminName'];
+                $email = $row['adminEmail'];
+                $phone_number = $row['adminPhone_number'];
+                $gender = $row['adminGender'];
+                $address = $row['adminAddress'];
+                $birthdate = $row['adminBirthdate'];
+                $biography = $row['adminBiography'];
+                $qualification = $row['adminQualification'];
 
               ?>
-                <div class="profile">
+      <div class="profile">
         <div class="container-fluid">
           <div class="row">
             <div class="col-xl-12 m-t35">
@@ -176,6 +178,9 @@ if (isset($_POST["changePass"])) {
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfile">
                 Edit Profile
               </button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadImage">
+                Upload Image
+              </button>
               <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#changePass">
                 Change Password
               </button>
@@ -205,12 +210,11 @@ if (isset($_POST["changePass"])) {
             }
           }
       ?>
-        
       </div>
     </div>
   </section>
 
-  <!-- Modal -->
+  <!-- Edit Modal -->
   <div class="modal fade" id="editProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editprofile" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -220,27 +224,6 @@ if (isset($_POST["changePass"])) {
         </div>
         <form action="" method="POST">
         <div class="modal-body">
-          
-            <!-- <div class="mb-3">
-              <label>Upload Profile Picture</label>
-              <input type="file" name="img[]" class="file-upload-default">
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                </span>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label>Upload Cover Photo</label>
-              <input type="file" name="img[]" class="file-upload-default">
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                </span>
-              </div>
-            </div> -->
             <div class="mb-3">
               <label for="inputName" class="form-label">Full Name</label>
               <input type="text" name ="newName" class="form-control" id="inputName" value="<?php echo $name ?>">
@@ -281,7 +264,7 @@ if (isset($_POST["changePass"])) {
       </div>
     </div>
   </div>
-
+<!-- Change Password Modal -->
   <div class="modal fade" id="changePass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changePass" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -306,6 +289,45 @@ if (isset($_POST["changePass"])) {
           
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-success" name="changePass" >Change Password</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- Upload Image Modal -->
+  <div class="modal fade" id="uploadImage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadImage" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadImage">Upload Profile Picture or Cover</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="upload.php" method="POST">
+        <div class="modal-body">
+          <div class="mb-3">
+              <label>Upload Profile Picture</label>
+              <input type="file" name="img[]" class="file-upload-default">
+              <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label>Upload Cover Photo</label>
+              <input type="file" name="img[]" class="file-upload-default">
+              <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+              </div>
+            </div> 
+          
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" name="uploadPic" >Save</button>
         </div>
         </form>
       </div>

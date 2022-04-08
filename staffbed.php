@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connection.php';
 
 if (isset($_POST["addBtn"])) {
@@ -81,7 +82,7 @@ if (isset($_POST['deleteBtn'])) {
                 <div class="profile dropdown">
                     <div>
                         <img src="asset/image/profile1.jpg">
-                        <span class="profile_name">Tan Szu Jean</span>
+                        <span class="profile_name"><?php echo $_SESSION['staffName']; ?></span>
                     </div>
                 </div>
             </div>

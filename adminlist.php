@@ -10,23 +10,37 @@
     $email = $_POST["inputEmail"];
     $pass = $_POST["inputPass"];
 
-    $addSql = "INSERT INTO `admin` (`name`,`email`,`password`) VALUES ('$name','$email','$pass')";
+    $addSql = "INSERT INTO `admin` (`adminName`,`adminEmail`,`adminPassword`) VALUES ('$name','$email','$pass')";
     $result = mysqli_query($data, $addSql);
+    echo "<meta http-equiv='refresh' content='0'>";
+
+    if ($result) {
+      echo '<script> alert("Data added"); </script>';
+    } else {
+      echo '<script> alert("Data not added"); </script>';
     }
 
+    }
+
+    // Delete Data
     if (isset($_POST['deleteBtn'])) {
-      $id = $_POST["deleteID"];
-    
-      $deleteSql = "DELETE FROM `admin` WHERE `id`=$id";
-      $result = mysqli_query($data, $deleteSql);
-    
-      if ($result) {
-        echo '<script> alert("Data deleted"); </script>';
-      } else {
-        echo '<script> alert("Data not deleted"); </script>';
-      }
+    $id = $_POST["deleteID"];
+
+    $deleteSql = "DELETE FROM `admin` WHERE `adminID`=$id";
+    $result = mysqli_query($data, $deleteSql);
+    echo "<meta http-equiv='refresh' content='0'>";
+
+    if ($result) {
+      echo '<script> alert("Data deleted"); </script>';
+    } else {
+      echo '<script> alert("Data not deleted"); </script>';
+    }
+
     }
 ?>
+
+    
+
 <!DOCTYPE html>
 
 <head>
@@ -62,7 +76,7 @@
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name"><?php echo $_SESSION['name']; ?></span>
+            <span class="profile_name"><?php echo $_SESSION['adminName']; ?></span>
           </div>
         </div>
       </div>
@@ -81,7 +95,7 @@
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
                   <tr>
-                    <th> No</th>
+                    
                     <th> Admin Name </th>
                     <th> Admin ID </th>
                     <th> Admin Email Address </th>
@@ -96,20 +110,14 @@
                           if($result){
                             while($row = mysqli_fetch_assoc($result))
                             {
-                              $prefix = $row['prefix'];
-                              $id = $row['id'];
-                              $name = $row['name'];
-                              $email = $row['email'];
+                              $prefix = $row['adminPrefix'];
+                              $id = $row['adminId'];
+                              $name = $row['adminName'];
+                              $email = $row['adminEmail'];
                             
                         ?>     
                             <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" data-bs-target="#deleteAdmin<?php echo $id; ?>" >
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                      </div>
-                                </td>   
+                                 
                                 <td class="py-1">
                                     <?php echo $name ?>
                                 </td>
@@ -118,32 +126,49 @@
                                   <?php echo $email ?>
                                 </td>
                                 <td class="action-button">
-                                  <a href="adminViewAdminProfile.html">
+                                  <a href="adminViewAdminProfile.php">
                                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
                                       <i class="fas fa-eye"></i></button>
                                   </a>
+                                  <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
+                                  <i class="fas fa-trash-alt"></i></button>
                               </td>
                             </tr>
-                         <?php } }
-                         ?>
+                         
+                <!-- Delete Modal -->
+                  <div class="modal fade" id="deleteData<?php echo $id; ?>" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                          </div>
+                          <div class="modal-body">
+                            <form action="" method="POST">
+                              <div class="mb-3">
+                                <input type="hidden" name="deleteID" value="<?php echo $id; ?>">
+                              </div>
+                              <div class="mb-3">
+                                Are you sure that you want to delete the selected data?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" class="btn btn-success" name="deleteBtn">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>         
                 </tbody>
+                <?php } }
+                         ?>
               </table>
               <div class="d-flex flex-row-reverse">
-                <div class="px-3">
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAdmin">
-                    Delete Authorised Admin
-                  </button>
-                </div>
                 <div class="px-3">
                   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addAdmin">
                     Add Authorised Admin
                   </button>
                 </div>
-              </div>
-              <div class="d-flex flex-row my-auto">
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-left fa-lg"></i></button>
-                <h5 class="my-auto">1</h5>
-                <button type="button" class="btn"><i class="fas fa-arrow-circle-right fa-lg"></i></button></td>
               </div>
             </div>
           </div>
@@ -152,30 +177,9 @@
     </div>
   </section>
 
-  <!-- Modal -->
-  <div class="modal fade" id="deleteAdmin" tabindex="-1" aria-labelledby="deleteAdminLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteAdminLabel">Confirmation Message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="" method="POST">
-        <div class="mb-3">
-              <input type="hidden" name="deleteID" id="deleteID">
-          </div>
-        <div class="modal-body">
-          Are you sure that you want to delete the selected admin?
-        </div>
-        <div class="modal-footer">
-          <button type="submit" name="deleteBtn" class="btn btn-success">Yes</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  
 
+   <!-- Add -->
   <div class="modal fade" id="addAdmin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAdminLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">

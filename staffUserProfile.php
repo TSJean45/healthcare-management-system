@@ -1,3 +1,7 @@
+<?php
+session_start();
+include 'connection.php';
+?>
 <!DOCTYPE html>
 
 <head>
@@ -32,7 +36,7 @@
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name">Tan Szu Jean</span>
+            <span class="profile_name"><?php echo $_SESSION['staffName']; ?></span>
           </div>
         </div>
       </div>

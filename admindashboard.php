@@ -36,7 +36,7 @@ include 'connection.php';
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name"><?php echo $_SESSION['name']; ?></span>
+            <span class="profile_name"><?php echo $_SESSION['adminName']; ?></span>
           </div>
         </div>
       </div>
