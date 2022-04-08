@@ -261,8 +261,6 @@ if (isset($_POST["changePass"])) {
         </div>
         <form action="" method="POST">
         <div class="modal-body">
-          
-         
             <div class="mb-3">
               <label for="inputName" class="form-label">Full Name</label>
               <input type="text" name ="newName" class="form-control" id="inputName" value="<?php echo $name ?>">
@@ -272,10 +270,10 @@ if (isset($_POST["changePass"])) {
               <input type="text" name ="newPhone" class="form-control" id="inputPhone" value="<?php echo $phone_number?>">
             </div>
             <div class="mb-3">
-              <label for="inputGender" class="form-label">Gender</label>
-              <select id="inputGender" class="form-control" name="newGender" value="<?php echo $gender ?>">
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
+            <label for="editGender" class="form-label">Gender</label>
+              <select id="editGender" class="form-control" name="newGender">
+              <option value="Female" <?php if ($gender == "Female") echo "selected"; ?>>Female</option>
+              <option value="Male" <?php if ($gender == "Male") echo "selected"; ?>>Male</option>
               </select>
             </div>
             <div class="mb-3">

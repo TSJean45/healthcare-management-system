@@ -107,6 +107,13 @@
             <div class="row">
               <h4 class="card-title">User List</h4>
             </div>
+            <div class="d-flex flex-row-reverse">
+                <div class="mx-1">
+                  <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
+                    Add User
+                  </button>
+                </div>
+              </div>
             <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
@@ -241,16 +248,9 @@
       </div>
     </div>
   </div>          
-                </tbody>
                 <?php } }?>
+                </tbody>
               </table>
-              <div class="d-flex flex-row-reverse">
-                <div class="mx-1">
-                  <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
-                    Add User
-                  </button>
-                </div>
-              </div>
           </div>
         </div>
       </div>

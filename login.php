@@ -69,8 +69,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 <title> Login </title>
 <?php include('asset/includes/cssCDN.php'); ?>
 </head>
-<?php include('asset/includes/navBar.php'); ?>
 <body>
+<?php include('asset/includes/navBar.php'); ?>
     <div class="login-page">
       <div class="form">
         <div class="login">

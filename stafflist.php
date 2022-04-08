@@ -2,6 +2,7 @@
     session_start();
     include 'connection.php';
     
+    //add data
     if (isset($_POST["addBtn"])) {
     $name = $_POST["addName"];
     $email = $_POST["addEmail"];
@@ -18,6 +19,7 @@
       }
     }
 
+    //edit data
     if (isset($_POST["editBtn"])) {
     $id = $_POST["editId"];  
     $name = $_POST["editName"];
@@ -30,12 +32,13 @@
     echo "<meta http-equiv='refresh' content='0'>";
 
       if ($result) {
-        echo '<script> alert("Data added"); </script>';
+        echo '<script> alert("Data updated"); </script>';
       } else {
-         echo '<script> alert("Data not added"); </script>';
+         echo '<script> alert("Data not updated"); </script>';
       }
     }
 
+    //delete data
     if (isset($_POST['deleteBtn'])) {
       $id = $_POST["deleteID"];
   
@@ -188,7 +191,7 @@
             </div>
             <div class="mb-3">
               <label for="inputEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail" name="addEmail">
+              <input type="email" class="form-control" id="inputEmail" name="addEmail" value="@staff.jjj.com">
             </div>
             <div class="mb-3">
               <label for="inputPass" class="form-label">Password</label>

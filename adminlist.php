@@ -159,9 +159,9 @@
                         </div>
                       </div>
                     </div>         
-                </tbody>
                 <?php } }
                          ?>
+              </tbody>           
               </table>
               <div class="d-flex flex-row-reverse">
                 <div class="px-3">
@@ -195,7 +195,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="inputEmail" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="inputEmail">
+                  <input type="email" class="form-control" name="inputEmail" value="@admin.jjj.com">
                 </div>
                 <div class="mb-3">
                   <label for="inputPass" class="form-label">Password</label>
