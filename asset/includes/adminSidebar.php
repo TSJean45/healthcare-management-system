@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['name'])) {
-    header("refresh:0;url=index.php#login-again-to-get-access");
+    // header("refresh:0;url=index.php#login-again-to-get-access");
 }
 
 
