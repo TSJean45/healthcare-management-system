@@ -16,8 +16,8 @@ $cpassword=($_POST['CPassword']);
 
 if(!empty($email)&&!empty($password)&&!empty($name)&&!empty($cpassword))
 	{
-		$sql_u = "SELECT * FROM user WHERE name='$name'";
-  		$sql_e = "SELECT * FROM user WHERE email='$email'";
+		$sql_u = "SELECT * FROM user WHERE userName='$name'";
+  		$sql_e = "SELECT * FROM user WHERE userEmail='$email'";
 		$res_u = mysqli_query($data, $sql_u);
   		$res_e = mysqli_query($data, $sql_e);
 
@@ -35,7 +35,7 @@ if(!empty($email)&&!empty($password)&&!empty($name)&&!empty($cpassword))
 		  {
 			if($password == $cpassword)
 			{
-				$sql = "insert into user (name, email, password) values ('$name','$email','$password')";
+				$sql = "insert into user (userName, userEmail, userPassword) values ('$name','$email','$password')";
 				
 				$r = mysqli_query($data,$sql);
 				

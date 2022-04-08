@@ -15,30 +15,33 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	
 	if(!empty($email)&&!empty($password))
 	{
-    $sql="select name,email,password,usertype from staff where email = '".$email. "' AND password= '".$password. "'  
-          UNION select name,email,password,usertype  from user where email = '".$email. "' AND password= '".$password. "' 
-          UNION select name,email,password,usertype  from admin where email = '".$email. "' AND password= '".$password. "'" ;
+    $adminSql="select adminPrefix,adminName,adminEmail,adminPassword,adminUsertype from admin where adminEmail = '".$email. "' AND adminPassword= '".$password. "'";
+    $adminResult=mysqli_query($data,$adminSql);
 
-    $result=mysqli_query($data,$sql);
+    $userSql= "select userPrefix,userName,userEmail,userPassword,usertype from user where userEmail = '".$email. "' AND userPassword= '".$password. "'";
+    $userResult=mysqli_query($data,$userSql);
 
-    $row=mysqli_fetch_array($result);
+    $staffSql= "select staffPrefix,staffName,staffEmail,staffPassword,staffUsertype from staff where staffEmail = '".$email. "' AND staffPassword= '".$password. "'";
+    $staffResult=mysqli_query($data,$staffSql);
 
-    if($row["usertype"]=="user")
+    $Arow=mysqli_fetch_array($adminResult);
+    $Urow=mysqli_fetch_array($userResult);
+    $Srow=mysqli_fetch_array($staffResult);
+
+
+    if($Urow["userPrefix"]=="U")
     {
-        $_SESSION['name'] = $row['name'];
-        
+        $_SESSION['userName'] = $Urow['userName'];
         header("location:index.php");
     }
-    else if($row["usertype"]=="admin")
+    else if($Arow["adminUsertype"]=="admin")
     {
-        $_SESSION['name'] = $row['name'];
-        
+        $_SESSION['adminName'] = $Arow['adminName'];
         header("location:admindashboard.php");
     }
-    else if($row["usertype"]=="staff")
+    else if($Srow["staffPrefix"]=="S")
     {
-        $_SESSION['name'] = $row['name'];
-        
+        $_SESSION['staffName'] = $Srow['staffName'];
         header("location:staffdashboard.php");
     }
     else{
