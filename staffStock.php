@@ -32,22 +32,6 @@ if (isset($_POST["editBtn"])) {
   }
 }
 
-if (isset($_POST["addCal"])) {
-  $id = $_POST["editID"];
-  $qty = $_POST["editDataAmount"];
-  $amount = $_POST["calAmount"];
-  $total = $qty + $amount;
-
-  $addSql = "UPDATE `medstock` SET `stockQty`='$total' WHERE `stockID`='$id'";
-  $result = mysqli_query($data, $addSql);
-
-  if ($result) {
-    echo '<script> alert("Data updated"); </script>';
-  } else {
-    echo '<script> alert("Data not updated"); </script>';
-  }
-}
-
 if (isset($_POST["subCal"])) {
   $id = $_POST["editID"];
   $qty = $_POST["editDataAmount"];
@@ -226,11 +210,8 @@ if (isset($_POST['deleteBtn'])) {
                                 <label class="form-label">Calculate Stock Amount</label><br>
                                 <input type="text" class="form-control" name="calAmount">
                               </div>
-                              <div class="mb-3">
-                                <button type="submit" class="btn btn-info" name="addCal">Add Amount</button>
-                                <button type="submit" class="btn btn-success" name="subCal">Subtract Amount</button>
-                              </div>
                               <div class="modal-footer">
+                                <button type="submit" class="btn btn-success" name="subCal">Subtract Amount</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                               </div>
                             </form>
@@ -252,8 +233,17 @@ if (isset($_POST['deleteBtn'])) {
                                 <input type="hidden" name="editID" value="<?php echo $id; ?>">
                               </div>
                               <div class="mb-3">
-                                <label for="editDataName" class="form-label">Stock Name</label>
-                                <input type="text" class="form-control" name="editDataName" value="<?php echo $name; ?>">
+                                <?php
+                                $searchSql = "SELECT * FROM `medicine`";
+                                $search = mysqli_query($data, $searchSql); ?>
+                                <label for="editDataName" class="form-label">Medicine Name</label>
+                                <select id="editDataName" class="form-control select2me" name="editDataName">
+                                  <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
+                                    <?php
+                                    $mname = $fetch['medicineName']; ?>
+                                    <option value="<?php echo $mname ?>" <?php if ($name == $mname) echo "selected"; ?>><?php echo $mname; ?></option>
+                                  <?php endwhile; ?>
+                                </select>
                               </div>
                               <div class="mb-3">
                                 <label for="editDataExpire" class="form-label">Stock Expiration Date</label>
@@ -351,8 +341,18 @@ if (isset($_POST['deleteBtn'])) {
         <div class="modal-body">
           <form action="" method="POST">
             <div class="mb-3">
-              <label for="inputDataName" class="form-label">Stock Name</label>
-              <input type="text" class="form-control" name="inputDataName" required>
+              <?php
+              $searchSql = "SELECT * FROM `medicine`";
+              $search = mysqli_query($data, $searchSql); ?>
+              <label for="inputDataName" class="form-label">Medicine Name</label>
+              <select id="inputDataName" class="form-select select2me" name="inputDataName">
+                <option value="">Select Medicine Name</option>
+                <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
+                  <?php
+                  $name = $fetch['medicineName']; ?>
+                  <option value="<?php echo $name ?>"><?php echo $name; ?></option>
+                <?php endwhile; ?>
+              </select>
             </div>
             <div class="mb-3">
               <label for="inputDataAmount" class="form-label">Stock Amount</label>

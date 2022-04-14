@@ -75,10 +75,6 @@ if (isset($_POST['deleteBtn'])) {
                 <span class="dashboard">Bed</span>
             </div>
             <div class="right-nav">
-                <div class="right noti-bell my-auto">
-                    <i class='bx bxs-bell-ring'></i>
-                </div>
-
                 <div class="profile dropdown">
                     <div>
                         <img src="asset/image/profile1.jpg">
@@ -98,11 +94,6 @@ if (isset($_POST['deleteBtn'])) {
                         </div>
                         <div class="col-lg-7">
                             <div class="d-flex flex-row-reverse">
-                                <div class="mx-1">
-                                    <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printStock">
-                                        Print
-                                    </button>
-                                </div>
                                 <div class="mx-1">
                                     <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addData">
                                         Add Bed

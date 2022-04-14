@@ -6,10 +6,15 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.container-fluid{
+    margin-bottom: 50px;
+    margin-left: 50px;
+}
+
 .image img
 {
     height: auto;
-    width: auto;
+    width: 1000px;
 }
 
 .appointmentform
