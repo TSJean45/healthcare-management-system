@@ -76,7 +76,21 @@
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name"><?php echo $_SESSION['adminName']; ?></span>
+            <?php 
+
+            $currentUser = $_SESSION['adminId'];
+            $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+  
+            $result=mysqli_query($data,$sql);
+  
+            if($result){
+              while($row = mysqli_fetch_assoc($result)){
+                  $adminName = $row['adminName'];
+                  
+            ?>
+
+            <span class="profile_name"><?php echo $adminName ?></span>
+            <?php  } } ?>
           </div>
         </div>
       </div>
@@ -90,7 +104,20 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Admin List</h4>
+          <div class="row mb-2">
+              <div class="col-lg-5">
+                <h4 class="card-title">Admin List</h4>
+              </div>
+              <div class="col-lg-7">
+                <div class="d-flex flex-row-reverse">
+                  <div class="mx-1">
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addAdmin">
+                    Add Authorised Admin
+                  </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
@@ -114,6 +141,11 @@
                               $id = $row['adminId'];
                               $name = $row['adminName'];
                               $email = $row['adminEmail'];
+                              $birthdate = $row['adminBirthdate'];
+                              $number = $row['adminPhone_number'];
+                              $gender = $row['adminGender'];
+                              $address = $row['adminAddress'];
+                              
                             
                         ?>     
                             <tr>
@@ -126,10 +158,8 @@
                                   <?php echo $email ?>
                                 </td>
                                 <td class="action-button">
-                                  <a href="adminViewAdminProfile.php">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewMessage">
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewProfile<?php echo $id; ?>">
                                       <i class="fas fa-eye"></i></button>
-                                  </a>
                                   <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
                                   <i class="fas fa-trash-alt"></i></button>
                               </td>
@@ -158,18 +188,54 @@
                           </div>
                         </div>
                       </div>
-                    </div>         
+                    </div>  
+
+  <!-- View Modal  -->
+  <div class="modal fade" id="viewProfile<?php echo $id; ?>"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewProfile">View Admin Info</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="viewName" class="form-label"> Name</label>
+              <input type="text" class="form-control"  value="<?php echo $name; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewEmail" class="form-label">Email</label>
+              <input type="text" class="form-control"  value="<?php echo $email; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewNumber" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" value="<?php echo $number; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewBirthdate" class="form-label">Birthdate</label>
+              <input type="text" class="form-control" value="<?php echo $birthdate; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" value="<?php echo $address; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewGender" class="form-label">Gender</label>
+              <input type="text" class="form-control" value="<?php echo $gender; ?>" readonly>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>      
+   
                 <?php } }
                          ?>
                 </tbody>
               </table>
-              <div class="d-flex flex-row-reverse">
-                <div class="px-3">
-                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addAdmin">
-                    Add Authorised Admin
-                  </button>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -191,15 +257,15 @@
               <form action="" method="POST" name="addAdmin">
                 <div class="mb-3">
                   <label for="inputName" class="form-label">Full Name</label>
-                  <input type="text" class="form-control" name="inputName">
+                  <input type="text" class="form-control" name="inputName" required>
                 </div>
                 <div class="mb-3">
                   <label for="inputEmail" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="inputEmail" value="@admin.jjj.com" >
+                  <input type="email" class="form-control" name="inputEmail" value="@admin.jjj.com" required>
                 </div>
                 <div class="mb-3">
                   <label for="inputPass" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="inputPass">
+                  <input type="password" class="form-control" name="inputPass" required>
                 </div>
             </div>
             <div class="modal-footer">

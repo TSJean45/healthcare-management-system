@@ -5,21 +5,19 @@ include 'connection.php';
 if (isset($_POST["submit"])) {
 
 
-  $loggedInUser = $_SESSION['staffName'];
+  $loggedInUser = $_SESSION['staffId'];
       
   $newName = $_POST["newName"];
   $newPhone = $_POST["newPhone"];
   $newGender = $_POST["newGender"];
   $newBirthdate = $_POST["newBirthdate"];
   $newAddress = $_POST["newAddress"];
-  $newPosition = $_POST["newPosition"];
-  $newDepartment = $_POST["newDepartment"];
   $newBio = $_POST["newBio"];
   $newQual = $_POST["newQual"];
   
 
   $editSql = "UPDATE `staff` SET `staffName`='$newName',`staffPhone_number`='$newPhone',`staffGender`='$newGender',`staffBirthdate`='$newBirthdate', `staffAddress`='$newAddress' , `staffBiography`='$newBio'
-              , `staffQualification`='$newQual',`staffDepartment`='$newDepartment', `staffPosition`='$newPosition'  WHERE `staffName`='$loggedInUser'";
+              , `staffQualification`='$newQual' WHERE `staffId`='$loggedInUser'";
   $editResult = mysqli_query($data, $editSql);
   echo "<meta http-equiv='refresh' content='0'>";
 
@@ -112,7 +110,22 @@ if (isset($_POST["changePass"])) {
         <div class="profile dropdown">
           <div>
             <img src="asset/image/short-emp.jpg">
-            <span class="profile_name"><?php echo $_SESSION['staffName']; ?></span>
+            <?php 
+
+            $currentUser = $_SESSION['staffId'];
+            $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
+  
+            $result=mysqli_query($data,$sql);
+  
+            if($result){
+              while($row = mysqli_fetch_assoc($result)){
+                  $staffName = $row['staffName'];
+                  
+            ?>
+
+            <span class="profile_name"><?php echo $staffName ?></span>
+
+            <?php } } ?>
           </div>
         </div>
       </div>
@@ -124,8 +137,8 @@ if (isset($_POST["changePass"])) {
     <div class="home-content">
       <!-- Overview Boxes-->
       <?php 
-          $currentUser = $_SESSION['staffName'];
-          $sql = "SELECT * FROM staff WHERE staffName ='$currentUser'";
+          $currentUser = $_SESSION['staffId'];
+          $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
 
           $result=mysqli_query($data,$sql);
 
@@ -268,14 +281,14 @@ if (isset($_POST["changePass"])) {
               <input type="text" name ="newName" class="form-control" id="inputName" value="<?php echo $name ?>">
             </div>
             <div class="mb-3">
-              <label for="inputPhone" class="form-label">Phone Number</label>
-              <input type="text" name ="newPhone" class="form-control" id="inputPhone" value="<?php echo $phone_number?>">
+              <label for="inputPhone" class="form-label">Phone Number (XXX-XXXX-XXXX)</label>
+              <input type="tel" name ="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" value="<?php echo $phone_number?>">
             </div>
             <div class="mb-3">
-              <label for="inputGender" class="form-label">Gender</label>
-              <select id="inputGender" class="form-control" name="newGender" value="<?php echo $gender ?>">
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
+            <label for="editGender" class="form-label">Gender</label>
+              <select id="editGender" class="form-control" name="newGender">
+              <option value="Female" <?php if ($gender == "Female") echo "selected"; ?>>Female</option>
+              <option value="Male" <?php if ($gender == "Male") echo "selected"; ?>>Male</option>
               </select>
             </div>
             <div class="mb-3">
@@ -285,24 +298,6 @@ if (isset($_POST["changePass"])) {
             <div class="mb-3">
               <label for="inputBio" class="form-label">Address</label>
               <input type="text" name="newAddress"class="form-control" id="inputAddress" value="<?php echo $address ?>">
-            </div>
-            <div class="mb-3">
-              <label for="inputBio" class="form-label">Position</label>
-              <input type="text" name="newPosition"class="form-control" id="inputPosition" value="<?php echo $position ?>">
-            </div>
-            <div class="mb-3">
-              <label for="editDepartment" class="form-label">Deparment</label>
-              <select id="editDeparment" class="form-control" name="newDepartment">
-              <option value="Podiatrist" <?php if ($department == "Podiatrist") echo "selected"; ?>>Podiatrist</option>
-              <option value="Pediatrician" <?php if ($department == "Pediatrician") echo "selected"; ?>>Pediatrician</option>
-              <option value="Endocrinologist" <?php if ($department == "Endocrinologist") echo "selected"; ?>>Endocrinologist</option>
-              <option value="Neurologist" <?php if ($department == "Neurologist") echo "selected"; ?>>Neurologist</option>
-              <option value="Rheumatologist" <?php if ($department == "Rheumatologist") echo "selected"; ?>>Rheumatologist</option>
-              <option value="Immunologist" <?php if ($department == "Immunologist") echo "selected"; ?>>Immunologist</option>
-              <option value="Phychiatrist" <?php if ($department == "Phychiatrist") echo "selected"; ?>>Phychiatrist</option>
-              <option value="Cardiologist" <?php if ($department == "Cardiologist") echo "selected"; ?>>Cardiologist</option>
-              <option value="Hepatologist" <?php if ($department == "Hepatologist") echo "selected"; ?>>Hepatologist</option>
-              </select>
             </div>
             <div class="mb-3">
               <label for="inputBio" class="form-label">Biography</label>

@@ -1,23 +1,28 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['userName']))
+{
+  header( "refresh:0;url=index.php#login-again-to-get-access" );
+}
+
 include 'connection.php';
 
 if (isset($_POST["submit"])) {
 
 
-  $loggedInUser = $_SESSION['userName'];
+  $loggedInUser = $_SESSION['userId'];
       
   $newName = $_POST["newName"];
   $newPhone = $_POST["newPhone"];
   $newGender = $_POST["newGender"];
   $newBirthdate = $_POST["newBirthdate"];
   $newAddress = $_POST["newAddress"];
-  $newBio = $_POST["newBio"];
-  $newQual = $_POST["newQual"];
+
   
 
   $editSql = "UPDATE `user` SET `userName`='$newName',`userPhone_number`='$newPhone',`userGender`='$newGender',`userBirthdate`='$newBirthdate'
-              , `userAddress`='$newAddress'  WHERE `userName`='$loggedInUser'";
+              , `userAddress`='$newAddress'  WHERE `userId`='$loggedInUser'";
   $editResult = mysqli_query($data, $editSql);
   echo "<meta http-equiv='refresh' content='0'>";
 
@@ -88,7 +93,22 @@ if (isset($_POST["changePass"])) {
                 <div class="personal">
                     <div>
                         <img src="asset/image/profile1.jpg">
-                        <span class="profile-name"><?php echo $_SESSION['userName']; ?></span>
+                        <?php 
+
+                         $currentUser = $_SESSION['userId'];
+            $sql = "SELECT * FROM user WHERE userId ='$currentUser'";
+  
+            $result=mysqli_query($data,$sql);
+  
+            if($result){
+              while($row = mysqli_fetch_assoc($result)){
+                  $userName = $row['userName'];
+                  
+            ?>
+
+            <span class="profile_name"><?php echo $userName ?></span>
+
+            <?php } } ?>
                     </div>
                 </div>
                 <ul class="nav-links">
@@ -172,8 +192,8 @@ if (isset($_POST["changePass"])) {
                       <div class="table-responsive">
                     <table class="table table-condensed">
                     <?php 
-                      $currentUser = $_SESSION['userName'];
-                      $sql = "SELECT * FROM user WHERE userName ='$currentUser'";
+                      $currentUser = $_SESSION['userId'];
+                      $sql = "SELECT * FROM user WHERE userId ='$currentUser'";
 
                       $result=mysqli_query($data,$sql);
 
@@ -257,7 +277,7 @@ if (isset($_POST["changePass"])) {
             </div>
             <div class="mb-3">
               <label for="inputPhone" class="form-label">Phone Number</label>
-              <input type="text" name ="newPhone" class="form-control" id="inputPhone" value="<?php echo $phone_number?>">
+              <input type="tel" name ="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}-[0-9]{3-4}-[0-9]{3-4}" value="<?php echo $phone_number?>">
             </div>
             <div class="mb-3">
               <label for="inputGender" class="form-label">Gender</label>
