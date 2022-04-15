@@ -77,7 +77,7 @@ if (isset($_POST['editBtn'])) {
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">User</span>
+        <span class="dashboard">Patient</span>
       </div>
       <div class="right-nav">
         <div class="right noti-bell my-auto">
@@ -101,17 +101,28 @@ if (isset($_POST['editBtn'])) {
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <div class="row">
-              <h4 class="card-title">User List</h4>
+          <div class="row mb-2">
+              <div class="col-lg-5">
+                <h4 class="card-title">Patient List</h4>
+              </div>
+              <div class="col-lg-7">
+                <div class="d-flex flex-row-reverse">
+                  <div class="mx-1">
+                    <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
+                     Add User
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
                   <tr>
                     <!-- <th> No</th> -->
-                    <th> User Name </th>
-                    <th> User ID </th>
-                    <th> User Email Address </th>
+                    <th> Patient Name </th>
+                    <th> Patient ID </th>
+                    <th> Patient Email Address </th>
                     <th>Date Joined</th>
                     <th> Action </th>
                   </tr>
@@ -129,6 +140,10 @@ if (isset($_POST['editBtn'])) {
                               $name = $row['userName'];
                               $email = $row['userEmail'];
                               $date = $row['userDate_created'];
+                              $birthdate = $row['userBirthdate'];
+                              $number = $row['userPhone_number'];
+                              $gender = $row['userGender'];
+                              $address = $row['userAddress'];
                             
                         ?>   
                             <tr>
@@ -141,9 +156,8 @@ if (isset($_POST['editBtn'])) {
                                 </td>
                                 <td><?php echo $date ?></td>
                                 <td class="action-button">
-                                  <button type="button" class="btn btn-light">
-                                    <a href="adminUserProfile.html">
-                                    <i class="fas fa-eye"></i></a></button>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewProfile<?php echo $id; ?>">
+                                    <i class="fas fa-eye"></i></button>
                                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser<?php echo $id; ?>">
                                     <i class="fas fa-edit"></i></button>
                                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
@@ -181,20 +195,20 @@ if (isset($_POST['editBtn'])) {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editUser">Edit User Details</h5>
+          <h5 class="modal-title" id="editUser">Edit Patient Details</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="" method="POST">
             <div class="mb-3">
-              <label for="inputStockID" class="form-label">User Name</label>
+              <label for="inputStockID" class="form-label">Patient Name</label>
               <input type="text" class="form-control" id="inputID" name="editName" value="<?php echo $name; ?>">
             </div>
             <div class="mb-3">
               <input type="hidden" class="form-control" id="inputID" name="editId" value="<?php echo $id; ?>">
             </div>
             <div class="mb-3">
-              <label for="inputStockName" class="form-label">User Email</label>
+              <label for="inputStockName" class="form-label">Patient Email</label>
               <input type="email" class="form-control" id="inputName" name="editEmail" value="<?php echo $email; ?>">
             </div>
           <div class="modal-footer">
@@ -219,15 +233,15 @@ if (isset($_POST['editBtn'])) {
           <form action="" method="POST">
             <div class="mb-3">
               <label for="inputName" class="form-label">User Name</label>
-              <input type="text" class="form-control" id="inputName" name="addName">
+              <input type="text" class="form-control" id="inputName" name="addName" required>
             </div>
             <div class="mb-3">
               <label for="inputID" class="form-label">User Email</label>
-              <input type="email" class="form-control" id="inputEmail" name="addEmail">
+              <input type="email" class="form-control" id="inputEmail" name="addEmail" required>
             </div>
             <div class="mb-3">
               <label for="inputID" class="form-label">User Password</label>
-              <input type="password" class="form-control" id="inputPass" name="addPassword">
+              <input type="password" class="form-control" id="inputPass" name="addPassword" required>
             </div>
         </div>
         <div class="modal-footer">
@@ -237,17 +251,55 @@ if (isset($_POST['editBtn'])) {
       </form>
       </div>
     </div>
-  </div>          
-                </tbody>
+  </div>      
+
+  <!-- View Modal  -->
+  <div class="modal fade" id="viewProfile<?php echo $id; ?>"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewProfile">View Patient Info</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="viewName" class="form-label"> Name</label>
+              <input type="text" class="form-control"  value="<?php echo $name; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewEmail" class="form-label">Email</label>
+              <input type="text" class="form-control"  value="<?php echo $email; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewNumber" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" value="<?php echo $number; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewBirthdate" class="form-label">Birthdate</label>
+              <input type="text" class="form-control" value="<?php echo $birthdate; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" value="<?php echo $address; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewGender" class="form-label">Gender</label>
+              <input type="text" class="form-control" value="<?php echo $gender; ?>" readonly>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>      
+   
+                
                 <?php } }?>
+                </tbody>
               </table>
-              <div class="d-flex flex-row-reverse">
-                <div class="mx-1">
-                  <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
-                    Add User
-                  </button>
-                </div>
-              </div>
+              
+              
           </div>
         </div>
       </div>

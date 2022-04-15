@@ -33,10 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       header("location:index.php");
     } else if ($Arow["adminUsertype"] == "admin") {
       $_SESSION['adminName'] = $Arow['adminName'];
+      $_SESSION['adminId'] = $Arow['adminId'];
       header("location:admindashboard.php");
     } else if ($Srow["staffPrefix"] == "S") {
       $_SESSION['staffName'] = $Srow['staffName'];
+      $_SESSION['staffId'] = $Srow['staffId'];
       header("location:staffdashboard.php");
+      
     } else {
       echo "<script type='text/javascript'>alert('Username or Password Incorrect ');</script>";
     }

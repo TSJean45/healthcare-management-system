@@ -78,7 +78,22 @@ if (isset($_POST['deleteBtn'])) {
                 <div class="profile dropdown">
                     <div>
                         <img src="asset/image/profile1.jpg">
-                        <span class="profile_name"><?php echo $_SESSION['staffName']; ?></span>
+                        <?php 
+
+            $currentUser = $_SESSION['staffId'];
+            $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
+  
+            $result=mysqli_query($data,$sql);
+  
+            if($result){
+              while($row = mysqli_fetch_assoc($result)){
+                  $staffName = $row['staffName'];
+                  
+            ?>
+
+            <span class="profile_name"><?php echo $staffName ?></span>
+
+            <?php } } ?>
                     </div>
                 </div>
             </div>
