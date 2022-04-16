@@ -85,7 +85,21 @@
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name"><?php echo $_SESSION['adminName']; ?></span>
+            <?php 
+
+            $currentUser = $_SESSION['adminId'];
+            $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+  
+            $result=mysqli_query($data,$sql);
+  
+            if($result){
+              while($row = mysqli_fetch_assoc($result)){
+                  $adminName = $row['adminName'];
+                  
+            ?>
+
+            <span class="profile_name"><?php echo $adminName ?></span>
+            <?php  } } ?>
           </div>
         </div>
       </div>
@@ -98,7 +112,20 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Medical Staff List</h4>
+          <div class="row mb-2">
+              <div class="col-lg-5">
+                <h4 class="card-title">Medical Staff List</h4>
+              </div>
+              <div class="col-lg-7">
+                <div class="d-flex flex-row-reverse">
+                  <div class="mx-1">
+                  <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addStaff">
+                  Add Authorised Medical Staff
+                  </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
@@ -122,8 +149,14 @@
                               $id = $row['staffId'];
                               $name = $row['staffName'];
                               $email = $row['staffEmail'];
+                              $birthdate = $row['staffBirthdate'];
+                              $number = $row['staffPhone_number'];
+                              $gender = $row['staffGender'];
+                              $address = $row['staffAddress'];
                               $position = $row['staffPosition'];
                               $department = $row['staffDepartment'];
+                              $biography = $row['staffBiography'];
+                              $qualification = $row['staffQualification'];
                         ?>     
                             <tr>
                                 <td class="py-1">
@@ -136,9 +169,8 @@
                                 <td><?php echo $position ?></td>
                                 <td><?php echo $department ?></td>
                                 <td class="action-button">
-                                  <button type="button" class="btn btn-light">
-                                    <a href="adminViewStaffProfile.html">
-                                    <i class="fas fa-eye"></i></a></button>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewProfile<?php echo $id; ?>">
+                                      <i class="fas fa-eye"></i></button>
                                   <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editStaff<?php echo $id; ?>">
                                   <i class="fas fa-edit"></i></button>
                                   <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
@@ -184,15 +216,15 @@
         <form action="" method="POST">
             <div class="mb-3">
               <label for="inputName" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="inputName" name="addName">
+              <input type="text" class="form-control" id="inputName" name="addName" required>
             </div>
             <div class="mb-3">
               <label for="inputEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail" name="addEmail">
+              <input type="email" class="form-control" id="inputEmail" name="addEmail" value="@staff.jjj.com" required>
             </div>
             <div class="mb-3">
               <label for="inputPass" class="form-label">Password</label>
-              <input type="password" class="form-control" id="inputPass" name="addPassword">
+              <input type="password" class="form-control" id="inputPass" name="addPassword" required>
             </div>
         </div>
         <div class="modal-footer">
@@ -253,17 +285,67 @@
     </div>
   </div>   
 
+  <!-- View Modal  -->
+  <div class="modal fade" id="viewProfile<?php echo $id; ?>"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewProfile">View Medical Staff Info</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="viewName" class="form-label"> Name</label>
+              <input type="text" class="form-control"  value="<?php echo $name; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewEmail" class="form-label">Email</label>
+              <input type="text" class="form-control"  value="<?php echo $email; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewNumber" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" value="<?php echo $number; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewBirthdate" class="form-label">Birthdate</label>
+              <input type="text" class="form-control" value="<?php echo $birthdate; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" value="<?php echo $address; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewDepartment" class="form-label">department</label>
+              <input type="text" class="form-control" value="<?php echo $address; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewPosition" class="form-label">Position</label>
+              <input type="text" class="form-control" value="<?php echo $address; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewGender" class="form-label">Gender</label>
+              <input type="text" class="form-control" value="<?php echo $gender; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewBio" class="form-label">Biography</label>
+              <input type="text" class="form-control" value="<?php echo $biography; ?>" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="viewQual" class="form-label">Qualification</label>
+              <input type="text" class="form-control" value="<?php echo $qualification; ?>" readonly>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>      
+
   <?php } }
    ?>        
     </tbody>
       </table>
-        <div class="d-flex flex-row-reverse">
-         <div class="mx-1">
-         <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addStaff">
-           Add Authorised Medical Staff
-          </button>
-            </div>
-          </div>
         </div>
           </div>
         </div>

@@ -36,7 +36,21 @@ include 'connection.php';
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <span class="profile_name"><?php echo $_SESSION['adminName']; ?></span>
+            <?php 
+
+            $currentUser = $_SESSION['adminId'];
+            $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+  
+            $result=mysqli_query($data,$sql);
+  
+            if($result){
+              while($row = mysqli_fetch_assoc($result)){
+                  $adminName = $row['adminName'];
+                  
+            ?>
+
+            <span class="profile_name"><?php echo $adminName ?></span>
+            <?php  } } ?>
           </div>
         </div>
       </div>

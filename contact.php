@@ -10,6 +10,7 @@ if (isset($_POST["contactSubmit"])) {
 
     $addSql = "INSERT INTO `contact` (`msgName`,`msgEmail`,`msgSubject`,`msgMessage`) VALUES ('$name','$email','$subject','$message')";
     $result = mysqli_query($data, $addSql);
+    header( "refresh:0;url=index.php#message-sent" );
 
     if ($result) {
         echo '<script> alert("Message sent"); </script>';

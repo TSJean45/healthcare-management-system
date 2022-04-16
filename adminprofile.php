@@ -5,7 +5,7 @@ include 'connection.php';
 if (isset($_POST["submit"])) {
 
 
-  $loggedInUser = $_SESSION['adminName'];
+  $loggedInUser = $_SESSION['adminId'];
       
   $newName = $_POST["newName"];
   $newPhone = $_POST["newPhone"];
@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
   
 
   $editSql = "UPDATE `admin` SET `adminName`='$newName',`adminPhone_number`='$newPhone',`adminGender`='$newGender',`adminBirthdate`='$newBirthdate', `adminAddress`='$newAddress' , `adminBiography`='$newBio'
-              , `adminQualification`='$newQual' WHERE `adminName`='$loggedInUser'";
+              , `adminQualification`='$newQual' WHERE `adminId`='$loggedInUser'";
   $editResult = mysqli_query($data, $editSql);
   echo "<meta http-equiv='refresh' content='0'>";
 
@@ -95,12 +95,49 @@ if (isset($_POST["changePass"])) {
   <?php $page = 'adminprofile';
   include('asset/includes/adminSidebar.php'); ?>
 
+<section class="home-section">
+    <!-- Top Bar-->
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Admin Profile</span>
+      </div>
+      <div class="right-nav">
+        <div class="right noti-bell my-auto">
+          <i class='bx bxs-bell-ring'></i>
+        </div>
+
+        <div class="profile dropdown">
+          <div>
+            <img src="asset/image/profile1.jpg">
+            <?php 
+
+            $currentUser = $_SESSION['adminId'];
+            $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+  
+            $result=mysqli_query($data,$sql);
+  
+            if($result){
+              while($row = mysqli_fetch_assoc($result)){
+                  $adminName = $row['adminName'];
+                  
+            ?>
+
+            <span class="profile_name"><?php echo $adminName ?></span>
+            <?php  } } ?>
+          </div>
+        </div>
+      </div>
+      </div>
+    </nav>
+  </section>
+
   <section class="home-section">
     <div class="home-content">
       <!-- Overview Boxes-->
       <?php 
-          $currentUser = $_SESSION['adminName'];
-          $sql = "SELECT * FROM admin WHERE adminName ='$currentUser'";
+          $currentUser = $_SESSION['adminId'];
+          $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
 
           $result=mysqli_query($data,$sql);
 
@@ -230,13 +267,13 @@ if (isset($_POST["changePass"])) {
             </div>
             <div class="mb-3">
               <label for="inputPhone" class="form-label">Phone Number</label>
-              <input type="text" name ="newPhone" class="form-control" id="inputPhone" value="<?php echo $phone_number?>">
+              <input type="tel" name ="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" value="<?php echo $phone_number?>">
             </div>
             <div class="mb-3">
-              <label for="inputGender" class="form-label">Gender</label>
-              <select id="inputGender" class="form-control" name="newGender" value="<?php echo $gender ?>">
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
+            <label for="editGender" class="form-label">Gender</label>
+              <select id="editGender" class="form-control" name="newGender">
+              <option value="Female" <?php if ($gender == "Female") echo "selected"; ?>>Female</option>
+              <option value="Male" <?php if ($gender == "Male") echo "selected"; ?>>Male</option>
               </select>
             </div>
             <div class="mb-3">
