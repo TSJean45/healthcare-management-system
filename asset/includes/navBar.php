@@ -22,6 +22,21 @@
 </head>
 
 <body>
+  <div class="topbar d-flex align-items-center ">
+    <div class="container d-flex justify-content-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="fas fa-envelope"></i> <a href="mailto:contact@jjjmedcare.com">contact@jjjmedcare.com</a>
+        <i class="fas fa-mobile-alt"></i> +60 11-11111111
+      </div>
+      <div class="social-links d-none d-lg-flex align-items-center">
+        <a href="#"><span class="fab fa-instagram"></span></a>
+        <a href="#"><span class="fab fa-twitter"></span></a>
+        <a href="#"><span class="fab fa-facebook-square"></span></a>
+        <a href="#"><span class="fab fa-pinterest-square"></span></a>
+      </div>
+    </div>
+  </div>
+
   <div class="container-fluid">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -84,8 +99,10 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu .dropdown-menu-right">
-                    <a class="dropdown-item" href="userdashboard_profile.php">Account</a>
-                    <a class="dropdown-item" href="userdashboard_appointment.html">My Appointment</a>
+                    <a class="dropdown-item" href="userdashboard_profile.php">Profile</a>
+                    <a class="dropdown-item" href="userdashboard_appointment.php">My Consultation Appointment</a>
+                    <a class="dropdown-item" href="userdashboard_vaccine.php">My Vaccination Appointment</a>
+                    <a class="dropdown-item" href="userdashboard_record.php">My Medical Record</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Log Out</a>
                   </div>

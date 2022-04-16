@@ -27,22 +27,6 @@ include 'connection.php';
     <i class="fas fa-arrow-circle-up"></i>
   </button>
 
-  <!-- Top Bar -->
-  <div class="topbar d-flex align-items-center ">
-    <div class="container d-flex justify-content-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="fas fa-envelope"></i> <a href="mailto:contact@jjjmedcare.com">contact@jjjmedcare.com</a>
-        <i class="fas fa-mobile-alt"></i> +60 11-10831460
-      </div>
-      <div class="social-links d-none d-lg-flex align-items-center">
-        <a href="#"><span class="fab fa-instagram"></span></a>
-        <a href="#"><span class="fab fa-twitter"></span></a>
-        <a href="#"><span class="fab fa-facebook-square"></span></a>
-        <a href="#"><span class="fab fa-pinterest-square"></span></a>
-      </div>
-    </div>
-  </div>
-
   <!-- Header -->
   <?php include('asset/includes/navBar.php'); ?>
   <!-- Header -->

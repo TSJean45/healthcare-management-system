@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+ 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+body
+{
+    overflow: hidden;
+}
+ 
+.sidebar
+{
+    position: fixed;
+    height: 100%;
+    top: 80px;
+    width: 240px;
+    background: #B0C4DE;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+ 
+.sidebar.active
+{
+    width: 100px;
+}
+ 
+.sidebar .personal
+{
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+ 
+.sidebar .personal img
+{
+    border-radius: 50%;
+    width:50px;
+    height:60px;
+    object-fit: cover;
+    margin-left: 5px;
+    margin-right: 10px;
+    color: black;
+    min-width: 60px;
+    text-align: center;
+}
+ 
+.sidebar .personal .profile-name
+{
+    color: black;
+}
+ 
+.sidebar .sidebar-details
+{
+    width: 100%;
+    margin-top: 15px;
+}
+ 
+.sidebar .sidebar-details .nav-links
+{
+    padding: 0;
+}
+ 
+.sidebar .sidebar-details .item
+{
+    position: relative;
+    cursor: pointer;
+    list-style: none;
+    height: 50px;
+}
+ 
+.sidebar .sidebar-details .item a
+{
+    height: 100%;
+    width: 100%;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+ 
+.sidebar .sidebar-details .item a:hover:not( .sidebar-details .nav-links .item .active)
+{
+    background:#6495ED;
+    border-radius: 30px 0 0 30px;
+}
+ 
+.sidebar-details .nav-links .item .active
+{
+    background: #87CEFA;
+    color: black;
+    width: 100%;
+    border-radius: 30px 0 0 30px;
+}
+ 
+.sidebar-details .nav-links .item .active i,
+.sidebar-details .nav-links .item .active .links-name
+{
+    color: black;
+}
+ 
+.sidebar .sidebar-details .item i
+{
+    font-size: 24px;
+    color: black;
+    min-width: 50px;
+    text-align: center;
+    margin-right: 10px;
+}
+ 
+.sidebar .sidebar-details .item a .links-name
+{
+    color: black;
+    font-size: 14px;
+    white-space: nowrap;
+}
+ 
+.topbar nav
+{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    background: #00008B;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    padding: 20px;
+}
+ 
+.topbar input
+{
+    border: 0;
+    outline: none;
+    color: black;
+}
+ 
+.right-nav .right
+{
+    color: aliceblue;
+}
+ 
+.right-nav .search-box
+{
+    width: 240px;
+    position: relative;
+    height: 50px;
+    float: left;
+    padding: 10px;
+    box-shadow: 0 10px 10px rgba(218, 215, 215, 0.74);
+}
+ 
+.right-nav .search-box input
+{
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 240px;
+    height: 50px;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-size: 14px;
+}
+ 
+.right-nav .search-box .btn
+{
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+}
+ 
+.right-nav .search-box .btn:hover
+{
+    background-color: beige;
+}
+ 
+nav .right-nav
+{
+    display: flex;
+}
+ 
+nav .right-nav i
+{
+    font-size: 30px;
+}
+ 
+nav .right-nav .right
+{
+    float: left;
+    padding: 10px;
+}
+ 
+nav .right-nav .personal img
+{
+    border-radius: 50%;
+    width:50px;
+    height:50px;
+    object-fit: cover;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+ 
+nav .right-nav .profile .dropdown-menu .dropdown-item i
+{
+    padding-right: 10px;
+    margin: auto;
+    font-size: 25px;
+}
+ 
+nav .right-nav .profile .dropdown-menu .dropdown-item span
+{
+    font-size: 18px;
+    margin: auto;
+}
+ 
+.table .button
+{
+    color:black;
+    float: right;
+}
+ 
+.table .button:hover
+{
+    color:yellow;
+}
+ 
+.table #done
+{
+    color: greenyellow;
+}
+ 
+.table #cancel
+{
+    color: red;
+}
+ 
+.table #schedule
+{
+    color: yellow;
+}
+
+.table #view
+{
+    color: black;
+    text-align: center;
+}
+
+.table #view:hover
+{
+    color:darkgray;
+}
+ 
+.pagination i:hover
+{
+    color: black;
+}
+ 
+@media (max-width: 1240px)
+{
+    .sidebar
+    {
+      width: 65px;
+    }
+ 
+    .sidebar.active
+    {
+      width: 240px;
+    }
+ 
+    .sidebar .profile-name
+    {
+        font-size: 0%;
+    }
+ 
+    .home-section
+    {
+      width: calc(100% - 65px);
+      left: 65px;
+    }
+ 
+    .sidebar.active ~ .home-section
+    {
+      overflow-y: hidden;
+      left: 220px;
+    }
+ 
+    .sidebar.active ~ .home-section nav
+    {
+      width: calc(100% - 240px);
+      left: 240px;
+    }
+  }
