@@ -19,11 +19,7 @@ Admin
 <li>Can view profile </li> 
 <li>Can add and manage users </li> 
 <li>Can add authorised admin and medical staff </li> 
-<li>Can view consultation appointment  </li> 
-<li>Can view medical record </li> 
-<li>Can view vaccination appointment </li> 
-<li>Can view and reply to contact message </li> 
-<li>Can view medicine’s stock </li> <br>
+<li>Can view and reply to contact message </li>
 Medical Staff
 <li>Can login  </li> 
 <li>Can manage profile </li> 
