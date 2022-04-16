@@ -8,7 +8,7 @@
                 <p>
                     Jalan Pahang,<br>
                     50586 Kuala Lumpur<br><br>
-                    <strong>Phone:</strong> +60 11-10831460<br>
+                    <strong>Phone:</strong> +60 11-11111111<br>
                     <strong>Email:</strong>contact@jjjmedcare.com<br>
                 </p>
             </div>

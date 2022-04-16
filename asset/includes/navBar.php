@@ -16,16 +16,6 @@
 
     <!--Google Font-->
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-
-    <title>JJJ MedCare</title>
-    <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
-  </head>
-  <body>
-  <div class="topbar d-flex align-items-center ">
-            <div class="container d-flex justify-content-between">
-              <div class="contact-info d-flex align-items-center">
-                <i class="fas fa-envelope"></i> <a href="mailto:contact@jjjmedcare.com">contact@jjjmedcare.com</a>
-                <i class="fas fa-mobile-alt"></i> +60 11-10831460
               </div>
               <div class="social-links d-none d-lg-flex align-items-center">
                 <a href="#"><span class="fab fa-instagram"></span></a>
@@ -75,59 +65,6 @@
                 <?php
                     }
                   ?>
-
-
-                <li class="nav-item dropdown px-2"> 
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                    role="button" data-toggle="dropdown">Hub</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="meddirec.php#meet-staff" class="dropdown-item">Medical Staff's Directory</a>
-                        <!-- <a href="#" class="dropdown-item">Medical Library</a> -->
-                    </div>
-                </li>
-                <li class="nav-item px-2">
-                  <a class="nav-link" href="#contact">Contact</a>
-                </li>
-              </ul>
-              <!-- login/register // user area -->
-                    <?php
-                        if(!isset($_SESSION['userName']))
-                        {
-                          ?>
-                          <div class="ml-auto ms-auto">
-                          <div class="btn-group">
-                          <button type="button" class="btn">Welcome Guest</button>
-                          <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-                          <div class="dropdown-menu">
-                          <a class="dropdown-item" href="login.php">Login</a>
-                          <a class="dropdown-item" href="registration.php">Register</a>
-                        </div>
-                        </div>
-                          <?php
-                        }
-                        else
-                        {
-                          ?>
-                        <div class="ml-auto ms-auto">
-                        <div class="btn-group">
-                        <button type="button" class="btn">Welcome <?php echo $_SESSION['userName']; ?></button>
-                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu .dropdown-menu-right">
-                        <a class="dropdown-item" href="userdashboard_profile.php">Account</a>
-                        <a class="dropdown-item" href="userdashboard_appointment.html">My Appointment</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="logout.php">Log Out</a>
-                        </div>
-                        </div>
-                        </div>
-                        <?php
-                        }
-                        ?>
-                    
                   </div>
                 </div>
               </div>

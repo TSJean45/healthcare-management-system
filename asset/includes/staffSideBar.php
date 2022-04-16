@@ -1,8 +1,7 @@
-<?php 
-    if(!isset($_SESSION['staffName']))
-    {
-        header( "refresh:0;url=index.php#login-again-to-get-access" );
-    }
+<?php
+if (!isset($_SESSION['staffName'])) {
+    header("refresh:0;url=index.php#login-again-to-get-access");
+}
 ?>
 <div class="sidebar">
     <div class="logo-details">
