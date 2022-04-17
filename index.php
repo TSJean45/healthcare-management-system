@@ -43,7 +43,20 @@ include 'connection.php';
               <p>
                 Schedule a consultation appointment with our professionals now!
               </p>
-              <a class="btn btn-primary" href="appointmentuser.html" role="button">Book Your Appointment</a>
+
+              <?php
+              if (isset($_SESSION['userName'])) {
+              ?>
+              <a class="btn btn-primary" href="appointmentuser.php" role="button">Book Your Appointment</a>
+              <?php
+              }
+              else{
+              ?>
+              <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
+              <?php
+              }
+              ?>
+
             </div>
           </div>
         </div>
@@ -55,7 +68,20 @@ include 'connection.php';
               <p>
                 Do your part and register for a vaccination appointment now!
               </p>
-              <a class="btn btn-primary" href="vaccine.html" role="button">Book Your Appointment</a>
+
+              <?php
+              if (isset($_SESSION['userName'])) {
+              ?>
+              <a class="btn btn-primary" href="vaccineuser.php" role="button">Book Your Appointment</a>
+              <?php
+              }
+              else{
+              ?>
+              <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
+              <?php
+              }
+              ?>
+
             </div>
           </div>
         </div>

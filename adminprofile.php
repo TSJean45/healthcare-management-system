@@ -19,14 +19,14 @@ if (isset($_POST["submit"])) {
   $editSql = "UPDATE `admin` SET `adminName`='$newName',`adminPhone_number`='$newPhone',`adminGender`='$newGender',`adminBirthdate`='$newBirthdate', `adminAddress`='$newAddress' , `adminBiography`='$newBio'
               , `adminQualification`='$newQual' WHERE `adminId`='$loggedInUser'";
   $editResult = mysqli_query($data, $editSql);
-  echo "<meta http-equiv='refresh' content='0'>";
-
- 
 
   if ($editResult) {
-    echo '<script> alert("Data updated"); </script>';
+    $msg =  '<div class="alert alert-success" role="alert">
+             Profile has been edited.</div>';
+    
   } else {
-    echo '<script> alert("Data not updated"); </script>';
+    $msg =  '<div class="alert alert-danger" role="alert">
+             Data not updated.</div>';
   }
 }
 
@@ -48,28 +48,90 @@ if (isset($_POST["changePass"])) {
         if(mysqli_num_rows($checkResult) === 1){
           $changepassSql = "UPDATE `admin` SET `adminPassword` ='$newPass'  WHERE `adminName`='$loggedInUser'";
           $changeResult = mysqli_query($data, $changepassSql);
-          echo "<meta http-equiv='refresh' content='0'>";
+          // echo "<meta http-equiv='refresh' content='0'>";
 
           if ($changeResult) {
-            echo '<script> alert("Data updated"); </script>';
+            $msg =  '<div class="alert alert-success" role="alert">
+             Password changed.</div>';
           } else {
-            echo '<script> alert("Data not updated"); </script>';
+            $msg =  '<div class="alert alert-danger" role="alert">
+             Password did not change.</div>';
           }
         }
         else{
-          echo "<script type='text/javascript'>alert('Incorrect Password');</script>";
+          $msg =  '<div class="alert alert-danger" role="alert">
+                    Incorrect Password entered.</div>';
         }
       }
       else{
-        echo "<script type='text/javascript'>alert('Please fill in the details');</script>";
+        $msg =  '<div class="alert alert-danger" role="alert">
+                    Please fill in the details.</div>';
+                    
       }
     }
     else{
-      echo "<script type='text/javascript'>alert('Password does not matched');</script>";
+      $msg =  '<div class="alert alert-danger" role="alert">
+                    Password does not match.</div>';
     }
-  
+}
 
- 
+if(isset($_POST['uploadPic'])){
+  
+  $file = $_FILES['imageAdmin'];
+
+  // print_r($file);
+
+  $fileName = $_FILES['imageAdmin']['name'];
+  $fileTmpName = $_FILES['imageAdmin']['tmp_name'];
+  $fileSize = $_FILES['imageAdmin']['size'];
+  $fileError = $_FILES['imageAdmin']['error'];
+  $fileType = $_FILES['imageAdmin']['type'];
+
+  $fileExt = explode('.', $fileName);
+  $fileActualExt = strtolower(end($fileExt));
+
+  $allowed = array('jpg', 'jpeg', 'png');
+
+  if(in_array($fileActualExt, $allowed)){
+    if($fileError === 0){
+      if($fileSize <10000000){
+        $loggedInUser = $_SESSION['adminId'];
+        $prefixSql = "SELECT * FROM `admin` WHERE `adminId` ='$loggedInUser'";
+
+        $prefixResult=mysqli_query($data,$prefixSql);
+            if($prefixResult){
+              while($row = mysqli_fetch_assoc($prefixResult)){
+                  $adminPrefix = $row['adminPrefix'];
+
+        $fileNameNew = "profile".$adminPrefix.$loggedInUser.".".$fileActualExt;
+        $fileDestination = 'upload/'.$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+        $sql = "UPDATE `admin` set `adminImage_status`= 1 WHERE adminId = '$loggedInUser' ";
+        $result = mysqli_query($data, $sql);
+        
+
+        $msg = '<div class="alert alert-success" role="alert">
+        Photo has been uploaded. It will take a sec to display</div>';
+        }
+      }
+      else{
+        $msg =  '<div class="alert alert-danger" role="alert">
+                  File uploaded is too big.</div>';
+        
+      }
+    }
+    else{
+      $msg =  '<div class="alert alert-danger" role="alert">
+              There was an error uploading your image.</div>';
+       
+    }
+  }
+  else{
+    $msg =  '<div class="alert alert-danger" role="alert">
+    You cannot upload files of this type.</div>';
+    
+  }
+}
 }
 ?>
 <!DOCTYPE html>
@@ -91,7 +153,6 @@ if (isset($_POST["changePass"])) {
 
 <body>
 
-
   <?php $page = 'adminprofile';
   include('asset/includes/adminSidebar.php'); ?>
 
@@ -109,7 +170,28 @@ if (isset($_POST["changePass"])) {
 
         <div class="profile dropdown">
           <div>
-            <img src="asset/image/profile1.jpg">
+          <?php 
+          $currentUser = $_SESSION['adminId'];
+          $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+
+          $result=mysqli_query($data,$sql);
+
+          if($result){
+            while($row = mysqli_fetch_assoc($result)){
+                $prefix = $row['adminPrefix'];
+                $id = $row['adminId'];
+                $imageStatus = $row['adminImage_status'];
+                
+                if($imageStatus == 1)
+                {
+                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
+                }
+                else{
+                  echo "<img src='asset/image/short-emp.jpg'>";
+                }
+              }
+            }
+          ?>
             <?php 
 
             $currentUser = $_SESSION['adminId'];
@@ -153,7 +235,7 @@ if (isset($_POST["changePass"])) {
                 $birthdate = $row['adminBirthdate'];
                 $biography = $row['adminBiography'];
                 $qualification = $row['adminQualification'];
-
+                $imageStatus = $row['adminImage_status'];
               ?>
       <div class="profile">
         <div class="container-fluid">
@@ -164,13 +246,28 @@ if (isset($_POST["changePass"])) {
               </div>
             </div>
           </div>
+          
           <div class="row profile-details">
             <div class="col-xl-3">
               <div class="card card-coin">
-                <img src="asset/image/short-emp.jpg" alt="">
+                <?php 
+                if($imageStatus == 1)
+                {
+                  echo "<img src='upload/profile".$prefix.$id.".jpg' height='340' width='340'>";
+                }
+                else{
+                  echo "<img src='asset/image/short-emp.jpg'>";
+                }
+              ?>
               </div>
             </div>
             <div class="col-xl-9 m-t35 my-auto">
+            <?php
+			    	if(isset($msg))
+				    {
+				     echo $msg;
+				    }
+			      ?>
               <div class="row">
                 <div class="mr-auto pr-3">
                   <h2 class="font-w300 mb-sm-2 mb-1 text-black"><?php echo $name ?></h2>
@@ -340,31 +437,21 @@ if (isset($_POST["changePass"])) {
           <h5 class="modal-title" id="uploadImage">Upload Profile Picture or Cover</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="upload.php" method="POST">
+        <form action=" " method="POST" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="mb-3">
               <label>Upload Profile Picture</label>
-              <input type="file" name="img[]" class="file-upload-default">
+              <input type="file" name="imageAdmin" class="form-control">
               <div class="input-group col-xs-12">
                 <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                 <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                  <button class="file-upload-browse btn btn-primary" name="uploadPic" type="submit">Upload</button>
                 </span>
               </div>
             </div>
-            <div class="mb-3">
-              <label>Upload Cover Photo</label>
-              <input type="file" name="img[]" class="file-upload-default">
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                </span>
-              </div>
-            </div> 
           
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" name="uploadPic" >Save</button>
+          <!-- <button type="submit" class="btn btn-success" name="" >Save</button> -->
         </div>
         </form>
       </div>

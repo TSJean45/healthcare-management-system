@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $email = $_POST["Email"];
   $password = $_POST["Password"];
+  
+  
+
 
   if (!empty($email) && !empty($password)) {
     $adminSql = "SELECT * FROM `admin` where adminEmail = '" . $email . "' AND adminPassword= '" . $password . "'";
@@ -25,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Arow = mysqli_fetch_array($adminResult);
     $Urow = mysqli_fetch_array($userResult);
     $Srow = mysqli_fetch_array($staffResult);
+    $msg = ' ';
 
 
     if ($Urow["userPrefix"] == "U") {
@@ -39,16 +43,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['staffName'] = $Srow['staffName'];
       $_SESSION['staffId'] = $Srow['staffId'];
       header("location:staffdashboard.php");
-    } else {
-      echo "<script type='text/javascript'>alert('Username or Password Incorrect ');</script>";
+    } 
+    else 
+    {
+       $msg = '<div class="alert alert-danger" role="alert">
+                 Username or Password Incorrect.</div>';
+      
     }
   } else {
-    echo "<script type='text/javascript'>alert('Please fill in the details');</script>";
+      $msg =  '<div class="alert alert-danger" role="alert">
+      Please fill in the details.</div>';
   }
+  }
+  
   //end
 
 
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -61,20 +72,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="asset/css/footer.css">
   <link rel="stylesheet" href="asset/css/login.css">
   <title> Login </title>
+  <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
   <?php include('asset/includes/cssCDN.php'); ?>
 </head>
 
 <body>
   <?php include('asset/includes/navBar.php'); ?>
 
+  
   <div class="login-page">
     <div class="form">
       <div class="login">
         <div class="login-header">
-          <h3> JJJ E-Healtcare</h3>
+          <h3> JJJ E-Healthcare</h3>
           <h2>LOGIN</h2>
           <p>Please enter your credentials to login.</p>
-
+          <?php 
+             if(isset($msg))
+             {
+               echo $msg;
+             }
+          ?>
+          
         </div>
       </div>
       <form class="login-form" method="POST">
@@ -85,6 +104,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </form>
     </div>
   </div>
+
+  <!--Footer -->
+  <?php include('asset/includes/footer.php'); ?>
+  
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

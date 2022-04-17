@@ -31,7 +31,28 @@ include 'connection.php';
             <div class="right-nav">
                 <div class="profile dropdown">
                     <div>
-                        <img src="asset/image/profile1.jpg">
+                    <?php 
+          $currentUser = $_SESSION['staffId'];
+          $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
+
+          $result=mysqli_query($data,$sql);
+
+          if($result){
+            while($row = mysqli_fetch_assoc($result)){
+                $prefix = $row['staffPrefix'];
+                $id = $row['staffId'];
+                $imageStatus = $row['staffImage_status'];
+                
+                if($imageStatus == 1)
+                {
+                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
+                }
+                else{
+                  echo "<img src='asset/image/short-emp.jpg'>";
+                }
+            }
+          }
+          ?>
                         <?php
 
                         $currentUser = $_SESSION['staffId'];

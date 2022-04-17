@@ -116,6 +116,10 @@ Staff Profile
 .home-section .home-content .profile .profile-details {
   margin-top: 20px;
 }
+
+.ProfilePic{
+  width:5px;
+}
 /*-------------------------------------------------------------------
 Staff List
 ----------------------------------------------------------------------*/

@@ -3,6 +3,11 @@ session_start();
 
 include 'connection.php';
 
+if(!isset($_SESSION['userName']))
+{
+  header( "refresh:0;url=index.php#login-again-to-get-access" );
+}
+
 ?>
 <!DOCTYPE html>
 <html>

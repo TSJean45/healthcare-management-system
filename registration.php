@@ -23,13 +23,14 @@ if(!empty($email)&&!empty($password)&&!empty($name)&&!empty($cpassword))
 
 		  if (mysqli_num_rows($res_u) > 0) 
 		  {
-			echo "<script type='text/javascript'>alert('name taken, return');</script>";
+			$msg =  '<div class="alert alert-danger" role="alert">
+			Name taken, return.</div>';
 			
 		  }
 		  else if(mysqli_num_rows($res_e) > 0)
 		  {
-			echo "<script type='text/javascript'>alert('email taken, return');</script>";
-			
+			$msg =  '<div class="alert alert-danger" role="alert">
+			Email taken, return.</div>';
 		  }
 		  else
 		  {
@@ -39,25 +40,29 @@ if(!empty($email)&&!empty($password)&&!empty($name)&&!empty($cpassword))
 				
 				$r = mysqli_query($data,$sql);
 				
-				echo "<script type='text/javascript'>alert('register successfully, Heading to login in 5 secs');</script>";
+				$msg =  '<div class="alert alert-success" role="alert">
+							Register successfully, heading to login. </div>';
 	
-				header( "refresh:3;url=login.php" );
+				header( "refresh:2;url=login.php" );
 	
 				if(!$r){
-					echo"<p align=center>Error</p>";
-					echo "<script type='text/javascript'>alert('Error');</script>";
+					$msg =  '<div class="alert alert-danger" role="alert">
+					Error.</div>';
 				}
 			}
 			else{
-				echo "<script type='text/javascript'>alert('Password does not matched');</script>";
+				$msg =  '<div class="alert alert-danger" role="alert">
+				Password does not matched.</div>';
 			}
 		  }
 		}
 		else{
-			echo "<script type='text/javascript'>alert('Please fill in the required information');</script>";
+			$msg =  '<div class="alert alert-danger" role="alert">
+			Please fill in the required information.</div>';
 			
 		}
 	}	
+
 
 ?>
 
@@ -81,9 +86,16 @@ if(!empty($email)&&!empty($password)&&!empty($name)&&!empty($cpassword))
       <div class="form">
         <div class="login">
           <div class="login-header">
-		  	<h3> JJJ E-Healtcare</h3>
+		  	<h3> JJJ E-Healthcare</h3>
             <h2>Register</h2>
             <p>Please enter your credentials to sign up.</p>
+			<?php
+				if(isset($msg))
+				{
+				  echo $msg;
+				}
+			 
+			?>
 			
           </div>
         </div>
@@ -97,6 +109,8 @@ if(!empty($email)&&!empty($password)&&!empty($name)&&!empty($cpassword))
         </form>
       </div>
     </div>
+
+	<?php include('asset/includes/footer.php'); ?>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

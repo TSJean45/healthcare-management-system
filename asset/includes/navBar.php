@@ -66,11 +66,24 @@
               </li>
             <?php
             }
+            else
+            {
             ?>
+            <li class="nav-item dropdown px-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Patient Care</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a href="login.php" class="dropdown-item">Consultation Appointment</a>
+                  <a href="login.php" class="dropdown-item">Vaccination Appointment</a>
+                </div>
+              </li>
+            <?php
+            }
+            ?>
+
             <li class="nav-item dropdown px-2">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Hub</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a href="meddirec.html#meet-staff" class="dropdown-item">Medical Staff's Directory</a>
+                <a href="meddirec.php#meet-staff" class="dropdown-item">Medical Staff's Directory</a>
                 <!-- <a href="#" class="dropdown-item">Medical Library</a> -->
               </div>
             </li>

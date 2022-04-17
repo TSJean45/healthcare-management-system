@@ -1,6 +1,135 @@
 <?php
 session_start();
 include 'connection.php';
+
+
+if(!isset($_SESSION['userName']))
+{
+  header( "refresh:0;url=index.php#login-again-to-get-access" );
+}
+
+//add
+if (isset($_POST["addBtn"])) {
+
+  $loggedInUser = $_SESSION['userId'];
+  $newName = $_POST["newName"];
+  $newPhone = $_POST["newPhone"];
+  $newGender = $_POST["newGender"];
+  $newBirthdate = $_POST["newBirthdate"];
+  $newAddress = $_POST["newAddress"];
+  $newEmail = $_POST["newEmail"];
+
+  $editSql = "UPDATE `user` SET `userName`='$newName',`userPhone_number`='$newPhone',`userGender`='$newGender',`userBirthdate`='$newBirthdate'
+, `userAddress`='$newAddress', `userEmail`='$newEmail'  WHERE `userId`='$loggedInUser'";
+  $editResult = mysqli_query($data, $editSql);
+  // echo "<meta http-equiv='refresh' content='0'>";
+
+  if ($editResult) {
+    $msg =   '<div class="alert alert-success" role="alert">
+    Profile successfully updated.
+</div>';
+  } else {
+    $msg =  '<div class="alert alert-danger" role="alert">
+    Profile not updated.
+    </div>';
+  }
+}
+//change
+if (isset($_POST["changePass"])) {
+
+
+  $loggedInUser = $_SESSION['userName'];
+
+  $curPass = $_POST["curPass"];
+  $newPass = $_POST["newPass"];
+  $newCheckPass = $_POST["newCheckPass"];
+  if ($newPass  == $newCheckPass) {
+    if (!empty($curPass) && !empty($newPass) && !empty($newCheckPass)) {
+      $checkSql = "SELECT userPassword FROM user WHERE `userName`='$loggedInUser' AND `userPassword` = $curPass";
+      $checkResult = mysqli_query($data, $checkSql);
+
+      if (mysqli_num_rows($checkResult) === 1) {
+        $changepassSql = "UPDATE `user` SET `userPassword` ='$newPass'  WHERE `userName`='$loggedInUser'";
+        $changeResult = mysqli_query($data, $changepassSql);
+        echo "<meta http-equiv='refresh' content='0'>";
+
+        if ($changeResult) {
+          $msg = '<div class="alert alert-success" role="alert">
+          Password successfully changed.</div>';
+        } else {
+          $msg =  '<div class="alert alert-danger" role="alert">
+          Password not changed.</div>';
+        }
+      } else {
+        $msg =  '<div class="alert alert-danger" role="alert">
+        Incorrect password.</div>';
+      }
+    }
+  } else {
+    $msg =  '<div class="alert alert-danger" role="alert">
+    Password does not matched.</div>';
+  }
+}
+//pic
+if(isset($_POST['uploadPic'])){
+
+  $file = $_FILES['imageUser'];
+
+  // print_r($file);
+
+  $fileName = $_FILES['imageUser']['name'];
+  $fileTmpName = $_FILES['imageUser']['tmp_name'];
+  $fileSize = $_FILES['imageUser']['size'];
+  $fileError = $_FILES['imageUser']['error'];
+  $fileType = $_FILES['imageUser']['type'];
+
+  $fileExt = explode('.', $fileName);
+  $fileActualExt = strtolower(end($fileExt));
+
+  $allowed = array('jpg', 'jpeg', 'png');
+
+  if(in_array($fileActualExt, $allowed)){
+    if($fileError === 0){
+      if($fileSize <10000000){
+        $loggedInUser = $_SESSION['userId'];
+        $prefixSql = "SELECT * FROM `user` WHERE `userId` ='$loggedInUser'";
+
+        $prefixResult=mysqli_query($data,$prefixSql);
+            if($prefixResult){
+              while($row = mysqli_fetch_assoc($prefixResult)){
+                  $userPrefix = $row['userPrefix'];
+
+        $fileNameNew = "profile".$userPrefix.$loggedInUser.".".$fileActualExt;
+        $fileDestination = 'upload/'.$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+        $sql = "UPDATE `user` set `userImage_status`= 1 WHERE userId = '$loggedInUser' ";
+        $result = mysqli_query($data, $sql);
+        echo "<meta http-equiv='refresh' content='0'>";
+
+        $msg = '<div class="alert alert-success" role="alert">
+                    Photo has been uploaded.</div>';
+        }
+      }
+      else{
+        $msg =  '<div class="alert alert-danger" role="alert">
+                  File uploaded is too big.</div>';
+        
+      }
+    }
+    else{
+      $msg =  '<div class="alert alert-danger" role="alert">
+              There was an error uploading your image.</div>';
+       
+    }
+  }
+  else{
+    $msg =  '<div class="alert alert-danger" role="alert">
+    You cannot upload files of this type.</div>';
+    
+  }
+}
+}
+
 ?>
 <!DoCTYPE html>
 <html>
@@ -21,8 +150,30 @@ include 'connection.php';
     <div class="card mb-3">
       <div class="row g-0">
         <div class="col-md-3">
-          <img src="asset/image/short-emp.jpg" class="img-fluid rounded-start" alt="Profile picture">
+        <?php 
+          $currentUser = $_SESSION['userId'];
+          $sql = "SELECT * FROM user WHERE userId ='$currentUser'";
+
+          $result=mysqli_query($data,$sql);
+
+          if($result){
+            while($row = mysqli_fetch_assoc($result)){
+                $prefix = $row['userPrefix'];
+                $id = $row['userId'];
+                $imageStatus = $row['userImage_status'];
+                
+                if($imageStatus == 1)
+                {
+                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
+                }
+                else{
+                  echo "<img src='asset/image/short-emp.jpg'>";
+                }
+              }
+            }
+          ?>
           <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editUserProfile" style="margin-top: 10px;">Edit Profile</button>
+          <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#uploadImage" style="margin-top: 10px;"> Upload Image </button>
           <button type="button" class="btn btn-warning" style="margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#changePass">
             Change Password
           </button>
@@ -30,67 +181,12 @@ include 'connection.php';
         <div class="col-md-9">
           <div class="card-body">
             <h5 class="card-title">My Profile</h5>
-            <?php if (isset($_POST["submit"])) {
-
-              $loggedInUser = $_SESSION['userId'];
-              $newName = $_POST["newName"];
-              $newPhone = $_POST["newPhone"];
-              $newGender = $_POST["newGender"];
-              $newBirthdate = $_POST["newBirthdate"];
-              $newAddress = $_POST["newAddress"];
-              $newEmail = $_POST["newEmail"];
-
-              $editSql = "UPDATE `user` SET `userName`='$newName',`userPhone_number`='$newPhone',`userGender`='$newGender',`userBirthdate`='$newBirthdate'
-            , `userAddress`='$newAddress', `userEmail`='$newEmail'  WHERE `userId`='$loggedInUser'";
-              $editResult = mysqli_query($data, $editSql);
-              echo "<meta http-equiv='refresh' content='0'>";
-
-              if ($editResult) {
-                echo '<div class="alert alert-success" role="alert">
-                Profile successfully updated.
-            </div>';
-              } else {
-                echo '<div class="alert alert-danger" role="alert">
-                Profile not updated.
-            </div>';
-              }
-            }
-
-            if (isset($_POST["changePass"])) {
-
-
-              $loggedInUser = $_SESSION['userName'];
-
-              $curPass = $_POST["curPass"];
-              $newPass = $_POST["newPass"];
-              $newCheckPass = $_POST["newCheckPass"];
-              if ($newPass  == $newCheckPass) {
-                if (!empty($curPass) && !empty($newPass) && !empty($newCheckPass)) {
-                  $checkSql = "SELECT userPassword FROM user WHERE `userName`='$loggedInUser' AND `userPassword` = $curPass";
-                  $checkResult = mysqli_query($data, $checkSql);
-
-                  if (mysqli_num_rows($checkResult) === 1) {
-                    $changepassSql = "UPDATE `user` SET `userPassword` ='$newPass'  WHERE `userName`='$loggedInUser'";
-                    $changeResult = mysqli_query($data, $changepassSql);
-                    echo "<meta http-equiv='refresh' content='0'>";
-
-                    if ($changeResult) {
-                      echo '<div class="alert alert-success" role="alert">
-                      Password successfully changed.</div>';
-                    } else {
-                      echo '<div class="alert alert-danger" role="alert">
-                      Password not changed.</div>';
-                    }
-                  } else {
-                    echo '<div class="alert alert-danger" role="alert">
-                    Incorrect password.</div>';
-                  }
-                }
-              } else {
-                echo '<div class="alert alert-danger" role="alert">
-                Password does not matched.</div>';
-              }
-            } ?>
+            <?php
+			    	if(isset($msg))
+				    {
+				     echo $msg;
+				    }
+			      ?>
             <div class="table-responsive">
               <table class="table table-bordered table-condensed table-striped">
                 <thead>
@@ -195,7 +291,7 @@ include 'connection.php';
               <input type="text" name="newAddress" class="form-control" id="inputPosition" value="<?php echo $address ?>">
             </div>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" name="submit" class="btn btn-success">Submit</button>
+            <button type="submit" name="addBtn" class="btn btn-success">Submit</button>
           </div>
         </form>
       </div>
@@ -228,6 +324,34 @@ include 'connection.php';
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-success" name="changePass">Change Password</button>
           </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Image Modal -->
+  <div class="modal fade" id="uploadImage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadImage" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadImage">Upload Profile Picture or Cover</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="mb-3">
+              <label>Upload Profile Picture</label>
+              <input type="file" name="imageUser" class="form-control">
+              <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                  <button class="file-upload-browse btn btn-primary" name="uploadPic" type="submit">Upload</button>
+                </span>
+              </div>
+            </div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- <button type="submit" class="btn btn-success" name="" >Save</button> -->
+        </div>
+        </form>
       </div>
     </div>
   </div>
