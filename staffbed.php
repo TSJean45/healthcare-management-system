@@ -1,52 +1,6 @@
 <?php
 session_start();
 include 'connection.php';
-
-if (isset($_POST["addBtn"])) {
-    $location = $_POST["inputLocation"] ?? "";
-    $depart = $_POST["inputDepartment"] ?? "";
-    $status = $_POST["inputBedStatus"] ?? "";
-    $userID = $_POST["inputUserID"] ?? "";
-
-    $addSql = "INSERT INTO `bed` (`bedLocation`,`bedDepartment`,`bedStatus`,`userID`) VALUES ('$location','$depart','$status', '$userID')";
-    $result = mysqli_query($data, $addSql);
-
-    if ($result) {
-        echo '<script> alert("Data added"); </script>';
-    } else {
-        echo '<script> alert("Data not added"); </script>';
-    }
-}
-
-if (isset($_POST["editBtn"])) {
-    $id = $_POST["editID"];
-    $location = $_POST["editLocation"] ?? "";
-    $depart = $_POST["editDepartment"] ?? "";
-    $status = $_POST["editBedStatus"] ?? "";
-    $userID = $_POST["editUserID"] ?? "";
-
-    $editSql = "UPDATE `bed` SET `bedLocation`='$location',`bedDepartment`='$depart',`bedStatus`='$status',`userID`='$userID' WHERE `bedID`='$id'";
-    $result = mysqli_query($data, $editSql);
-
-    if ($result) {
-        echo '<script> alert("Data updated"); </script>';
-    } else {
-        echo '<script> alert("Data not updated"); </script>';
-    }
-}
-
-if (isset($_POST['deleteBtn'])) {
-    $id = $_POST["deleteID"];
-
-    $deleteSql = "DELETE FROM `bed` WHERE `bedID`=$id";
-    $result = mysqli_query($data, $deleteSql);
-
-    if ($result) {
-        echo '<script> alert("Data deleted"); </script>';
-    } else {
-        echo '<script> alert("Data not deleted"); </script>';
-    }
-}
 ?>
 <!DOCTYPE html>
 
@@ -78,22 +32,23 @@ if (isset($_POST['deleteBtn'])) {
                 <div class="profile dropdown">
                     <div>
                         <img src="asset/image/profile1.jpg">
-                        <?php 
+                        <?php
 
-            $currentUser = $_SESSION['staffId'];
-            $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
-  
-            $result=mysqli_query($data,$sql);
-  
-            if($result){
-              while($row = mysqli_fetch_assoc($result)){
-                  $staffName = $row['staffName'];
-                  
-            ?>
+                        $currentUser = $_SESSION['staffId'];
+                        $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
 
-            <span class="profile_name"><?php echo $staffName ?></span>
+                        $result = mysqli_query($data, $sql);
 
-            <?php } } ?>
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $staffName = $row['staffName'];
+
+                        ?>
+
+                                <span class="profile_name"><?php echo $staffName ?></span>
+
+                        <?php }
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -103,21 +58,75 @@ if (isset($_POST['deleteBtn'])) {
         <div class="home-content">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="row mt-2 mx-2">
-                        <div class="col-lg-5">
-                            <h4 class="card-title">Bed</h4>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="d-flex flex-row-reverse">
-                                <div class="mx-1">
-                                    <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addData">
-                                        Add Bed
-                                    </button>
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-lg-5">
+                                <h4 class="card-title">Bed</h4>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="d-flex flex-row-reverse">
+                                    <div class="mx-1">
+                                        <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addData">
+                                            Add Bed
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
+                        <?php if (isset($_POST["addBtn"])) {
+                            $location = $_POST["inputLocation"] ?? "";
+                            $depart = $_POST["inputDepartment"] ?? "";
+                            $status = $_POST["inputBedStatus"] ?? "";
+                            $userID = $_POST["inputUserID"] ?? "";
+
+                            $addSql = "INSERT INTO `bed` (`bedLocation`,`bedDepartment`,`bedStatus`,`userID`) VALUES ('$location','$depart','$status', '$userID')";
+                            $result = mysqli_query($data, $addSql);
+
+                            if ($result) {
+                                echo '<div class="alert alert-success" role="alert">
+                                Bed is successfully added.</div>';
+                            } else {
+                                echo '<div class="alert alert-danger" role="alert">
+                                Error! Bed is not added. Please try again later.
+                            </div>';
+                            }
+                        }
+
+                        if (isset($_POST["editBtn"])) {
+                            $id = $_POST["editID"];
+                            $location = $_POST["editLocation"] ?? "";
+                            $depart = $_POST["editDepartment"] ?? "";
+                            $status = $_POST["editBedStatus"] ?? "";
+                            $userID = $_POST["editUserID"] ?? "";
+
+                            $editSql = "UPDATE `bed` SET `bedLocation`='$location',`bedDepartment`='$depart',`bedStatus`='$status',`userID`='$userID' WHERE `bedID`='$id'";
+                            $result = mysqli_query($data, $editSql);
+
+                            if ($result) {
+                                echo '<div class="alert alert-success" role="alert">
+                                Bed is successfully updated.</div>';
+                            } else {
+                                echo '<div class="alert alert-danger" role="alert">
+                                Error! Bed is not updated. Please try again later.
+                            </div>';
+                            }
+                        }
+
+                        if (isset($_POST['deleteBtn'])) {
+                            $id = $_POST["deleteID"];
+
+                            $deleteSql = "DELETE FROM `bed` WHERE `bedID`=$id";
+                            $result = mysqli_query($data, $deleteSql);
+
+                            if ($result) {
+                                echo '<div class="alert alert-success" role="alert">
+                                Bed is successfully deleted.</div>';
+                            } else {
+                                echo '<div class="alert alert-danger" role="alert">
+                                Error! Bed is not deleted. Please try again later.
+                            </div>';
+                            }
+                        } ?>
                         <div class="table-responsive table-wardStatus">
                             <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                                 <thead>
@@ -125,7 +134,7 @@ if (isset($_POST['deleteBtn'])) {
                                     <th> Location </th>
                                     <th> Department </th>
                                     <th> Bed Status </th>
-                                    <th>User Name</th>
+                                    <th>Patient Name</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
@@ -208,7 +217,7 @@ if (isset($_POST['deleteBtn'])) {
                                                                 <?php
                                                                 $searchSql = "SELECT * FROM `user`";
                                                                 $search = mysqli_query($data, $searchSql); ?>
-                                                                <label for="editUserID" class="form-label">User Name</label>
+                                                                <label for="editUserID" class="form-label">Patient Detail</label>
                                                                 <select id="editUserID" class="form-control select2me" name="editUserID" title="Select User">
                                                                     <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
                                                                         <?php $uid = $fetch['userId'];
@@ -304,9 +313,9 @@ if (isset($_POST['deleteBtn'])) {
                             <?php
                             $searchSql = "SELECT * FROM `user`";
                             $search = mysqli_query($data, $searchSql); ?>
-                            <label for="inputUserID" class="form-label">User Name</label>
+                            <label for="inputUserID" class="form-label">Patient Detail</label>
                             <select id="inputUserID" class="form-select select2me" name="inputUserID">
-                                <option value="">Select User</option>
+                                <option value="" disabled selected>Select Patient</option>
                                 <?php while ($fetch = mysqli_fetch_array($search)) :; ?>
                                     <?php $id = $fetch['userId'];
                                     $prefix = $fetch['userPrefix'];

@@ -132,9 +132,22 @@ Staff List
 /*-------------------------------------------------------------------
 Action Button
 ----------------------------------------------------------------------*/
-.home-section .home-content .action-button .fa-edit {
+.home-section .home-content .action-button .fa-check {
   background-color: green;
   color: white;
+  font-size: 20px;
+  padding: 5px;
+}
+.home-section .home-content .action-button .fa-times{
+  background-color: red;
+  color: white;
+  width: 30px;
+  font-size: 20px;
+  padding: 5px;
+}
+.home-section .home-content .action-button .fa-edit {
+  background-color: yellow;
+  color: black;
   font-size: 20px;
   padding: 5px;
 }
@@ -180,4 +193,10 @@ Bed Status
 .table #schedule:before {
   margin-right: 10px;
   color: rgb(0, 0, 0);
+}
+/*-------------------------------------------------------------------
+Hdie Table Row
+----------------------------------------------------------------------*/
+.hide-row{ 
+  display:none; 
 }

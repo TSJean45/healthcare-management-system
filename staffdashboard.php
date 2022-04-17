@@ -28,29 +28,26 @@ include 'connection.php'; ?>
         <span class="dashboard">Main Dashboard</span>
       </div>
       <div class="right-nav">
-        <div class="right noti-bell my-auto">
-          <i class='bx bxs-bell-ring'></i>
-        </div>
-
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <?php 
+            <?php
 
             $currentUser = $_SESSION['staffId'];
             $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
-  
-            $result=mysqli_query($data,$sql);
-  
-            if($result){
-              while($row = mysqli_fetch_assoc($result)){
-                  $staffName = $row['staffName'];
-                  
+
+            $result = mysqli_query($data, $sql);
+
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $staffName = $row['staffName'];
+
             ?>
 
-            <span class="profile_name"><?php echo $staffName ?></span>
+                <span class="profile_name"><?php echo $staffName ?></span>
 
-            <?php } } ?>
+            <?php }
+            } ?>
           </div>
         </div>
       </div>
@@ -73,14 +70,20 @@ include 'connection.php'; ?>
                         <i class='bx bxs-user one'></i>
                         <div class="indicator">
                           <i class='bx bxs-right-arrow-circle'></i>
-                          <a href="staffUserlist.html" class="text">Head Over</a>
+                          <a href="staffUserlist.php" class="text">Head Over</a>
                         </div>
                       </div>
                       <div class="col-xl-7 col-sm-7">
-                        <h2 class="text-black mb-2 font-w600">65</h2>
-                        <p class="mb-0 fs-13 box-topic">
-                          Total User
-                        </p>
+                        <?php
+                        $count = "SELECT * FROM `user`";
+                        if ($result = mysqli_query($data, $count)) {
+                          $userCount = mysqli_num_rows($result);
+                        ?>
+                          <h2 class="text-black mb-2 font-w600"><?php echo $userCount ?></h2>
+                          <p class="mb-0 fs-13 box-topic">
+                            Total User
+                          </p>
+                        <?php  } ?>
                       </div>
                     </div>
                   </div>
@@ -94,14 +97,22 @@ include 'connection.php'; ?>
                         <i class="fas fa-syringe two"></i>
                         <div class="indicator second">
                           <i class='bx bxs-right-arrow-circle second'></i>
-                          <a href="staffVac.html" class="text">Head Over</a>
+                          <a href="staffVac.php" class="text">Head Over</a>
                         </div>
                       </div>
                       <div class="col-xl-7 col-sm-7">
-                        <h2 class="text-black mb-2 font-w600">10</h2>
-                        <p class="mb-0 fs-13 box-topic">
-                          Vaccination
-                        </p>
+                        <?php
+                        $cancel = "Cancelled";
+                        $complete = "Completed";
+                        $count = "SELECT * FROM `vaccine` WHERE `vaccineStatus`!='$cancel' AND `vaccineStatus`!='$complete'";
+                        if ($result = mysqli_query($data, $count)) {
+                          $vaccineCount = mysqli_num_rows($result);
+                        ?>
+                          <h2 class="text-black mb-2 font-w600"><?php echo $vaccineCount ?></h2>
+                          <p class="mb-0 fs-13 box-topic">
+                            Vaccination
+                          </p>
+                        <?php  } ?>
                       </div>
                     </div>
                   </div>
@@ -115,14 +126,22 @@ include 'connection.php'; ?>
                         <i class='bx bxs-calendar three i'></i>
                         <div class="indicator">
                           <i class='bx bxs-right-arrow-circle third'></i>
-                          <a href="staffApp.html" class="text">Head Over</a>
+                          <a href="staffApp.php" class="text">Head Over</a>
                         </div>
                       </div>
                       <div class="col-xl-7 col-sm-7">
-                        <h2 class="text-black mb-2 font-w600">3</h2>
-                        <p class="mb-0 fs-13 box-topic">
-                          Appointment
-                        </p>
+                        <?php
+                        $cancel = "Cancelled";
+                        $complete = "Completed";
+                        $count = "SELECT * FROM `appointment` WHERE `appointmentStatus`!='$cancel' AND `appointmentStatus`!='$complete'";
+                        if ($result = mysqli_query($data, $count)) {
+                          $appCount = mysqli_num_rows($result);
+                        ?>
+                          <h2 class="text-black mb-2 font-w600"><?php echo $appCount ?></h2>
+                          <p class="mb-0 fs-13 box-topic">
+                            Appointment
+                          </p>
+                        <?php  } ?>
                       </div>
                     </div>
                   </div>
@@ -141,7 +160,8 @@ include 'connection.php'; ?>
                       </div>
                       <div class="col-xl-7 col-sm-7">
                         <?php
-                        $count = "SELECT * FROM `medstock` WHERE `stockQty`<=200";
+                        $currentDate = date("Y-m-d");
+                        $count = "SELECT * FROM `medstock` WHERE `stockQty`<=200 AND `stockExpDate`>='$currentDate'";
                         if ($result = mysqli_query($data, $count)) {
                           $rowCount = mysqli_num_rows($result);
                         ?>
@@ -167,116 +187,62 @@ include 'connection.php'; ?>
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row ">
-              <div class="col-lg-6 grid-margin stretch-card">
+              <div class="col-xl-5 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Recent Registered User</h4>
+                    <h4 class="card-title">Recent Vaccination Appointment</h4>
                     <div class="table-responsive">
                       <table class="table table-hover table-condensed">
                         <thead>
                           <tr>
-                            <th>Username</th>
                             <th>ID</th>
-                            <th>Date Joined</th>
+                            <th>Patient Detail</th>
+                            <th>Vaccine</th>
                             <th>Status</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Jacob</td>
-                            <td>53275531</td>
-                            <td>6/2/2022</td>
-                            <td><button type="button" class="btn btn-danger">New</button></td>
-                          </tr>
-                          <tr>
-                            <td>Messsy</td>
-                            <td>53275532</td>
-                            <td>6/2/2022</td>
-                            <td><button type="button" class="btn btn-danger">New</button></td>
-                          </tr>
-                          <tr>
-                            <td>John</td>
-                            <td>53275533</td>
-                            <td>6/2/2022</td>
-                            <td><button type="button" class="btn btn-danger">New</button></td>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>53275534</td>
-                            <td>6/2/2022</td>
-                            <td><button type="button" class="btn btn-danger">New</button></td>
-                          </tr>
-                          <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td>6/2/2022</td>
-                            <td><button type="button" class="btn btn-danger">New</button></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="d-flex flex-row-reverse">
-                        <a href="staffUserList.php">
-                          <button type="button" class="btn btn-primary">See All</button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Vaccination</h4>
-                    <div class="table-responsive">
-                      <table class="table table-hover table-condensed">
-                        <thead>
-                          <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Date</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Jacob</td>
-                            <td>gimp23@osmye.com</td>
-                            <td>6/2/2022</td>
-                          </tr>
-                          <tr>
-                            <td>Messsy</td>
-                            <td>aristotales@convoith.com</td>
-                            <td>6/2/2022</td>
-                          </tr>
-                          <tr>
-                            <td>John</td>
-                            <td>aristotales@convoith.com</td>
-                            <td>6/2/2022</td>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>okyou0327@eluvit.com</td>
-                            <td>6/2/2022</td>
-                          </tr>
-                          <tr>
-                            <td>Dave</td>
-                            <td>moqehycaxas@eloltsf.com</td>
-                            <td>6/2/2022</td>
-                          </tr>
-                          <tr>
-                            <td>Dave</td>
-                            <td>shaneotd@tampicobrush.org</td>
-                            <td>6/2/2022</td>
-                          </tr>
-                          <tr>
-                            <td>Dave</td>
-                            <td>jeremyt@how2t.site</td>
-                            <td>6/2/2022</td>
-                          </tr>
+                          <?php
+                          $viewSql = "SELECT * FROM `vaccine`INNER JOIN  `user` ON  vaccine.userId = user.userId ORDER BY `vaccineId` DESC LIMIT 5";
+                          $result = mysqli_query($data, $viewSql);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            $vpre = $row['vaccinePrefix'];
+                            $vid = $row['vaccineId'];
+                            $upre = $row['userPrefix'];
+                            $uid = $row['userId'];
+                            $uname = $row['userName'];
+                            $brand = $row['vaccineBrand'];
+                            $status = $row['vaccineStatus'];
 
+                            if ($status == "Booked") {
+                              $color = "btn-secondary";
+                            } else if ($status == "Scheduled") {
+                              $color = "btn-warning";
+                            } else if ($status == "Confirmed") {
+                              $color = "btn-success";
+                            } else if ($status == "Cancelled") {
+                              $color = "btn-danger";
+                            } else if ($status == "Completed") {
+                              $color = "btn-primary";
+                            }
+                          ?>
+                            <tr>
+                              <td><?php echo $vpre . "" . $vid; ?></td>
+                              <td><?php echo $upre . "" . $uid . " - " . $uname; ?></td>
+                              <td><?php echo $brand; ?></td>
+                              <td>
+                                <button type="button" class="btn <?php echo $color; ?>">
+                                  <?php echo $status; ?>
+                                </button>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
                         </tbody>
                       </table>
                       <div class="d-flex flex-row-reverse">
-                        <a href="staffVac.php">
+                        <a href="staffStock.PHP">
                           <button type="button" class="btn btn-primary">See All</button>
                         </a>
                       </div>
@@ -284,7 +250,7 @@ include 'connection.php'; ?>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-12 grid-margin stretch-card">
+              <div class="col-xl-7 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Medicine Stock</h4>
@@ -321,6 +287,14 @@ include 'connection.php'; ?>
                               } else if ($per > 75) {
                                 $color = "bg-success";
                               }
+
+                              if ($expDate < $currentDate) {
+                                $warning = "fas fa-exclamation-triangle";
+                                $expired = "error";
+                              } else {
+                                $warning = "";
+                                $expired = "";
+                              }
                           ?>
                               <tr>
                                 <td><?php echo $prefix . "" . $id; ?></td>
@@ -331,7 +305,8 @@ include 'connection.php'; ?>
                                   </div>
                                 </td>
                                 <td><?php echo $qty; ?></td>
-                                <td><?php echo $expDate; ?></td>
+                                <td class="expiration">
+                                  <?php echo $expDate; ?><i class="exp <?php echo $warning; ?>" style="color:rgba(150, 0, 0); margin-left: 10px;"></i></td>
                               </tr>
                           <?php  }
                           }
@@ -352,59 +327,6 @@ include 'connection.php'; ?>
         </div>
       </div>
   </section>
-
-  <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Are you sure that you want to delete the selected data?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success">Yes</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="editStock" tabindex="-1" aria-labelledby="editStockLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editStock">Edit Stock Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="inputStockID" class="form-label">Stock ID</label>
-              <input type="text" class="form-control" id="inputStockID">
-            </div>
-            <div class="mb-3">
-              <label for="inputStockName" class="form-label">Stock Name</label>
-              <input type="text" class="form-control" id="inputStockName">
-            </div>
-            <div class="mb-3">
-              <label for="inputStockAmount" class="form-label">Stock Amount</label>
-              <input type="text" class="form-control" id="inputStockAmount">
-            </div>
-            <div class="mb-3">
-              <label for="inputStockExpire" class="form-label">Stock Expiration Date</label>
-              <input type="date" class="form-control" id="inputStockExpire">
-            </div>
-          </form>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Save Changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <?php include('asset/includes/jsCDN.php'); ?>
 

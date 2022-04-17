@@ -20,7 +20,7 @@ if (!isset($_SESSION['staffName'])) {
             <li class="item">
                 <a <?php echo ($page == 'staffUserList') ? "class='active'" : ""; ?> href="staffUserList.php">
                     <i class='fa fa-user fa-xs'></i>
-                    <span class="links_name">User</span>
+                    <span class="links_name">Patient</span>
                 </a>
             </li>
             <li class="item">

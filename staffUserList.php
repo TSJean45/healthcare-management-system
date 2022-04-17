@@ -32,8 +32,7 @@ if (isset($_POST['deleteBtn'])) {
   } else {
     echo '<script> alert("Data not deleted"); </script>';
   }
-
-  }
+}
 
 // edit data
 if (isset($_POST['editBtn'])) {
@@ -50,8 +49,7 @@ if (isset($_POST['editBtn'])) {
   } else {
     echo '<script> alert("Data not updated"); </script>';
   }
-
-  }
+}
 ?>
 <!DOCTYPE html>
 
@@ -101,7 +99,7 @@ if (isset($_POST['editBtn'])) {
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-          <div class="row mb-2">
+            <div class="row mb-2">
               <div class="col-lg-5">
                 <h4 class="card-title">Patient List</h4>
               </div>
@@ -109,7 +107,7 @@ if (isset($_POST['editBtn'])) {
                 <div class="d-flex flex-row-reverse">
                   <div class="mx-1">
                     <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
-                     Add User
+                      Add Patient
                     </button>
                   </div>
                 </div>
@@ -126,184 +124,184 @@ if (isset($_POST['editBtn'])) {
                     <th>Date Joined</th>
                     <th> Action </th>
                   </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                   <?php
-                         $viewSql = "SELECT * FROM user";
-                         $result=mysqli_query($data,$viewSql);
-                         
-                          if($result){
-                            while($row = mysqli_fetch_assoc($result))
-                            {
-                              $prefix = $row['userPrefix'];
-                              $id = $row['userId'];
-                              $name = $row['userName'];
-                              $email = $row['userEmail'];
-                              $date = $row['userDate_created'];
-                              $birthdate = $row['userBirthdate'];
-                              $number = $row['userPhone_number'];
-                              $gender = $row['userGender'];
-                              $address = $row['userAddress'];
-                            
-                        ?>   
-                            <tr>
-                                <td class="py-1">
-                                <?php echo $name ?>
-                                </td>
-                                <td><?php echo $prefix . "" . $id; ?></td>
-                                <td>
-                                  <?php echo $email ?>
-                                </td>
-                                <td><?php echo $date ?></td>
-                                <td class="action-button">
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewProfile<?php echo $id; ?>">
-                                    <i class="fas fa-eye"></i></button>
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser<?php echo $id; ?>">
-                                    <i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
-                                    <i class="fas fa-trash-alt"></i></button>
-                              </td>
-                            </tr>
+                  $viewSql = "SELECT * FROM user";
+                  $result = mysqli_query($data, $viewSql);
 
-                    <!-- Delete Modal -->
-                    <div class="modal fade" id="deleteData<?php echo $id; ?>" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                  if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $prefix = $row['userPrefix'];
+                      $id = $row['userId'];
+                      $name = $row['userName'];
+                      $email = $row['userEmail'];
+                      $date = $row['userDate_created'];
+                      $birthdate = $row['userBirthdate'];
+                      $number = $row['userPhone_number'];
+                      $gender = $row['userGender'];
+                      $address = $row['userAddress'];
+
+                  ?>
+                      <tr>
+                        <td class="py-1">
+                          <?php echo $name ?>
+                        </td>
+                        <td><?php echo $prefix . "" . $id; ?></td>
+                        <td>
+                          <?php echo $email ?>
+                        </td>
+                        <td><?php echo $date ?></td>
+                        <td class="action-button">
+                          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#viewProfile<?php echo $id; ?>">
+                            <i class="fas fa-eye"></i></button>
+                          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#editUser<?php echo $id; ?>">
+                            <i class="fas fa-edit"></i></button>
+                          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#deleteData<?php echo $id; ?>">
+                            <i class="fas fa-trash-alt"></i></button>
+                        </td>
+                      </tr>
+
+                      <!-- Delete Modal -->
+                      <div class="modal fade" id="deleteData<?php echo $id; ?>" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="deleteDataLabel">Confirmation Message</h5>
+                            </div>
+                            <div class="modal-body">
+                              <form action="" method="POST">
+                                <div class="mb-3">
+                                  <input type="hidden" name="deleteID" value="<?php echo $id; ?>">
+                                </div>
+                                <div class="mb-3">
+                                  Are you sure that you want to delete the selected data?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-success" name="deleteBtn">Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                              </form>
+                            </div>
                           </div>
-                          <div class="modal-body">
-                            <form action="" method="POST">
-                              <div class="mb-3">
-                                <input type="hidden" name="deleteID" value="<?php echo $id; ?>">
-                              </div>
-                              <div class="mb-3">
-                                Are you sure that you want to delete the selected data?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" name="deleteBtn">Yes</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              </div>
+                        </div>
+                      </div>
+
+                      <!-- edit modal-->
+                      <div class="modal fade" id="editUser<?php echo $id; ?>" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="editUser">Edit Patient Details</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="" method="POST">
+                                <div class="mb-3">
+                                  <label for="inputStockID" class="form-label">Patient Name</label>
+                                  <input type="text" class="form-control" id="inputID" name="editName" value="<?php echo $name; ?>">
+                                </div>
+                                <div class="mb-3">
+                                  <input type="hidden" class="form-control" id="inputID" name="editId" value="<?php echo $id; ?>">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="inputStockName" class="form-label">Patient Email</label>
+                                  <input type="email" class="form-control" id="inputName" name="editEmail" value="<?php echo $email; ?>">
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-success" name="editBtn">Save Changes</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- add modal -->
+                      <div class="modal fade" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="addUser">Add User</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="" method="POST">
+                                <div class="mb-3">
+                                  <label for="inputName" class="form-label">User Name</label>
+                                  <input type="text" class="form-control" id="inputName" name="addName" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="inputID" class="form-label">User Email</label>
+                                  <input type="email" class="form-control" id="inputEmail" name="addEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="inputID" class="form-label">User Password</label>
+                                  <input type="password" class="form-control" id="inputPass" name="addPassword" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-success" name="addBtn">Add</button>
+                            </div>
                             </form>
                           </div>
                         </div>
                       </div>
-                    </div>         
 
-  <!-- edit modal-->
-  <div class="modal fade" id="editUser<?php echo $id; ?>" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editUser">Edit Patient Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="" method="POST">
-            <div class="mb-3">
-              <label for="inputStockID" class="form-label">Patient Name</label>
-              <input type="text" class="form-control" id="inputID" name="editName" value="<?php echo $name; ?>">
-            </div>
-            <div class="mb-3">
-              <input type="hidden" class="form-control" id="inputID" name="editId" value="<?php echo $id; ?>">
-            </div>
-            <div class="mb-3">
-              <label for="inputStockName" class="form-label">Patient Email</label>
-              <input type="email" class="form-control" id="inputName" name="editEmail" value="<?php echo $email; ?>">
-            </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success" name="editBtn">Save Changes</button>
-          </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+                      <!-- View Modal  -->
+                      <div class="modal fade" id="viewProfile<?php echo $id; ?>" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="viewProfile">View Patient Info</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="mb-3">
+                                <label for="viewName" class="form-label"> Name</label>
+                                <input type="text" class="form-control" value="<?php echo $name; ?>" readonly>
+                              </div>
+                              <div class="mb-3">
+                                <label for="viewEmail" class="form-label">Email</label>
+                                <input type="text" class="form-control" value="<?php echo $email; ?>" readonly>
+                              </div>
+                              <div class="mb-3">
+                                <label for="viewNumber" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" value="<?php echo $number; ?>" readonly>
+                              </div>
+                              <div class="mb-3">
+                                <label for="viewBirthdate" class="form-label">Birthdate</label>
+                                <input type="text" class="form-control" value="<?php echo $birthdate; ?>" readonly>
+                              </div>
+                              <div class="mb-3">
+                                <label for="viewAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" value="<?php echo $address; ?>" readonly>
+                              </div>
+                              <div class="mb-3">
+                                <label for="viewGender" class="form-label">Gender</label>
+                                <input type="text" class="form-control" value="<?php echo $gender; ?>" readonly>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-  <!-- add modal -->
-  <div class="modal fade" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addUser">Add User</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="" method="POST">
-            <div class="mb-3">
-              <label for="inputName" class="form-label">User Name</label>
-              <input type="text" class="form-control" id="inputName" name="addName" required>
-            </div>
-            <div class="mb-3">
-              <label for="inputID" class="form-label">User Email</label>
-              <input type="email" class="form-control" id="inputEmail" name="addEmail" required>
-            </div>
-            <div class="mb-3">
-              <label for="inputID" class="form-label">User Password</label>
-              <input type="password" class="form-control" id="inputPass" name="addPassword" required>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" name="addBtn" >Add</button>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>      
 
-  <!-- View Modal  -->
-  <div class="modal fade" id="viewProfile<?php echo $id; ?>"  aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="viewProfile">View Patient Info</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mb-3">
-              <label for="viewName" class="form-label"> Name</label>
-              <input type="text" class="form-control"  value="<?php echo $name; ?>" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewEmail" class="form-label">Email</label>
-              <input type="text" class="form-control"  value="<?php echo $email; ?>" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewNumber" class="form-label">Phone Number</label>
-              <input type="text" class="form-control" value="<?php echo $number; ?>" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewBirthdate" class="form-label">Birthdate</label>
-              <input type="text" class="form-control" value="<?php echo $birthdate; ?>" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewAddress" class="form-label">Address</label>
-              <input type="text" class="form-control" value="<?php echo $address; ?>" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="viewGender" class="form-label">Gender</label>
-              <input type="text" class="form-control" value="<?php echo $gender; ?>" readonly>
-            </div>
-          </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>      
-   
-                
-                <?php } }?>
+                  <?php }
+                  } ?>
                 </tbody>
               </table>
-              
-              
+
+
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 
   <?php include('asset/includes/jsCDN.php'); ?>

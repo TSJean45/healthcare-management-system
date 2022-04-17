@@ -96,22 +96,23 @@ if (isset($_POST['deleteBtn'])) {
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <?php 
+            <?php
 
             $currentUser = $_SESSION['staffId'];
             $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
-  
-            $result=mysqli_query($data,$sql);
-  
-            if($result){
-              while($row = mysqli_fetch_assoc($result)){
-                  $staffName = $row['staffName'];
-                  
+
+            $result = mysqli_query($data, $sql);
+
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $staffName = $row['staffName'];
+
             ?>
 
-            <span class="profile_name"><?php echo $staffName ?></span>
+                <span class="profile_name"><?php echo $staffName ?></span>
 
-            <?php } } ?>
+            <?php }
+            } ?>
           </div>
         </div>
       </div>
@@ -143,8 +144,8 @@ if (isset($_POST['deleteBtn'])) {
                   <tr>
                     <th>Record ID</th>
                     <th class="d-none">ID</th>
-                    <th> User Name </th>
-                    <th> User ID </th>
+                    <th> Patient Name </th>
+                    <th> Patient ID </th>
                     <th>Medical Staff</th>
                     <th> Date Admitted</th>
                     <th> Disease </th>
@@ -247,14 +248,8 @@ if (isset($_POST['deleteBtn'])) {
                                 $userSql = "SELECT * FROM `user`";
                                 $user = mysqli_query($data, $userSql);
                                 ?>
-                                <label for="editName" class="form-label">User Name</label>
-                                <select id="editName" class="form-control select2me" name="editName">
-                                  <?php while ($fetch = mysqli_fetch_array($user)) :; ?>
-                                    <?php $uid = $fetch['userId'];
-                                    $prefix = $fetch['userPrefix'];
-                                    $userName = $fetch['userName']; ?>
-                                    <option value="<?php echo $uid; ?>" <?php if ($name == "$userName") echo "selected"; ?>><?php echo $prefix . "" . $uid . " - " . $userName; ?></option>
-                                  <?php endwhile; ?>
+                                <label for="editName" class="form-label">Patient Detail</label>
+                                <input type="text" class="form-control" value="<?php echo $upre . "" . $uid . " - " . $name; ?>" readonly>
                                 </select>
                               </div>
                               <div class="mb-3">
@@ -282,7 +277,7 @@ if (isset($_POST['deleteBtn'])) {
                               </div>
                               <div class="mb-3">
                                 <label for="editStatus" class="form-label">Status</label>
-                                <select id="editStatus" class="form-control" name="editStatus">
+                                <select id="editStatus" class="form-select" name="editStatus">
                                   <option value="New" <?php if ($status == "New") echo "selected"; ?>>New</option>
                                   <option value="In Treatment" <?php if ($status == "In Treatment") echo "selected"; ?>>In Treatment</option>
                                   <option value="Recovered" <?php if ($status == "Recovered") echo "selected"; ?>>Recovered</option>
@@ -325,8 +320,9 @@ if (isset($_POST['deleteBtn'])) {
               <?php
               $userSql = "SELECT * FROM `user`";
               $user = mysqli_query($data, $userSql); ?>
-              <label for="inputDataName" class="form-label">User Name</label>
+              <label for="inputDataName" class="form-label">Patient Detail</label>
               <select id="inputDataName" class="form-select select2me" name="inputDataName" title="Select User" data-live-search="true">
+                <option value="" disabled selected>Select Patient</option>
                 <?php while ($fetch = mysqli_fetch_array($user)) :; ?>
                   <?php $id = $fetch['userId'];
                   $prefix = $fetch['userPrefix'];
@@ -341,6 +337,7 @@ if (isset($_POST['deleteBtn'])) {
               $staff = mysqli_query($data, $staffSql); ?>
               <label for="inputStaff" class="form-label">Assigned Medical Staff</label>
               <select id="inputStaff" class="form-select select2me" name="inputStaff" title="Select Staff" data-live-search="true">
+                <option value="" disabled selected>Select Doctor Assigned</option>
                 <?php while ($fetch = mysqli_fetch_array($staff)) :; ?>
                   <?php $id = $fetch['staffId'];
                   $prefix = $fetch['staffPrefix'];
@@ -359,7 +356,7 @@ if (isset($_POST['deleteBtn'])) {
             </div>
             <div class="mb-3">
               <label for="inputRecStatus" class="form-label">Status</label>
-              <select name="inputRecStatus" class="form-control" name="inputRecStatus">
+              <select name="inputRecStatus" class="form-select" name="inputRecStatus">
                 <option value="New">New</option>
                 <option value="In Treatment">In Treatment</option>
                 <option value="Recovered">Recovered</option>
