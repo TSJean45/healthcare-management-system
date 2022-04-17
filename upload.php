@@ -1,7 +1,6 @@
 <? php
 if (isset($_POST["upload_proficePic"])) {
     $file = $_FILES['file_proficePic'];
-    $print_r = profil
     $fileName = $_FILES['file_proficePic']['name'];
     $filetTmpName = $_FILES['file_proficePic']['tmp_name'];
     $fileSize = $_FILES['file_proficePic']['size'];

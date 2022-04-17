@@ -348,20 +348,10 @@ if (isset($_POST["changePass"])) {
               <div class="input-group col-xs-12">
                 <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                 <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                  <button class="file-upload-browse btn btn-primary" type="submit">Upload</button>
                 </span>
               </div>
             </div>
-            <div class="mb-3">
-              <label>Upload Cover Photo</label>
-              <input type="file" name="img[]" class="file-upload-default">
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                </span>
-              </div>
-            </div> 
           
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-success" name="uploadPic" >Save</button>

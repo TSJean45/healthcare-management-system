@@ -27,15 +27,17 @@ include 'connection.php';
     <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
   </head>
   <body>
+  
+  <!-- Header -->
+  <?php include('asset/includes/navBar.php'); ?>
+  <!-- Header -->
 
     <!-- Scroll To Top Button -->
     <button onclick="topFunction()" id="topBtn" title="Go to top">
       <i class="fas fa-arrow-circle-up"></i>
     </button>
 
-    <!-- Header -->
-  <?php include('asset/includes/navBar.php'); ?>
-  <!-- Header -->
+    
   
     <div class="slider-container">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -48,7 +50,20 @@ include 'connection.php';
                   <p>
                     Schedule a consultation appointment with our professionals now!
                   </p>
-                  <a class="btn btn-primary" href="appointmentuser.html" role="button">Book Your Appointment</a>
+
+                  <?php
+                  if (isset($_SESSION['userName'])) {
+                   ?>
+                  <a class="btn btn-primary" href="appointmentuser.php" role="button">Book Your Appointment</a>
+                  <?php
+                  }
+                  else{
+                  ?>
+                  <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
+                  <?php
+                  }
+                  ?>
+
                 </div>
               </div>
             </div>
@@ -60,7 +75,18 @@ include 'connection.php';
                   <p>
                     Do your part and register for a vaccination appointment now!
                   </p>
-                  <a class="btn btn-primary" href="vaccine.html" role="button">Book Your Appointment</a>
+                   <?php
+                  if (isset($_SESSION['userName'])) {
+                   ?>
+                  <a class="btn btn-primary" href="vaccineuser.php" role="button">Book Your Appointment</a>
+                  <?php
+                  }
+                  else{
+                  ?>
+                  <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
+                  <?php
+                  }
+                  ?>
                 </div>
               </div>
             </div>
@@ -423,55 +449,7 @@ include 'connection.php';
   </div>
 
   <!--Footer -->
-  <footer class="footer-container">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 pr-md-5 col-sm-6 align-self-center">
-          <a class="navbar-brand logo" href="#">
-            <img src="asset/image/output-onlinepngtools.png" alt="JJJ MedCare" class="d-inline-block align-top">
-          </a>
-          <p>
-            Jalan Pahang,<br>
-            50586 Kuala Lumpur<br><br>
-              <strong>Phone:</strong> +60 11-10831460<br>
-              <strong>Email:</strong>contact@jjjmedcare.com<br>
-          </p>
-        </div>
-        <div class="col-md col-sm-6 align-self-center">
-          <ul class="list-unstyled nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#aboutus">About Us</a></li>
-            <li><a href="appointmentuser.html">Consultation Appointment</a></li>
-          </ul>
-        </div>
-        <div class="col-md col-sm-6 align-self-center ">
-          <ul class="list-unstyled nav-links">
-            <li><a href="meddirec.html">Medical Staff's Directory</a></li>
-            <li><a href="vaccine.html">Vaccination Appointment</a></li>
-          </ul>
-        </div>
-        <div class="col-md col-sm-6 text-md-center align-self-center">
-          <ul class="social list-unstyled">
-            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-            <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
-            <li><a href="#"><span class="fab fa-pinterest-square"></span></a></li>
-          </ul>
-          <p class=""><a href="#contact" class="btn btn-tertiary">Contact</a></p>
-          <p class=""><a href="login.php" class="btn btn-tertiary">Login</a></p>
-          <p class=""><a href="registration.php" class="btn btn-tertiary">Register</a></p>
-        </div>
-      </div> 
-
-      <div class="row ">
-        <div class="col-12 text-center">
-          <div class="copyright mt-5 pt-5">
-            <p><small>&copy; 2022 All Rights Reserved.</small></p>
-          </div>
-        </div>
-      </div> 
-    </div>
-  </footer>
+  <?php include('asset/includes/footer.php'); ?>
   <!-- Bootstrap JS-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

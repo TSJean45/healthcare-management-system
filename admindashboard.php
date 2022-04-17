@@ -263,6 +263,7 @@ include 'connection.php';
                               $name = $row['stockName'];
                               $qty = $row['stockQty'];
                               $expDate = $row['stockExpDate'];
+                              $currentDate = date("Y-m-d");
                               $per = ($qty / 2000) * 100;
 
                               if ($per <= 10) {

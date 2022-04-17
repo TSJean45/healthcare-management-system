@@ -4,17 +4,15 @@
 
 body {
   background-color: white;
-	width:100%;
-	height: 100vh;
-
-	height: 100vh;
-	margin: -20px 0 50px;
+  
+	
 }
 
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
+  
 }
 .login-page .form .login{
   margin-top: -31px;
@@ -66,10 +64,5 @@ margin-bottom: 26px;
   text-decoration: none;
 }
 
-.container {
-  position:fixed;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
-}
+
 
