@@ -19,14 +19,14 @@ if (isset($_POST["submit"])) {
   $editSql = "UPDATE `staff` SET `staffName`='$newName',`staffPhone_number`='$newPhone',`staffGender`='$newGender',`staffBirthdate`='$newBirthdate', `staffAddress`='$newAddress' , `staffBiography`='$newBio'
               , `staffQualification`='$newQual' WHERE `staffId`='$loggedInUser'";
   $editResult = mysqli_query($data, $editSql);
+  echo "<meta http-equiv='refresh' content='0'>";
+
+ 
 
   if ($editResult) {
-    $msg =  '<div class="alert alert-success" role="alert">
-             Profile has been edited.</div>';
-    
+    echo '<script> alert("Data updated"); </script>';
   } else {
-    $msg =  '<div class="alert alert-danger" role="alert">
-             Data not updated.</div>';
+    echo '<script> alert("Data not updated"); </script>';
   }
 }
 
@@ -48,118 +48,116 @@ if (isset($_POST["changePass"])) {
         if(mysqli_num_rows($checkResult) === 1){
           $changepassSql = "UPDATE `staff` SET `staffPassword` ='$newPass'  WHERE `staffName`='$loggedInUser'";
           $changeResult = mysqli_query($data, $changepassSql);
-          // echo "<meta http-equiv='refresh' content='0'>";
+          echo "<meta http-equiv='refresh' content='0'>";
 
           if ($changeResult) {
-            $msg =  '<div class="alert alert-success" role="alert">
-             Password changed.</div>';
+            echo '<script> alert("Data updated"); </script>';
           } else {
-            $msg =  '<div class="alert alert-danger" role="alert">
-             Password did not change.</div>';
+            echo '<script> alert("Data not updated"); </script>';
           }
         }
         else{
-          $msg =  '<div class="alert alert-danger" role="alert">
-                    Incorrect Password entered.</div>';
+          echo "<script type='text/javascript'>alert('Incorrect Password');</script>";
         }
       }
       else{
-        $msg =  '<div class="alert alert-danger" role="alert">
-                    Please fill in the details.</div>';
-                    
+        echo "<script type='text/javascript'>alert('Please fill in the details');</script>";
       }
     }
     else{
-      $msg =  '<div class="alert alert-danger" role="alert">
-                    Password does not match.</div>';
+      echo "<script type='text/javascript'>alert('Password does not matched');</script>";
     }
-}
-
-if(isset($_POST['uploadPic'])){
   
-  $file = $_FILES['imageStaff'];
 
-  // print_r($file);
+ 
+}
 
-  $fileName = $_FILES['imageStaff']['name'];
-  $fileTmpName = $_FILES['imageStaff']['tmp_name'];
-  $fileSize = $_FILES['imageStaff']['size'];
-  $fileError = $_FILES['imageStaff']['error'];
-  $fileType = $_FILES['imageStaff']['type'];
+// if(isset($_POST['uploadPic'])){
+  
+//   $file = $_FILES['file'];
 
-  $fileExt = explode('.', $fileName);
-  $fileActualExt = strtolower(end($fileExt));
+//   // print_r($file);
 
-  $allowed = array('jpg', 'jpeg', 'png');
+//   $fileName = $_FILES['file']['name'];
+//   $fileTmpName = $_FILES['file']['tmp_name'];
+//   $fileSize = $_FILES['file']['size'];
+//   $fileError = $_FILES['file']['error'];
+//   $fileType = $_FILES['file']['type'];
 
-  if(in_array($fileActualExt, $allowed)){
-    if($fileError === 0){
-      if($fileSize <10000000){
-        $loggedInUser = $_SESSION['staffId'];
-        $prefixSql = "SELECT * FROM `staff` WHERE `staffId` ='$loggedInUser'";
+//   $fileExt = explode('.', $fileName);
+//   $fileActualExt = strtolower(end($fileExt));
 
-        $prefixResult=mysqli_query($data,$prefixSql);
-            if($prefixResult){
-              while($row = mysqli_fetch_assoc($prefixResult)){
-                  $staffPrefix = $row['staffPrefix'];
+//   $allowed = array('jpg', 'jpeg', 'png');
 
-        $fileNameNew = "profile".$staffPrefix.$loggedInUser.".".$fileActualExt;
-        $fileDestination = 'upload/'.$fileNameNew;
-        move_uploaded_file($fileTmpName, $fileDestination);
-        $sql = "UPDATE `staff` set `staffImage_status`= 1 WHERE staffId = '$loggedInUser' ";
-        $result = mysqli_query($data, $sql);
-        $msg =  '<div class="alert alert-success" role="alert">
-                    Photo has been uploaded. It will take a sec to display</div>';
-              }
-      }
-      else{
-              $msg =  '<div class="alert alert-danger" role="alert">
-              There was an error uploading your image.</div>';
+//   if(in_array($fileActualExt, $allowed)){
+//     if($fileError === 0){
+//       if($fileSize <10000000){
+//         $loggedInUser = $_SESSION['staffId'];
+//         $prefixSql = "SELECT * FROM `staff` WHERE `staffId` ='$loggedInUser'";
+
+//         $prefixResult=mysqli_query($data,$prefixSql);
+//         if($prefixResult){
+//           while($row = mysqli_fetch_assoc($prefixResult)){
+//             $staffPrefix = $row['staffPrefix'];
+
+//         $fileNameNew = "profile".$staffPrefix.$loggedInUser.".".$fileActualExt;
+//         $fileDestination = 'upload/'.$fileNameNew;
+//         move_uploaded_file($fileTmpName, $fileDestination);
+//         $sql = "UPDATE `staff` set `staffImage_status`= 1 WHERE staffId = '$loggedInUser' ";
+//         $result = mysqli_query($data, $sql);
+//         $msg =  '<div class="alert alert-success" role="alert">
+//                     Photo has been uploaded.</div>';
+//         }
+//       }
+//       else{
+//         $msg =  '<div class="alert alert-danger" role="alert">
+//                   File uploaded is too big.</div>';
         
-      }
-    }
-    else{
-      $msg =  '<div class="alert alert-danger" role="alert">
-              File uploaded is too big.</div>';
+//       }
+//     }
+//     else{
+//       $msg =  '<div class="alert alert-danger" role="alert">
+//               There was an error uploading your image.</div>';
        
-    }
-  }
-  else{
-    $msg =  '<div class="alert alert-danger" role="alert">
-    You cannot upload files of this type.</div>';
+//     }
+//   }
+//   else{
+//     $msg =  '<div class="alert alert-danger" role="alert">
+//     You cannot upload files of this type.</div>';
     
-  }
-}
-}
+//   }
+// }
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Local CSS File -->
   <link rel="stylesheet" href="asset/css/navbar.css">
   <link rel="stylesheet" href="asset/css/staffstyle.css">
 
   <?php include('asset/includes/cssCDN.php'); ?>
-  <title>Staff Profile</title>
+
+  <title>Medical Staff Profile</title>
   <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
 </head>
 </head>
 
 <body>
 
-  <?php $page = 'staffprofile';
-  include('asset/includes/staffSidebar.php'); ?>
 
-<section class="home-section">
+  <!-- Side Bar -->
+  <?php $page = 'staffprofile';
+  include('asset/includes/staffSideBar.php'); ?>
+
+  <section class="home-section">
     <!-- Top Bar-->
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Staff Profile</span>
+        <span class="dashboard">Medical Staff Profile</span>
       </div>
       <div class="right-nav">
         <div class="right noti-bell my-auto">
@@ -168,29 +166,7 @@ if(isset($_POST['uploadPic'])){
 
         <div class="profile dropdown">
           <div>
-            
-          <?php 
-          $currentUser = $_SESSION['staffId'];
-          $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
-
-          $result=mysqli_query($data,$sql);
-
-          if($result){
-            while($row = mysqli_fetch_assoc($result)){
-                $prefix = $row['staffPrefix'];
-                $id = $row['staffId'];
-                $imageStatus = $row['staffImage_status'];
-                
-                if($imageStatus == 1)
-                {
-                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
-                }
-                else{
-                  echo "<img src='asset/image/short-emp.jpg'>";
-                }
-            }
-          }
-          ?>
+            <img src="asset/image/short-emp.jpg">
             <?php 
 
             $currentUser = $_SESSION['staffId'];
@@ -205,7 +181,8 @@ if(isset($_POST['uploadPic'])){
             ?>
 
             <span class="profile_name"><?php echo $staffName ?></span>
-            <?php  } } ?>
+
+            <?php } } ?>
           </div>
         </div>
       </div>
@@ -254,7 +231,7 @@ if(isset($_POST['uploadPic'])){
               <?php 
                 if($imageStatus == 1)
                 {
-                  echo "<img src='upload/profile".$prefix.$id.".jpg' height='340' width='340'>";
+                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
                 }
                 else{
                   echo "<img src='asset/image/short-emp.jpg'>";
@@ -263,12 +240,6 @@ if(isset($_POST['uploadPic'])){
               </div>
             </div>
             <div class="col-xl-9 m-t35 my-auto">
-            <?php
-			    	if(isset($msg))
-				    {
-				     echo $msg;
-				    }
-			      ?>
               <div class="row">
                 <div class="mr-auto pr-3">
                   <h2 class="font-w300 mb-sm-2 mb-1 text-black"><?php echo $name ?></h2>
@@ -359,7 +330,7 @@ if(isset($_POST['uploadPic'])){
     </div>
   </section>
 
-  <!-- Edit Modal -->
+  <!--  Edit Modal -->
   <div class="modal fade" id="editProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editprofile" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -369,12 +340,14 @@ if(isset($_POST['uploadPic'])){
         </div>
         <form action="" method="POST">
         <div class="modal-body">
+          
+         
             <div class="mb-3">
               <label for="inputName" class="form-label">Full Name</label>
               <input type="text" name ="newName" class="form-control" id="inputName" value="<?php echo $name ?>">
             </div>
             <div class="mb-3">
-              <label for="inputPhone" class="form-label">Phone Number</label>
+              <label for="inputPhone" class="form-label">Phone Number (XXX-XXXX-XXXX)</label>
               <input type="tel" name ="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" value="<?php echo $phone_number?>">
             </div>
             <div class="mb-3">
@@ -390,11 +363,11 @@ if(isset($_POST['uploadPic'])){
             </div>
             <div class="mb-3">
               <label for="inputBio" class="form-label">Address</label>
-              <input type="text" name="newAddress"class="form-control" id="inputPosition" value="<?php echo $address ?>">
+              <input type="text" name="newAddress"class="form-control" id="inputAddress" value="<?php echo $address ?>">
             </div>
             <div class="mb-3">
               <label for="inputBio" class="form-label">Biography</label>
-              <input type="text" name="newBio" class="form-control" id="inputPosition" value="<?php echo $biography ?>">
+              <input type="text" name="newBio" class="form-control" id="inputBio" value="<?php echo $biography ?>">
             </div>
             <div class="mb-3">
               <label for="inputQuali" class="form-label">Qualification</label>
@@ -409,7 +382,7 @@ if(isset($_POST['uploadPic'])){
       </div>
     </div>
   </div>
-<!-- Change Password Modal -->
+<!-- Change Pass Modal -->
   <div class="modal fade" id="changePass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changePass" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -435,12 +408,12 @@ if(isset($_POST['uploadPic'])){
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-success" name="changePass" >Change Password</button>
         </div>
-        </form>
       </div>
     </div>
   </div>
 
-<!-- Upload Image Modal -->
+
+  <!-- Upload Image Modal -->
   <div class="modal fade" id="uploadImage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadImage" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -448,11 +421,11 @@ if(isset($_POST['uploadPic'])){
           <h5 class="modal-title" id="uploadImage">Upload Profile Picture or Cover</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="mb-3">
               <label>Upload Profile Picture</label>
-              <input type="file" name="imageStaff" class="form-control">
+              <input type="file" name="file" id="file" class="form-control">
               <div class="input-group col-xs-12">
                 <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                 <span class="input-group-append">
@@ -460,7 +433,6 @@ if(isset($_POST['uploadPic'])){
                 </span>
               </div>
             </div>
-          
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <!-- <button type="submit" class="btn btn-success" name="" >Save</button> -->
         </div>
@@ -473,7 +445,9 @@ if(isset($_POST['uploadPic'])){
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
+  <script src="asset/js/triggerToast.js"></script>
   <script src="asset/js/deleteData.js"></script>
+
 </body>
 
 </html>

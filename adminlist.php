@@ -12,12 +12,14 @@
 
     $addSql = "INSERT INTO `admin` (`adminName`,`adminEmail`,`adminPassword`) VALUES ('$name','$email','$pass')";
     $result = mysqli_query($data, $addSql);
-    echo "<meta http-equiv='refresh' content='0'>";
+    
 
     if ($result) {
-      echo '<script> alert("Data added"); </script>';
+      $msg =  '<div class="alert alert-success" role="alert">
+                  A new Admin has been added.</div>';
     } else {
-      echo '<script> alert("Data not added"); </script>';
+      $msg =  '<div class="alert alert-danger" role="alert">
+                  Something went wrong. Please try again.</div>';
     }
 
     }
@@ -28,12 +30,14 @@
 
     $deleteSql = "DELETE FROM `admin` WHERE `adminID`=$id";
     $result = mysqli_query($data, $deleteSql);
-    echo "<meta http-equiv='refresh' content='0'>";
+    
 
     if ($result) {
-      echo '<script> alert("Data deleted"); </script>';
+      $msg =  '<div class="alert alert-success" role="alert">
+                  The selected Admin has been deleted.</div>';
     } else {
-      echo '<script> alert("Data not deleted"); </script>';
+      $msg =  '<div class="alert alert-danger" role="alert">
+                  Something went wrong. Please try again.</div>';
     }
 
     }
@@ -75,7 +79,28 @@
 
         <div class="profile dropdown">
           <div>
-            <img src="asset/image/profile1.jpg">
+          <?php 
+          $currentUser = $_SESSION['adminId'];
+          $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+
+          $result=mysqli_query($data,$sql);
+
+          if($result){
+            while($row = mysqli_fetch_assoc($result)){
+                $prefix = $row['adminPrefix'];
+                $id = $row['adminId'];
+                $imageStatus = $row['adminImage_status'];
+                
+                if($imageStatus == 1)
+                {
+                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
+                }
+                else{
+                  echo "<img src='asset/image/short-emp.jpg'>";
+                }
+              }
+            }
+          ?>
             <?php 
 
             $currentUser = $_SESSION['adminId'];
@@ -118,6 +143,12 @@
                 </div>
               </div>
             </div>
+            <?php
+			    	if(isset($msg))
+				    {
+				     echo $msg;
+				    }
+			      ?>
             <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
