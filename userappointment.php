@@ -27,7 +27,10 @@ if (isset($_POST['addBtn'])) {
     }
 }
 
-
+if(!isset($_SESSION['userName']))
+{
+  header( "refresh:0;url=index.php#login-again-to-get-access" );
+}
 
 ?>
 

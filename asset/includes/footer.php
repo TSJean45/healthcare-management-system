@@ -16,13 +16,36 @@
                 <ul class="list-unstyled nav-links">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="#aboutus">About Us</a></li>
+                    <?php
+                    if (isset($_SESSION['userName'])) {
+                    ?>
                     <li><a href="appointmentuser.php">Consultation Appointment</a></li>
+                    <?php
+                    }
+                    else{
+                    ?>
+                    <li><a href="login.php">Consultation Appointment</a></li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
             <div class="col-md col-sm-6 align-self-center ">
                 <ul class="list-unstyled nav-links">
                     <li><a href="meddirec.php">Medical Staff's Directory</a></li>
+                    <?php
+                    if (isset($_SESSION['userName'])) {
+                    ?>
                     <li><a href="vaccineuser.php">Vaccination Appointment</a></li>
+                    <?php
+                    }
+                    else{
+                    ?>
+                    <li><a href="login.php">Vaccination Appointment</a></li>
+                    <?php
+                    }
+                    ?>
+
                 </ul>
             </div>
             <div class="col-md col-sm-6 text-md-center align-self-center">

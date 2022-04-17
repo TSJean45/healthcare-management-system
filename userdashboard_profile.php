@@ -1,6 +1,13 @@
 <?php
 session_start();
 include 'connection.php';
+
+
+if(!isset($_SESSION['userName']))
+{
+  header( "refresh:0;url=index.php#login-again-to-get-access" );
+}
+
 ?>
 <!DoCTYPE html>
 <html>
@@ -43,7 +50,7 @@ include 'connection.php';
               $editSql = "UPDATE `user` SET `userName`='$newName',`userPhone_number`='$newPhone',`userGender`='$newGender',`userBirthdate`='$newBirthdate'
             , `userAddress`='$newAddress', `userEmail`='$newEmail'  WHERE `userId`='$loggedInUser'";
               $editResult = mysqli_query($data, $editSql);
-              echo "<meta http-equiv='refresh' content='0'>";
+              // echo "<meta http-equiv='refresh' content='0'>";
 
               if ($editResult) {
                 echo '<div class="alert alert-success" role="alert">
