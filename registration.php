@@ -40,9 +40,10 @@ if(!empty($email)&&!empty($password)&&!empty($name)&&!empty($cpassword))
 				
 				$r = mysqli_query($data,$sql);
 				
-				$error =  "<script type='text/javascript'>alert('register successfully, Heading to login in 5 secs');</script>";
+				$msg =  '<div class="alert alert-success" role="alert">
+							Register successfully, heading to login. </div>';
 	
-				header( "refresh:3;url=login.php" );
+				header( "refresh:2;url=login.php" );
 	
 				if(!$r){
 					$msg =  '<div class="alert alert-danger" role="alert">

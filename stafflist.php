@@ -9,12 +9,14 @@
 
     $addSql = "INSERT INTO `staff` (`staffName`,`staffEmail`,`staffPassword`) VALUES ('$name','$email','$pass')";
     $result = mysqli_query($data, $addSql);
-    echo "<meta http-equiv='refresh' content='0'>";
+    
 
       if ($result) {
-        echo '<script> alert("Data added"); </script>';
+        $msg =  '<div class="alert alert-success" role="alert">
+                  A new Medical Staff has been added.</div>';
       } else {
-        echo '<script> alert("Data not added"); </script>';
+        $msg =  '<div class="alert alert-danger" role="alert">
+                  Something went wrong. Please try again.</div>';
       }
     }
 
@@ -27,12 +29,14 @@
 
     $editSql = "UPDATE `staff` SET `staffName` ='$name', `staffEmail` = '$email', `staffPosition`= '$position', `staffDepartment` = '$department' WHERE `staffId`=$id";
     $result = mysqli_query($data, $editSql);
-    echo "<meta http-equiv='refresh' content='0'>";
+    
 
       if ($result) {
-        echo '<script> alert("Data added"); </script>';
+        $msg =  '<div class="alert alert-success" role="alert">
+        The selected Medical Staff has been edited.</div>';
       } else {
-         echo '<script> alert("Data not added"); </script>';
+        $msg =  '<div class="alert alert-danger" role="alert">
+        Something went wrong. Please try again.</div>';
       }
     }
 
@@ -41,12 +45,14 @@
   
       $deleteSql = "DELETE FROM `staff` WHERE `staffId`=$id";
       $result = mysqli_query($data, $deleteSql);
-      echo "<meta http-equiv='refresh' content='0'>";
+      
   
       if ($result) {
-        echo '<script> alert("Data deleted"); </script>';
+        $msg =  '<div class="alert alert-success" role="alert">
+        The selected Medical Staff has been deleted.</div>';
       } else {
-        echo '<script> alert("Data not deleted"); </script>';
+        $msg =  '<div class="alert alert-danger" role="alert">
+        Something went wrong. Please try again.</div>';
       }
   
       }
@@ -84,7 +90,28 @@
 
         <div class="profile dropdown">
           <div>
-            <img src="asset/image/profile1.jpg">
+          <?php 
+          $currentUser = $_SESSION['adminId'];
+          $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+
+          $result=mysqli_query($data,$sql);
+
+          if($result){
+            while($row = mysqli_fetch_assoc($result)){
+                $prefix = $row['adminPrefix'];
+                $id = $row['adminId'];
+                $imageStatus = $row['adminImage_status'];
+                
+                if($imageStatus == 1)
+                {
+                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
+                }
+                else{
+                  echo "<img src='asset/image/short-emp.jpg'>";
+                }
+              }
+            }
+          ?>
             <?php 
 
             $currentUser = $_SESSION['adminId'];
@@ -126,6 +153,12 @@
                 </div>
               </div>
             </div>
+            <?php
+			    	if(isset($msg))
+				    {
+				     echo $msg;
+				    }
+			      ?>
             <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>

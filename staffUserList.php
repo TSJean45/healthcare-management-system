@@ -10,12 +10,14 @@ if (isset($_POST["addBtn"])) {
 
   $addSql = "INSERT INTO `user` (`userName`,`userEmail`,`userPassword`) VALUES ('$name','$email','$pass')";
   $result = mysqli_query($data, $addSql);
-  echo "<meta http-equiv='refresh' content='0'>";
+  
 
   if ($result) {
-    echo '<script> alert("Data added"); </script>';
+    $msg =  '<div class="alert alert-success" role="alert">
+      A new Patient has been added.</div>';
   } else {
-    echo '<script> alert("Data not added"); </script>';
+    $msg =  '<div class="alert alert-danger" role="alert">
+              Something went wrong. Please try again.</div>';
   }
 }
 
@@ -25,31 +27,37 @@ if (isset($_POST['deleteBtn'])) {
 
   $deleteSql = "DELETE FROM `user` WHERE `userID`=$id";
   $result = mysqli_query($data, $deleteSql);
-  echo "<meta http-equiv='refresh' content='0'>";
+  
 
   if ($result) {
-    echo '<script> alert("Data deleted"); </script>';
+    $msg =  '<div class="alert alert-success" role="alert">
+      The selected Patient has been deleted.</div>';
   } else {
-    echo '<script> alert("Data not deleted"); </script>';
+    $msg =  '<div class="alert alert-danger" role="alert">
+              Something went wrong. Please try again.</div>';
   }
-}
 
-// edit data
+  }
+
+//edit data
 if (isset($_POST['editBtn'])) {
   $id = $_POST["editId"];
   $name = $_POST["editName"];
   $email = $_POST["editEmail"];
 
-  $editSql = "UPDATE `user` set `userName`='$name' , `userEmail`= '$email' WHERE `userID`=$id";
+  $editSql = "UPDATE `user` set `userName`='$name' , `userEmail`= '$email' WHERE `userId` = $id";
   $result = mysqli_query($data, $editSql);
-  echo "<meta http-equiv='refresh' content='0'>";
+  
 
   if ($result) {
-    echo '<script> alert("Data updated"); </script>';
+    $msg =  '<div class="alert alert-success" role="alert">
+      The selected Patient has been edited.</div>';
   } else {
-    echo '<script> alert("Data not updated"); </script>';
+    $msg =  '<div class="alert alert-danger" role="alert">
+              Something went wrong. Please try again.</div>';
   }
-}
+
+  }
 ?>
 <!DOCTYPE html>
 
@@ -84,8 +92,45 @@ if (isset($_POST['editBtn'])) {
 
         <div class="profile dropdown">
           <div>
-            <img src="asset/image/profile1.jpg">
-            <span class="profile_name"><?php echo $_SESSION['staffName']; ?></span>
+          <?php 
+          $currentUser = $_SESSION['staffId'];
+          $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
+
+          $result=mysqli_query($data,$sql);
+
+          if($result){
+            while($row = mysqli_fetch_assoc($result)){
+                $prefix = $row['staffPrefix'];
+                $id = $row['staffId'];
+                $imageStatus = $row['staffImage_status'];
+                
+                if($imageStatus == 1)
+                {
+                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
+                }
+                else{
+                  echo "<img src='asset/image/short-emp.jpg'>";
+                }
+            }
+          }
+          ?>
+            <?php
+
+$currentUser = $_SESSION['staffId'];
+$sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
+
+$result = mysqli_query($data, $sql);
+
+if ($result) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    $staffName = $row['staffName'];
+
+?>
+
+    <span class="profile_name"><?php echo $staffName ?></span>
+
+<?php }
+} ?>
           </div>
         </div>
       </div>
@@ -113,6 +158,12 @@ if (isset($_POST['editBtn'])) {
                 </div>
               </div>
             </div>
+            <?php
+            if(isset($msg))
+				    {
+				     echo $msg;
+				    }
+			      ?>
             <div class="table-responsive table-adminList">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
