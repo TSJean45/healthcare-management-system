@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['staffName'] = $Srow['staffName'];
       $_SESSION['staffId'] = $Srow['staffId'];
       header("location:staffdashboard.php");
-      
     } else {
       echo "<script type='text/javascript'>alert('Username or Password Incorrect ');</script>";
     }
@@ -64,9 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title> Login </title>
   <?php include('asset/includes/cssCDN.php'); ?>
 </head>
-<?php include('asset/includes/navBar.php'); ?>
 
 <body>
+  <?php include('asset/includes/navBar.php'); ?>
+
   <div class="login-page">
     <div class="form">
       <div class="login">

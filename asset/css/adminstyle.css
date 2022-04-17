@@ -27,10 +27,12 @@ Admin Dashboard
 .overview-boxes .box-topic{
   font-weight: 500;
 }
-.overview-boxes .icon .bx{
+.overview-boxes .icon .bx,
+.overview-boxes .icon .fa{
   font-size: 50px;
 }
-.overview-boxes .icon .indicator .bx{
+.overview-boxes .icon .indicator .bx,
+.overview-boxes .icon .indicator .fa{
   font-size: 12px;
   color: white;
   background: rgb(6, 20, 95);

@@ -28,6 +28,12 @@ Action Button
     font-size: 20px;
     padding: 5px;
   }
+  .container .fa-eye {
+    background-color: rgb(8, 53, 252);
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+  }
   .container .action-button button {
     padding: 0;
   }

@@ -1,65 +1,6 @@
 <?php
 session_start();
 include 'connection.php';
-
-if (isset($_POST["addBtn"])) {
-  $name = $_POST["inputDataName"];
-  $qty = $_POST["inputDataAmount"];
-  $expDate = $_POST["inputDataExpire"];
-
-  $addSql = "INSERT INTO `medstock` (`stockName`,`stockQty`,`stockExpDate`) VALUES ('$name','$qty','$expDate')";
-  $result = mysqli_query($data, $addSql);
-
-  if ($result) {
-    echo '<script> alert("Data added"); </script>';
-  } else {
-    echo '<script> alert("Data not added"); </script>';
-  }
-}
-
-if (isset($_POST["editBtn"])) {
-  $id = $_POST["editID"];
-  $name = $_POST["editDataName"];
-  $expDate = $_POST["editDataExpire"];
-
-  $editSql = "UPDATE `medstock` SET `stockName`='$name',`stockExpDate`='$expDate' WHERE `stockID`='$id'";
-  $result = mysqli_query($data, $editSql);
-
-  if ($result) {
-    echo '<script> alert("Data updated"); </script>';
-  } else {
-    echo '<script> alert("Data not updated"); </script>';
-  }
-}
-
-if (isset($_POST["subCal"])) {
-  $id = $_POST["editID"];
-  $qty = $_POST["editDataAmount"];
-  $amount = $_POST["calAmount"];
-  $total = $qty - $amount;
-
-  $subSql = "UPDATE `medstock` SET `stockQty`='$total' WHERE `stockID`='$id'";
-  $result = mysqli_query($data, $subSql);
-
-  if ($result) {
-    echo '<script> alert("Data updated"); </script>';
-  } else {
-    echo '<script> alert("Data not updated"); </script>';
-  }
-}
-
-if (isset($_POST['deleteBtn'])) {
-  $id = $_POST["deleteID"];
-
-  $deleteSql = "DELETE FROM `medstock` WHERE `stockID`=$id";
-  $result = mysqli_query($data, $deleteSql);
-
-  if ($result) {
-    echo '<script> alert("Data deleted"); </script>';
-  } else {
-    echo '<script> alert("Data not deleted"); </script>';
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -91,22 +32,23 @@ if (isset($_POST['deleteBtn'])) {
         <div class="profile dropdown">
           <div>
             <img src="asset/image/profile1.jpg">
-            <?php 
+            <?php
 
             $currentUser = $_SESSION['staffId'];
             $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
-  
-            $result=mysqli_query($data,$sql);
-  
-            if($result){
-              while($row = mysqli_fetch_assoc($result)){
-                  $staffName = $row['staffName'];
-                  
+
+            $result = mysqli_query($data, $sql);
+
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $staffName = $row['staffName'];
+
             ?>
 
-            <span class="profile_name"><?php echo $staffName ?></span>
+                <span class="profile_name"><?php echo $staffName ?></span>
 
-            <?php } } ?>
+            <?php }
+            } ?>
           </div>
         </div>
       </div>
@@ -125,11 +67,6 @@ if (isset($_POST['deleteBtn'])) {
               <div class="col-lg-7">
                 <div class="d-flex flex-row-reverse">
                   <div class="mx-1">
-                    <button type="button" class="btn btn-warning float-right" data-bs-toggle="modal" data-bs-target="#printStock">
-                      Print
-                    </button>
-                  </div>
-                  <div class="mx-1">
                     <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addData">
                       Add Medicine Stock
                     </button>
@@ -137,6 +74,76 @@ if (isset($_POST['deleteBtn'])) {
                 </div>
               </div>
             </div>
+            <?php if (isset($_POST["addBtn"])) {
+              $name = $_POST["inputDataName"];
+              $qty = $_POST["inputDataAmount"];
+              $expDate = $_POST["inputDataExpire"];
+
+              $addSql = "INSERT INTO `medstock` (`stockName`,`stockQty`,`stockExpDate`) VALUES ('$name','$qty','$expDate')";
+              $result = mysqli_query($data, $addSql);
+
+              if ($result) {
+                echo '<div class="alert alert-success" role="alert">
+                    Stock is successfully added.</div>';
+              } else {
+                echo '<div class="alert alert-danger" role="alert">
+                    Error! Stock is not added. Please try again later.
+                </div>';
+              }
+            }
+
+            if (isset($_POST["editBtn"])) {
+              $id = $_POST["editID"];
+              $name = $_POST["editDataName"];
+              $expDate = $_POST["editDataExpire"];
+
+              $editSql = "UPDATE `medstock` SET `stockName`='$name',`stockExpDate`='$expDate' WHERE `stockID`='$id'";
+              $result = mysqli_query($data, $editSql);
+
+              if ($result) {
+                echo '<div class="alert alert-success" role="alert">
+                    Stock is successfully updated.</div>';
+              } else {
+                echo '<div class="alert alert-danger" role="alert">
+                    Error! Stock is not updated. Please try again later.
+                </div>';
+              }
+            }
+
+            if (isset($_POST["subCal"])) {
+              $id = $_POST["editID"];
+              $qty = $_POST["editDataAmount"];
+              $amount = $_POST["calAmount"];
+              $total = $qty - $amount;
+
+              $subSql = "UPDATE `medstock` SET `stockQty`='$total' WHERE `stockID`='$id'";
+              $result = mysqli_query($data, $subSql);
+
+              if ($result) {
+                echo '<div class="alert alert-success" role="alert">
+                    Stock is successfully subtracted.</div>';
+              } else {
+                echo '<div class="alert alert-danger" role="alert">
+                    Error! Stock is not subtracted. Please try again later.
+                </div>';
+              }
+            }
+
+            if (isset($_POST['deleteBtn'])) {
+              $id = $_POST["deleteID"];
+
+              $deleteSql = "DELETE FROM `medstock` WHERE `stockID`=$id";
+              $result = mysqli_query($data, $deleteSql);
+
+              if ($result) {
+                echo '<div class="alert alert-success" role="alert">
+                    Stock is successfully deleted.</div>';
+              } else {
+                echo '<div class="alert alert-danger" role="alert">
+                    Error! Stock is not deleted. Please try again later.
+                </div>';
+              }
+            } ?>
             <div class="table-responsive">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
                 <thead>
