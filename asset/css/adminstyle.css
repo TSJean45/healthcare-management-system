@@ -146,6 +146,12 @@ Action Button
   color: white; font-size: 20px;
   padding: 5px;
 }
+.home-section .home-content .action-button .fa-check {
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+}
 .home-section .home-content .action-button .fa-eye{
   background-color: rgb(8, 53, 252);
   color: white; font-size: 20px;

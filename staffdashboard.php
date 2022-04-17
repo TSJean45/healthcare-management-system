@@ -81,7 +81,7 @@ include 'connection.php'; ?>
                         ?>
                           <h2 class="text-black mb-2 font-w600"><?php echo $userCount ?></h2>
                           <p class="mb-0 fs-13 box-topic">
-                            Total User
+                            Total Patients
                           </p>
                         <?php  } ?>
                       </div>

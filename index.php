@@ -368,10 +368,30 @@ include 'connection.php';
             <p>+60 11-10831460</p>
           </div>
         </div>
+        <?php if (isset($_POST["contactSubmit"])) {
+          $name = $_POST["contactName"];
+          $email = $_POST["contactEmail"];
+          $subject = $_POST["contactSubject"];
+          $message = $_POST["contactMsg"];
+          $date = date("Y-m-d");
+          $status = "Received";
 
-        <div class="row mt-5">
+          $addSql = "INSERT INTO `contact` (`msgName`,`msgEmail`,`msgSubject`,`msgMessage`,`msgDate`,`msgStatus`) VALUES ('$name','$email','$subject','$message','$date','$status')";
+          $result = mysqli_query($data, $addSql);
+
+          if ($result) {
+            echo '<div class="alert alert-success" role="alert">
+              Request is successfully sent.
+          </div>';
+          } else {
+            echo '<div class="alert alert-danger" role="alert">
+                  Error! Request is not sent. Please try again later.
+              </div>';
+          }
+        } ?>
+        <div class="row mt-1">
           <div class="col-lg-12 mt-5 mt-lg-0">
-            <form action="asset/forms/contact.php" method="post" name="contactForm">
+            <form action="" method="post">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="contactName" class="form-control" id="contactName" placeholder="Your Name" required>
