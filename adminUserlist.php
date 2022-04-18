@@ -152,7 +152,7 @@
                 <div class="d-flex flex-row-reverse">
                   <div class="mx-1">
                     <button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#addUser">
-                     Add User
+                     Add Patient
                     </button>
                   </div>
                 </div>
