@@ -1,9 +1,7 @@
-
-<?php 
-    if(!isset($_SESSION['adminName']))
-    {
-        header( "refresh:0;url=index.php#login-again-to-get-access" );
-    }
+<?php
+if (!isset($_SESSION['adminName'])) {
+    header("refresh:0;url=index.php#login-again-to-get-access");
+}
 ?>
 
 
@@ -36,7 +34,7 @@
             <li class="item">
                 <a <?php echo ($page == 'adminUserlist') ? "class='active'" : ""; ?> href="adminUserlist.php">
                     <i class='fa fa-user fa-xs'></i>
-                    <span class="links_name">User</span>
+                    <span class="links_name">Patient</span>
                 </a>
             </li>
             <li class="item">
