@@ -136,9 +136,9 @@
       </div>
       </div>
     </nav>
-  </section>
+    
 
-  <section class="home-section ">
+  
     <div class="home-content adminList">
       <!-- Table -->
       <div class="col-lg-12 grid-margin stretch-card">

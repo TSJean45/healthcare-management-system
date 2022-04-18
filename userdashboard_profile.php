@@ -36,10 +36,7 @@ if (isset($_POST["addBtn"])) {
 }
 //change
 if (isset($_POST["changePass"])) {
-
-
   $loggedInUser = $_SESSION['userName'];
-
   $curPass = $_POST["curPass"];
   $newPass = $_POST["newPass"];
   $newCheckPass = $_POST["newCheckPass"];
@@ -70,83 +67,6 @@ if (isset($_POST["changePass"])) {
     Password does not matched.</div>';
   }
 }
-//pic
-if(isset($_POST['uploadPic'])){
-  
-  $file = $_FILES['imageUser'];
-
-  // print_r($file);
-
-  $fileName = $_FILES['imageUser']['name'];
-  $fileTmpName = $_FILES['imageUser']['tmp_name'];
-  $fileSize = $_FILES['imageUser']['size'];
-  $fileError = $_FILES['imageUser']['error'];
-  $fileType = $_FILES['imageUser']['type'];
-
-  $fileExt = explode('.', $fileName);
-  $fileActualExt = strtolower(end($fileExt));
-
-  $allowed = array('jpg', 'jpeg', 'png');
-
-  if(in_array($fileActualExt, $allowed)){
-    if($fileError === 0){
-      if($fileSize <10000000){
-        $loggedInUser = $_SESSION['userId'];
-        $prefixSql = "SELECT * FROM `user` WHERE `userId` ='$loggedInUser'";
-
-        $prefixResult=mysqli_query($data,$prefixSql);
-            if($prefixResult){
-              while($row = mysqli_fetch_assoc($prefixResult)){
-                  $userPrefix = $row['userPrefix'];
-
-        $fileNameNew = "profile".$userPrefix.$loggedInUser.".".$fileActualExt;
-        $fileDestination = 'upload/'.$fileNameNew;
-        move_uploaded_file($fileTmpName, $fileDestination);
-        $sql = "UPDATE `user` set `userImage_status`= 1 WHERE userId = '$loggedInUser' ";
-        $result = mysqli_query($data, $sql);
-        
-
-        $msg = '<div class="alert alert-success" role="alert">
-        Photo has been uploaded. </div>';
-        }
-      }
-      else{
-        $msg =  '<div class="alert alert-danger" role="alert">
-                  File uploaded is too big.</div>';
-        
-      }
-    }
-    else{
-      $msg =  '<div class="alert alert-danger" role="alert">
-              There was an error uploading your image.</div>';
-       
-    }
-  }
-  else{
-    $msg =  '<div class="alert alert-danger" role="alert">
-    You cannot upload files of this type.</div>';
-    
-  }
-
-}
-else{
-  $msg =  '<div class="alert alert-danger" role="alert">
-  No image selected.</div>';
-}
-}
-
-
-if(isset($_POST['removePic'])){
-  $loggedInUser = $_SESSION['userId'];
-
-  $refreshSql = "UPDATE `user` set `userImage_status`= 0 WHERE userId = '$loggedInUser' ";
-  $refreshResult = mysqli_query($data, $refreshSql);
-
-  $msg =  '<div class="alert alert-success" role="alert">
-                    Photo has been removed.</div>';
-
-}
-
 ?>
 <!DoCTYPE html>
 <html>

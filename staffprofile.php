@@ -115,7 +115,7 @@ if(isset($_POST['uploadPic'])){
         $sql = "UPDATE `staff` set `staffImage_status`= 1 WHERE staffId = '$loggedInUser' ";
         $result = mysqli_query($data, $sql);
         $msg =  '<div class="alert alert-success" role="alert">
-                    Photo has been uploaded. It will take a sec to display</div>';
+                    Photo has been uploaded. </div>';
               }
       }
       else{
