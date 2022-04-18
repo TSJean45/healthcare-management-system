@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $email = $_POST["Email"];
   $password = $_POST["Password"];
-  
-  
+
+
 
 
   if (!empty($email) && !empty($password)) {
@@ -43,20 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['staffName'] = $Srow['staffName'];
       $_SESSION['staffId'] = $Srow['staffId'];
       header("location:staffdashboard.php");
-    } 
-    else 
-    {
-       $msg = '<div class="alert alert-danger" role="alert">
+    } else {
+      $msg = '<div class="alert alert-danger" role="alert">
                  Username or Password Incorrect.</div>';
-      
     }
   } else {
-      $msg =  '<div class="alert alert-danger" role="alert">
+    $msg =  '<div class="alert alert-danger" role="alert">
       Please fill in the details.</div>';
   }
-  }
-  
-  //end
+}
+
+//end
 
 
 
@@ -67,10 +64,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   <!-- Local CSS File -->
-  <link rel="stylesheet" href="asset/css/main.css">
-  <link rel="stylesheet" href="asset/css/header.css">
-  <link rel="stylesheet" href="asset/css/footer.css">
-  <link rel="stylesheet" href="asset/css/login.css">
+  <link rel="stylesheet" href="asset/css/main.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="asset/css/header.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="asset/css/footer.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="asset/css/login.css?v=<?php echo time(); ?>">
   <title> Login </title>
   <link rel="icon" href="asset/image/logo pic.png" type="image/x-icon">
   <?php include('asset/includes/cssCDN.php'); ?>
@@ -79,35 +76,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <?php include('asset/includes/navBar.php'); ?>
 
-  
-  <div class="login-page">
-    <div class="form">
-      <div class="login">
-        <div class="login-header">
-          <h3> JJJ E-Healthcare</h3>
-          <h2>LOGIN</h2>
-          <p>Please enter your credentials to login.</p>
-          <?php 
-             if(isset($msg))
-             {
-               echo $msg;
-             }
-          ?>
-          
+
+  <div class="container-fluid background">
+    <div class=" login-page">
+      <div class="form">
+        <div class="login">
+          <div class="login-header">
+            <h3> JJJ E-Healthcare</h3>
+            <h2>LOGIN</h2>
+            <p>Please enter your credentials to login.</p>
+            <?php
+            if (isset($msg)) {
+              echo $msg;
+            }
+            ?>
+
+          </div>
         </div>
+        <form class="login-form" method="POST">
+          <input type="text" name="Email" placeholder="Email" />
+          <input type="password" name="Password" placeholder="password" />
+          <button>login</button>
+          <p class="message">Not registered? <a href="registration.php">Create an account</a></p>
+        </form>
       </div>
-      <form class="login-form" method="POST">
-        <input type="text" name="Email" placeholder="Email" />
-        <input type="password" name="Password" placeholder="password" />
-        <button>login</button>
-        <p class="message">Not registered? <a href="registration.php">Create an account</a></p>
-      </form>
     </div>
   </div>
 
   <!--Footer -->
   <?php include('asset/includes/footer.php'); ?>
-  
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
