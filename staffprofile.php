@@ -76,6 +76,7 @@ if (isset($_POST["changePass"])) {
 }
 
 if(isset($_POST['uploadPic'])){
+  $loggedInUser = $_SESSION['staffId'];
   
   $file = $_FILES['imageStaff'];
 
@@ -92,6 +93,8 @@ if(isset($_POST['uploadPic'])){
 
   $allowed = array('jpg', 'jpeg', 'png');
 
+  
+
   if(in_array($fileActualExt, $allowed)){
     if($fileError === 0){
       if($fileSize <10000000){
@@ -106,6 +109,9 @@ if(isset($_POST['uploadPic'])){
         $fileNameNew = "profile".$staffPrefix.$loggedInUser.".".$fileActualExt;
         $fileDestination = 'upload/'.$fileNameNew;
         move_uploaded_file($fileTmpName, $fileDestination);
+        $refreshSql = "UPDATE `staff` set `staffImage_status`= 0 WHERE staffId = '$loggedInUser' ";
+        $refreshResult = mysqli_query($data, $refreshSql);
+
         $sql = "UPDATE `staff` set `staffImage_status`= 1 WHERE staffId = '$loggedInUser' ";
         $result = mysqli_query($data, $sql);
         $msg =  '<div class="alert alert-success" role="alert">
@@ -130,6 +136,26 @@ if(isset($_POST['uploadPic'])){
     
   }
 }
+else{
+  $msg =  '<div class="alert alert-danger" role="alert">
+  No image selected.</div>';
+  
+}
+
+}
+
+
+
+
+if(isset($_POST['removePic'])){
+  $loggedInUser = $_SESSION['staffId'];
+
+  $refreshSql = "UPDATE `staff` set `staffImage_status`= 0 WHERE staffId = '$loggedInUser' ";
+  $refreshResult = mysqli_query($data, $refreshSql);
+
+  $msg =  '<div class="alert alert-success" role="alert">
+                    Photo has been removed.</div>';
+
 }
 ?>
 <!DOCTYPE html>
@@ -244,7 +270,7 @@ if(isset($_POST['uploadPic'])){
           <div class="row">
             <div class="col-xl-12 m-t35">
               <div class="card card-coin">
-                <img src="asset/image/long-emp.jpg" alt="">
+                <!-- <img src="asset/image/long-emp.jpg" alt=""> -->
               </div>
             </div>
           </div>
@@ -375,7 +401,7 @@ if(isset($_POST['uploadPic'])){
             </div>
             <div class="mb-3">
               <label for="inputPhone" class="form-label">Phone Number</label>
-              <input type="tel" name ="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" value="<?php echo $phone_number?>">
+              <input type="tel" name ="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" value="<?php echo $phone_number?>">
             </div>
             <div class="mb-3">
             <label for="editGender" class="form-label">Gender</label>
@@ -445,7 +471,7 @@ if(isset($_POST['uploadPic'])){
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="uploadImage">Upload Profile Picture or Cover</h5>
+          <h5 class="modal-title" id="uploadImage">Upload Profile Picture</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="" method="POST" enctype="multipart/form-data">
@@ -454,15 +480,16 @@ if(isset($_POST['uploadPic'])){
               <label>Upload Profile Picture</label>
               <input type="file" name="imageStaff" class="form-control">
               <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                 <span class="input-group-append">
                   <button class="file-upload-browse btn btn-primary" name="uploadPic" type="submit">Upload</button>
                 </span>
               </div>
             </div>
-          
+            <div class="mb-3">
+            <input type="text" class="form-control file-upload-info" disabled placeholder="Please remove image before adding in new image">
+        </div>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <!-- <button type="submit" class="btn btn-success" name="" >Save</button> -->
+          <button type="submit" class="btn btn-success" name="removePic" >Remove Current Picture</button>
         </div>
         </form>
       </div>
