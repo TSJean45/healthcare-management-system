@@ -3,8 +3,9 @@ session_start();
 include 'connection.php';
 
 
-if (!isset($_SESSION['userName'])) {
-  header("refresh:0;url=index.php#login-again-to-get-access");
+if(!isset($_SESSION['userName']))
+{
+  header( "refresh:0;url=index.php#login-again-to-get-access" );
 }
 
 //add
@@ -70,8 +71,8 @@ if (isset($_POST["changePass"])) {
   }
 }
 //pic
-if (isset($_POST['uploadPic'])) {
-
+if(isset($_POST['uploadPic'])){
+  
   $file = $_FILES['imageUser'];
 
   // print_r($file);
@@ -87,40 +88,63 @@ if (isset($_POST['uploadPic'])) {
 
   $allowed = array('jpg', 'jpeg', 'png');
 
-  if (in_array($fileActualExt, $allowed)) {
-    if ($fileError === 0) {
-      if ($fileSize < 10000000) {
+  if(in_array($fileActualExt, $allowed)){
+    if($fileError === 0){
+      if($fileSize <10000000){
         $loggedInUser = $_SESSION['userId'];
         $prefixSql = "SELECT * FROM `user` WHERE `userId` ='$loggedInUser'";
 
-        $prefixResult = mysqli_query($data, $prefixSql);
-        if ($prefixResult) {
-          while ($row = mysqli_fetch_assoc($prefixResult)) {
-            $userPrefix = $row['userPrefix'];
+        $prefixResult=mysqli_query($data,$prefixSql);
+            if($prefixResult){
+              while($row = mysqli_fetch_assoc($prefixResult)){
+                  $userPrefix = $row['userPrefix'];
 
-            $fileNameNew = "profile" . $userPrefix . $loggedInUser . "." . $fileActualExt;
-            $fileDestination = 'upload/' . $fileNameNew;
-            move_uploaded_file($fileTmpName, $fileDestination);
-            $sql = "UPDATE `user` set `userImage_status`= 1 WHERE userId = '$loggedInUser' ";
-            $result = mysqli_query($data, $sql);
-            echo "<meta http-equiv='refresh' content='0'>";
+        $fileNameNew = "profile".$userPrefix.$loggedInUser.".".$fileActualExt;
+        $fileDestination = 'upload/'.$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+        $sql = "UPDATE `user` set `userImage_status`= 1 WHERE userId = '$loggedInUser' ";
+        $result = mysqli_query($data, $sql);
+        
 
-            $msg = '<div class="alert alert-success" role="alert">
-                    Photo has been uploaded.</div>';
-          }
-        } else {
-          $msg =  '<div class="alert alert-danger" role="alert">
-                  File uploaded is too big.</div>';
+        $msg = '<div class="alert alert-success" role="alert">
+        Photo has been uploaded. </div>';
         }
-      } else {
-        $msg =  '<div class="alert alert-danger" role="alert">
-              There was an error uploading your image.</div>';
       }
-    } else {
+      else{
+        $msg =  '<div class="alert alert-danger" role="alert">
+                  File uploaded is too big.</div>';
+        
+      }
+    }
+    else{
       $msg =  '<div class="alert alert-danger" role="alert">
-    You cannot upload files of this type.</div>';
+              There was an error uploading your image.</div>';
+       
     }
   }
+  else{
+    $msg =  '<div class="alert alert-danger" role="alert">
+    You cannot upload files of this type.</div>';
+    
+  }
+
+}
+else{
+  $msg =  '<div class="alert alert-danger" role="alert">
+  No image selected.</div>';
+}
+}
+
+
+if(isset($_POST['removePic'])){
+  $loggedInUser = $_SESSION['userId'];
+
+  $refreshSql = "UPDATE `user` set `userImage_status`= 0 WHERE userId = '$loggedInUser' ";
+  $refreshResult = mysqli_query($data, $refreshSql);
+
+  $msg =  '<div class="alert alert-success" role="alert">
+                    Photo has been removed.</div>';
+
 }
 
 ?>
@@ -140,43 +164,17 @@ if (isset($_POST['uploadPic'])) {
   <!-- Header -->
 
   <div class="container">
-    <div class="card mb-3">
+    <div class="card mb-4">
       <div class="row g-0">
-        <div class="col-md-3">
-          <?php
-          $currentUser = $_SESSION['userId'];
-          $sql = "SELECT * FROM user WHERE userId ='$currentUser'";
-
-          $result = mysqli_query($data, $sql);
-
-          if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-              $prefix = $row['userPrefix'];
-              $id = $row['userId'];
-              $imageStatus = $row['userImage_status'];
-
-              if ($imageStatus == 1) {
-                echo "<img src='upload/profile" . $prefix . $id . ".jpg'>";
-              } else {
-                echo "<img src='asset/image/short-emp.jpg'>";
-              }
-            }
-          }
-          ?>
-          <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editUserProfile" style="margin-top: 10px;">Edit Profile</button>
-          <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#uploadImage" style="margin-top: 10px;"> Upload Image </button>
-          <button type="button" class="btn btn-warning" style="margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#changePass">
-            Change Password
-          </button>
-        </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">My Profile</h5>
             <?php
-            if (isset($msg)) {
-              echo $msg;
-            }
-            ?>
+			    	if(isset($msg))
+				    {
+				     echo $msg;
+				    }
+			      ?>
             <div class="table-responsive">
               <table class="table table-bordered table-condensed table-striped">
                 <thead>
@@ -232,16 +230,20 @@ if (isset($_POST['uploadPic'])) {
                         <td>Date Created</td>
                         <td><?php echo $dateCreated ?></td>
                       </tr>
-                  <?php }
-                  } ?>
+                  
                 </tbody>
               </table>
+              <div class="col-md-3">
+          <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editUserProfile" style="margin-top: 10px;">Edit Profile</button>
+          <button type="button" class="btn btn-warning" style="margin-top: 10px;" data-bs-toggle="modal" data-bs-target="#changePass">Change Password</button>
+        </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <?php } } ?>
 
   <!-- edit modal -->
   <div class="modal fade" id="editUserProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editUserprofile" aria-hidden="true">
@@ -263,7 +265,7 @@ if (isset($_POST['uploadPic'])) {
             </div>
             <div class="mb-3">
               <label for="inputPhone" class="form-label">Phone Number</label>
-              <input type="tel" name="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}-[0-9]{3-4}-[0-9]{3-4}" value="<?php echo $phone_number ?>">
+              <input type="tel" name="newPhone" class="form-control" id="inputPhone" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" value="<?php echo $phone_number ?>">
             </div>
             <div class="mb-3">
               <label for="inputGender" class="form-label">Gender</label>
@@ -314,34 +316,6 @@ if (isset($_POST['uploadPic'])) {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-success" name="changePass">Change Password</button>
           </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Upload Image Modal -->
-  <div class="modal fade" id="uploadImage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadImage" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="uploadImage">Upload Profile Picture or Cover</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label>Upload Profile Picture</label>
-              <input type="file" name="imageUser" class="form-control">
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" name="uploadPic" type="submit">Upload</button>
-                </span>
-              </div>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <!-- <button type="submit" class="btn btn-success" name="" >Save</button> -->
-          </div>
-        </form>
       </div>
     </div>
   </div>
