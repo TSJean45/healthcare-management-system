@@ -47,12 +47,11 @@ include 'connection.php';
               <?php
               if (isset($_SESSION['userName'])) {
               ?>
-              <a class="btn btn-primary" href="appointmentuser.php" role="button">Book Your Appointment</a>
+                <a class="btn btn-primary" href="appointmentuser.php" role="button">Book Your Appointment</a>
               <?php
-              }
-              else{
+              } else {
               ?>
-              <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
+                <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
               <?php
               }
               ?>
@@ -72,12 +71,11 @@ include 'connection.php';
               <?php
               if (isset($_SESSION['userName'])) {
               ?>
-              <a class="btn btn-primary" href="vaccineuser.php" role="button">Book Your Appointment</a>
+                <a class="btn btn-primary" href="vaccineuser.php" role="button">Book Your Appointment</a>
               <?php
-              }
-              else{
+              } else {
               ?>
-              <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
+                <a class="btn btn-primary" href="login.php" role="button">Login To Book Now</a>
               <?php
               }
               ?>
@@ -183,35 +181,59 @@ include 'connection.php';
         <div class="row">
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
-              <i class="fas fa-user-md"></i>
-              <span>20</span>
-              <p>Doctors</p>
+              <?php
+              $count = "SELECT * FROM `staff`";
+              if ($result = mysqli_query($data, $count)) {
+                $staffCount = mysqli_num_rows($result);
+              ?>
+                <i class="fas fa-user-md"></i>
+                <span><?php echo $staffCount ?></span>
+                <p>Medical Staffs</p>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-            <div class="count-box">
+        <?php  } ?>
+        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+          <div class="count-box">
+            <?php
+            $count = "SELECT * FROM `user`";
+            if ($result = mysqli_query($data, $count)) {
+              $userCount = mysqli_num_rows($result);
+            ?>
               <i class="far fa-hospital"></i>
-              <span>70</span>
-              <p>Users</p>
-            </div>
+              <span><?php echo $userCount ?></span>
+              <p>Patients</p>
           </div>
+        <?php  } ?>
+        </div>
 
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <?php
+            $status = "Cancelled";
+            $count = "SELECT * FROM `vaccine` WHERE  `vaccineStatus`!='$status'";
+            if ($result = mysqli_query($data, $count)) {
+              $vaccineCount = mysqli_num_rows($result);
+            ?>
               <i class="fas fa-flask"></i>
-              <span>6789</span>
-              <p>COVID-19 Vaccination</p>
-            </div>
+              <span><?php echo $vaccineCount ?></span>
+              <p>Vaccination Appointment</p>
           </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
+        <?php  } ?>
+        </div>
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <?php
+            $status = "Cancelled";
+            $count = "SELECT * FROM `appointment` WHERE  `appointmentStatus`!='$status'";
+            if ($result = mysqli_query($data, $count)) {
+              $appCount = mysqli_num_rows($result);
+            ?>
               <i class="fas fa-award"></i>
-              <span>67</span>
+              <span><?php echo $appCount ?></span>
               <p>Consultation Appointment</p>
-            </div>
           </div>
+        <?php  } ?>
+        </div>
         </div>
       </div>
     </div>
