@@ -7,60 +7,6 @@ if (!isset($_SESSION['userName'])) {
   header("refresh:0;url=index.php#login-again-to-get-access");
 }
 
-
-if (isset($_POST['uploadPic'])) {
-
-  $file = $_FILES['imageUser'];
-
-  // print_r($file);
-
-  $fileName = $_FILES['imageUser']['name'];
-  $fileTmpName = $_FILES['imageUser']['tmp_name'];
-  $fileSize = $_FILES['imageUser']['size'];
-  $fileError = $_FILES['imageUser']['error'];
-  $fileType = $_FILES['imageUser']['type'];
-
-  $fileExt = explode('.', $fileName);
-  $fileActualExt = strtolower(end($fileExt));
-
-  $allowed = array('jpg', 'jpeg', 'png');
-
-  if (in_array($fileActualExt, $allowed)) {
-    if ($fileError === 0) {
-      if ($fileSize < 10000000) {
-        $loggedInUser = $_SESSION['userId'];
-        $prefixSql = "SELECT * FROM `user` WHERE `userId` ='$loggedInUser'";
-
-        $prefixResult = mysqli_query($data, $prefixSql);
-        if ($prefixResult) {
-          while ($row = mysqli_fetch_assoc($prefixResult)) {
-            $userPrefix = $row['userPrefix'];
-
-            $fileNameNew = "profile" . $userPrefix . $loggedInUser . "." . $fileActualExt;
-            $fileDestination = 'upload/' . $fileNameNew;
-            move_uploaded_file($fileTmpName, $fileDestination);
-            $sql = "UPDATE `user` set `userImage_status`= 1 WHERE userId = '$loggedInUser' ";
-            $result = mysqli_query($data, $sql);
-            echo "<meta http-equiv='refresh' content='0'>";
-
-            $msg = '<div class="alert alert-success" role="alert">
-                    Photo has been uploaded.</div>';
-          }
-        } else {
-          $msg =  '<div class="alert alert-danger" role="alert">
-                  File uploaded is too big.</div>';
-        }
-      } else {
-        $msg =  '<div class="alert alert-danger" role="alert">
-              There was an error uploading your image.</div>';
-      }
-    } else {
-      $msg =  '<div class="alert alert-danger" role="alert">
-    You cannot upload files of this type.</div>';
-    }
-  }
-}
-
 //add
 if (isset($_POST["addBtn"])) {
 
@@ -124,6 +70,58 @@ if (isset($_POST["changePass"])) {
   }
 }
 //pic
+if (isset($_POST['uploadPic'])) {
+
+  $file = $_FILES['imageUser'];
+
+  // print_r($file);
+
+  $fileName = $_FILES['imageUser']['name'];
+  $fileTmpName = $_FILES['imageUser']['tmp_name'];
+  $fileSize = $_FILES['imageUser']['size'];
+  $fileError = $_FILES['imageUser']['error'];
+  $fileType = $_FILES['imageUser']['type'];
+
+  $fileExt = explode('.', $fileName);
+  $fileActualExt = strtolower(end($fileExt));
+
+  $allowed = array('jpg', 'jpeg', 'png');
+
+  if (in_array($fileActualExt, $allowed)) {
+    if ($fileError === 0) {
+      if ($fileSize < 10000000) {
+        $loggedInUser = $_SESSION['userId'];
+        $prefixSql = "SELECT * FROM `user` WHERE `userId` ='$loggedInUser'";
+
+        $prefixResult = mysqli_query($data, $prefixSql);
+        if ($prefixResult) {
+          while ($row = mysqli_fetch_assoc($prefixResult)) {
+            $userPrefix = $row['userPrefix'];
+
+            $fileNameNew = "profile" . $userPrefix . $loggedInUser . "." . $fileActualExt;
+            $fileDestination = 'upload/' . $fileNameNew;
+            move_uploaded_file($fileTmpName, $fileDestination);
+            $sql = "UPDATE `user` set `userImage_status`= 1 WHERE userId = '$loggedInUser' ";
+            $result = mysqli_query($data, $sql);
+            echo "<meta http-equiv='refresh' content='0'>";
+
+            $msg = '<div class="alert alert-success" role="alert">
+                    Photo has been uploaded.</div>';
+          }
+        } else {
+          $msg =  '<div class="alert alert-danger" role="alert">
+                  File uploaded is too big.</div>';
+        }
+      } else {
+        $msg =  '<div class="alert alert-danger" role="alert">
+              There was an error uploading your image.</div>';
+      }
+    } else {
+      $msg =  '<div class="alert alert-danger" role="alert">
+    You cannot upload files of this type.</div>';
+    }
+  }
+}
 
 ?>
 <!DoCTYPE html>
@@ -142,7 +140,7 @@ if (isset($_POST["changePass"])) {
   <!-- Header -->
 
   <div class="container">
-    <div class="card mb-5">
+    <div class="card mb-3">
       <div class="row g-0">
         <div class="col-md-3">
           <?php
@@ -171,7 +169,7 @@ if (isset($_POST["changePass"])) {
             Change Password
           </button>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-9">
           <div class="card-body">
             <h5 class="card-title">My Profile</h5>
             <?php
@@ -333,9 +331,15 @@ if (isset($_POST["changePass"])) {
             <div class="mb-3">
               <label>Upload Profile Picture</label>
               <input type="file" name="imageUser" class="form-control">
+              <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                  <button class="file-upload-browse btn btn-primary" name="uploadPic" type="submit">Upload</button>
+                </span>
+              </div>
             </div>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="uploadPic">Upload</button>
+            <!-- <button type="submit" class="btn btn-success" name="" >Save</button> -->
           </div>
         </form>
       </div>
