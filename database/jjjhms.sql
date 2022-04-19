@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2022 at 02:19 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
+-- Generation Time: Apr 19, 2022 at 08:02 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
   `adminGender` varchar(50) NOT NULL,
   `adminAddress` varchar(50) NOT NULL,
   `adminBirthdate` date NOT NULL,
-  `adminImage_profille` varchar(256) NOT NULL,
+  `adminImage_status` int(11) NOT NULL,
   `adminBiography` varchar(256) NOT NULL,
   `adminQualification` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -47,9 +47,9 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`adminPrefix`, `adminId`, `adminName`, `adminEmail`, `adminPassword`, `adminUsertype`, `adminPhone_number`, `adminGender`, `adminAddress`, `adminBirthdate`, `adminImage_profille`, `adminBiography`, `adminQualification`) VALUES
-('A', 00001, 'Johan Harris', 'johan@admin.jjj.com', '1234', 'admin', '01162721818', 'Male', '32 usj 12/2d', '2002-10-16', '', 'I hate upload image', 'PhD in Sleeping'),
-('A', 00002, 'Tan Szu Jean', 'jean@admin.jjj.com', '1234', 'admin', '011-632-1212', 'Female', 'Nova Apartment, KL', '2002-03-09', '', 'Professional Coder', 'Phd in Genshin Impact');
+INSERT INTO `admin` (`adminPrefix`, `adminId`, `adminName`, `adminEmail`, `adminPassword`, `adminUsertype`, `adminPhone_number`, `adminGender`, `adminAddress`, `adminBirthdate`, `adminImage_status`, `adminBiography`, `adminQualification`) VALUES
+('A', 00001, 'Johan Harris', 'johan@admin.jjj.com', '1234', 'admin', '011-6272-1818', 'Male', '32 usj 12/2d', '2002-10-16', 1, 'I hate upload image nahh', 'PhD in Sleeping'),
+('A', 00002, 'Tan ', 'jean@admin.jjj.com', '1234', 'admin', '01163222212', 'Female', 'Nova Apartment, KL , Malaysia', '2002-03-09', 0, 'Professional Coder', 'Phd in Genshin Impact');
 
 -- --------------------------------------------------------
 
@@ -73,15 +73,16 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`appointmentID`, `appointmentPrefix`, `appointmentDate`, `appointmentTime`, `appointmentReason`, `appointmentStatus`, `staffId`, `userId`) VALUES
-(00018, 'AP', '2022-04-01', '14:00:00', 'having cough', 'Booked', 00002, 00003),
-(00019, 'AP', '2022-04-22', '18:00:00', 'vomit', 'Cancelled', 00013, 00003),
-(00020, 'AP', '2022-04-22', '18:00:00', 'vomit', 'Cancelled', 00013, 00003),
 (00021, 'AP', '2022-04-22', '09:00:00', 'vomit', 'Cancelled', 00013, 00003),
-(00022, 'AP', '2022-04-29', '18:00:00', 'fever', 'Booked', 00013, 00003),
-(00023, 'AP', '2022-04-19', '14:00:00', 'fever', 'Scheduled', 00015, 00044),
-(00024, 'AP', '2022-04-29', '18:00:00', 'schedule from last week', 'Booked', 00013, 00039),
+(00023, 'AP', '2022-04-19', '15:00:00', 'fever', 'Scheduled', 00015, 00044),
 (00025, 'AP', '2022-04-28', '14:00:00', 'heart attack', 'Completed', 00015, 00038),
-(00026, 'AP', '2022-04-29', '12:00:00', 'not feeling really well', 'Confirmed', 00015, 00041);
+(00026, 'AP', '2022-04-29', '12:00:00', 'not feeling really well', 'Cancelled', 00015, 00041),
+(00028, 'AP', '2022-04-21', '10:00:00', '', 'Completed', 00014, 00003),
+(00029, 'AP', '2022-04-20', '11:00:00', 'Flu ', 'Booked', 00012, 00004),
+(00030, 'AP', '2022-04-23', '10:00:00', 'test', 'Cancelled', 00015, 00003),
+(00031, 'AP', '2022-04-20', '11:00:00', 'Flu ', 'Cancelled', 00013, 00004),
+(00032, 'AP', '2022-04-19', '09:00:00', '', 'Completed', 00015, 00060),
+(00033, 'AP', '2022-04-21', '11:00:00', 'Flu ', 'Booked', 00012, 00003);
 
 -- --------------------------------------------------------
 
@@ -103,11 +104,11 @@ CREATE TABLE `bed` (
 --
 
 INSERT INTO `bed` (`bedPrefix`, `bedID`, `bedLocation`, `bedDepartment`, `bedStatus`, `userID`) VALUES
-('B', 024, 'Floor 2', 'Pediatrician', 'Occupied', 00044),
-('B', 025, 'Floor 3', 'Endocrinologist', 'Empty', 00038),
 ('B', 027, 'Floor 3', 'Podiatrist', 'Cleaning', 00042),
 ('B', 029, 'Floor 3', 'Neurologist', 'Occupied', 00004),
-('B', 031, 'Floor 3', 'Endocrinologist', 'Cleaning', 00003);
+('B', 031, 'Floor 3', 'Endocrinologist', 'Cleaning', 00003),
+('B', 032, 'Floor 4', 'Neurologist', 'Occupied', 00003),
+('B', 036, 'Floor 3', 'Endocrinologist', 'Empty', 00003);
 
 -- --------------------------------------------------------
 
@@ -132,50 +133,8 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`msgPrefix`, `msgID`, `msgName`, `msgEmail`, `msgSubject`, `msgMessage`, `msgDate`, `msgStatus`) VALUES
 ('C', 00035, 'sdasdad', 'a@gmail.com', 'sdada', 'dasdda', '2022-04-17', 'Replied'),
-('C', 00036, 'dasdasd', 'sada@gmail.com', 'sdada', 'dasdadad', '2022-04-17', 'Received');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login`
---
-
-CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `usertype` varchar(50) NOT NULL DEFAULT 'user'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `login`
---
-
-INSERT INTO `login` (`id`, `name`, `email`, `password`, `usertype`) VALUES
-(1, 'Tan Szu Jean', 'jean@admin.jjj.com', '1234', 'admin'),
-(2, 'Cheong Jia En', 'jiaen@staff.jjj.com', '1234', 'staff'),
-(3, 'Johan Harris ', 'jo@gmail.com', '1234', 'user'),
-(4, 'Zhilong', 'zhi@gmail.com', '1234', 'user'),
-(5, 'Juju', 'juju@gmail.com', '1234', 'user'),
-(6, 'Juju2', 'juju2@gmail.com', '1234', 'user'),
-(7, 'jasper', 'japs12@gmail.com', '1234', 'user'),
-(8, 'paimon', 'genshin12@gmail.com', '1234', 'user'),
-(9, 'dheenan', 'dhee@gmail.com', '1234', 'user'),
-(10, 'Lebron', 'lebron1@gmail.com', '1234', 'user'),
-(11, 'huhu', 'huhuhu@gmail.com', '1234', 'user'),
-(12, 'madam', 'madam@gmail.com', '1234', 'user'),
-(13, 'zrf', 'zrf@gmail.com', '123', 'user'),
-(14, 'jo4', 'jo4@gmail', '123', 'user'),
-(16, 'Johan Harris', 'johan@admin.jjj.com', '1234', 'admin'),
-(17, 'Ja', 'ja@admin.jjj.com', '1234', 'admin'),
-(18, 'Susu', 'susu@admin.jjj.com', '1234', 'admin'),
-(19, 'Susu', 'susu@admin.jjj.com', '1234', 'admin'),
-(20, 'Jean2', 'jean2@admin.jjj.com', '1234', 'admin'),
-(21, 'Jean3', 'jean3@admin.jjj.com', '1234', 'admin'),
-(22, 'Madam', 'madam@admin.jjj.com', '1234', 'admin'),
-(31, 'Josh Hart', 'josh@staff.jjj.com', '1234', 'staff'),
-(32, 'Madam', 'madam@staff.jjj.com', '1234', 'staff');
+('C', 00036, 'dasdasd', 'sada@gmail.com', 'sdada', 'dasdadad', '2022-04-17', 'Received'),
+('C', 00039, 'Johan ', 'johanharriss@gmail.com', 'Hungry', 'Hi', '2022-04-19', 'Replied');
 
 -- --------------------------------------------------------
 
@@ -278,7 +237,6 @@ CREATE TABLE `medrec` (
   `recPrefix` varchar(1) NOT NULL DEFAULT 'R',
   `recID` int(5) UNSIGNED ZEROFILL NOT NULL,
   `userID` int(5) UNSIGNED ZEROFILL NOT NULL,
-  `userName` varchar(100) NOT NULL,
   `staffID` int(5) UNSIGNED ZEROFILL NOT NULL,
   `recDate` date NOT NULL,
   `recDisease` varchar(100) NOT NULL,
@@ -289,10 +247,9 @@ CREATE TABLE `medrec` (
 -- Dumping data for table `medrec`
 --
 
-INSERT INTO `medrec` (`recPrefix`, `recID`, `userID`, `userName`, `staffID`, `recDate`, `recDisease`, `recStatus`) VALUES
-('R', 00076, 00042, 'Keane', 00003, '2022-04-08', 'asdasdd', 'Recovered'),
-('R', 00078, 00003, 'Johan Harris ', 00002, '2022-04-14', 'asdadasdasd', 'In Treatment'),
-('R', 00080, 00042, 'Keane', 00012, '2022-04-13', 'new info', 'New');
+INSERT INTO `medrec` (`recPrefix`, `recID`, `userID`, `staffID`, `recDate`, `recDisease`, `recStatus`) VALUES
+('R', 00076, 00042, 00011, '2022-04-08', 'asdasdd', 'New'),
+('R', 00078, 00003, 00002, '2022-04-14', 'asdadasdasd', 'In Treatment');
 
 -- --------------------------------------------------------
 
@@ -313,13 +270,15 @@ CREATE TABLE `medstock` (
 --
 
 INSERT INTO `medstock` (`prefix`, `stockID`, `stockName`, `stockQty`, `stockExpDate`) VALUES
-('MS', 00049, 'Acarbose', 150, '2022-04-22'),
-('MS', 00051, 'Aspirin', 12, '2022-04-15'),
-('MS', 00052, 'Cefixime', 500, '2022-04-30'),
+('MS', 00052, 'Cefixime', 300, '2022-04-30'),
 ('MS', 00080, 'Gentamicin', 122, '2022-04-14'),
 ('MS', 00082, 'Doxazosin', 990, '2022-05-27'),
 ('MS', 00083, 'Cetirizine', 6000, '2022-04-13'),
-('MS', 00084, 'Amantadine', 2000, '2022-04-28');
+('MS', 00084, 'Amantadine', 2000, '2022-04-28'),
+('MS', 00085, 'Spirulina', 12, '2022-04-20'),
+('MS', 00086, 'Acarbose', 312, '2022-04-20'),
+('MS', 00087, 'Acarbose', 25, '2022-04-21'),
+('MS', 00088, 'Acarbose', 22, '2022-04-21');
 
 -- --------------------------------------------------------
 
@@ -340,8 +299,7 @@ CREATE TABLE `staff` (
   `staffGender` varchar(50) NOT NULL,
   `staffAddress` varchar(50) NOT NULL,
   `staffBirthdate` date NOT NULL,
-  `staffImage_profile` varchar(50) NOT NULL,
-  `staffImage_cover` varchar(50) NOT NULL,
+  `staffImage_status` int(11) NOT NULL,
   `staffBiography` varchar(256) NOT NULL,
   `staffQualification` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -350,15 +308,15 @@ CREATE TABLE `staff` (
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`staffPrefix`, `staffId`, `staffName`, `staffEmail`, `staffPassword`, `staffPosition`, `staffDepartment`, `staffUsertype`, `staffPhone_number`, `staffGender`, `staffAddress`, `staffBirthdate`, `staffImage_profile`, `staffImage_cover`, `staffBiography`, `staffQualification`) VALUES
-('S', 00001, 'Cheong Jia En', 'jiaen@staff.jjj.com', '123', 'Staff', 'Endocrinologist', 'staff', 'acb99', 'Female', 'MMU', '2002-06-10', '', '', 'lolol', 'PhD in Nursing, Bachelor in Rheumatologist'),
-('S', 00002, 'Josh Hart', 'josh@staff.jjj.com', '1234', 'Doctor', 'Podiatrist', 'staff', '', '', '', '0000-00-00', '', '', '', ''),
-('S', 00003, 'Madam', 'madam@staff.jjj.com', '1234', 'Staff', 'Podiatrist', 'staff', '', '', '', '0000-00-00', '', '', '', ''),
-('S', 00011, 'Jesse Pinkman', 'jesse@staff.jjj.com', '1234', 'Staff', 'Neurologist', 'staff', '011-125-1617', 'Male', '9809 Margo Street, Albuquerque, New Mexico', '1996-02-06', '', '', 'Been working here for 10 years. Love the people here.', 'Phd in Neurologist, PhD in Chemistry'),
-('S', 00012, 'Hank Schrader', 'hank@staff.jjj.com', '1234', 'Doctor', 'Endocrinologist', 'staff', '', '', '', '0000-00-00', '', '', '', ''),
-('S', 00013, 'Sasuke Uchiha', 'sasuke@staff.jjj.com', '1234', 'Doctor', 'Neurologist', 'staff', '', '', '', '0000-00-00', '', '', '', ''),
-('S', 00014, 'Naruto Uzumaki', 'naruto@staff.jjj.com', '1234', 'Staff', 'Rheumatologist', 'staff', '', '', '', '0000-00-00', '', '', '', ''),
-('S', 00015, 'Joseph Sterling', 'joseph@staff.jjj.com', '1234', 'Doctor', 'Endocrinologist', 'staff', '', '', '', '0000-00-00', '', '', '', '');
+INSERT INTO `staff` (`staffPrefix`, `staffId`, `staffName`, `staffEmail`, `staffPassword`, `staffPosition`, `staffDepartment`, `staffUsertype`, `staffPhone_number`, `staffGender`, `staffAddress`, `staffBirthdate`, `staffImage_status`, `staffBiography`, `staffQualification`) VALUES
+('S', 00001, 'Cheong Jia ', 'jiaen@staff.jjj.com', '123', 'Staff', 'Pediatrician', 'staff', '01111111111', 'Female', 'MMU', '2002-06-10', 1, 'lolol', 'PhD in Nursing, Bachelor in Rheumatologist'),
+('S', 00002, 'Josh Hart', 'josh@staff.jjj.com', '1234', 'Doctor', 'Podiatrist', 'staff', '', '', '', '0000-00-00', 1, '', ''),
+('S', 00003, 'Madam', 'madam@staff.jjj.com', '1234', 'Staff', 'Podiatrist', 'staff', '', '', '', '0000-00-00', 1, '', ''),
+('S', 00011, 'Jesse Pinkman', 'jesse@staff.jjj.com', '1234', 'Staff', 'Neurologist', 'staff', '01112561617', 'Male', '9809 Margo Street, Albuquerque, New Mexico', '1996-02-06', 1, 'Been working here for 10 years. Love the people here.', 'Phd in Neurologist, PhD in Chemistry'),
+('S', 00012, 'Hank Schrader', 'hank@staff.jjj.com', '1234', 'Doctor', 'Endocrinologist', 'staff', '01111111111', 'Male', 'Man Cent, Jalan Ayer Keroh', '1995-06-08', 1, 'I love FYP', ''),
+('S', 00013, 'Sasuke Uchiha', 'sasuke@staff.jjj.com', '1234', 'Doctor', 'Neurologist', 'staff', '01111111111', 'Male', '10 Jalan Bedara', '1999-06-07', 1, 'I love FYP', ''),
+('S', 00014, 'Naruto ', 'naruto@staff.jjj.com', '1234', 'Doctor', 'Rheumatologist', 'staff', '', 'Female', '', '0000-00-00', 1, '', ''),
+('S', 00015, 'Joseph Sterling', 'joseph@staff.jjj.com', '1234', 'Doctor', 'Endocrinologist', 'staff', '01111111111', 'Male', 'Putra Height', '1996-06-18', 1, 'I love FYP', '');
 
 -- --------------------------------------------------------
 
@@ -377,23 +335,25 @@ CREATE TABLE `user` (
   `userPhone_number` varchar(50) NOT NULL,
   `userGender` varchar(50) NOT NULL,
   `userBirthdate` date NOT NULL,
-  `userAddress` varchar(50) NOT NULL
+  `userAddress` varchar(50) NOT NULL,
+  `userImage_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userPrefix`, `userId`, `userName`, `userEmail`, `userPassword`, `usertype`, `userDate_created`, `userPhone_number`, `userGender`, `userBirthdate`, `userAddress`) VALUES
-('U', 00003, 'Johan Harris', 'jo@gmail.com', '1234', 'user', '2022-03-09', '011-10000000', 'Female', '2002-10-16', '32, USJ 12/2D , Subang Jaya'),
-('U', 00004, 'Zhilong', 'zhi@gmail.com', '1234', 'user', '2022-03-16', '', '', '0000-00-00', ''),
-('U', 00038, 'Bradley Beal', 'bradleybeal@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', ''),
-('U', 00039, 'Kirito', 'kirito@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', ''),
-('U', 00041, 'Chris Rock ', 'chrisrock@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', ''),
-('U', 00042, 'Keane', 'keane@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', ''),
-('U', 00043, 'Rick Sanchez', 'rick@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', ''),
-('U', 00044, 'Marc Spector', 'marc@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', ''),
-('U', 00045, 'Mr Knight', 'knight@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '');
+INSERT INTO `user` (`userPrefix`, `userId`, `userName`, `userEmail`, `userPassword`, `usertype`, `userDate_created`, `userPhone_number`, `userGender`, `userBirthdate`, `userAddress`, `userImage_status`) VALUES
+('U', 00003, 'Johan ', 'jo@gmail.com', '1234', 'user', '2022-03-09', '01111111111', 'Male', '2002-10-16', '32, USJ 12/2D , Subang Jaya', 0),
+('U', 00004, 'Zhilong', 'zhi@gmail.com', '1234', 'user', '2022-03-16', '', '', '0000-00-00', '', 0),
+('U', 00038, 'Bradley Beal', 'bradleybeal@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '', 0),
+('U', 00039, 'Kirito', 'kirito@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '', 0),
+('U', 00041, 'Chris Rock ', 'chrisrock@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '', 0),
+('U', 00042, 'Keane', 'keane@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '', 0),
+('U', 00043, 'Rick Sanchez', 'rick@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '', 0),
+('U', 00044, 'Marc Spector', 'marc@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '', 0),
+('U', 00045, 'Mr Knight', 'knight@gmail.com', '1234', 'user', '2022-04-08', '', '', '0000-00-00', '', 0),
+('U', 00060, 'Falco', 'falco@gmail.com', '1234', 'user', '2022-04-19', '', '', '0000-00-00', '', 0);
 
 -- --------------------------------------------------------
 
@@ -418,7 +378,14 @@ CREATE TABLE `vaccine` (
 INSERT INTO `vaccine` (`vaccinePrefix`, `vaccineId`, `vaccineDate`, `vaccineTime`, `vaccineBrand`, `vaccineStatus`, `userId`) VALUES
 ('V', 00010, '0000-00-00', '00:00:00', 'Moderna', 'Cancelled', 00003),
 ('V', 00011, '2022-04-28', '09:00:00', 'Sinovac', 'Completed', 00003),
-('V', 00012, '2022-04-29', '10:30:00', 'Johnson and Johnson', 'Scheduled', 00003);
+('V', 00012, '2022-04-29', '10:30:00', 'AstraZeneca', 'Scheduled', 00003),
+('V', 00013, '2022-04-21', '16:16:00', 'AstraZeneca', 'Scheduled', 00004),
+('V', 00014, '2022-04-21', '17:16:00', 'AstraZeneca', 'Cancelled', 00039),
+('V', 00015, '2022-04-21', '17:33:00', 'Sinovac', 'Completed', 00003),
+('V', 00016, '2022-04-20', '11:55:00', 'Pfizer', 'Scheduled', 00038),
+('V', 00017, '2022-04-22', '13:25:00', 'AstraZeneca', 'Cancelled', 00003),
+('V', 00018, '2022-04-20', '15:38:00', 'Sinovac', 'Scheduled', 00003),
+('V', 00019, '2022-04-23', '13:28:00', 'Pfizer', 'Confirmed', 00003);
 
 --
 -- Indexes for dumped tables
@@ -499,55 +466,55 @@ ALTER TABLE `vaccine`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `adminId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `adminId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointmentID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `appointmentID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `bed`
 --
 ALTER TABLE `bed`
-  MODIFY `bedID` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `bedID` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `msgID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `msgID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `medrec`
 --
 ALTER TABLE `medrec`
-  MODIFY `recID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `recID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `medstock`
 --
 ALTER TABLE `medstock`
-  MODIFY `stockID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `stockID` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staffId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `staffId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `userId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `vaccine`
 --
 ALTER TABLE `vaccine`
-  MODIFY `vaccineId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `vaccineId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
