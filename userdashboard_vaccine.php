@@ -3,9 +3,8 @@ session_start();
 
 include 'connection.php';
 
-if(!isset($_SESSION['userName']))
-{
-  header( "refresh:0;url=index.php#login-again-to-get-access" );
+if (!isset($_SESSION['userName'])) {
+  header("refresh:0;url=index.php#login-again-to-get-access");
 }
 
 ?>
@@ -150,7 +149,9 @@ if(!isset($_SESSION['userName']))
               <tbody>
 
                 <?php
-                $viewSql = "SELECT * FROM `vaccine` INNER JOIN `user`  ON  vaccine.userId=user.userId";
+                $currentUser = $_SESSION['userId'];
+                $viewSql = "SELECT * FROM `vaccine` INNER JOIN `user`  ON  vaccine.userId=user.userId
+                WHERE vaccine.userId=$currentUser";
                 $result = mysqli_query($data, $viewSql);
                 while ($fetch = mysqli_fetch_array($result)) {
                   $vprefix = $fetch['vaccinePrefix'];
