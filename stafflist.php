@@ -292,7 +292,10 @@
             </div>
             <div class="mb-3">
               <label for="editPosition" class="form-label">Position</label>
-              <input type="text" class="form-control" id="editPosition" name="editPosition" value="<?php echo $position; ?>">
+              <select id="editPosition" class="form-control" name="editPosition">
+              <option value="Doctor" <?php if ($position == "Doctor") echo "selected"; ?>>Doctor</option>
+              <option value="Staff" <?php if ($position == "Staff") echo "selected"; ?>>Staff</option>
+              </select>
             </div>
             <div class="mb-3">
               <label for="editDepartment" class="form-label">Deparment</label>

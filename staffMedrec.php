@@ -1,66 +1,6 @@
 <?php
 session_start();
 include 'connection.php';
-
-// Add Data
-if (isset($_POST["addBtn"])) {
-  $userID = $_POST["inputDataName"];
-  $staffID = $_POST["inputStaff"];
-  $date = $_POST["inputDateAdmitted"];
-  $dis = $_POST["inputDisease"];
-  $status = $_POST["inputRecStatus"];
-
-  $userQuery = mysqli_query($data, "SELECT `userName` FROM `user` where `userId` = '$userID' ");
-  $userResult = mysqli_fetch_row($userQuery);
-  $uName = implode(" ", $userResult);
-
-  $addSql = "INSERT INTO `medrec` (`userName`,`userID`,`staffID`,`recDate`,`recDisease`,`recStatus`) 
-  VALUES ('$uName','$userID','$staffID','$date','$dis','$status')";
-  $result = mysqli_query($data, $addSql);
-
-  if ($result) {
-    echo '<script> alert("Data added"); </script>';
-  } else {
-    echo '<script> alert("Data not added"); </script>';
-  }
-}
-
-// Edit Data
-if (isset($_POST["editBtn"])) {
-  $id = $_POST["editID"];
-  $userID = $_POST["editName"];
-  $staffID = $_POST["editStaff"];
-  $date = $_POST["editDate"];
-  $dis = $_POST["editDisease"];
-  $status = $_POST["editStatus"];
-
-  $userQuery = mysqli_query($data, "SELECT `userName` FROM `user` where `userId` = '$userID' ");
-  $userResult = mysqli_fetch_row($userQuery);
-  $uName = implode(" ", $userResult);
-
-  $editSql = "UPDATE `medrec` SET `userName`='$uName',`userID`='$userID',`staffID`='$staffID',`recDate`='$date',`recDisease`='$dis',`recStatus`='$status' WHERE `recID`='$id'";
-  $result = mysqli_query($data, $editSql);
-
-  if ($result) {
-    echo '<script> alert("Data updated"); </script>';
-  } else {
-    echo '<script> alert("Data not updated"); </script>';
-  }
-}
-
-// Delete Data
-if (isset($_POST['deleteBtn'])) {
-  $id = $_POST["deleteID"];
-
-  $deleteSql = "DELETE FROM `medrec` WHERE `recID`=$id";
-  $result = mysqli_query($data, $deleteSql);
-
-  if ($result) {
-    echo '<script> alert("Data deleted"); </script>';
-  } else {
-    echo '<script> alert("Data not deleted"); </script>';
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -95,28 +35,26 @@ if (isset($_POST['deleteBtn'])) {
 
         <div class="profile dropdown">
           <div>
-          <?php 
-          $currentUser = $_SESSION['staffId'];
-          $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
+            <?php
+            $currentUser = $_SESSION['staffId'];
+            $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
 
-          $result=mysqli_query($data,$sql);
+            $result = mysqli_query($data, $sql);
 
-          if($result){
-            while($row = mysqli_fetch_assoc($result)){
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
                 $prefix = $row['staffPrefix'];
                 $id = $row['staffId'];
                 $imageStatus = $row['staffImage_status'];
-                
-                if($imageStatus == 1)
-                {
-                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
-                }
-                else{
+
+                if ($imageStatus == 1) {
+                  echo "<img src='upload/profile" . $prefix . $id . ".jpg'>";
+                } else {
                   echo "<img src='asset/image/short-emp.jpg'>";
                 }
+              }
             }
-          }
-          ?>
+            ?>
             <?php
 
             $currentUser = $_SESSION['staffId'];
@@ -158,6 +96,64 @@ if (isset($_POST['deleteBtn'])) {
                   </div>
                 </div>
               </div>
+              <?php
+
+              // Add Data
+              if (isset($_POST["addBtn"])) {
+                $userID = $_POST["inputDataName"];
+                $staffID = $_POST["inputStaff"];
+                $date = $_POST["inputDateAdmitted"];
+                $dis = $_POST["inputDisease"];
+                $status = $_POST["inputRecStatus"];
+
+                $addSql = "INSERT INTO `medrec` (`userID`,`staffID`,`recDate`,`recDisease`,`recStatus`) 
+  VALUES ('$userID','$staffID','$date','$dis','$status')";
+                $result = mysqli_query($data, $addSql);
+
+                if ($result) {
+                  echo '<div class="alert alert-success" role="alert">
+             New medical record added.</div>';
+                } else {
+                  echo '<div class="alert alert-danger" role="alert">
+              Data not added</div>';
+                }
+              }
+
+              // Edit Data
+              if (isset($_POST["editBtn"])) {
+                $id = $_POST["editID"];
+                $staffID = $_POST["editStaff"];
+                $date = $_POST["editDate"];
+                $dis = $_POST["editDisease"];
+                $status = $_POST["editStatus"];
+
+                $editSql = "UPDATE `medrec` SET `staffID`='$staffID',`recDate`='$date',`recDisease`='$dis',`recStatus`='$status' WHERE `recID`='$id'";
+                $result = mysqli_query($data, $editSql);
+
+                if ($result) {
+                  echo '<div class="alert alert-success" role="alert">
+             The selected medical record edited.</div>';
+                } else {
+                  echo  '<div class="alert alert-danger" role="alert">
+              Data not added</div>';
+                }
+              }
+
+              // Delete Data
+              if (isset($_POST['deleteBtn'])) {
+                $id = $_POST["deleteID"];
+
+                $deleteSql = "DELETE FROM `medrec` WHERE `recID`=$id";
+                $result = mysqli_query($data, $deleteSql);
+
+                if ($result) {
+                  echo '<div class="alert alert-success" role="alert">
+             The selected medical record deleted.</div>';
+                } else {
+                  echo '<div class="alert alert-danger" role="alert">
+              Data not added</div>';
+                }
+              } ?>
             </div>
             <div class="table-responsive table-medRec">
               <table class="table table-hover table-condensed" id="dataTableID" style="width:100%">
@@ -270,7 +266,7 @@ if (isset($_POST['deleteBtn'])) {
                                 $user = mysqli_query($data, $userSql);
                                 ?>
                                 <label for="editName" class="form-label">Patient Detail</label>
-                                <input type="text" class="form-control" value="<?php echo $upre . "" . $uid . " - " . $name; ?>" readonly>
+                                <input type="text" class="form-control" name="editName" value="<?php echo $upre . "" . $uid . " - " . $name; ?>" readonly>
                                 </select>
                               </div>
                               <div class="mb-3">
@@ -342,7 +338,7 @@ if (isset($_POST['deleteBtn'])) {
               $userSql = "SELECT * FROM `user`";
               $user = mysqli_query($data, $userSql); ?>
               <label for="inputDataName" class="form-label">Patient Detail</label>
-              <select id="inputDataName" class="form-select select2me" name="inputDataName" title="Select User" data-live-search="true">
+              <select id="inputDataName" class="form-select select2me" name="inputDataName" title="Select User" data-live-search="true" required>
                 <option value="" disabled selected>Select Patient</option>
                 <?php while ($fetch = mysqli_fetch_array($user)) :; ?>
                   <?php $id = $fetch['userId'];
@@ -357,7 +353,7 @@ if (isset($_POST['deleteBtn'])) {
               $staffSql = "SELECT * FROM `staff`";
               $staff = mysqli_query($data, $staffSql); ?>
               <label for="inputStaff" class="form-label">Assigned Medical Staff</label>
-              <select id="inputStaff" class="form-select select2me" name="inputStaff" title="Select Staff" data-live-search="true">
+              <select id="inputStaff" class="form-select select2me" name="inputStaff" title="Select Staff" data-live-search="true" required>
                 <option value="" disabled selected>Select Doctor Assigned</option>
                 <?php while ($fetch = mysqli_fetch_array($staff)) :; ?>
                   <?php $id = $fetch['staffId'];
@@ -369,15 +365,15 @@ if (isset($_POST['deleteBtn'])) {
             </div>
             <div class="mb-3">
               <label for="inputDateAdmitted" class="form-label">Date Admitted</label>
-              <input type="date" class="form-control" name="inputDateAdmitted">
+              <input type="date" class="form-control" name="inputDateAdmitted" required>
             </div>
             <div class="mb-3">
               <label for="inputDisease" class="form-label">Disease</label>
-              <input type="text" class="form-control" name="inputDisease">
+              <input type="text" class="form-control" name="inputDisease" required>
             </div>
             <div class="mb-3">
               <label for="inputRecStatus" class="form-label">Status</label>
-              <select name="inputRecStatus" class="form-select" name="inputRecStatus">
+              <select name="inputRecStatus" class="form-select" name="inputRecStatus" required>
                 <option value="New">New</option>
                 <option value="In Treatment">In Treatment</option>
                 <option value="Recovered">Recovered</option>
