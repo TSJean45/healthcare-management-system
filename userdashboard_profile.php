@@ -38,20 +38,20 @@ if (isset($_POST["addBtn"])) {
 if (isset($_POST["changePass"])) {
 
 
-  $loggedInUser = $_SESSION['userName'];
+  $loggedInUser = $_SESSION['userId'];
 
   $curPass = $_POST["curPass"];
   $newPass = $_POST["newPass"];
   $newCheckPass = $_POST["newCheckPass"];
   if ($newPass  == $newCheckPass) {
     if (!empty($curPass) && !empty($newPass) && !empty($newCheckPass)) {
-      $checkSql = "SELECT userPassword FROM user WHERE `userName`='$loggedInUser' AND `userPassword` = $curPass";
+      $checkSql = "SELECT userPassword FROM user WHERE `userId`='$loggedInUser' AND `userPassword` = $curPass";
       $checkResult = mysqli_query($data, $checkSql);
 
       if (mysqli_num_rows($checkResult) === 1) {
-        $changepassSql = "UPDATE `user` SET `userPassword` ='$newPass'  WHERE `userName`='$loggedInUser'";
+        $changepassSql = "UPDATE `user` SET `userPassword` ='$newPass'  WHERE `userId`='$loggedInUser'";
         $changeResult = mysqli_query($data, $changepassSql);
-        echo "<meta http-equiv='refresh' content='0'>";
+        // echo "<meta http-equiv='refresh' content='0'>";
 
         if ($changeResult) {
           $msg = '<div class="alert alert-success" role="alert">

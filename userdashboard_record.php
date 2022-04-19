@@ -3,9 +3,8 @@ session_start();
 
 include 'connection.php';
 
-if(!isset($_SESSION['userName']))
-{
-  header( "refresh:0;url=index.php#login-again-to-get-access" );
+if (!isset($_SESSION['userName'])) {
+  header("refresh:0;url=index.php#login-again-to-get-access");
 }
 
 ?>
@@ -46,14 +45,15 @@ if(!isset($_SESSION['userName']))
               <tbody>
 
                 <?php
-                $viewSql = "SELECT * FROM `medrec` INNER JOIN  `user` ON  medrec.userID = user.userId
-               INNER JOIN `staff`  ON  medrec.staffID=staff.staffId";
+                $currentUser = $_SESSION['userId'];
+                $viewSql = "SELECT * FROM `medrec` INNER JOIN `staff`  ON  medrec.staffID=staff.staffId 
+                INNER JOIN `user`  ON  medrec.userId=user.userId
+                WHERE medrec.userId=$currentUser";
                 $result = mysqli_query($data, $viewSql);
                 while ($row = mysqli_fetch_array($result)) {
                   $rpre = $row['recPrefix'];
                   $rid = $row['recID'];
                   $uid = $row['userID'];
-                  $uname = $row['userName'];
                   $upre = $row['userPrefix'];
                   $sname = $row['staffName'];
                   $dis = $row['recDisease'];

@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
 if (isset($_POST["changePass"])) {
 
 
-  $loggedInUser = $_SESSION['adminName'];
+  $loggedInUser = $_SESSION['adminId'];
       
   $curPass = $_POST["curPass"];
   $newPass = $_POST["newPass"];
@@ -42,11 +42,11 @@ if (isset($_POST["changePass"])) {
     {
       if(!empty($curPass)&&!empty($newPass)&&!empty($newCheckPass))
       {
-        $checkSql = "SELECT adminPassword FROM admin WHERE `adminName`='$loggedInUser' AND `adminPassword` = $curPass";
+        $checkSql = "SELECT adminPassword FROM admin WHERE `adminId`='$loggedInUser' AND `adminPassword` = $curPass";
         $checkResult = mysqli_query($data, $checkSql);
 
         if(mysqli_num_rows($checkResult) === 1){
-          $changepassSql = "UPDATE `admin` SET `adminPassword` ='$newPass'  WHERE `adminName`='$loggedInUser'";
+          $changepassSql = "UPDATE `admin` SET `adminPassword` ='$newPass'  WHERE `adminId`='$loggedInUser'";
           $changeResult = mysqli_query($data, $changepassSql);
           // echo "<meta http-equiv='refresh' content='0'>";
 
@@ -143,13 +143,33 @@ else{
 if(isset($_POST['removePic'])){
   $loggedInUser = $_SESSION['adminId'];
 
-  $refreshSql = "UPDATE `admin` set `adminImage_status`= 0 WHERE adminId = '$loggedInUser' ";
-  $refreshResult = mysqli_query($data, $refreshSql);
+  $prefixSql = "SELECT * FROM `admin` WHERE `adminId` ='$loggedInUser'";
+  $prefixResult=mysqli_query($data,$prefixSql);
 
-  $msg =  '<div class="alert alert-success" role="alert">
-                    Photo has been removed.</div>';
+  if($prefixResult){
+    while($row = mysqli_fetch_assoc($prefixResult)){
+        $adminPrefix = $row['adminPrefix'];
+        $adminId = $row['adminId'];
 
+  $fileName = 'upload/profile'.$adminPrefix.$adminId.'.jpg';
+
+    if (unlink($fileName)) {
+      $msg =  '<div class="alert alert-success" role="alert">
+                      Image has been removed.</div>';
+    } else {
+      $msg =  '<div class="alert alert-danger" role="alert">
+                      An error has occured.</div>';
+    }
+  
+    $refreshSql = "UPDATE `admin` set `adminImage_status`= 0 WHERE adminId = '$loggedInUser' ";
+    $refreshResult = mysqli_query($data, $refreshSql);
+
+    $msg =  '<div class="alert alert-success" role="alert">
+                    Image has been removed.</div>';
+  }
 }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -270,7 +290,7 @@ if(isset($_POST['removePic'])){
                 <?php 
                 if($imageStatus == 1)
                 {
-                  echo "<img src='upload/profile".$prefix.$id.".jpg' height='340' width='340'>";
+                  echo "<img src='upload/profile".$prefix.$id.".jpg' height='340' width='400'>";
                 }
                 else{
                   echo "<img src='asset/image/short-emp.jpg'>";

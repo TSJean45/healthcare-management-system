@@ -80,9 +80,14 @@ include 'connection.php';
               $result = mysqli_query($data, $deleteSql);
 
               if ($result) {
-                echo '<script> alert("Data deleted"); </script>';
+                echo '<div class="alert alert-success" role="alert">
+                Message status successfully deleted. 
+            </div>';
+                
               } else {
-                echo '<script> alert("Data not deleted"); </script>';
+                echo '<div class="alert alert-danger" role="alert">
+                    Error! Message status is not deleted. Please try again later.
+                </div>';
               }
             }
 

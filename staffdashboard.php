@@ -201,7 +201,7 @@ include 'connection.php'; ?>
         </div>
       </div>
 
-      <div class="container">
+      
         <div class="row row-cols-1 row-cols-md-2 g-4" data-masonry='{"percentPosition": true }'>
           <div class="col">
             <div class="card">
@@ -379,7 +379,7 @@ include 'connection.php'; ?>
             </div>
           </div>
         </div>
-      </div>
+      
   </section>
 
   <?php include('asset/includes/jsCDN.php'); ?>

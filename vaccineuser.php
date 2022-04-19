@@ -36,7 +36,7 @@ if(!isset($_SESSION['userName']))
       <img class="card-img-top" src="asset/image/vac.jpg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">
-          <h2 class="mb-2 title-color text-center">Book A Vaccination Appoinment</h2>
+          <h2 class="mb-2 title-color text-center">Book A COVID-19 Vaccination Appoinment</h2>
         </h5>
         <p class="card-text">
         <p class="mb-4 text-center">

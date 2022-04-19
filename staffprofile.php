@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
 if (isset($_POST["changePass"])) {
 
 
-  $loggedInUser = $_SESSION['staffName'];
+  $loggedInUser = $_SESSION['staffId'];
       
   $curPass = $_POST["curPass"];
   $newPass = $_POST["newPass"];
@@ -42,11 +42,11 @@ if (isset($_POST["changePass"])) {
     {
       if(!empty($curPass)&&!empty($newPass)&&!empty($newCheckPass))
       {
-        $checkSql = "SELECT staffPassword FROM staff WHERE `staffName`='$loggedInUser' AND `staffPassword` = $curPass";
+        $checkSql = "SELECT staffPassword FROM staff WHERE `staffId`='$loggedInUser' AND `staffPassword` = $curPass";
         $checkResult = mysqli_query($data, $checkSql);
 
         if(mysqli_num_rows($checkResult) === 1){
-          $changepassSql = "UPDATE `staff` SET `staffPassword` ='$newPass'  WHERE `staffName`='$loggedInUser'";
+          $changepassSql = "UPDATE `staff` SET `staffPassword` ='$newPass'  WHERE `staffId`='$loggedInUser'";
           $changeResult = mysqli_query($data, $changepassSql);
           // echo "<meta http-equiv='refresh' content='0'>";
 
@@ -115,7 +115,7 @@ if(isset($_POST['uploadPic'])){
         $sql = "UPDATE `staff` set `staffImage_status`= 1 WHERE staffId = '$loggedInUser' ";
         $result = mysqli_query($data, $sql);
         $msg =  '<div class="alert alert-success" role="alert">
-                    Photo has been uploaded. It will take a sec to display</div>';
+                    Photo has been uploaded.</div>';
               }
       }
       else{
@@ -150,13 +150,36 @@ else{
 if(isset($_POST['removePic'])){
   $loggedInUser = $_SESSION['staffId'];
 
-  $refreshSql = "UPDATE `staff` set `staffImage_status`= 0 WHERE staffId = '$loggedInUser' ";
-  $refreshResult = mysqli_query($data, $refreshSql);
+  $prefixSql = "SELECT * FROM `staff` WHERE `staffId` ='$loggedInUser'";
+  $prefixResult=mysqli_query($data,$prefixSql);
 
-  $msg =  '<div class="alert alert-success" role="alert">
-                    Photo has been removed.</div>';
+  if($prefixResult){
+    while($row = mysqli_fetch_assoc($prefixResult)){
+        $staffPrefix = $row['staffPrefix'];
+        $staffId = $row['staffId'];
+
+  $fileName = 'upload/profile'.$staffPrefix.$staffId.'.jpg';
+  
+    if (unlink($fileName)) {
+      $msg =  '<div class="alert alert-success" role="alert">
+                      Image has been removed.</div>';
+    } else {
+      $msg =  '<div class="alert alert-danger" role="alert">
+                      An error has occured.</div>';
+    }
+  
+    $refreshSql = "UPDATE `staff` set `staffImage_status`= 0 WHERE staffId = '$loggedInUser' ";
+    $refreshResult = mysqli_query($data, $refreshSql);
+
+    $msg =  '<div class="alert alert-success" role="alert">
+                    Image has been removed.</div>';
+  }
 
 }
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -280,7 +303,7 @@ if(isset($_POST['removePic'])){
               <?php 
                 if($imageStatus == 1)
                 {
-                  echo "<img src='upload/profile".$prefix.$id.".jpg' height='340' width='340'>";
+                  echo "<img src='upload/profile".$prefix.$id.".jpg' height='340' width='400'>";
                 }
                 else{
                   echo "<img src='asset/image/short-emp.jpg'>";
