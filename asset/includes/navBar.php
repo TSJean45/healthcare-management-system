@@ -49,7 +49,7 @@
         <div class="collapse navbar-collapse gx-4" id="toggleCollapse">
           <ul class="navbar-nav myNav">
             <li class="nav-item px-2">
-              <a class="nav-link active" href="index.php">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item px-2">
               <a class="nav-link" href="index.php?#aboutus">About Us</a>
@@ -65,11 +65,9 @@
                 </div>
               </li>
             <?php
-            }
-            else
-            {
+            } else {
             ?>
-            <li class="nav-item dropdown px-2">
+              <li class="nav-item dropdown px-2">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Patient Care</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a href="login.php" class="dropdown-item">Consultation Appointment</a>

@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<input type="email" name="Email" placeholder="Email" />
 					<input type="password" name="Password" placeholder="Password" />
 					<input type="password" name="CPassword" placeholder="Comfirm password" />
-					<button>login</button>
+					<button>Register</button>
 					<p class="message">Registered? <a href="login.php">Login Here</a></p>
 				</form>
 			</div>
@@ -102,17 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	<?php include('asset/includes/footer.php'); ?>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-</body>
-
-</html>
-
-
-
-</body>
+	<<?php include('asset/includes/jsCDN.php'); ?> </body>
 
 </html>

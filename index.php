@@ -413,7 +413,7 @@ include 'connection.php';
           <div class="phone col-lg-4">
             <i class="fas fa-phone"></i>
             <h4>Call:</h4>
-            <p>+60 11-10831460</p>
+            <p>+60 11-11111111</p>
           </div>
         </div>
         <?php if (isset($_POST["contactSubmit"])) {
@@ -464,12 +464,7 @@ include 'connection.php';
     <!--Footer -->
     <?php include('asset/includes/footer.php'); ?>
 
-    <!-- Bootstrap JS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <?php include('asset/includes/jsCDN.php'); ?>
     <!-- Local JS file -->
     <script src="asset/js/scrollTop.js"></script>
 </body>
