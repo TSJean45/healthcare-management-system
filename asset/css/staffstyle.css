@@ -79,13 +79,10 @@ Staff Dashboard
   color: #4b0109;
   background: #d69ba0;
 }
-
-/*List Table */
 .home-content .list-boxes {
   display: flex;
   justify-content: space-between;
 }
-/* Responsive Media Query */
 @media (max-width: 1150px) {
   .home-content .list-boxes {
     flex-direction: column;
@@ -197,10 +194,4 @@ Bed Status
 .table #schedule:before {
   margin-right: 10px;
   color: rgb(0, 0, 0);
-}
-/*-------------------------------------------------------------------
-Hdie Table Row
-----------------------------------------------------------------------*/
-.hide-row{ 
-  display:none; 
 }

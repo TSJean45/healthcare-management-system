@@ -30,34 +30,28 @@ include 'connection.php';
         <span class="dashboard">Vaccination</span>
       </div>
       <div class="right-nav">
-        <div class="right noti-bell my-auto">
-          <i class='bx bxs-bell-ring'></i>
-        </div>
-
         <div class="profile dropdown">
           <div>
-          <?php 
-          $currentUser = $_SESSION['staffId'];
-          $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
+            <?php
+            $currentUser = $_SESSION['staffId'];
+            $sql = "SELECT * FROM staff WHERE staffId ='$currentUser'";
 
-          $result=mysqli_query($data,$sql);
+            $result = mysqli_query($data, $sql);
 
-          if($result){
-            while($row = mysqli_fetch_assoc($result)){
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
                 $prefix = $row['staffPrefix'];
                 $id = $row['staffId'];
                 $imageStatus = $row['staffImage_status'];
-                
-                if($imageStatus == 1)
-                {
-                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
-                }
-                else{
+
+                if ($imageStatus == 1) {
+                  echo "<img src='upload/profile" . $prefix . $id . ".jpg'>";
+                } else {
                   echo "<img src='asset/image/short-emp.jpg'>";
                 }
+              }
             }
-          }
-          ?>
+            ?>
             <?php
 
             $currentUser = $_SESSION['staffId'];
@@ -540,8 +534,6 @@ include 'connection.php';
 
   <!-- Local JS -->
   <script src="asset/js/sidenavbar.js"></script>
-  <script src="asset/js/triggerToast.js"></script>
-  <script src="asset/js/deleteData.js"></script>
 
 </body>
 

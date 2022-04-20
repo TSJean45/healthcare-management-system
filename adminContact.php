@@ -30,34 +30,44 @@ include 'connection.php';
         <span class="dashboard">Contact</span>
       </div>
       <div class="right-nav">
-        <div class="right noti-bell my-auto">
-          <i class='bx bxs-bell-ring'></i>
-        </div>
-
         <div class="profile dropdown">
           <div>
-          <?php 
-          $currentUser = $_SESSION['adminId'];
-          $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+            <?php
+            $currentUser = $_SESSION['adminId'];
+            $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
 
-          $result=mysqli_query($data,$sql);
+            $result = mysqli_query($data, $sql);
 
-          if($result){
-            while($row = mysqli_fetch_assoc($result)){
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
                 $prefix = $row['adminPrefix'];
                 $id = $row['adminId'];
                 $imageStatus = $row['adminImage_status'];
-                
-                if($imageStatus == 1)
-                {
-                  echo "<img src='upload/profile".$prefix.$id.".jpg'>";
-                }
-                else{
+
+                if ($imageStatus == 1) {
+                  echo "<img src='upload/profile" . $prefix . $id . ".jpg'>";
+                } else {
                   echo "<img src='asset/image/short-emp.jpg'>";
                 }
               }
             }
-          ?>
+            ?>
+            <?php
+
+            $currentUser = $_SESSION['adminId'];
+            $sql = "SELECT * FROM admin WHERE adminId ='$currentUser'";
+
+            $result = mysqli_query($data, $sql);
+
+            if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $adminName = $row['adminName'];
+
+            ?>
+
+                <span class="profile_name"><?php echo $adminName ?></span>
+            <?php  }
+            } ?>
           </div>
         </div>
       </div>
@@ -83,7 +93,6 @@ include 'connection.php';
                 echo '<div class="alert alert-success" role="alert">
                 Message status successfully deleted. 
             </div>';
-                
               } else {
                 echo '<div class="alert alert-danger" role="alert">
                     Error! Message status is not deleted. Please try again later.

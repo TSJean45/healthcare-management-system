@@ -29,10 +29,6 @@ include 'connection.php';
         <span class="dashboard">Medical Record</span>
       </div>
       <div class="right-nav">
-        <div class="right noti-bell my-auto">
-          <i class='bx bxs-bell-ring'></i>
-        </div>
-
         <div class="profile dropdown">
           <div>
             <?php
