@@ -2,7 +2,7 @@
 Diploma in IT FYP Healthcare Management System<br>
 Group Member: Johan Harris, Cheong Jia En, Tan Szu Jean
 
-<h1>ONGOING FYP</h1>
+<h1>Final Year Project</h1>
 
 <h1>Project Objective</h1>
 <li><b>To provide an online appointment system for medical users to book their appointments</b><br></li>
