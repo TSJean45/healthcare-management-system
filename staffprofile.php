@@ -144,7 +144,11 @@ if (isset($_POST['removePic'])) {
 
       $fileName = 'upload/profile' . $staffPrefix . $staffId . '.jpg';
 
+      if (file_exists($fileName))
+      {
       if (unlink($fileName)) {
+        $refreshSql = "UPDATE `staff` set `staffImage_status`= 0 WHERE staffId = '$loggedInUser' ";
+        $refreshResult = mysqli_query($data, $refreshSql);
         $msg =  '<div class="alert alert-success" role="alert">
                       Image has been removed.</div>';
       } else {
@@ -152,11 +156,13 @@ if (isset($_POST['removePic'])) {
                       An error has occured.</div>';
       }
 
-      $refreshSql = "UPDATE `staff` set `staffImage_status`= 0 WHERE staffId = '$loggedInUser' ";
-      $refreshResult = mysqli_query($data, $refreshSql);
+      } else{
+        $msg =  '<div class="alert alert-danger" role="alert">
+                    There is no image to be removed.</div>';
+      }
+      
 
-      $msg =  '<div class="alert alert-success" role="alert">
-                    Image has been removed.</div>';
+      
     }
   }
 }
