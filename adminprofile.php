@@ -138,19 +138,25 @@ if (isset($_POST['removePic'])) {
 
       $fileName = 'upload/profile' . $adminPrefix . $adminId . '.jpg';
 
+      if (file_exists($fileName))
+      {
+
       if (unlink($fileName)) {
+        $refreshSql = "UPDATE `admin` set `adminImage_status`= 0 WHERE adminId = '$loggedInUser' ";
+        $refreshResult = mysqli_query($data, $refreshSql);
+
         $msg =  '<div class="alert alert-success" role="alert">
                       Image has been removed.</div>';
       } else {
         $msg =  '<div class="alert alert-danger" role="alert">
                       An error has occured.</div>';
       }
-
-      $refreshSql = "UPDATE `admin` set `adminImage_status`= 0 WHERE adminId = '$loggedInUser' ";
-      $refreshResult = mysqli_query($data, $refreshSql);
-
-      $msg =  '<div class="alert alert-success" role="alert">
-                    Image has been removed.</div>';
+      }
+      else
+      {
+        $msg =  '<div class="alert alert-danger" role="alert">
+                      There is no image to be removed</div>';
+      }
     }
   }
 }
